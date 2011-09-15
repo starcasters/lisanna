@@ -1,18 +1,71 @@
 THIS=${PWD}
 GPLIBS=rpc/cpp/
-GPLIBSI=rpc/rpc.o rpc/headers.o ${GPLIBS}/lib/rpc/connection.pb.o ${GPLIBS}/lib/rpc/rpc.pb.o ${GPLIBS}/service/authentication/authentication.pb.o
+GPLIBSI=rpc/rpc.o rpc/headers.o
 CC=g++
 
-headers/headers.o: rpc/headers.cpp rpc/headers.h
-	rm -f rpc/headers.o
-	${CC} -c rpc/headers.o ${GPLIBSI} -lws2_32 -I rpc/cpp/ -I/usr/local/include -L/usr/local/lib/ -lprotobuf 
-	
-headers/rpc.o: rpc/rpc.cpp rpc/rpc.h
-	rm -f rpc/rpc.o
-	${CC} -c rpc/rpc.o ${GPLIBSI} -lws2_32 -I rpc/cpp/ -I/usr/local/include -L/usr/local/lib/ -lprotobuf 
+PLIBS= \
+ cpp/Account.pb.o \
+ cpp/AttributeSerializer.pb.o \
+ cpp/GameMessage.pb.o \
+ cpp/GBHandle.pb.o \
+ cpp/google/protobuf/descriptor.pb.o \
+ cpp/Hero.pb.o \
+ cpp/Hireling.pb.o \
+ cpp/ItemCrafting.pb.o \
+ cpp/Items.pb.o \
+ cpp/lib/config/process_config.pb.o \
+ cpp/lib/profanity/profanity.pb.o \
+ cpp/lib/protocol/attribute.pb.o \
+ cpp/lib/protocol/content_handle.pb.o \
+ cpp/lib/protocol/descriptor.pb.o \
+ cpp/lib/protocol/entity.pb.o \
+ cpp/lib/protocol/exchange.pb.o \
+ cpp/lib/protocol/exchange_object_provider.pb.o \
+ cpp/lib/protocol/invitation.pb.o \
+ cpp/lib/protocol/resource.pb.o \
+ cpp/lib/rpc/connection.pb.o \
+ cpp/lib/rpc/rpc.pb.o \
+ cpp/OnlineService.pb.o \
+ cpp/PartyMessage.pb.o \
+ cpp/Quest.pb.o \
+ cpp/service/authentication/authentication.pb.o \
+ cpp/service/channel/channel_types.pb.o \
+ cpp/service/channel/definition/channel.pb.o \
+ cpp/service/channel_invitation/channel_invitation_types.pb.o \
+ cpp/service/channel_invitation/definition/channel_invitation.pb.o \
+ cpp/service/exchange/exchange.pb.o \
+ cpp/service/exchange/exchange_types.pb.o \
+ cpp/service/friends/definition/friends.pb.o \
+ cpp/service/friends/friends_types.pb.o \
+ cpp/service/game_master/game_factory.pb.o \
+ cpp/service/game_master/game_master.pb.o \
+ cpp/service/game_master/game_master_types.pb.o \
+ cpp/service/game_utilities/game_utilities.pb.o \
+ cpp/service/notification/notification.pb.o \
+ cpp/service/presence/presence.pb.o \
+ cpp/service/presence/presence_types.pb.o \
+ cpp/service/search/search.pb.o \
+ cpp/service/search/search_types.pb.o \
+ cpp/service/server_pool/server_pool.pb.o \
+ cpp/service/storage/storage.pb.o \
+ cpp/service/toon/toon.pb.o \
+ cpp/service/toon/toon_external.pb.o \
+ cpp/service/user_manager/user_manager.pb.o \
+ cpp/Settings.pb.o \
+ cpp/Stats.pb.o
 
-libs: rpc/headers.o 
 
 all: libs
 	echo ${THIS}
-	g++ -o server/TCPEchoServer server/TCPEchoServer.cpp server/PracticalSocket.cpp ${GPLIBSI} -lws2_32 -I${THIS} -I./rpc/cpp/ -I/usr/local/include -L/usr/local/lib/ -lprotobuf 
+	${CC} -o TCPEchoServer server/TCPEchoServer.cpp server/PracticalSocket.cpp ${PLIBS} ${GPLIBSI} -lws2_32 -I${THIS} -Icpp/ -I/usr/local/include -L/usr/local/lib/ -lprotobuf 
+
+rpc/headers.o: rpc/headers.cpp rpc/headers.h
+	rm -f rpc/headers.o
+	${CC} -c -o rpc/headers.o rpc/headers.cpp -lws2_32 -Icpp/ -I/usr/local/include -L/usr/local/lib/ -lprotobuf 
+	
+rpc/rpc.o: rpc/rpc.cpp rpc/rpc.h
+	rm -f rpc/rpc.o
+	${CC} -c -o rpc/rpc.o rpc/headers.cpp -lws2_32 -Icpp/ -I/usr/local/include -L/usr/local/lib/ -lprotobuf 
+
+libs: rpc/headers.o rpc/rpc.o
+
