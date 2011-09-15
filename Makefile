@@ -8,7 +8,6 @@ PLIBS= \
  cpp/AttributeSerializer.pb.o \
  cpp/GameMessage.pb.o \
  cpp/GBHandle.pb.o \
- cpp/google/protobuf/descriptor.pb.o \
  cpp/Hero.pb.o \
  cpp/Hireling.pb.o \
  cpp/ItemCrafting.pb.o \
