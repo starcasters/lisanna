@@ -56,7 +56,7 @@ PLIBS= \
 
 all: libs
 	echo ${THIS}
-	${CC} -o TCPEchoServer server/TCPEchoServer.cpp server/PracticalSocket.cpp ${PLIBS} ${GPLIBSI} -lws2_32 -I${THIS} -Icpp/ -I/usr/local/include -L/usr/local/lib/ -lprotobuf 
+	${CC} -o TCPServer server/TCPServer.cpp server/PracticalSocket.cpp ${PLIBS} ${GPLIBSI} -lws2_32 -I${THIS} -Icpp/ -I/usr/local/include -L/usr/local/lib/ -lprotobuf 
 
 rpc/headers.o: rpc/headers.cpp rpc/headers.h
 	rm -f rpc/headers.o
