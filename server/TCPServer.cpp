@@ -21,7 +21,6 @@
 #include <iostream>           // For cerr and cout
 #include <cstdlib>            // For atoi()
 #include <cstring>
-//#include <tuple>
 #include <vector>
 #include <algorithm>
 #include <utility>
@@ -35,13 +34,14 @@
 #include <google/protobuf/wire_format.h>
 #include <google/protobuf/text_format.h>
 
-#include "rpc/rpc.h"
-#include "rpc/headers.h"
 #include "lib/rpc/connection.pb.h"
 #include "service/authentication/authentication.pb.h"
 
 using namespace std;
 using namespace google::protobuf;
+
+#include "rpc/rpc.h"
+
 
 const unsigned int RCVBUFSIZE = 2048;    // Size of receive buffer
 
@@ -63,6 +63,8 @@ bool handle_FIXME(TCPSocket *sock, bnet::protocol::connection::ConnectRequest* m
 	cout << "FIXME: handle for message " << message->GetDescriptor()->full_name() << " not implemented" << endl;
 	return false;
 }
+
+CServices services;
 
 int main(int argc, char *argv[]) {
   if (argc != 2) {                     // Test for correct number of arguments
@@ -87,38 +89,6 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-int servicescount = 1;
-
-struct amethod {
-	int id;
-	void* proc;
-	Message* msgtype;
-};
-typedef vector<amethod*> g_methods; 
-
-struct aservice {
-	int hash;
-	int id;
-	g_methods methods;
-};
-
-std::vector<aservice*> g_services;
-
-aservice* add_service(int hash, int id) {
-  aservice* service = new aservice();
-  service->hash = hash;
-  service->id = id;
-  g_services.push_back(service);
-  return service;
-}
-void add_method(aservice* service, int id, void* proc, Message* msg) {
-  amethod* method = new amethod();
-  method->id = id;
-  method->proc = proc;
-  method->msgtype = msg;
-  service->methods.push_back(method);
-}
-
 // TCP client handling function
 void HandleTCPClient(TCPSocket *sock) {
   cout << "Handling client ";
@@ -139,30 +109,23 @@ void HandleTCPClient(TCPSocket *sock) {
   int recvMsgSize;
   int bufpos = 0;
   int procpos = 0;
-  servicescount = 2;
-	
+  
   aservice* service;
   amethod* method;
   
   //lets clean the services, fixme: some unhandled memleak?
-  while (g_services.size()) {
- 	service = g_services.back();
-	g_services.pop_back();
-	
-	delete service;
-  };
 
   //adding a new service?
-  service = add_service(0, 0);
-  add_method(service, 1, (void*) &handle_ConnectRequest, (Message*) &(bnet::protocol::connection::ConnectRequest::default_instance()));
-  add_method(service, 2, (void*) &handle_BindRequest, (Message*) &(bnet::protocol::connection::BindRequest::default_instance()));
+  service = services.add_service(0, 0);
+  services.add_method(service, 1, (void*) &handle_ConnectRequest, (Message*) &(bnet::protocol::connection::ConnectRequest::default_instance()));
+  services.add_method(service, 2, (void*) &handle_BindRequest, (Message*) &(bnet::protocol::connection::BindRequest::default_instance()));
   
-  service = add_service(0xB732DB32, 1);
-  service = add_service(0xFA0796FF, 2);
-  service = add_service(0xdecfc01,  3);
-  add_method(service, 1, (void*) &handle_FIXME, (Message*) &(bnet::protocol::authentication::ModuleLoadRequest::default_instance()));
-  add_method(service, 2, (void*) &handle_FIXME, (Message*) &(bnet::protocol::authentication::ModuleMessageRequest::default_instance()));
-  add_method(service, 3, (void*) &handle_FIXME, (Message*) &(bnet::protocol::authentication::LogonRequest::default_instance()));
+  service = services.add_service(0xB732DB32, 1);
+  service = services.add_service(0xFA0796FF, 2);
+  service = services.add_service(0xdecfc01,  3);//Authentication Service
+  services.add_method(service, 1, (void*) &handle_FIXME, (Message*) &(bnet::protocol::authentication::ModuleLoadRequest::default_instance()));
+  services.add_method(service, 2, (void*) &handle_FIXME, (Message*) &(bnet::protocol::authentication::ModuleMessageRequest::default_instance()));
+  services.add_method(service, 3, (void*) &handle_FIXME, (Message*) &(bnet::protocol::authentication::LogonRequest::default_instance()));
   
   while (1) {
 	if (RCVBUFSIZE - bufpos == 0) {
@@ -239,8 +202,8 @@ bool handle_BindRequest(TCPSocket *sock, bnet::protocol::connection::BindRequest
 	bnet::protocol::connection::BindResponse* bindres = new bnet::protocol::connection::BindResponse();
 	for (int i = 0; i < message->imported_service_hash_size(); i++) {
 		int k = -1;
-		for (int j =0; j < g_services.size(); j++) {
-			if (g_services.at(j)->hash == message->imported_service_hash(i))
+		for (int j =0; j < services.Items.size(); j++) {
+			if (services.Items.at(j)->hash == message->imported_service_hash(i))
 				k = j;
 		}
 		if (k == -1) {
@@ -248,7 +211,7 @@ bool handle_BindRequest(TCPSocket *sock, bnet::protocol::connection::BindRequest
 			delete bindres;
 			return false;
 		}
-		bindres->add_imported_service_id(g_services.at(k)->id);
+		bindres->add_imported_service_id(services.Items.at(k)->id);
 	};
 	cout << "reply size? " << bindres->ByteSize() << endl ;
 	printmsgdata(bindres);
@@ -276,15 +239,15 @@ int HandleTcpData(TCPSocket *sock, char *dataBuffer, int size) {
 	
 	if (aheader.service != 0xFE) {
 		int j = -1;
-		for (int i = 0; i < g_services.size(); i++) 
-			if (g_services.at(i)->id == aheader.service) 
+		for (int i = 0; i < services.Items.size(); i++) 
+			if (services.Items.at(i)->id == aheader.service) 
 				j=i;
 		if (j == -1) {
 			cout << "service not registered? id " << aheader.service << endl;
 		} else {
-			cout << "service registed, id " << aheader.service << " " << hex << g_services.at(j)->hash << endl;
+			cout << "service registed, id " << aheader.service << " " << hex << services.Items.at(j)->hash << endl;
 
-			methods = g_services.at(j)->methods;
+			methods = services.Items.at(j)->methods;
 			int k = -1;
 			for (int i = 0; i < methods.size(); i++) {
 				if (methods.at(i)->id == aheader.method) {
