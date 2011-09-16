@@ -36,6 +36,7 @@
 
 #include "lib/rpc/connection.pb.h"
 #include "service/authentication/authentication.pb.h"
+#include "service/exchange/exchange.pb.h"
 
 using namespace std;
 using namespace google::protobuf;
@@ -125,9 +126,23 @@ void HandleTCPClient(TCPSocket *sock) {
   service = services.add_service(0xB732DB32, 1);
   service = services.add_service(0xFA0796FF, 2);
   service = services.add_service(0xdecfc01,  3);//Authentication Service
-  services.add_method(service, 1, (void*) &handle_FIXME, (Message*) &(bnet::protocol::authentication::ModuleLoadRequest::default_instance()));
-  services.add_method(service, 2, (void*) &handle_FIXME, (Message*) &(bnet::protocol::authentication::ModuleMessageRequest::default_instance()));
-  services.add_method(service, 3, (void*) &handle_LogonRequest, (Message*) &(bnet::protocol::authentication::LogonRequest::default_instance()));
+  services.add_method(service, 1, (void*) &handle_LogonRequest, (Message*) &(bnet::protocol::authentication::LogonRequest::default_instance()));
+  services.add_method(service, 2, (void*) &handle_FIXME, (Message*) &(bnet::protocol::authentication::ModuleLoadRequest::default_instance()));
+  services.add_method(service, 3, (void*) &handle_FIXME, (Message*) &(bnet::protocol::authentication::ModuleMessageRequest::default_instance()));
+  service = services.add_service(0xcbe3c43, 4);
+  service = services.add_service(0x83040608, 5);
+  service = services.add_service(0xd89ca9, 6);
+  service = services.add_service(0xd750148b, 7);
+  services.add_method(service, 27, (void*) &handle_FIXME, (Message*) &(bnet::protocol::exchange::GetConfigurationRequest::default_instance()));
+  service = services.add_service(0x4124c31b, 8);
+  service = services.add_service(0xe5a11099, 9);
+  service = services.add_service(0x3e19268a, 10);
+  service = services.add_service(0xa3ddb1bd, 11);
+  service = services.add_service(0xf4e7fa35, 12);
+  service = services.add_service(0x810cb195, 13);
+  service = services.add_service(0xda6e4bb9, 14);
+  service = services.add_service(0xa24a291, 16);
+
   
   while (1) {
 	if (RCVBUFSIZE - bufpos == 0) {
@@ -135,19 +150,28 @@ void HandleTCPClient(TCPSocket *sock) {
 		break;
 	}
 	recvMsgSize = sock->recv(echoBuffer+bufpos, RCVBUFSIZE - bufpos);
+	
 	if (recvMsgSize == 0)
-		break;
+			break;
 
 	bufpos += recvMsgSize; 
 	
-	if ((procpos = HandleTcpData(sock, echoBuffer, bufpos)) == -1)
+    
+	int consumed = 0;
+	while (1)
 	{
-		cout << "error handling tcp data" << endl;
-		break;
+		procpos = HandleTcpData(sock, echoBuffer+consumed, bufpos-consumed);
+		consumed += procpos;
+		if (procpos < 1)
+			break;
+	}
+	if (procpos == -1) {
+	   cout << "error handling tcp data" << endl;
+	   break;
 	}
 	
-	memcpy(echoBuffer, echoBuffer+bufpos, bufpos-procpos);
-	bufpos -= procpos;
+	memcpy(echoBuffer, echoBuffer+consumed, bufpos-consumed);
+	bufpos -= consumed;
     //sock->send(echoBuffer, recvMsgSize);
   }
   cout << "disconnecting from client" << endl;
@@ -239,7 +263,7 @@ bool handle_BindRequest(TCPSocket *sock, bnet::protocol::connection::BindRequest
 		}
 		if (k == -1) {
 			cout << "unknow service hash: " << message->imported_service_hash(i) << endl;
-			return false;
+			return true;
 		}
 		bindres.add_imported_service_id(services.Items.at(k)->id);
 	};
@@ -273,6 +297,11 @@ int HandleTcpData(TCPSocket *sock, char *dataBuffer, int size) {
 	char* packet;
 	g_methods methods;
 	packet = procheader(dataBuffer, size, &aheader);
+
+	if (packet == NULL) 
+		return 0; //not enougth data to read the header
+	 
+	hexdump(dataBuffer, size);
 	
 	printheader(&aheader);
 	
