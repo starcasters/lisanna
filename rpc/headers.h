@@ -30,7 +30,7 @@ typedef rpcheader* prpcheader;
 
 char* get_varint32(char*currentpos, int remainingbytes, int* aval);
 char* get_varint64(char*currentpos, int remainingbytes, int* aval);
-char* add_varint(char*currentpos, int val);
+char* add_varint(char*currentpos, unsigned int val);
 
 char* procheader(char* datastream, int size, prpcheader aheader);
 void printheader(prpcheader aheader);

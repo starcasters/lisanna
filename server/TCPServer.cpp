@@ -154,6 +154,16 @@ void HandleTCPClient(TCPSocket *sock) {
   delete sock;
 }
 
+void hexdump(char* data, int size) {
+	for (int i=0; i < size; i++) {
+		unsigned int next = (unsigned char) *data++;
+		cout << showbase << hex << next << " ";
+		if ((i+1) % 16 == 0)
+		 cout << endl ;
+	}
+	cout << endl ;
+}
+
 void printmsgdata(google::protobuf::Message* message) {
 	char buf[2000];
 	cout << "packet dump:" << endl;
@@ -162,12 +172,7 @@ void printmsgdata(google::protobuf::Message* message) {
 		return;
 	}
 	message->SerializeToArray(buf, sizeof(buf));
-	for (int i=0; i < message->ByteSize(); i++) {
-		cout << showbase << hex << (unsigned int) buf[i] << " ";
-		if ((i+1) % 16 == 0)
-		 cout << endl ;
-	}
-	cout << endl ;
+	hexdump(buf, message->ByteSize());
 }
 
 void sendmsgdata(TCPSocket* sock, google::protobuf::Message* message) {
@@ -180,15 +185,18 @@ void sendmsgdata(TCPSocket* sock, google::protobuf::Message* message) {
 	sock->send(buf, message->ByteSize());
 }
 
-void sendheader(TCPSocket* sock, int serviceid, int method, int reqid, int unknow, int size) {
+void sendheader(TCPSocket* sock, unsigned int serviceid, unsigned int method, unsigned int reqid, int unknow, unsigned int size) {
 	char buf[2000];
 	char* pos = &(buf[0]);
 	*(unsigned char*)pos = serviceid; pos++;
 	pos = add_varint(pos, method);
 	*(unsigned short*)pos = reqid; pos+=2;
-	if (serviceid != 0xFE)
+	if (serviceid != 0xFE) {
 		pos = add_varint(pos, unknow);
+	}
 	pos = add_varint(pos, size);
+
+	hexdump(buf, (int)(pos - &(buf[0])));
 	
 	sock->send(buf, (int)(pos - &(buf[0])));
 }

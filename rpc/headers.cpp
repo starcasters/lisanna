@@ -64,12 +64,12 @@ char* get_varint64(char*currentpos, int remainingbytes, int* aval) {
 	return currentpos;
 }
 
-char* add_varint(char*currentpos, int val) {
+char* add_varint(char*currentpos, unsigned int val) {
 	int counter=0;
 	while (1) {
 		*(unsigned char*)currentpos = val & 0x7f;
-		val = val >> counter;
 		counter += 7;
+		val = val >> counter;
 		if (val != 0)
 			*(unsigned char*) currentpos |= 0x80;
 		currentpos++;
