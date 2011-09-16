@@ -57,6 +57,13 @@ void HandleTCPClient(TCPSocket *sock); // TCP client handling function
 int HandleTcpData(TCPSocket *sock, char *dataBuffer, int size);
 bool getclass(bool response, int service, int method, pReply areply);
 
+bool handle_BindRequest(TCPSocket *sock, bnet::protocol::connection::BindRequest* message, rpcheader* pheader);
+bool handle_ConnectRequest(TCPSocket *sock, bnet::protocol::connection::ConnectRequest* message, rpcheader* pheader);
+bool handle_FIXME(TCPSocket *sock, bnet::protocol::connection::ConnectRequest* message, rpcheader* pheader) {
+	cout << "FIXME: handle for message " << message->GetDescriptor()->full_name() << " not implemented" << endl;
+	return false;
+}
+
 int main(int argc, char *argv[]) {
   if (argc != 2) {                     // Test for correct number of arguments
     cerr << "Usage: " << argv[0] << " <Server Port>" << endl;
@@ -82,6 +89,36 @@ int main(int argc, char *argv[]) {
 
 int servicescount = 1;
 
+struct amethod {
+	int id;
+	void* proc;
+	Message* msgtype;
+};
+typedef vector<amethod*> g_methods; 
+
+struct aservice {
+	int hash;
+	int id;
+	g_methods methods;
+};
+
+std::vector<aservice*> g_services;
+
+aservice* add_service(int hash, int id) {
+  aservice* service = new aservice();
+  service->hash = hash;
+  service->id = id;
+  g_services.push_back(service);
+  return service;
+}
+void add_method(aservice* service, int id, void* proc, Message* msg) {
+  amethod* method = new amethod();
+  method->id = id;
+  method->proc = proc;
+  method->msgtype = msg;
+  service->methods.push_back(method);
+}
+
 // TCP client handling function
 void HandleTCPClient(TCPSocket *sock) {
   cout << "Handling client ";
@@ -103,6 +140,30 @@ void HandleTCPClient(TCPSocket *sock) {
   int bufpos = 0;
   int procpos = 0;
   servicescount = 2;
+	
+  aservice* service;
+  amethod* method;
+  
+  //lets clean the services, fixme: some unhandled memleak?
+  while (g_services.size()) {
+ 	service = g_services.back();
+	g_services.pop_back();
+	
+	delete service;
+  };
+
+  //adding a new service?
+  service = add_service(0, 0);
+  add_method(service, 1, (void*) &handle_ConnectRequest, (Message*) &(bnet::protocol::connection::ConnectRequest::default_instance()));
+  add_method(service, 2, (void*) &handle_BindRequest, (Message*) &(bnet::protocol::connection::BindRequest::default_instance()));
+  
+  service = add_service(0xB732DB32, 1);
+  service = add_service(0xFA0796FF, 2);
+  service = add_service(0xdecfc01,  3);
+  add_method(service, 1, (void*) &handle_FIXME, (Message*) &(bnet::protocol::authentication::ModuleLoadRequest::default_instance()));
+  add_method(service, 2, (void*) &handle_FIXME, (Message*) &(bnet::protocol::authentication::ModuleMessageRequest::default_instance()));
+  add_method(service, 3, (void*) &handle_FIXME, (Message*) &(bnet::protocol::authentication::LogonRequest::default_instance()));
+  
   while (1) {
 	if (RCVBUFSIZE - bufpos == 0) {
 		cerr << "buffer got full" << endl;
@@ -170,12 +231,6 @@ char simplereplyheader[] {
 	0xfe, 0x00, 0x02, 0x00, 0x03
 };
 
-struct aservice {
-	int hash;
-	int id;
-};
-std::vector<aservice*> g_services;
-
 
 bool handle_BindRequest(TCPSocket *sock, bnet::protocol::connection::BindRequest* message, rpcheader* pheader) {
 	cout << "bind request handler called!" << endl ;
@@ -183,11 +238,17 @@ bool handle_BindRequest(TCPSocket *sock, bnet::protocol::connection::BindRequest
 	
 	bnet::protocol::connection::BindResponse* bindres = new bnet::protocol::connection::BindResponse();
 	for (int i = 0; i < message->imported_service_hash_size(); i++) {
-		bindres->add_imported_service_id(servicescount++);
-		aservice* service = new aservice;
-		service->hash = message->imported_service_hash(i);
-		service->id = i;
-		g_services.push_back(service);
+		int k = -1;
+		for (int j =0; j < g_services.size(); j++) {
+			if (g_services.at(j)->hash == message->imported_service_hash(i))
+				k = j;
+		}
+		if (k == -1) {
+			cout << "unknow service hash: " << message->imported_service_hash(i) << endl;
+			delete bindres;
+			return false;
+		}
+		bindres->add_imported_service_id(g_services.at(k)->id);
 	};
 	cout << "reply size? " << bindres->ByteSize() << endl ;
 	printmsgdata(bindres);
@@ -206,16 +267,13 @@ bool handle_BindRequest(TCPSocket *sock, bnet::protocol::connection::BindRequest
 int HandleTcpData(TCPSocket *sock, char *dataBuffer, int size) {
 	rpcheader aheader;
 	char* packet;
-	
+	g_methods methods;
 	packet = procheader(dataBuffer, size, &aheader);
 	
 	printheader(&aheader);
 	
 	reply areply; areply.msg = NULL; //fixme use the rigth sintax?
 	
-	if (aheader.service == 0) {
-		getclass(false, 0, aheader.method, &areply);
-	} else
 	if (aheader.service != 0xFE) {
 		int j = -1;
 		for (int i = 0; i < g_services.size(); i++) 
@@ -224,9 +282,25 @@ int HandleTcpData(TCPSocket *sock, char *dataBuffer, int size) {
 		if (j == -1) {
 			cout << "service not registered? id " << aheader.service << endl;
 		} else {
-			cout << "service registed, id " << aheader.service << " " << g_services.at(j) << endl;
+			cout << "service registed, id " << aheader.service << " " << hex << g_services.at(j)->hash << endl;
 
-			getclass(false, g_services.at(j)->hash, aheader.method, &areply);
+			methods = g_services.at(j)->methods;
+			int k = -1;
+			for (int i = 0; i < methods.size(); i++) {
+				if (methods.at(i)->id == aheader.method) {
+					k = i;
+					cout << "method found " << methods.at(i)->id << " " << aheader.method << endl;
+				}
+			}
+			if (k == -1) {
+				cerr << "invalid method index: " << aheader.method << endl;
+			} else {
+				areply.msg = methods.at(k)->msgtype->New();
+
+				//fixme:stupid hack so i dont define a typedef?
+				*(int*)&(areply.callback) = (int)(methods.at(k)->proc);
+			}
+			//getclass(false, g_services.at(j)->hash, aheader.method, &areply);
 		}
 	} else {
 		cout << "packet isnt a request" << endl;
@@ -255,89 +329,4 @@ int HandleTcpData(TCPSocket *sock, char *dataBuffer, int size) {
 	}
 	
 	return aheader.datasize + (int)(packet - dataBuffer);
-}
-
-bool getclass(bool response, int service, int method, pReply areply) {
-	areply->callback = NULL;
-	areply->msg = NULL;
-	
-	switch (service) {
-		case 0:
-	if (!response)
-	switch (method) {
-		case 1:
-			areply->msg = new bnet::protocol::connection::ConnectRequest();
-			areply->callback = (msg_handler) &handle_ConnectRequest;
-			return NULL;
-		case 2:
-			areply->msg = new bnet::protocol::connection::BindRequest();
-			areply->callback = (msg_handler) &handle_BindRequest;
-			return NULL;
-		case 3:
-			areply->msg = new bnet::protocol::connection::EchoRequest();
-			return NULL;
-		case 4:
-			areply->msg = new bnet::protocol::connection::DisconnectNotification();
-			return NULL;
-		case 5:
-			areply->msg = new bnet::protocol::connection::NullRequest();
-			return NULL;
-		case 6:
-			areply->msg = new bnet::protocol::connection::EncryptRequest();
-			return NULL;
-		case 7:
-			areply->msg = new bnet::protocol::connection::DisconnectRequest();
-			return NULL;
-		default:
-			cerr << "bad method index" << endl;
-			areply->msg = new bnet::protocol::connection::NullRequest();
-			return NULL;
-	}
-	if (response)
-	switch (method) {
-		case 0:
-			areply->msg = new bnet::protocol::connection::ConnectResponse();
-			return NULL;
-		case 1:
-			areply->msg = new bnet::protocol::connection::BindResponse();
-			return NULL;
-		case 2:
-			areply->msg = new bnet::protocol::connection::EchoResponse();
-			return NULL;
-		case 3:
-			areply->msg = new bnet::protocol::connection::NullRequest();
-			return NULL;
-		case 4:
-			areply->msg = new bnet::protocol::connection::NullRequest();
-			return NULL;
-		case 5:
-			areply->msg = new bnet::protocol::connection::NullRequest();
-			return NULL;
-		case 6:
-			areply->msg = new bnet::protocol::connection::NullRequest();
-			return NULL;
-		default:
-			cerr << "bad method index" << endl;		
-			areply->msg = new bnet::protocol::connection::NullRequest();
-			return NULL;
-		
-	}
-		break;
-		macro_service(233634817,
-			service_entry(1, bnet::protocol::authentication::ModuleLoadRequest, NULL)
-			service_entry(2, bnet::protocol::authentication::ModuleMessageRequest, NULL)
-			service_entry(3, bnet::protocol::authentication::LogonRequest, NULL)
-			service_entry(4, bnet::protocol::authentication::LogonRequest, NULL)
-			service_entry(5, bnet::protocol::authentication::LogonRequest, NULL)
-			service_entry(6, bnet::protocol::authentication::LogonRequest, NULL)
-			,
-			service_entry(1, bnet::protocol::authentication::ModuleLoadResponse, NULL)
-			service_entry(2, bnet::protocol::authentication::LogonResponse, NULL)
-			service_entry(3, bnet::protocol::authentication::LogonRequest, NULL)
-			service_entry(4, bnet::protocol::authentication::LogonRequest, NULL)
-			service_entry(5, bnet::protocol::authentication::LogonRequest, NULL)
-			service_entry(6, bnet::protocol::authentication::LogonRequest, NULL)
-			
-		)
-	}
 }
