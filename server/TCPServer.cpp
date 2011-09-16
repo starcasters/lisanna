@@ -114,7 +114,8 @@ void HandleTCPClient(TCPSocket *sock) {
   amethod* method;
   
   //lets clean the services, fixme: some unhandled memleak?
-
+  services.clean();
+  
   //adding a new service?
   service = services.add_service(0, 0);
   services.add_method(service, 1, (void*) &handle_ConnectRequest, (Message*) &(bnet::protocol::connection::ConnectRequest::default_instance()));
