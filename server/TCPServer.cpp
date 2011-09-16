@@ -59,6 +59,7 @@ bool getclass(bool response, int service, int method, pReply areply);
 
 bool handle_BindRequest(TCPSocket *sock, bnet::protocol::connection::BindRequest* message, rpcheader* pheader);
 bool handle_ConnectRequest(TCPSocket *sock, bnet::protocol::connection::ConnectRequest* message, rpcheader* pheader);
+bool handle_LogonRequest(TCPSocket *sock, bnet::protocol::authentication::LogonRequest* message, rpcheader* pheader);
 bool handle_FIXME(TCPSocket *sock, bnet::protocol::connection::ConnectRequest* message, rpcheader* pheader) {
 	cout << "FIXME: handle for message " << message->GetDescriptor()->full_name() << " not implemented" << endl;
 	return false;
@@ -114,7 +115,7 @@ void HandleTCPClient(TCPSocket *sock) {
   amethod* method;
   
   //lets clean the services, fixme: some unhandled memleak?
-  services.clean();
+  services.clear();
   
   //adding a new service?
   service = services.add_service(0, 0);
@@ -126,7 +127,7 @@ void HandleTCPClient(TCPSocket *sock) {
   service = services.add_service(0xdecfc01,  3);//Authentication Service
   services.add_method(service, 1, (void*) &handle_FIXME, (Message*) &(bnet::protocol::authentication::ModuleLoadRequest::default_instance()));
   services.add_method(service, 2, (void*) &handle_FIXME, (Message*) &(bnet::protocol::authentication::ModuleMessageRequest::default_instance()));
-  services.add_method(service, 3, (void*) &handle_FIXME, (Message*) &(bnet::protocol::authentication::LogonRequest::default_instance()));
+  services.add_method(service, 3, (void*) &handle_LogonRequest, (Message*) &(bnet::protocol::authentication::LogonRequest::default_instance()));
   
   while (1) {
 	if (RCVBUFSIZE - bufpos == 0) {
@@ -153,12 +154,6 @@ void HandleTCPClient(TCPSocket *sock) {
   delete sock;
 }
 
-char con_response_hardcoded[] = {
-	0xfe, 0x00, 0x00, 0x00, 0x1a, 0x0a, 0x0c, 0x08, 
-	0xdd, 0xe9, 0x8e, 0xbb, 0x0e, 0x10, 0x82, 0x89, 
-	0xa1, 0xf3, 0x04, 0x12, 0x0a, 0x08, 0xc6, 0xdc, 
-	0x03, 0x10, 0x94, 0xcd, 0xa5, 0xf3, 0x04 };	
-	
 void printmsgdata(google::protobuf::Message* message) {
 	char buf[2000];
 	cout << "packet dump:" << endl;
@@ -185,22 +180,49 @@ void sendmsgdata(TCPSocket* sock, google::protobuf::Message* message) {
 	sock->send(buf, message->ByteSize());
 }
 
-bool handle_ConnectRequest(TCPSocket *sock, bnet::protocol::connection::ConnectRequest* message, rpcheader* pheader) {
-	cout << "conn request handler called!" << endl ;
-	sock->send(con_response_hardcoded, sizeof(con_response_hardcoded));
-	return true;
+void sendheader(TCPSocket* sock, int serviceid, int method, int reqid, int unknow, int size) {
+	char buf[2000];
+	char* pos = &(buf[0]);
+	*(unsigned char*)pos = serviceid; pos++;
+	pos = add_varint(pos, method);
+	*(unsigned short*)pos = reqid; pos+=2;
+	if (serviceid != 0xFE)
+		pos = add_varint(pos, unknow);
+	pos = add_varint(pos, size);
+	
+	sock->send(buf, (int)(pos - &(buf[0])));
 }
 
-char simplereplyheader[] {
-	0xfe, 0x00, 0x02, 0x00, 0x03
-};
 
+/* to be deleted.
+char con_response_hardcoded[] = {
+	0xfe, 0x00, 0x00, 0x00, 0x1a, 0x0a, 0x0c, 0x08, 
+	0xdd, 0xe9, 0x8e, 0xbb, 0x0e, 0x10, 0x82, 0x89, 
+	0xa1, 0xf3, 0x04, 0x12, 0x0a, 0x08, 0xc6, 0xdc, 
+	0x03, 0x10, 0x94, 0xcd, 0xa5, 0xf3, 0x04 };	
+*/
+bool handle_ConnectRequest(TCPSocket *sock, bnet::protocol::connection::ConnectRequest* message, rpcheader* pheader) {
+	cout << "conn request handler called!" << endl ;
+
+	bnet::protocol::connection::ConnectResponse resp;
+ 	resp.mutable_server_id()->set_label(0xE463B024);
+ 	resp.mutable_server_id()->set_epoch(1315642580);
+ 	resp.mutable_client_id()->set_label(10682);
+ 	resp.mutable_client_id()->set_epoch(1315660038);
+
+//	sock->send(con_response_hardcoded, sizeof(con_response_hardcoded));
+
+	sendheader(sock, 0xFE, 0, pheader->reqid, 0, resp.ByteSize());
+	sendmsgdata(sock, &resp);
+
+	return true;
+}
 
 bool handle_BindRequest(TCPSocket *sock, bnet::protocol::connection::BindRequest* message, rpcheader* pheader) {
 	cout << "bind request handler called!" << endl ;
 	cout << message->imported_service_hash_size() << endl;
 	
-	bnet::protocol::connection::BindResponse* bindres = new bnet::protocol::connection::BindResponse();
+	bnet::protocol::connection::BindResponse bindres;
 	for (int i = 0; i < message->imported_service_hash_size(); i++) {
 		int k = -1;
 		for (int j =0; j < services.Items.size(); j++) {
@@ -209,24 +231,34 @@ bool handle_BindRequest(TCPSocket *sock, bnet::protocol::connection::BindRequest
 		}
 		if (k == -1) {
 			cout << "unknow service hash: " << message->imported_service_hash(i) << endl;
-			delete bindres;
 			return false;
 		}
-		bindres->add_imported_service_id(services.Items.at(k)->id);
+		bindres.add_imported_service_id(services.Items.at(k)->id);
 	};
-	cout << "reply size? " << bindres->ByteSize() << endl ;
-	printmsgdata(bindres);
+	cout << "reply size? " << bindres.ByteSize() << endl ;
+	printmsgdata(&bindres);
 
-	*(unsigned short*)&(simplereplyheader[2]) = pheader->reqid;
-	*(unsigned short*)&(simplereplyheader[4]) = bindres->ByteSize();
-	sock->send(simplereplyheader, sizeof(simplereplyheader));
-	sendmsgdata(sock, bindres);
+	sendheader(sock, 0xFE, 0, pheader->reqid, 0, bindres.ByteSize());
+	sendmsgdata(sock, &bindres);
 	
-	delete bindres;
-
 	return true;
 }
 
+bool handle_LogonRequest(TCPSocket *sock, bnet::protocol::authentication::LogonRequest* message, rpcheader* pheader) {
+	bnet::protocol::authentication::LogonResponse log_resp;
+	log_resp.mutable_account()->set_low(4);
+	log_resp.mutable_account()->set_high(5);
+	log_resp.mutable_game_account()->set_low(6);
+	log_resp.mutable_game_account()->set_high(7); 
+	std::cout << "Debug Packet Infos: " << log_resp.DebugString();
+	printmsgdata(&log_resp);
+
+
+	sendheader(sock, 0xFE, 0, pheader->reqid, 0, log_resp.ByteSize());
+	sendmsgdata(sock, &log_resp);
+	
+	return true;
+}
 
 int HandleTcpData(TCPSocket *sock, char *dataBuffer, int size) {
 	rpcheader aheader;

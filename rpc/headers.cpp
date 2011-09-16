@@ -64,6 +64,20 @@ char* get_varint64(char*currentpos, int remainingbytes, int* aval) {
 	return currentpos;
 }
 
+char* add_varint(char*currentpos, int val) {
+	int counter=0;
+	while (1) {
+		*(unsigned char*)currentpos = val & 0x7f;
+		val = val >> counter;
+		counter += 7;
+		if (val != 0)
+			*(unsigned char*) currentpos |= 0x80;
+		currentpos++;
+		if (val == 0) break;
+	}
+	return currentpos;
+}
+
 char* procheader(char* datastream, int size, prpcheader aheader) {
 	char* currentpos = datastream;
 	#ifdef rcp_headers_debug
