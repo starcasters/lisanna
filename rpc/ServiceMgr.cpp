@@ -7,11 +7,12 @@ CServiceMgr::CServiceMgr()
 }
 void CServiceMgr::AddDefaultServices()
 {
-	add_service(new CBaseService(this,0, 0, 0, "BaseService"));
-	add_service(new CAuthenticationService(this,0x1, 0xDECFC01, 0x71240E35, "AuthenticationService"));
+	int hash = GetServiceHash("bnet.protocol.authentication.AuthenticationServer");
+	add_service(new CBaseService(this,0, 0, "BaseService"));
+	add_service(new CAuthenticationService(this,0x1, GetServiceHash("bnet.protocol.authentication.AuthenticationServer"),  "bnet.protocol.authentication.AuthenticationServer"));
 }
-CService* CServiceMgr::add_service(int sID, int sHash, int cHash, std::string sName) {
-	CService *ptr = new CService(this,sID, sHash, cHash, sName);
+CService* CServiceMgr::add_service(int sID, int sHash, std::string sName) {
+	CService *ptr = new CService(this,sID, sHash, sName);
 	m_Services.push_back(ptr);
 	return ptr;
 }
@@ -19,40 +20,46 @@ void CServiceMgr::add_service(CService* service) {
 	m_Services.push_back(service);
 }
 
+//
+int CServiceMgr::GetServiceHash(char* name)
+{
+	int result = 0x811C9DC5;
+	for (int i = 0; i < strlen(name); ++i)
+		{
+			result = 0x1000193 * (name[i] ^ result);
+		}
+	return result;
+}
 CService* CServiceMgr::find_service_by_id(int id)
 {
-	for(service_container::iterator i = m_Services.begin(); i < m_Services.end(); i++)
+	
+	for (int i = 0; i < m_Services.size(); i++)
 	{
-		if((*i)->GetSID() == id)
-			return *i;
+		CService* svc = m_Services.at(i);
+		if(svc->GetSID() == id)
+			return svc;
 	}
 	return (CService*)-1;
 }
-CService* CServiceMgr::find_service_by_client_hash(int cHash)
-{
-	for(service_container::iterator i = m_Services.begin(); i < m_Services.end(); i++)
-	{
-		if((*i)->GetClientHash() == cHash)
-			return *i;
-	}
-	return 0;
-}
+
 CService* CServiceMgr::find_service_by_server_hash(int sHash)
 {
-	for(service_container::iterator i = m_Services.begin(); i < m_Services.end(); i++)
+	for (int i = 0; i < m_Services.size(); i++)
 	{
-		if((*i)->GetSID() == sHash)
-			return *i;
+		CService* svc = m_Services.at(i);
+		if((svc)->GetServerHash() == sHash)
+			return svc;
 	}
 	return 0;
 }
 void CServiceMgr::clear()
 {
-	for(service_container::iterator i = m_Services.begin(); i < m_Services.end(); i++)
+	for (int i = 0; i < m_Services.size(); i++)
 	{
-		CService* s = *i;
+		CService* s = m_Services.at(i);
 		delete s;
 	}
+	m_Services.clear();
 	//Hope you know what you doing.
 }
 CServiceMgr::~CServiceMgr()

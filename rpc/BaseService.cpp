@@ -8,7 +8,7 @@ CBaseService::CBaseService()
 {
 
 }
-CBaseService::CBaseService(CServiceMgr* owner,int SID=0, int sHash=0, int cHash=0, std::string serviceName="") : CService(owner,SID, sHash, cHash, serviceName)
+CBaseService::CBaseService(CServiceMgr* owner,int SID=0, int sHash=0, std::string serviceName="") : CService(owner,SID, sHash,serviceName)
 {
 	AddMethod(1, CallbackDelegate(this, &CBaseService::handle_ConnectRequest), (Message*) &(bnet::protocol::connection::ConnectRequest::default_instance()));
 	AddMethod(2, CallbackDelegate(this, &CBaseService::handle_BindRequest), (Message*) &(bnet::protocol::connection::BindRequest::default_instance()));
@@ -28,27 +28,34 @@ bool CBaseService::handle_ConnectRequest(TCPSocket *sock, apacket* packet)
 	sendmsgdata(sock, &resp);
 	return true;
 }
+int foxhole = 22;
 bool CBaseService::handle_BindRequest(TCPSocket *sock, apacket* packet)
 {
 	bnet::protocol::connection::BindRequest* request = (bnet::protocol::connection::BindRequest*)packet->msg;
 
 	cout << "bind request handler called!" << endl ;
 	cout << request->imported_service_hash_size() << endl;
-
+	request->DebugString();
 	bnet::protocol::connection::BindResponse bindres;
+			CService* svc = 0;
 	for (int i = 0; i < request->imported_service_hash_size(); i++) {
-		int k = -1;
-			if(m_owner->find_service_by_server_hash(request->imported_service_hash(i)) == 0) {
+			int hash = request->imported_service_hash(i);
+			 svc = m_owner->find_service_by_server_hash(hash);
+			if(svc == 0) {
 			cout << "unknow service hash: " << request->imported_service_hash(i) << endl;
-			return true;
+			foxhole++;
+			bindres.add_imported_service_id(foxhole);
 		}
-		bindres.add_imported_service_id(m_owner->find_service_by_id(request->imported_service_hash(i))->GetSID());
-		};
+		else {
+			bindres.add_imported_service_id(svc->GetSID());
+		}
+	}
 	cout << "reply size? " << bindres.ByteSize() << endl ;
 	printmsgdata(&bindres);
 
 	sendheader(sock, 0xFE, 0, packet->hdr->reqid, 0, bindres.ByteSize());
 	sendmsgdata(sock, &bindres);
+	return true;
 }
 
 CBaseService::~CBaseService(void)

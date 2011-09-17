@@ -27,10 +27,9 @@ struct amethod {
 class CService {
 public:
 	CService();
-	CService(CServiceMgr* owner,int sID, int sHash, int cHash, std::string sName) : m_owner(owner),m_serviceID(sID), m_serviceHash(sHash), m_clientHash(cHash), m_serviceName(sName) {};
+	CService(CServiceMgr* owner,int sID, int sHash, std::string sName) : m_owner(owner),m_serviceID(sID), m_serviceHash(sHash), m_serviceName(sName) {};
 	bool CallMethod(TCPSocket* socket,int method, apacket* packet);
 	int GetSID() { return m_serviceID; }
-	int GetClientHash() { return m_clientHash; }
 	int GetServerHash() { return m_serviceHash; }
 	amethod* find_method_by_id(int id);
 	std::string GetServiceName() { return m_serviceName.c_str(); }
@@ -47,7 +46,7 @@ protected:
 	std::vector<amethod*> m_serviceMethods;
 	int m_serviceID;
 	int m_serviceHash;
-	int m_clientHash;
+
 	CServiceMgr* m_owner;
 	std::string m_serviceName; //Easy logging.
 };

@@ -122,8 +122,7 @@ void HandleTCPClient(TCPSocket *sock) {
   int bufpos = 0;
   int procpos = 0;  
   //lets clean the services, fix me: some unhanded memleak?
-  services.clear();
-  services.AddDefaultServices();
+ // services.clear();
   /*
   //adding a new service?
   service = services.add_service(0, 0);
@@ -363,32 +362,30 @@ int HandleTcpData(TCPSocket *sock, char *dataBuffer, int size) {
 	printheader(&aheader);
 	
 	reply areply; areply.msg = NULL; //fixme use the rigth sintax?
-	CService* svc = services.find_service_by_id(aheader.service);
-	svc->CallMethod(sock, aheader.method, &pktData);		 
+	CService* svc = services.find_service_by_id(aheader.service);	 
 		if ((int)svc == -1) {
 			cout << "service not registered? id " << aheader.service << endl;
 		} else {
 			cout << "service registered, id " << aheader.service << " " << hex << svc->GetServerHash() << endl;
-			areply.msg = svc->find_method_by_id(aheader.method)->msgtype->New();
+			pktData.msg = svc->find_method_by_id(aheader.method)->msgtype->New();
 		//getclass(true, g_services.at(j)->hash, aheader.method, &areply);
-	if (areply.msg != NULL) {
-		cout << " " << " " << areply.msg->GetDescriptor()->full_name() << endl;
-		if (!areply.msg->ParseFromArray(packet, aheader.datasize)) {
+	if (pktData.msg != NULL) {
+		cout << " " << " " << pktData.msg->GetDescriptor()->full_name() << endl;
+		if (!pktData.msg->ParseFromArray(packet, aheader.datasize)) {
 			cerr << "error parsing message" << " size: " << aheader.datasize << endl;
-			delete areply.msg;
+			delete pktData.msg;
 			return -1;
 		} else {
-			cout << areply.msg->DebugString() << endl;
+			cout << pktData.msg->DebugString() << endl;
 		}
 		cout << "calling this" << endl;
 			if (!svc->CallMethod(sock, aheader.method, &pktData))
 				{
 					cerr << "error handling packet." << endl;
-					delete areply.msg;
+					delete pktData.msg;
 					return -1;
 				}
-
-		delete areply.msg;
+		delete pktData.msg;
 	}
 		}	
 	return aheader.datasize + (int)(packet - dataBuffer);

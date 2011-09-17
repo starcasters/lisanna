@@ -20,9 +20,9 @@ bool CService::AddMethod(int id, CallbackDelegate cb, google::protobuf::Message*
 
 amethod* CService::find_method_by_id(int id)
 {
-	for(vector<amethod*>::iterator i = m_serviceMethods.begin(); i < m_serviceMethods.end(); ++i)
+	for (int i = 0; i < m_serviceMethods.size(); i++)
 	{
-		amethod* itr = *i;
+		amethod* itr = m_serviceMethods.at(i);
 		if(itr->id == id)
 			return itr;
 	}
@@ -30,9 +30,9 @@ amethod* CService::find_method_by_id(int id)
 }
 bool CService::CallMethod(TCPSocket* socket,int method, apacket* packet)
 {
-	for(vector<amethod*>::iterator i = m_serviceMethods.begin(); i < m_serviceMethods.end(); ++i)
+	for (int i = 0; i < m_serviceMethods.size(); i++)
 	{
-		amethod* itr = *i;
+		amethod* itr = m_serviceMethods.at(i);
 		if(itr->id == method)
 			return itr->callback(socket, packet);
 	}

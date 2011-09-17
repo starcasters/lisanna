@@ -6,13 +6,13 @@ typedef vector<CService*> service_container;
 class CServiceMgr {
 public:
 	CServiceMgr();
+	int GetServiceHash(char* name);
 	void AddDefaultServices();
 	~CServiceMgr();
 	void CServiceMgr::add_service(CService* service);
-	CService* add_service(int sID, int sHash, int cHash, std::string sName); //unk service adder
+	CService* add_service(int sID, int sHash, std::string sName); //unk service adder
 	CService* find_service_by_id(int id);
-	CService* find_service_by_server_hash(int cHash);
-	CService* find_service_by_client_hash(int sHash);
+	CService* find_service_by_server_hash(int sHash);
 	void clear();
 private:
 	service_container m_Services;

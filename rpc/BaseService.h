@@ -9,7 +9,7 @@ class CBaseService :
 {
 public:
 	CBaseService();
-	CBaseService(CServiceMgr* owner,int SID, int sHash, int cHash, std::string sName);
+	CBaseService(CServiceMgr* owner,int SID, int sHash, std::string sName);
 	bool handle_ConnectRequest(TCPSocket *sock, apacket* packet);
 	bool handle_BindRequest(TCPSocket *sock, apacket* packet);
 	~CBaseService(void);

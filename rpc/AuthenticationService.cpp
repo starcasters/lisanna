@@ -6,7 +6,7 @@ CAuthenticationService::CAuthenticationService()
 {
 	
 }
-CAuthenticationService::CAuthenticationService(CServiceMgr* owner=0,int SID=0, int sHash=0, int cHash=0, std::string serviceName="") : CService(owner,SID, sHash, cHash, serviceName)
+CAuthenticationService::CAuthenticationService(CServiceMgr* owner=0,int SID=0, int sHash=0, std::string serviceName="") : CService(owner,SID, sHash, serviceName)
 {
 	AddMethod(1, CallbackDelegate(this, &CAuthenticationService::handle_LogonRequest),(Message*) &(bnet::protocol::authentication::LogonRequest::default_instance()));
 }
@@ -20,11 +20,11 @@ bool CAuthenticationService::handle_LogonRequest(TCPSocket *sock, apacket* packe
 	log_resp.mutable_game_account()->set_high(0x200006200004433); 
 	log_resp.mutable_game_account()->set_low(0);
 	std::cout << "Debug Packet Infos: " << log_resp.DebugString();
-//	printmsgdata(&log_resp);
+	printmsgdata(&log_resp);
 
 
-//	sendheader(sock, 0xFE, 0, pheader->reqid, 0, log_resp.ByteSize());
-//	sendmsgdata(sock, &log_resp);
+	sendheader(sock, 0xFE, 0, packet->hdr->reqid, 0, log_resp.ByteSize());
+	sendmsgdata(sock, &log_resp);
 		/*
 	bnet::protocol::connection::BindRequest breq;
 	breq.mutable_imported_service_hash()->Add();

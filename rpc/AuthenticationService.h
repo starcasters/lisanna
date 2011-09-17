@@ -9,7 +9,7 @@ class CAuthenticationService :
 {
 public:
 	CAuthenticationService();
-	CAuthenticationService(CServiceMgr* owner,int SID, int sHash, int cHash, std::string sName);
+	CAuthenticationService(CServiceMgr* owner,int SID, int sHash, std::string sName);
 	bool handle_LogonRequest(TCPSocket *sock, apacket* packet);
 	~CAuthenticationService(void);
 };
