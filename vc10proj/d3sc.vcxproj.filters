@@ -22,6 +22,9 @@
     <Filter Include="Source Files\cpp">
       <UniqueIdentifier>{16fdd033-19a9-4897-8f78-0160c0673fb0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Services">
+      <UniqueIdentifier>{d5a5d7aa-a520-43ae-9889-4044abe1ec91}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\cpp\Account.pb.cc">
@@ -180,5 +183,37 @@
     <ClCompile Include="..\rpc\headers.cpp">
       <Filter>Source Files\rpc</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\service\followers\followers.pb.cc">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\rpc\AuthenticationService.cpp">
+      <Filter>Source Files\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="..\rpc\BaseService.cpp">
+      <Filter>Source Files\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="..\rpc\ServiceMgr.cpp">
+      <Filter>Source Files\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="..\rpc\Service.cpp">
+      <Filter>Source Files\Services</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\rpc\rpc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\rpc\AuthenticationService.h">
+      <Filter>Source Files\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\rpc\BaseService.h">
+      <Filter>Source Files\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\rpc\ServiceMgr.h">
+      <Filter>Source Files\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\rpc\Service.h">
+      <Filter>Source Files\Services</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

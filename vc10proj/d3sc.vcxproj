@@ -110,6 +110,7 @@
     <ClCompile Include="..\cpp\service\channel_invitation\definition\channel_invitation.pb.cc" />
     <ClCompile Include="..\cpp\service\exchange\exchange.pb.cc" />
     <ClCompile Include="..\cpp\service\exchange\exchange_types.pb.cc" />
+    <ClCompile Include="..\cpp\service\followers\followers.pb.cc" />
     <ClCompile Include="..\cpp\service\friends\definition\friends.pb.cc" />
     <ClCompile Include="..\cpp\service\friends\friends_types.pb.cc" />
     <ClCompile Include="..\cpp\service\game_master\game_factory.pb.cc" />
@@ -128,10 +129,21 @@
     <ClCompile Include="..\cpp\service\user_manager\user_manager.pb.cc" />
     <ClCompile Include="..\cpp\Settings.pb.cc" />
     <ClCompile Include="..\cpp\Stats.pb.cc" />
+    <ClCompile Include="..\rpc\AuthenticationService.cpp" />
+    <ClCompile Include="..\rpc\BaseService.cpp" />
     <ClCompile Include="..\rpc\headers.cpp" />
     <ClCompile Include="..\rpc\rpc.cpp" />
+    <ClCompile Include="..\rpc\Service.cpp" />
+    <ClCompile Include="..\rpc\ServiceMgr.cpp" />
     <ClCompile Include="..\server\PracticalSocket.cpp" />
     <ClCompile Include="..\server\TCPServer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\rpc\AuthenticationService.h" />
+    <ClInclude Include="..\rpc\BaseService.h" />
+    <ClInclude Include="..\rpc\rpc.h" />
+    <ClInclude Include="..\rpc\Service.h" />
+    <ClInclude Include="..\rpc\ServiceMgr.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
