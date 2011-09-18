@@ -90,7 +90,7 @@ void protobuf_AssignDesc_service_2fchannel_2fchannel_5ftypes_2eproto() {
       Message_offsets_,
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Message, _has_bits_[0]),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Message, _unknown_fields_),
-      -1,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Message, _extensions_),
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Message));
@@ -107,7 +107,7 @@ void protobuf_AssignDesc_service_2fchannel_2fchannel_5ftypes_2eproto() {
       ChannelDescription_offsets_,
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ChannelDescription, _has_bits_[0]),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ChannelDescription, _unknown_fields_),
-      -1,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ChannelDescription, _extensions_),
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(ChannelDescription));
@@ -123,7 +123,7 @@ void protobuf_AssignDesc_service_2fchannel_2fchannel_5ftypes_2eproto() {
       ChannelInfo_offsets_,
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ChannelInfo, _has_bits_[0]),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ChannelInfo, _unknown_fields_),
-      -1,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ChannelInfo, _extensions_),
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(ChannelInfo));
@@ -307,7 +307,7 @@ void protobuf_AssignDesc_service_2fchannel_2fchannel_5ftypes_2eproto() {
       ChannelState_offsets_,
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ChannelState, _has_bits_[0]),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ChannelState, _unknown_fields_),
-      -1,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ChannelState, _extensions_),
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(ChannelState));
@@ -325,7 +325,7 @@ void protobuf_AssignDesc_service_2fchannel_2fchannel_5ftypes_2eproto() {
       MemberState_offsets_,
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MemberState, _has_bits_[0]),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MemberState, _unknown_fields_),
-      -1,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MemberState, _extensions_),
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(MemberState));
@@ -441,60 +441,62 @@ void protobuf_AddDesc_service_2fchannel_2fchannel_5ftypes_2eproto() {
     "\n#service/channel/channel_types.proto\022\025b"
     "net.protocol.channel\032\034lib/protocol/attri"
     "bute.proto\032\031lib/protocol/entity.proto\032\035l"
-    "ib/protocol/invitation.proto\"N\n\007Message\022"
+    "ib/protocol/invitation.proto\"U\n\007Message\022"
     "5\n\tattribute\030\001 \003(\0132\".bnet.protocol.attri"
-    "bute.Attribute\022\014\n\004role\030\002 \001(\r\"\216\001\n\022Channel"
-    "Description\022+\n\nchannel_id\030\001 \002(\0132\027.bnet.p"
-    "rotocol.EntityId\022\027\n\017current_members\030\002 \001("
-    "\r\0222\n\005state\030\003 \001(\0132#.bnet.protocol.channel"
-    ".ChannelState\"|\n\013ChannelInfo\022>\n\013descript"
-    "ion\030\001 \002(\0132).bnet.protocol.channel.Channe"
-    "lDescription\022-\n\006member\030\002 \003(\0132\035.bnet.prot"
-    "ocol.channel.Member\"o\n\025GetChannelInfoReq"
-    "uest\022)\n\010agent_id\030\001 \001(\0132\027.bnet.protocol.E"
-    "ntityId\022+\n\nchannel_id\030\002 \002(\0132\027.bnet.proto"
-    "col.EntityId\"R\n\026GetChannelInfoResponse\0228"
-    "\n\014channel_info\030\001 \001(\0132\".bnet.protocol.cha"
-    "nnel.ChannelInfo\"\025\n\023GetChannelIdRequest\""
-    "C\n\024GetChannelIdResponse\022+\n\nchannel_id\030\001 "
-    "\001(\0132\027.bnet.protocol.EntityId\"\273\001\n\024CreateC"
-    "hannelRequest\022/\n\016agent_identity\030\001 \001(\0132\027."
-    "bnet.protocol.Identity\0222\n\005state\030\002 \001(\0132#."
-    "bnet.protocol.channel.ChannelState\022+\n\nch"
-    "annel_id\030\003 \001(\0132\027.bnet.protocol.EntityId\022"
-    "\021\n\tobject_id\030\004 \001(\004\"W\n\025CreateChannelRespo"
-    "nse\022\021\n\tobject_id\030\001 \002(\004\022+\n\nchannel_id\030\002 \001"
-    "(\0132\027.bnet.protocol.EntityId\"\271\001\n\022JoinChan"
-    "nelRequest\022/\n\016agent_identity\030\001 \001(\0132\027.bne"
-    "t.protocol.Identity\022+\n\nchannel_id\030\002 \002(\0132"
-    "\027.bnet.protocol.EntityId\022\021\n\tobject_id\030\003 "
-    "\002(\004\0222\n\021friend_account_id\030\004 \003(\0132\027.bnet.pr"
-    "otocol.EntityId\"\200\001\n\023JoinChannelResponse\022"
-    "\021\n\tobject_id\030\001 \001(\004\022!\n\031require_friend_val"
-    "idation\030\002 \001(\010\0223\n\022privileged_account\030\003 \003("
-    "\0132\027.bnet.protocol.EntityId\"N\n\022FindChanne"
-    "lRequest\0228\n\006filter\030\001 \002(\0132(.bnet.protocol"
-    ".attribute.AttributeFilter\"Q\n\023FindChanne"
-    "lResponse\022:\n\007channel\030\001 \003(\0132).bnet.protoc"
-    "ol.channel.ChannelDescription\"\372\003\n\014Channe"
-    "lState\022\023\n\013max_members\030\001 \001(\r\022\023\n\013min_membe"
-    "rs\030\002 \001(\r\0225\n\tattribute\030\003 \003(\0132\".bnet.proto"
-    "col.attribute.Attribute\0228\n\ninvitation\030\004 "
-    "\003(\0132$.bnet.protocol.invitation.Invitatio"
-    "n\022\027\n\017max_invitations\030\005 \001(\r\022\016\n\006reason\030\006 \001"
-    "(\r\022G\n\rprivacy_level\030\007 \001(\01620.bnet.protoco"
-    "l.channel.ChannelState.PrivacyLevel\022\016\n\006p"
-    "ublic\030\010 \001(\010\022\014\n\004name\030\t \001(\t\022\025\n\rdelegate_na"
-    "me\030\n \001(\t\022\024\n\014channel_type\030\013 \001(\t\"\221\001\n\014Priva"
-    "cyLevel\022\026\n\022PRIVACY_LEVEL_OPEN\020\001\022,\n(PRIVA"
-    "CY_LEVEL_OPEN_INVITATION_AND_FRIEND\020\002\022!\n"
-    "\035PRIVACY_LEVEL_OPEN_INVITATION\020\003\022\030\n\024PRIV"
-    "ACY_LEVEL_CLOSED\020\004\"f\n\013MemberState\0225\n\tatt"
-    "ribute\030\001 \003(\0132\".bnet.protocol.attribute.A"
-    "ttribute\022\014\n\004role\030\002 \003(\r\022\022\n\nprivileges\030\003 \001"
-    "(\004\"f\n\006Member\022)\n\010identity\030\001 \002(\0132\027.bnet.pr"
-    "otocol.Identity\0221\n\005state\030\002 \002(\0132\".bnet.pr"
-    "otocol.channel.MemberState", 2266);
+    "bute.Attribute\022\014\n\004role\030\002 \001(\r*\005\010d\020\220N\"\225\001\n\022"
+    "ChannelDescription\022+\n\nchannel_id\030\001 \002(\0132\027"
+    ".bnet.protocol.EntityId\022\027\n\017current_membe"
+    "rs\030\002 \001(\r\0222\n\005state\030\003 \001(\0132#.bnet.protocol."
+    "channel.ChannelState*\005\010d\020\220N\"\203\001\n\013ChannelI"
+    "nfo\022>\n\013description\030\001 \002(\0132).bnet.protocol"
+    ".channel.ChannelDescription\022-\n\006member\030\002 "
+    "\003(\0132\035.bnet.protocol.channel.Member*\005\010d\020\220"
+    "N\"o\n\025GetChannelInfoRequest\022)\n\010agent_id\030\001"
+    " \001(\0132\027.bnet.protocol.EntityId\022+\n\nchannel"
+    "_id\030\002 \002(\0132\027.bnet.protocol.EntityId\"R\n\026Ge"
+    "tChannelInfoResponse\0228\n\014channel_info\030\001 \001"
+    "(\0132\".bnet.protocol.channel.ChannelInfo\"\025"
+    "\n\023GetChannelIdRequest\"C\n\024GetChannelIdRes"
+    "ponse\022+\n\nchannel_id\030\001 \001(\0132\027.bnet.protoco"
+    "l.EntityId\"\273\001\n\024CreateChannelRequest\022/\n\016a"
+    "gent_identity\030\001 \001(\0132\027.bnet.protocol.Iden"
+    "tity\0222\n\005state\030\002 \001(\0132#.bnet.protocol.chan"
+    "nel.ChannelState\022+\n\nchannel_id\030\003 \001(\0132\027.b"
+    "net.protocol.EntityId\022\021\n\tobject_id\030\004 \001(\004"
+    "\"W\n\025CreateChannelResponse\022\021\n\tobject_id\030\001"
+    " \002(\004\022+\n\nchannel_id\030\002 \001(\0132\027.bnet.protocol"
+    ".EntityId\"\271\001\n\022JoinChannelRequest\022/\n\016agen"
+    "t_identity\030\001 \001(\0132\027.bnet.protocol.Identit"
+    "y\022+\n\nchannel_id\030\002 \002(\0132\027.bnet.protocol.En"
+    "tityId\022\021\n\tobject_id\030\003 \002(\004\0222\n\021friend_acco"
+    "unt_id\030\004 \003(\0132\027.bnet.protocol.EntityId\"\207\001"
+    "\n\023JoinChannelResponse\022\021\n\tobject_id\030\001 \001(\004"
+    "\022(\n\031require_friend_validation\030\002 \001(\010:\005fal"
+    "se\0223\n\022privileged_account\030\003 \003(\0132\027.bnet.pr"
+    "otocol.EntityId\"N\n\022FindChannelRequest\0228\n"
+    "\006filter\030\001 \002(\0132(.bnet.protocol.attribute."
+    "AttributeFilter\"Q\n\023FindChannelResponse\022:"
+    "\n\007channel\030\001 \003(\0132).bnet.protocol.channel."
+    "ChannelDescription\"\236\004\n\014ChannelState\022\023\n\013m"
+    "ax_members\030\001 \001(\r\022\023\n\013min_members\030\002 \001(\r\0225\n"
+    "\tattribute\030\003 \003(\0132\".bnet.protocol.attribu"
+    "te.Attribute\0228\n\ninvitation\030\004 \003(\0132$.bnet."
+    "protocol.invitation.Invitation\022\027\n\017max_in"
+    "vitations\030\005 \001(\r\022\016\n\006reason\030\006 \001(\r\022[\n\rpriva"
+    "cy_level\030\007 \001(\01620.bnet.protocol.channel.C"
+    "hannelState.PrivacyLevel:\022PRIVACY_LEVEL_"
+    "OPEN\022\016\n\006public\030\010 \001(\010\022\014\n\004name\030\t \001(\t\022\025\n\rde"
+    "legate_name\030\n \001(\t\022\035\n\014channel_type\030\013 \001(\t:"
+    "\007default\"\221\001\n\014PrivacyLevel\022\026\n\022PRIVACY_LEV"
+    "EL_OPEN\020\001\022,\n(PRIVACY_LEVEL_OPEN_INVITATI"
+    "ON_AND_FRIEND\020\002\022!\n\035PRIVACY_LEVEL_OPEN_IN"
+    "VITATION\020\003\022\030\n\024PRIVACY_LEVEL_CLOSED\020\004*\005\010d"
+    "\020\220N\"p\n\013MemberState\0225\n\tattribute\030\001 \003(\0132\"."
+    "bnet.protocol.attribute.Attribute\022\014\n\004rol"
+    "e\030\002 \003(\r\022\025\n\nprivileges\030\003 \001(\004:\0010*\005\010d\020\220N\"f\n"
+    "\006Member\022)\n\010identity\030\001 \002(\0132\027.bnet.protoco"
+    "l.Identity\0221\n\005state\030\002 \002(\0132\".bnet.protoco"
+    "l.channel.MemberState", 2341);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "service/channel/channel_types.proto", &protobuf_RegisterTypes);
   Message::default_instance_ = new Message();
@@ -597,6 +599,7 @@ Message* Message::New() const {
 }
 
 void Message::Clear() {
+  _extensions_.Clear();
   if (_has_bits_[1 / 32] & (0xffu << (1 % 32))) {
     role_ = 0u;
   }
@@ -648,6 +651,11 @@ bool Message::MergePartialFromCodedStream(
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
           return true;
         }
+        if ((800u <= tag && tag < 80000u)) {
+          DO_(_extensions_.ParseField(tag, input, default_instance_,
+                                      mutable_unknown_fields()));
+          continue;
+        }
         DO_(::google::protobuf::internal::WireFormat::SkipField(
               input, tag, mutable_unknown_fields()));
         break;
@@ -671,6 +679,10 @@ void Message::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(2, this->role(), output);
   }
   
+  // Extension range [100, 10000)
+  _extensions_.SerializeWithCachedSizes(
+      100, 10000, output);
+  
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -690,6 +702,10 @@ void Message::SerializeWithCachedSizes(
   if (has_role()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(2, this->role(), target);
   }
+  
+  // Extension range [100, 10000)
+  target = _extensions_.SerializeWithCachedSizesToArray(
+      100, 10000, target);
   
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
@@ -717,6 +733,8 @@ int Message::ByteSize() const {
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         this->attribute(i));
   }
+  
+  total_size += _extensions_.ByteSize();
   
   if (!unknown_fields().empty()) {
     total_size +=
@@ -749,6 +767,7 @@ void Message::MergeFrom(const Message& from) {
       set_role(from.role());
     }
   }
+  _extensions_.MergeFrom(from._extensions_);
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
@@ -769,7 +788,8 @@ bool Message::IsInitialized() const {
   for (int i = 0; i < attribute_size(); i++) {
     if (!this->attribute(i).IsInitialized()) return false;
   }
-  return true;
+  
+  if (!_extensions_.IsInitialized()) return false;  return true;
 }
 
 void Message::Swap(Message* other) {
@@ -779,6 +799,7 @@ void Message::Swap(Message* other) {
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
+    _extensions_.Swap(&other->_extensions_);
   }
 }
 
@@ -855,6 +876,7 @@ ChannelDescription* ChannelDescription::New() const {
 }
 
 void ChannelDescription::Clear() {
+  _extensions_.Clear();
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (has_channel_id()) {
       if (channel_id_ != NULL) channel_id_->::bnet::protocol::EntityId::Clear();
@@ -923,6 +945,11 @@ bool ChannelDescription::MergePartialFromCodedStream(
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
           return true;
         }
+        if ((800u <= tag && tag < 80000u)) {
+          DO_(_extensions_.ParseField(tag, input, default_instance_,
+                                      mutable_unknown_fields()));
+          continue;
+        }
         DO_(::google::protobuf::internal::WireFormat::SkipField(
               input, tag, mutable_unknown_fields()));
         break;
@@ -952,6 +979,10 @@ void ChannelDescription::SerializeWithCachedSizes(
       3, this->state(), output);
   }
   
+  // Extension range [100, 10000)
+  _extensions_.SerializeWithCachedSizes(
+      100, 10000, output);
+  
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -978,6 +1009,10 @@ void ChannelDescription::SerializeWithCachedSizes(
       WriteMessageNoVirtualToArray(
         3, this->state(), target);
   }
+  
+  // Extension range [100, 10000)
+  target = _extensions_.SerializeWithCachedSizesToArray(
+      100, 10000, target);
   
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
@@ -1012,6 +1047,8 @@ int ChannelDescription::ByteSize() const {
     }
     
   }
+  total_size += _extensions_.ByteSize();
+  
   if (!unknown_fields().empty()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
@@ -1048,6 +1085,7 @@ void ChannelDescription::MergeFrom(const ChannelDescription& from) {
       mutable_state()->::bnet::protocol::channel::ChannelState::MergeFrom(from.state());
     }
   }
+  _extensions_.MergeFrom(from._extensions_);
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
@@ -1072,7 +1110,8 @@ bool ChannelDescription::IsInitialized() const {
   if (has_state()) {
     if (!this->state().IsInitialized()) return false;
   }
-  return true;
+  
+  if (!_extensions_.IsInitialized()) return false;  return true;
 }
 
 void ChannelDescription::Swap(ChannelDescription* other) {
@@ -1083,6 +1122,7 @@ void ChannelDescription::Swap(ChannelDescription* other) {
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
+    _extensions_.Swap(&other->_extensions_);
   }
 }
 
@@ -1154,6 +1194,7 @@ ChannelInfo* ChannelInfo::New() const {
 }
 
 void ChannelInfo::Clear() {
+  _extensions_.Clear();
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (has_description()) {
       if (description_ != NULL) description_->::bnet::protocol::channel::ChannelDescription::Clear();
@@ -1204,6 +1245,11 @@ bool ChannelInfo::MergePartialFromCodedStream(
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
           return true;
         }
+        if ((800u <= tag && tag < 80000u)) {
+          DO_(_extensions_.ParseField(tag, input, default_instance_,
+                                      mutable_unknown_fields()));
+          continue;
+        }
         DO_(::google::protobuf::internal::WireFormat::SkipField(
               input, tag, mutable_unknown_fields()));
         break;
@@ -1228,6 +1274,10 @@ void ChannelInfo::SerializeWithCachedSizes(
       2, this->member(i), output);
   }
   
+  // Extension range [100, 10000)
+  _extensions_.SerializeWithCachedSizes(
+      100, 10000, output);
+  
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -1249,6 +1299,10 @@ void ChannelInfo::SerializeWithCachedSizes(
       WriteMessageNoVirtualToArray(
         2, this->member(i), target);
   }
+  
+  // Extension range [100, 10000)
+  target = _extensions_.SerializeWithCachedSizesToArray(
+      100, 10000, target);
   
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
@@ -1276,6 +1330,8 @@ int ChannelInfo::ByteSize() const {
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         this->member(i));
   }
+  
+  total_size += _extensions_.ByteSize();
   
   if (!unknown_fields().empty()) {
     total_size +=
@@ -1308,6 +1364,7 @@ void ChannelInfo::MergeFrom(const ChannelInfo& from) {
       mutable_description()->::bnet::protocol::channel::ChannelDescription::MergeFrom(from.description());
     }
   }
+  _extensions_.MergeFrom(from._extensions_);
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
@@ -1332,7 +1389,8 @@ bool ChannelInfo::IsInitialized() const {
   for (int i = 0; i < member_size(); i++) {
     if (!this->member(i).IsInitialized()) return false;
   }
-  return true;
+  
+  if (!_extensions_.IsInitialized()) return false;  return true;
 }
 
 void ChannelInfo::Swap(ChannelInfo* other) {
@@ -1342,6 +1400,7 @@ void ChannelInfo::Swap(ChannelInfo* other) {
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
+    _extensions_.Swap(&other->_extensions_);
   }
 }
 
@@ -3246,7 +3305,7 @@ bool JoinChannelResponse::MergePartialFromCodedStream(
         break;
       }
       
-      // optional bool require_friend_validation = 2;
+      // optional bool require_friend_validation = 2 [default = false];
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -3300,7 +3359,7 @@ void JoinChannelResponse::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt64(1, this->object_id(), output);
   }
   
-  // optional bool require_friend_validation = 2;
+  // optional bool require_friend_validation = 2 [default = false];
   if (has_require_friend_validation()) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(2, this->require_friend_validation(), output);
   }
@@ -3324,7 +3383,7 @@ void JoinChannelResponse::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(1, this->object_id(), target);
   }
   
-  // optional bool require_friend_validation = 2;
+  // optional bool require_friend_validation = 2 [default = false];
   if (has_require_friend_validation()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(2, this->require_friend_validation(), target);
   }
@@ -3354,7 +3413,7 @@ int JoinChannelResponse::ByteSize() const {
           this->object_id());
     }
     
-    // optional bool require_friend_validation = 2;
+    // optional bool require_friend_validation = 2 [default = false];
     if (has_require_friend_validation()) {
       total_size += 1 + 1;
     }
@@ -3893,6 +3952,7 @@ const ChannelState_PrivacyLevel ChannelState::PrivacyLevel_MIN;
 const ChannelState_PrivacyLevel ChannelState::PrivacyLevel_MAX;
 const int ChannelState::PrivacyLevel_ARRAYSIZE;
 #endif  // _MSC_VER
+const ::std::string ChannelState::_default_channel_type_("default");
 #ifndef _MSC_VER
 const int ChannelState::kMaxMembersFieldNumber;
 const int ChannelState::kMinMembersFieldNumber;
@@ -3931,7 +3991,7 @@ void ChannelState::SharedCtor() {
   public__ = false;
   name_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   delegate_name_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
-  channel_type_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  channel_type_ = const_cast< ::std::string*>(&_default_channel_type_);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -3946,7 +4006,7 @@ void ChannelState::SharedDtor() {
   if (delegate_name_ != &::google::protobuf::internal::kEmptyString) {
     delete delegate_name_;
   }
-  if (channel_type_ != &::google::protobuf::internal::kEmptyString) {
+  if (channel_type_ != &_default_channel_type_) {
     delete channel_type_;
   }
   if (this != default_instance_) {
@@ -3974,6 +4034,7 @@ ChannelState* ChannelState::New() const {
 }
 
 void ChannelState::Clear() {
+  _extensions_.Clear();
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     max_members_ = 0u;
     min_members_ = 0u;
@@ -3994,8 +4055,8 @@ void ChannelState::Clear() {
       }
     }
     if (has_channel_type()) {
-      if (channel_type_ != &::google::protobuf::internal::kEmptyString) {
-        channel_type_->clear();
+      if (channel_type_ != &_default_channel_type_) {
+        channel_type_->assign(_default_channel_type_);
       }
     }
   }
@@ -4104,7 +4165,7 @@ bool ChannelState::MergePartialFromCodedStream(
         break;
       }
       
-      // optional .bnet.protocol.channel.ChannelState.PrivacyLevel privacy_level = 7;
+      // optional .bnet.protocol.channel.ChannelState.PrivacyLevel privacy_level = 7 [default = PRIVACY_LEVEL_OPEN];
       case 7: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -4175,7 +4236,7 @@ bool ChannelState::MergePartialFromCodedStream(
         break;
       }
       
-      // optional string channel_type = 11;
+      // optional string channel_type = 11 [default = "default"];
       case 11: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -4197,6 +4258,11 @@ bool ChannelState::MergePartialFromCodedStream(
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
           return true;
+        }
+        if ((800u <= tag && tag < 80000u)) {
+          DO_(_extensions_.ParseField(tag, input, default_instance_,
+                                      mutable_unknown_fields()));
+          continue;
         }
         DO_(::google::protobuf::internal::WireFormat::SkipField(
               input, tag, mutable_unknown_fields()));
@@ -4242,7 +4308,7 @@ void ChannelState::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(6, this->reason(), output);
   }
   
-  // optional .bnet.protocol.channel.ChannelState.PrivacyLevel privacy_level = 7;
+  // optional .bnet.protocol.channel.ChannelState.PrivacyLevel privacy_level = 7 [default = PRIVACY_LEVEL_OPEN];
   if (has_privacy_level()) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       7, this->privacy_level(), output);
@@ -4271,7 +4337,7 @@ void ChannelState::SerializeWithCachedSizes(
       10, this->delegate_name(), output);
   }
   
-  // optional string channel_type = 11;
+  // optional string channel_type = 11 [default = "default"];
   if (has_channel_type()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->channel_type().data(), this->channel_type().length(),
@@ -4279,6 +4345,10 @@ void ChannelState::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteString(
       11, this->channel_type(), output);
   }
+  
+  // Extension range [100, 10000)
+  _extensions_.SerializeWithCachedSizes(
+      100, 10000, output);
   
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
@@ -4322,7 +4392,7 @@ void ChannelState::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(6, this->reason(), target);
   }
   
-  // optional .bnet.protocol.channel.ChannelState.PrivacyLevel privacy_level = 7;
+  // optional .bnet.protocol.channel.ChannelState.PrivacyLevel privacy_level = 7 [default = PRIVACY_LEVEL_OPEN];
   if (has_privacy_level()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       7, this->privacy_level(), target);
@@ -4353,7 +4423,7 @@ void ChannelState::SerializeWithCachedSizes(
         10, this->delegate_name(), target);
   }
   
-  // optional string channel_type = 11;
+  // optional string channel_type = 11 [default = "default"];
   if (has_channel_type()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->channel_type().data(), this->channel_type().length(),
@@ -4362,6 +4432,10 @@ void ChannelState::SerializeWithCachedSizes(
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         11, this->channel_type(), target);
   }
+  
+  // Extension range [100, 10000)
+  target = _extensions_.SerializeWithCachedSizesToArray(
+      100, 10000, target);
   
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
@@ -4402,7 +4476,7 @@ int ChannelState::ByteSize() const {
           this->reason());
     }
     
-    // optional .bnet.protocol.channel.ChannelState.PrivacyLevel privacy_level = 7;
+    // optional .bnet.protocol.channel.ChannelState.PrivacyLevel privacy_level = 7 [default = PRIVACY_LEVEL_OPEN];
     if (has_privacy_level()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::EnumSize(this->privacy_level());
@@ -4429,7 +4503,7 @@ int ChannelState::ByteSize() const {
           this->delegate_name());
     }
     
-    // optional string channel_type = 11;
+    // optional string channel_type = 11 [default = "default"];
     if (has_channel_type()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
@@ -4452,6 +4526,8 @@ int ChannelState::ByteSize() const {
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         this->invitation(i));
   }
+  
+  total_size += _extensions_.ByteSize();
   
   if (!unknown_fields().empty()) {
     total_size +=
@@ -4511,6 +4587,7 @@ void ChannelState::MergeFrom(const ChannelState& from) {
       set_channel_type(from.channel_type());
     }
   }
+  _extensions_.MergeFrom(from._extensions_);
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
@@ -4534,7 +4611,8 @@ bool ChannelState::IsInitialized() const {
   for (int i = 0; i < invitation_size(); i++) {
     if (!this->invitation(i).IsInitialized()) return false;
   }
-  return true;
+  
+  if (!_extensions_.IsInitialized()) return false;  return true;
 }
 
 void ChannelState::Swap(ChannelState* other) {
@@ -4553,6 +4631,7 @@ void ChannelState::Swap(ChannelState* other) {
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
+    _extensions_.Swap(&other->_extensions_);
   }
 }
 
@@ -4623,6 +4702,7 @@ MemberState* MemberState::New() const {
 }
 
 void MemberState::Clear() {
+  _extensions_.Clear();
   if (_has_bits_[2 / 32] & (0xffu << (2 % 32))) {
     privileges_ = GOOGLE_ULONGLONG(0);
   }
@@ -4675,7 +4755,7 @@ bool MemberState::MergePartialFromCodedStream(
         break;
       }
       
-      // optional uint64 privileges = 3;
+      // optional uint64 privileges = 3 [default = 0];
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -4696,6 +4776,11 @@ bool MemberState::MergePartialFromCodedStream(
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
           return true;
+        }
+        if ((800u <= tag && tag < 80000u)) {
+          DO_(_extensions_.ParseField(tag, input, default_instance_,
+                                      mutable_unknown_fields()));
+          continue;
         }
         DO_(::google::protobuf::internal::WireFormat::SkipField(
               input, tag, mutable_unknown_fields()));
@@ -4721,10 +4806,14 @@ void MemberState::SerializeWithCachedSizes(
       2, this->role(i), output);
   }
   
-  // optional uint64 privileges = 3;
+  // optional uint64 privileges = 3 [default = 0];
   if (has_privileges()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt64(3, this->privileges(), output);
   }
+  
+  // Extension range [100, 10000)
+  _extensions_.SerializeWithCachedSizes(
+      100, 10000, output);
   
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
@@ -4747,10 +4836,14 @@ void MemberState::SerializeWithCachedSizes(
       WriteUInt32ToArray(2, this->role(i), target);
   }
   
-  // optional uint64 privileges = 3;
+  // optional uint64 privileges = 3 [default = 0];
   if (has_privileges()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(3, this->privileges(), target);
   }
+  
+  // Extension range [100, 10000)
+  target = _extensions_.SerializeWithCachedSizesToArray(
+      100, 10000, target);
   
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
@@ -4763,7 +4856,7 @@ int MemberState::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[2 / 32] & (0xffu << (2 % 32))) {
-    // optional uint64 privileges = 3;
+    // optional uint64 privileges = 3 [default = 0];
     if (has_privileges()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt64Size(
@@ -4788,6 +4881,8 @@ int MemberState::ByteSize() const {
     }
     total_size += 1 * this->role_size() + data_size;
   }
+  
+  total_size += _extensions_.ByteSize();
   
   if (!unknown_fields().empty()) {
     total_size +=
@@ -4821,6 +4916,7 @@ void MemberState::MergeFrom(const MemberState& from) {
       set_privileges(from.privileges());
     }
   }
+  _extensions_.MergeFrom(from._extensions_);
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
@@ -4841,7 +4937,8 @@ bool MemberState::IsInitialized() const {
   for (int i = 0; i < attribute_size(); i++) {
     if (!this->attribute(i).IsInitialized()) return false;
   }
-  return true;
+  
+  if (!_extensions_.IsInitialized()) return false;  return true;
 }
 
 void MemberState::Swap(MemberState* other) {
@@ -4852,6 +4949,7 @@ void MemberState::Swap(MemberState* other) {
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
+    _extensions_.Swap(&other->_extensions_);
   }
 }
 

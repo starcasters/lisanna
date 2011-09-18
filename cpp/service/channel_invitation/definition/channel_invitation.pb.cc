@@ -52,6 +52,8 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* SuggestionAddedNotification_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   SuggestionAddedNotification_reflection_ = NULL;
+const ::google::protobuf::ServiceDescriptor* ChannelInvitationService_descriptor_ = NULL;
+const ::google::protobuf::ServiceDescriptor* ChannelInvitationNotify_descriptor_ = NULL;
 
 }  // namespace
 
@@ -238,6 +240,8 @@ void protobuf_AssignDesc_service_2fchannel_5finvitation_2fdefinition_2fchannel_5
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(SuggestionAddedNotification));
+  ChannelInvitationService_descriptor_ = file->service(0);
+  ChannelInvitationNotify_descriptor_ = file->service(1);
 }
 
 namespace {
@@ -349,7 +353,40 @@ void protobuf_AddDesc_service_2fchannel_5finvitation_2fdefinition_2fchannel_5fin
     "tation\030\001 \002(\0132$.bnet.protocol.invitation."
     "Invitation\022\016\n\006reason\030\002 \001(\r\"W\n\033Suggestion"
     "AddedNotification\0228\n\nsuggestion\030\001 \002(\0132$."
-    "bnet.protocol.invitation.Suggestion", 1475);
+    "bnet.protocol.invitation.Suggestion2\221\006\n\030"
+    "ChannelInvitationService\022t\n\tSubscribe\0222."
+    "bnet.protocol.channel_invitation.Subscri"
+    "beRequest\0323.bnet.protocol.channel_invita"
+    "tion.SubscribeResponse\022Z\n\013Unsubscribe\0224."
+    "bnet.protocol.channel_invitation.Unsubsc"
+    "ribeRequest\032\025.bnet.protocol.NoData\022s\n\016Se"
+    "ndInvitation\022/.bnet.protocol.invitation."
+    "SendInvitationRequest\0320.bnet.protocol.in"
+    "vitation.SendInvitationResponse\022\211\001\n\020Acce"
+    "ptInvitation\0229.bnet.protocol.channel_inv"
+    "itation.AcceptInvitationRequest\032:.bnet.p"
+    "rotocol.channel_invitation.AcceptInvitat"
+    "ionResponse\022T\n\021DeclineInvitation\022(.bnet."
+    "protocol.invitation.GenericRequest\032\025.bne"
+    "t.protocol.NoData\022d\n\020RevokeInvitation\0229."
+    "bnet.protocol.channel_invitation.RevokeI"
+    "nvitationRequest\032\025.bnet.protocol.NoData\022"
+    "f\n\021SuggestInvitation\022:.bnet.protocol.cha"
+    "nnel_invitation.SuggestInvitationRequest"
+    "\032\025.bnet.protocol.NoData2\377\003\n\027ChannelInvit"
+    "ationNotify\022z\n\035NotifyReceivedInvitationA"
+    "dded\022=.bnet.protocol.channel_invitation."
+    "InvitationAddedNotification\032\032.bnet.proto"
+    "col.NO_RESPONSE\022~\n\037NotifyReceivedInvitat"
+    "ionRemoved\022\?.bnet.protocol.channel_invit"
+    "ation.InvitationRemovedNotification\032\032.bn"
+    "et.protocol.NO_RESPONSE\022z\n\035NotifyReceive"
+    "dSuggestionAdded\022=.bnet.protocol.channel"
+    "_invitation.SuggestionAddedNotification\032"
+    "\032.bnet.protocol.NO_RESPONSE\022l\n\024HasRoomFo"
+    "rInvitation\022=.bnet.protocol.channel_invi"
+    "tation.HasRoomForInvitationRequest\032\025.bne"
+    "t.protocol.NoDataB\003\200\001\001", 2782);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "service/channel_invitation/definition/channel_invitation.proto", &protobuf_RegisterTypes);
   AcceptInvitationRequest::default_instance_ = new AcceptInvitationRequest();
@@ -3211,6 +3248,398 @@ void SuggestionAddedNotification::Swap(SuggestionAddedNotification* other) {
   return metadata;
 }
 
+
+// ===================================================================
+
+ChannelInvitationService::~ChannelInvitationService() {}
+
+const ::google::protobuf::ServiceDescriptor* ChannelInvitationService::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return ChannelInvitationService_descriptor_;
+}
+
+const ::google::protobuf::ServiceDescriptor* ChannelInvitationService::GetDescriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return ChannelInvitationService_descriptor_;
+}
+
+void ChannelInvitationService::Subscribe(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel_invitation::SubscribeRequest*,
+                         ::bnet::protocol::channel_invitation::SubscribeResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method Subscribe() not implemented.");
+  done->Run();
+}
+
+void ChannelInvitationService::Unsubscribe(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel_invitation::UnsubscribeRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method Unsubscribe() not implemented.");
+  done->Run();
+}
+
+void ChannelInvitationService::SendInvitation(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::invitation::SendInvitationRequest*,
+                         ::bnet::protocol::invitation::SendInvitationResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method SendInvitation() not implemented.");
+  done->Run();
+}
+
+void ChannelInvitationService::AcceptInvitation(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel_invitation::AcceptInvitationRequest*,
+                         ::bnet::protocol::channel_invitation::AcceptInvitationResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method AcceptInvitation() not implemented.");
+  done->Run();
+}
+
+void ChannelInvitationService::DeclineInvitation(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::invitation::GenericRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method DeclineInvitation() not implemented.");
+  done->Run();
+}
+
+void ChannelInvitationService::RevokeInvitation(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel_invitation::RevokeInvitationRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method RevokeInvitation() not implemented.");
+  done->Run();
+}
+
+void ChannelInvitationService::SuggestInvitation(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel_invitation::SuggestInvitationRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method SuggestInvitation() not implemented.");
+  done->Run();
+}
+
+void ChannelInvitationService::CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                             ::google::protobuf::RpcController* controller,
+                             const ::google::protobuf::Message* request,
+                             ::google::protobuf::Message* response,
+                             ::google::protobuf::Closure* done) {
+  GOOGLE_DCHECK_EQ(method->service(), ChannelInvitationService_descriptor_);
+  switch(method->index()) {
+    case 0:
+      Subscribe(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel_invitation::SubscribeRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::channel_invitation::SubscribeResponse*>(response),
+             done);
+      break;
+    case 1:
+      Unsubscribe(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel_invitation::UnsubscribeRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    case 2:
+      SendInvitation(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::invitation::SendInvitationRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::invitation::SendInvitationResponse*>(response),
+             done);
+      break;
+    case 3:
+      AcceptInvitation(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel_invitation::AcceptInvitationRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::channel_invitation::AcceptInvitationResponse*>(response),
+             done);
+      break;
+    case 4:
+      DeclineInvitation(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::invitation::GenericRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    case 5:
+      RevokeInvitation(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel_invitation::RevokeInvitationRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    case 6:
+      SuggestInvitation(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel_invitation::SuggestInvitationRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      break;
+  }
+}
+
+const ::google::protobuf::Message& ChannelInvitationService::GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::channel_invitation::SubscribeRequest::default_instance();
+    case 1:
+      return ::bnet::protocol::channel_invitation::UnsubscribeRequest::default_instance();
+    case 2:
+      return ::bnet::protocol::invitation::SendInvitationRequest::default_instance();
+    case 3:
+      return ::bnet::protocol::channel_invitation::AcceptInvitationRequest::default_instance();
+    case 4:
+      return ::bnet::protocol::invitation::GenericRequest::default_instance();
+    case 5:
+      return ::bnet::protocol::channel_invitation::RevokeInvitationRequest::default_instance();
+    case 6:
+      return ::bnet::protocol::channel_invitation::SuggestInvitationRequest::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+const ::google::protobuf::Message& ChannelInvitationService::GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::channel_invitation::SubscribeResponse::default_instance();
+    case 1:
+      return ::bnet::protocol::NoData::default_instance();
+    case 2:
+      return ::bnet::protocol::invitation::SendInvitationResponse::default_instance();
+    case 3:
+      return ::bnet::protocol::channel_invitation::AcceptInvitationResponse::default_instance();
+    case 4:
+      return ::bnet::protocol::NoData::default_instance();
+    case 5:
+      return ::bnet::protocol::NoData::default_instance();
+    case 6:
+      return ::bnet::protocol::NoData::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+ChannelInvitationService_Stub::ChannelInvitationService_Stub(::google::protobuf::RpcChannel* channel)
+  : channel_(channel), owns_channel_(false) {}
+ChannelInvitationService_Stub::ChannelInvitationService_Stub(
+    ::google::protobuf::RpcChannel* channel,
+    ::google::protobuf::Service::ChannelOwnership ownership)
+  : channel_(channel),
+    owns_channel_(ownership == ::google::protobuf::Service::STUB_OWNS_CHANNEL) {}
+ChannelInvitationService_Stub::~ChannelInvitationService_Stub() {
+  if (owns_channel_) delete channel_;
+}
+
+void ChannelInvitationService_Stub::Subscribe(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel_invitation::SubscribeRequest* request,
+                              ::bnet::protocol::channel_invitation::SubscribeResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(0),
+                       controller, request, response, done);
+}
+void ChannelInvitationService_Stub::Unsubscribe(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel_invitation::UnsubscribeRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(1),
+                       controller, request, response, done);
+}
+void ChannelInvitationService_Stub::SendInvitation(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::invitation::SendInvitationRequest* request,
+                              ::bnet::protocol::invitation::SendInvitationResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(2),
+                       controller, request, response, done);
+}
+void ChannelInvitationService_Stub::AcceptInvitation(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel_invitation::AcceptInvitationRequest* request,
+                              ::bnet::protocol::channel_invitation::AcceptInvitationResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(3),
+                       controller, request, response, done);
+}
+void ChannelInvitationService_Stub::DeclineInvitation(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::invitation::GenericRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(4),
+                       controller, request, response, done);
+}
+void ChannelInvitationService_Stub::RevokeInvitation(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel_invitation::RevokeInvitationRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(5),
+                       controller, request, response, done);
+}
+void ChannelInvitationService_Stub::SuggestInvitation(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel_invitation::SuggestInvitationRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(6),
+                       controller, request, response, done);
+}
+// ===================================================================
+
+ChannelInvitationNotify::~ChannelInvitationNotify() {}
+
+const ::google::protobuf::ServiceDescriptor* ChannelInvitationNotify::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return ChannelInvitationNotify_descriptor_;
+}
+
+const ::google::protobuf::ServiceDescriptor* ChannelInvitationNotify::GetDescriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return ChannelInvitationNotify_descriptor_;
+}
+
+void ChannelInvitationNotify::NotifyReceivedInvitationAdded(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel_invitation::InvitationAddedNotification*,
+                         ::bnet::protocol::NO_RESPONSE*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method NotifyReceivedInvitationAdded() not implemented.");
+  done->Run();
+}
+
+void ChannelInvitationNotify::NotifyReceivedInvitationRemoved(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel_invitation::InvitationRemovedNotification*,
+                         ::bnet::protocol::NO_RESPONSE*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method NotifyReceivedInvitationRemoved() not implemented.");
+  done->Run();
+}
+
+void ChannelInvitationNotify::NotifyReceivedSuggestionAdded(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel_invitation::SuggestionAddedNotification*,
+                         ::bnet::protocol::NO_RESPONSE*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method NotifyReceivedSuggestionAdded() not implemented.");
+  done->Run();
+}
+
+void ChannelInvitationNotify::HasRoomForInvitation(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel_invitation::HasRoomForInvitationRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method HasRoomForInvitation() not implemented.");
+  done->Run();
+}
+
+void ChannelInvitationNotify::CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                             ::google::protobuf::RpcController* controller,
+                             const ::google::protobuf::Message* request,
+                             ::google::protobuf::Message* response,
+                             ::google::protobuf::Closure* done) {
+  GOOGLE_DCHECK_EQ(method->service(), ChannelInvitationNotify_descriptor_);
+  switch(method->index()) {
+    case 0:
+      NotifyReceivedInvitationAdded(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel_invitation::InvitationAddedNotification*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NO_RESPONSE*>(response),
+             done);
+      break;
+    case 1:
+      NotifyReceivedInvitationRemoved(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel_invitation::InvitationRemovedNotification*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NO_RESPONSE*>(response),
+             done);
+      break;
+    case 2:
+      NotifyReceivedSuggestionAdded(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel_invitation::SuggestionAddedNotification*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NO_RESPONSE*>(response),
+             done);
+      break;
+    case 3:
+      HasRoomForInvitation(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel_invitation::HasRoomForInvitationRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      break;
+  }
+}
+
+const ::google::protobuf::Message& ChannelInvitationNotify::GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::channel_invitation::InvitationAddedNotification::default_instance();
+    case 1:
+      return ::bnet::protocol::channel_invitation::InvitationRemovedNotification::default_instance();
+    case 2:
+      return ::bnet::protocol::channel_invitation::SuggestionAddedNotification::default_instance();
+    case 3:
+      return ::bnet::protocol::channel_invitation::HasRoomForInvitationRequest::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+const ::google::protobuf::Message& ChannelInvitationNotify::GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::NO_RESPONSE::default_instance();
+    case 1:
+      return ::bnet::protocol::NO_RESPONSE::default_instance();
+    case 2:
+      return ::bnet::protocol::NO_RESPONSE::default_instance();
+    case 3:
+      return ::bnet::protocol::NoData::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+ChannelInvitationNotify_Stub::ChannelInvitationNotify_Stub(::google::protobuf::RpcChannel* channel)
+  : channel_(channel), owns_channel_(false) {}
+ChannelInvitationNotify_Stub::ChannelInvitationNotify_Stub(
+    ::google::protobuf::RpcChannel* channel,
+    ::google::protobuf::Service::ChannelOwnership ownership)
+  : channel_(channel),
+    owns_channel_(ownership == ::google::protobuf::Service::STUB_OWNS_CHANNEL) {}
+ChannelInvitationNotify_Stub::~ChannelInvitationNotify_Stub() {
+  if (owns_channel_) delete channel_;
+}
+
+void ChannelInvitationNotify_Stub::NotifyReceivedInvitationAdded(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel_invitation::InvitationAddedNotification* request,
+                              ::bnet::protocol::NO_RESPONSE* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(0),
+                       controller, request, response, done);
+}
+void ChannelInvitationNotify_Stub::NotifyReceivedInvitationRemoved(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel_invitation::InvitationRemovedNotification* request,
+                              ::bnet::protocol::NO_RESPONSE* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(1),
+                       controller, request, response, done);
+}
+void ChannelInvitationNotify_Stub::NotifyReceivedSuggestionAdded(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel_invitation::SuggestionAddedNotification* request,
+                              ::bnet::protocol::NO_RESPONSE* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(2),
+                       controller, request, response, done);
+}
+void ChannelInvitationNotify_Stub::HasRoomForInvitation(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel_invitation::HasRoomForInvitationRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(3),
+                       controller, request, response, done);
+}
 
 // @@protoc_insertion_point(namespace_scope)
 

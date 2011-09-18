@@ -34,6 +34,7 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* QueryResponse_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   QueryResponse_reflection_ = NULL;
+const ::google::protobuf::ServiceDescriptor* PresenceService_descriptor_ = NULL;
 
 }  // namespace
 
@@ -124,6 +125,7 @@ void protobuf_AssignDesc_service_2fpresence_2fpresence_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(QueryResponse));
+  PresenceService_descriptor_ = file->service(0);
 }
 
 namespace {
@@ -191,7 +193,16 @@ void protobuf_AddDesc_service_2fpresence_2fpresence_2eproto() {
     "id\030\001 \002(\0132\027.bnet.protocol.EntityId\022-\n\003key"
     "\030\002 \003(\0132 .bnet.protocol.presence.FieldKey"
     "\"=\n\rQueryResponse\022,\n\005field\030\002 \003(\0132\035.bnet."
-    "protocol.presence.Field", 703);
+    "protocol.presence.Field2\317\002\n\017PresenceServ"
+    "ice\022L\n\tSubscribe\022(.bnet.protocol.presenc"
+    "e.SubscribeRequest\032\025.bnet.protocol.NoDat"
+    "a\022P\n\013Unsubscribe\022*.bnet.protocol.presenc"
+    "e.UnsubscribeRequest\032\025.bnet.protocol.NoD"
+    "ata\022F\n\006Update\022%.bnet.protocol.presence.U"
+    "pdateRequest\032\025.bnet.protocol.NoData\022T\n\005Q"
+    "uery\022$.bnet.protocol.presence.QueryReque"
+    "st\032%.bnet.protocol.presence.QueryRespons"
+    "eB\003\200\001\001", 1046);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "service/presence/presence.proto", &protobuf_RegisterTypes);
   SubscribeRequest::default_instance_ = new SubscribeRequest();
@@ -1505,6 +1516,165 @@ void QueryResponse::Swap(QueryResponse* other) {
   return metadata;
 }
 
+
+// ===================================================================
+
+PresenceService::~PresenceService() {}
+
+const ::google::protobuf::ServiceDescriptor* PresenceService::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return PresenceService_descriptor_;
+}
+
+const ::google::protobuf::ServiceDescriptor* PresenceService::GetDescriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return PresenceService_descriptor_;
+}
+
+void PresenceService::Subscribe(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::presence::SubscribeRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method Subscribe() not implemented.");
+  done->Run();
+}
+
+void PresenceService::Unsubscribe(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::presence::UnsubscribeRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method Unsubscribe() not implemented.");
+  done->Run();
+}
+
+void PresenceService::Update(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::presence::UpdateRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method Update() not implemented.");
+  done->Run();
+}
+
+void PresenceService::Query(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::presence::QueryRequest*,
+                         ::bnet::protocol::presence::QueryResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method Query() not implemented.");
+  done->Run();
+}
+
+void PresenceService::CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                             ::google::protobuf::RpcController* controller,
+                             const ::google::protobuf::Message* request,
+                             ::google::protobuf::Message* response,
+                             ::google::protobuf::Closure* done) {
+  GOOGLE_DCHECK_EQ(method->service(), PresenceService_descriptor_);
+  switch(method->index()) {
+    case 0:
+      Subscribe(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::presence::SubscribeRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    case 1:
+      Unsubscribe(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::presence::UnsubscribeRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    case 2:
+      Update(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::presence::UpdateRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    case 3:
+      Query(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::presence::QueryRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::presence::QueryResponse*>(response),
+             done);
+      break;
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      break;
+  }
+}
+
+const ::google::protobuf::Message& PresenceService::GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::presence::SubscribeRequest::default_instance();
+    case 1:
+      return ::bnet::protocol::presence::UnsubscribeRequest::default_instance();
+    case 2:
+      return ::bnet::protocol::presence::UpdateRequest::default_instance();
+    case 3:
+      return ::bnet::protocol::presence::QueryRequest::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+const ::google::protobuf::Message& PresenceService::GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::NoData::default_instance();
+    case 1:
+      return ::bnet::protocol::NoData::default_instance();
+    case 2:
+      return ::bnet::protocol::NoData::default_instance();
+    case 3:
+      return ::bnet::protocol::presence::QueryResponse::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+PresenceService_Stub::PresenceService_Stub(::google::protobuf::RpcChannel* channel)
+  : channel_(channel), owns_channel_(false) {}
+PresenceService_Stub::PresenceService_Stub(
+    ::google::protobuf::RpcChannel* channel,
+    ::google::protobuf::Service::ChannelOwnership ownership)
+  : channel_(channel),
+    owns_channel_(ownership == ::google::protobuf::Service::STUB_OWNS_CHANNEL) {}
+PresenceService_Stub::~PresenceService_Stub() {
+  if (owns_channel_) delete channel_;
+}
+
+void PresenceService_Stub::Subscribe(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::presence::SubscribeRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(0),
+                       controller, request, response, done);
+}
+void PresenceService_Stub::Unsubscribe(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::presence::UnsubscribeRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(1),
+                       controller, request, response, done);
+}
+void PresenceService_Stub::Update(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::presence::UpdateRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(2),
+                       controller, request, response, done);
+}
+void PresenceService_Stub::Query(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::presence::QueryRequest* request,
+                              ::bnet::protocol::presence::QueryResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(3),
+                       controller, request, response, done);
+}
 
 // @@protoc_insertion_point(namespace_scope)
 

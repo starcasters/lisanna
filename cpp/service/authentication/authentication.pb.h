@@ -23,6 +23,7 @@
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/generated_message_reflection.h>
+#include <google/protobuf/service.h>
 #include "lib/rpc/rpc.pb.h"
 #include "lib/protocol/content_handle.pb.h"
 #include "lib/protocol/entity.pb.h"
@@ -1110,6 +1111,140 @@ class AuthAgreement : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static AuthAgreement* default_instance_;
 };
+// ===================================================================
+
+class AuthenticationClient_Stub;
+
+class AuthenticationClient : public ::google::protobuf::Service {
+ protected:
+  // This class should be treated as an abstract interface.
+  inline AuthenticationClient() {};
+ public:
+  virtual ~AuthenticationClient();
+  
+  typedef AuthenticationClient_Stub Stub;
+  
+  static const ::google::protobuf::ServiceDescriptor* descriptor();
+  
+  virtual void ModuleLoad(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::authentication::ModuleLoadRequest* request,
+                       ::bnet::protocol::authentication::ModuleLoadResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void ModuleMessage(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::authentication::ModuleMessageRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  
+  // implements Service ----------------------------------------------
+  
+  const ::google::protobuf::ServiceDescriptor* GetDescriptor();
+  void CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                  ::google::protobuf::RpcController* controller,
+                  const ::google::protobuf::Message* request,
+                  ::google::protobuf::Message* response,
+                  ::google::protobuf::Closure* done);
+  const ::google::protobuf::Message& GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+  const ::google::protobuf::Message& GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+
+ private:
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(AuthenticationClient);
+};
+
+class AuthenticationClient_Stub : public AuthenticationClient {
+ public:
+  AuthenticationClient_Stub(::google::protobuf::RpcChannel* channel);
+  AuthenticationClient_Stub(::google::protobuf::RpcChannel* channel,
+                   ::google::protobuf::Service::ChannelOwnership ownership);
+  ~AuthenticationClient_Stub();
+  
+  inline ::google::protobuf::RpcChannel* channel() { return channel_; }
+  
+  // implements AuthenticationClient ------------------------------------------
+  
+  void ModuleLoad(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::authentication::ModuleLoadRequest* request,
+                       ::bnet::protocol::authentication::ModuleLoadResponse* response,
+                       ::google::protobuf::Closure* done);
+  void ModuleMessage(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::authentication::ModuleMessageRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+ private:
+  ::google::protobuf::RpcChannel* channel_;
+  bool owns_channel_;
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(AuthenticationClient_Stub);
+};
+
+
+// -------------------------------------------------------------------
+
+class AuthenticationServer_Stub;
+
+class AuthenticationServer : public ::google::protobuf::Service {
+ protected:
+  // This class should be treated as an abstract interface.
+  inline AuthenticationServer() {};
+ public:
+  virtual ~AuthenticationServer();
+  
+  typedef AuthenticationServer_Stub Stub;
+  
+  static const ::google::protobuf::ServiceDescriptor* descriptor();
+  
+  virtual void Logon(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::authentication::LogonRequest* request,
+                       ::bnet::protocol::authentication::LogonResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void ModuleMessage(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::authentication::ModuleMessageRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  
+  // implements Service ----------------------------------------------
+  
+  const ::google::protobuf::ServiceDescriptor* GetDescriptor();
+  void CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                  ::google::protobuf::RpcController* controller,
+                  const ::google::protobuf::Message* request,
+                  ::google::protobuf::Message* response,
+                  ::google::protobuf::Closure* done);
+  const ::google::protobuf::Message& GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+  const ::google::protobuf::Message& GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+
+ private:
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(AuthenticationServer);
+};
+
+class AuthenticationServer_Stub : public AuthenticationServer {
+ public:
+  AuthenticationServer_Stub(::google::protobuf::RpcChannel* channel);
+  AuthenticationServer_Stub(::google::protobuf::RpcChannel* channel,
+                   ::google::protobuf::Service::ChannelOwnership ownership);
+  ~AuthenticationServer_Stub();
+  
+  inline ::google::protobuf::RpcChannel* channel() { return channel_; }
+  
+  // implements AuthenticationServer ------------------------------------------
+  
+  void Logon(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::authentication::LogonRequest* request,
+                       ::bnet::protocol::authentication::LogonResponse* response,
+                       ::google::protobuf::Closure* done);
+  void ModuleMessage(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::authentication::ModuleMessageRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+ private:
+  ::google::protobuf::RpcChannel* channel_;
+  bool owns_channel_;
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(AuthenticationServer_Stub);
+};
+
+
 // ===================================================================
 
 

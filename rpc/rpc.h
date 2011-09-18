@@ -25,63 +25,11 @@
 #include <utility>
 
 #include <google/protobuf/message.h>
-
+#include "../server/PracticalSocket.h"
 #include "headers.h"
+#include "FastDelegate.h"
 
 using namespace std;
 
-#define macro_service(A,B,C) \
-		case A:\
-			if (!response)\
-			switch (method) {\
-				default:\
-					cerr << "bad method index" << endl;\
-					areply->msg = new bnet::protocol::connection::NullRequest();\
-					return false;\
-				B\
-			};\
-			if (response)\
-			switch (method) {\
-				default:\
-					cerr << "bad method index" << endl;\
-					areply->msg = new bnet::protocol::connection::NullRequest();\
-					return false;\
-				C\
-			};
-#define service_entry(A,B,C) \
-				case A:\
-					areply->msg = new B();\
-					areply->callback = (msg_handler) C;\
-					return true;\
-
-
-struct amethod {
-	int id;
-	void* proc;
-	google::protobuf::Message* msgtype;
-};
-typedef vector<amethod*> g_methods; 
-
-struct aservice {
-	int hash;
-	int id;
-	std::string name;
-	g_methods methods;
-};
-typedef aservice* pservice;
-typedef vector<aservice*> g_services;
-
-class CServices {
-	public:
-	CServices();
-	~CServices();
-	g_services Items;
-	aservice* add_service(int hash, std::string name, int id);
-	aservice* add_service(int hash, std::string name);
-	void add_method(aservice* service, int id, void* proc, google::protobuf::Message* msg);
-	void clear();
-};
-
-
-
+ 
 #endif

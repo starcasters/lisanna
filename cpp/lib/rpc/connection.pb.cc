@@ -52,6 +52,7 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* EncryptRequest_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   EncryptRequest_reflection_ = NULL;
+const ::google::protobuf::ServiceDescriptor* ConnectionService_descriptor_ = NULL;
 
 }  // namespace
 
@@ -232,6 +233,7 @@ void protobuf_AssignDesc_lib_2frpc_2fconnection_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(EncryptRequest));
+  ConnectionService_descriptor_ = file->service(0);
 }
 
 namespace {
@@ -310,17 +312,33 @@ void protobuf_AddDesc_lib_2frpc_2fconnection_2eproto() {
     "ver_id\030\001 \002(\0132\030.bnet.protocol.ProcessId\022+"
     "\n\tclient_id\030\002 \001(\0132\030.bnet.protocol.Proces"
     "sId\"(\n\014BoundService\022\014\n\004hash\030\001 \002(\007\022\n\n\002id\030"
-    "\002 \002(\r\"n\n\013BindRequest\022\035\n\025imported_service"
-    "_hash\030\001 \003(\007\022@\n\020exported_service\030\002 \003(\0132&."
-    "bnet.protocol.connection.BoundService\"+\n"
-    "\014BindResponse\022\033\n\023imported_service_id\030\001 \003"
-    "(\r\"B\n\013EchoRequest\022\014\n\004time\030\001 \001(\006\022\024\n\014netwo"
-    "rk_only\030\002 \001(\010\022\017\n\007payload\030\003 \001(\014\"-\n\014EchoRe"
-    "sponse\022\014\n\004time\030\001 \001(\006\022\017\n\007payload\030\002 \001(\014\"\'\n"
-    "\021DisconnectRequest\022\022\n\nerror_code\030\001 \002(\r\"<"
-    "\n\026DisconnectNotification\022\022\n\nerror_code\030\001"
-    " \002(\r\022\016\n\006reason\030\002 \001(\t\"\r\n\013NullRequest\"\020\n\016E"
-    "ncryptRequest", 693);
+    "\002 \002(\r\"r\n\013BindRequest\022!\n\025imported_service"
+    "_hash\030\001 \003(\007B\002\020\001\022@\n\020exported_service\030\002 \003("
+    "\0132&.bnet.protocol.connection.BoundServic"
+    "e\"/\n\014BindResponse\022\037\n\023imported_service_id"
+    "\030\001 \003(\rB\002\020\001\"I\n\013EchoRequest\022\014\n\004time\030\001 \001(\006\022"
+    "\033\n\014network_only\030\002 \001(\010:\005false\022\017\n\007payload\030"
+    "\003 \001(\014\"-\n\014EchoResponse\022\014\n\004time\030\001 \001(\006\022\017\n\007p"
+    "ayload\030\002 \001(\014\"\'\n\021DisconnectRequest\022\022\n\nerr"
+    "or_code\030\001 \002(\r\"<\n\026DisconnectNotification\022"
+    "\022\n\nerror_code\030\001 \002(\r\022\016\n\006reason\030\002 \001(\t\"\r\n\013N"
+    "ullRequest\"\020\n\016EncryptRequest2\367\004\n\021Connect"
+    "ionService\022^\n\007Connect\022(.bnet.protocol.co"
+    "nnection.ConnectRequest\032).bnet.protocol."
+    "connection.ConnectResponse\022U\n\004Bind\022%.bne"
+    "t.protocol.connection.BindRequest\032&.bnet"
+    ".protocol.connection.BindResponse\022U\n\004Ech"
+    "o\022%.bnet.protocol.connection.EchoRequest"
+    "\032&.bnet.protocol.connection.EchoResponse"
+    "\022_\n\017ForceDisconnect\0220.bnet.protocol.conn"
+    "ection.DisconnectNotification\032\032.bnet.pro"
+    "tocol.NO_RESPONSE\022I\n\004Null\022%.bnet.protoco"
+    "l.connection.NullRequest\032\032.bnet.protocol"
+    ".NO_RESPONSE\022J\n\007Encrypt\022(.bnet.protocol."
+    "connection.EncryptRequest\032\025.bnet.protoco"
+    "l.NoData\022\\\n\021RequestDisconnect\022+.bnet.pro"
+    "tocol.connection.DisconnectRequest\032\032.bne"
+    "t.protocol.NO_RESPONSEB\003\200\001\001", 1347);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "lib/rpc/connection.proto", &protobuf_RegisterTypes);
   ConnectRequest::default_instance_ = new ConnectRequest();
@@ -1149,24 +1167,22 @@ bool BindRequest::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated fixed32 imported_service_hash = 1;
+      // repeated fixed32 imported_service_hash = 1 [packed = true];
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED32) {
-         parse_imported_service_hash:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED32>(
-                 1, 13, input, this->mutable_imported_service_hash())));
-        } else if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag)
-                   == ::google::protobuf::internal::WireFormatLite::
-                      WIRETYPE_LENGTH_DELIMITED) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitiveNoInline<
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED32>(
                  input, this->mutable_imported_service_hash())));
+        } else if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag)
+                   == ::google::protobuf::internal::WireFormatLite::
+                      WIRETYPE_FIXED32) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED32>(
+                 1, 10, input, this->mutable_imported_service_hash())));
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(13)) goto parse_imported_service_hash;
         if (input->ExpectTag(18)) goto parse_exported_service;
         break;
       }
@@ -1204,10 +1220,14 @@ bool BindRequest::MergePartialFromCodedStream(
 
 void BindRequest::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // repeated fixed32 imported_service_hash = 1;
+  // repeated fixed32 imported_service_hash = 1 [packed = true];
+  if (this->imported_service_hash_size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteTag(1, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
+    output->WriteVarint32(_imported_service_hash_cached_byte_size_);
+  }
   for (int i = 0; i < this->imported_service_hash_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteFixed32(
-      1, this->imported_service_hash(i), output);
+    ::google::protobuf::internal::WireFormatLite::WriteFixed32NoTag(
+      this->imported_service_hash(i), output);
   }
   
   // repeated .bnet.protocol.connection.BoundService exported_service = 2;
@@ -1224,10 +1244,18 @@ void BindRequest::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* BindRequest::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // repeated fixed32 imported_service_hash = 1;
+  // repeated fixed32 imported_service_hash = 1 [packed = true];
+  if (this->imported_service_hash_size() > 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteTagToArray(
+      1,
+      ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED,
+      target);
+    target = ::google::protobuf::io::CodedOutputStream::WriteVarint32ToArray(
+      _imported_service_hash_cached_byte_size_, target);
+  }
   for (int i = 0; i < this->imported_service_hash_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteFixed32ToArray(1, this->imported_service_hash(i), target);
+      WriteFixed32NoTagToArray(this->imported_service_hash(i), target);
   }
   
   // repeated .bnet.protocol.connection.BoundService exported_service = 2;
@@ -1247,11 +1275,16 @@ void BindRequest::SerializeWithCachedSizes(
 int BindRequest::ByteSize() const {
   int total_size = 0;
   
-  // repeated fixed32 imported_service_hash = 1;
+  // repeated fixed32 imported_service_hash = 1 [packed = true];
   {
     int data_size = 0;
     data_size = 4 * this->imported_service_hash_size();
-    total_size += 1 * this->imported_service_hash_size() + data_size;
+    if (data_size > 0) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(data_size);
+    }
+    _imported_service_hash_cached_byte_size_ = data_size;
+    total_size += data_size;
   }
   
   // repeated .bnet.protocol.connection.BoundService exported_service = 2;
@@ -1397,24 +1430,22 @@ bool BindResponse::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated uint32 imported_service_id = 1;
+      // repeated uint32 imported_service_id = 1 [packed = true];
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-         parse_imported_service_id:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 1, 8, input, this->mutable_imported_service_id())));
-        } else if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag)
-                   == ::google::protobuf::internal::WireFormatLite::
-                      WIRETYPE_LENGTH_DELIMITED) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitiveNoInline<
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
                  input, this->mutable_imported_service_id())));
+        } else if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag)
+                   == ::google::protobuf::internal::WireFormatLite::
+                      WIRETYPE_VARINT) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 1, 10, input, this->mutable_imported_service_id())));
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(8)) goto parse_imported_service_id;
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -1437,10 +1468,14 @@ bool BindResponse::MergePartialFromCodedStream(
 
 void BindResponse::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // repeated uint32 imported_service_id = 1;
+  // repeated uint32 imported_service_id = 1 [packed = true];
+  if (this->imported_service_id_size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteTag(1, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
+    output->WriteVarint32(_imported_service_id_cached_byte_size_);
+  }
   for (int i = 0; i < this->imported_service_id_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(
-      1, this->imported_service_id(i), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32NoTag(
+      this->imported_service_id(i), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -1451,10 +1486,18 @@ void BindResponse::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* BindResponse::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // repeated uint32 imported_service_id = 1;
+  // repeated uint32 imported_service_id = 1 [packed = true];
+  if (this->imported_service_id_size() > 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteTagToArray(
+      1,
+      ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED,
+      target);
+    target = ::google::protobuf::io::CodedOutputStream::WriteVarint32ToArray(
+      _imported_service_id_cached_byte_size_, target);
+  }
   for (int i = 0; i < this->imported_service_id_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteUInt32ToArray(1, this->imported_service_id(i), target);
+      WriteUInt32NoTagToArray(this->imported_service_id(i), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -1467,14 +1510,19 @@ void BindResponse::SerializeWithCachedSizes(
 int BindResponse::ByteSize() const {
   int total_size = 0;
   
-  // repeated uint32 imported_service_id = 1;
+  // repeated uint32 imported_service_id = 1 [packed = true];
   {
     int data_size = 0;
     for (int i = 0; i < this->imported_service_id_size(); i++) {
       data_size += ::google::protobuf::internal::WireFormatLite::
         UInt32Size(this->imported_service_id(i));
     }
-    total_size += 1 * this->imported_service_id_size() + data_size;
+    if (data_size > 0) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(data_size);
+    }
+    _imported_service_id_cached_byte_size_ = data_size;
+    total_size += data_size;
   }
   
   if (!unknown_fields().empty()) {
@@ -1638,7 +1686,7 @@ bool EchoRequest::MergePartialFromCodedStream(
         break;
       }
       
-      // optional bool network_only = 2;
+      // optional bool network_only = 2 [default = false];
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -1691,7 +1739,7 @@ void EchoRequest::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteFixed64(1, this->time(), output);
   }
   
-  // optional bool network_only = 2;
+  // optional bool network_only = 2 [default = false];
   if (has_network_only()) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(2, this->network_only(), output);
   }
@@ -1715,7 +1763,7 @@ void EchoRequest::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteFixed64ToArray(1, this->time(), target);
   }
   
-  // optional bool network_only = 2;
+  // optional bool network_only = 2 [default = false];
   if (has_network_only()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(2, this->network_only(), target);
   }
@@ -1743,7 +1791,7 @@ int EchoRequest::ByteSize() const {
       total_size += 1 + 8;
     }
     
-    // optional bool network_only = 2;
+    // optional bool network_only = 2 [default = false];
     if (has_network_only()) {
       total_size += 1 + 1;
     }
@@ -2867,6 +2915,240 @@ void EncryptRequest::Swap(EncryptRequest* other) {
   return metadata;
 }
 
+
+// ===================================================================
+
+ConnectionService::~ConnectionService() {}
+
+const ::google::protobuf::ServiceDescriptor* ConnectionService::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return ConnectionService_descriptor_;
+}
+
+const ::google::protobuf::ServiceDescriptor* ConnectionService::GetDescriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return ConnectionService_descriptor_;
+}
+
+void ConnectionService::Connect(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::connection::ConnectRequest*,
+                         ::bnet::protocol::connection::ConnectResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method Connect() not implemented.");
+  done->Run();
+}
+
+void ConnectionService::Bind(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::connection::BindRequest*,
+                         ::bnet::protocol::connection::BindResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method Bind() not implemented.");
+  done->Run();
+}
+
+void ConnectionService::Echo(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::connection::EchoRequest*,
+                         ::bnet::protocol::connection::EchoResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method Echo() not implemented.");
+  done->Run();
+}
+
+void ConnectionService::ForceDisconnect(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::connection::DisconnectNotification*,
+                         ::bnet::protocol::NO_RESPONSE*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method ForceDisconnect() not implemented.");
+  done->Run();
+}
+
+void ConnectionService::Null(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::connection::NullRequest*,
+                         ::bnet::protocol::NO_RESPONSE*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method Null() not implemented.");
+  done->Run();
+}
+
+void ConnectionService::Encrypt(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::connection::EncryptRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method Encrypt() not implemented.");
+  done->Run();
+}
+
+void ConnectionService::RequestDisconnect(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::connection::DisconnectRequest*,
+                         ::bnet::protocol::NO_RESPONSE*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method RequestDisconnect() not implemented.");
+  done->Run();
+}
+
+void ConnectionService::CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                             ::google::protobuf::RpcController* controller,
+                             const ::google::protobuf::Message* request,
+                             ::google::protobuf::Message* response,
+                             ::google::protobuf::Closure* done) {
+  GOOGLE_DCHECK_EQ(method->service(), ConnectionService_descriptor_);
+  switch(method->index()) {
+    case 0:
+      Connect(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::connection::ConnectRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::connection::ConnectResponse*>(response),
+             done);
+      break;
+    case 1:
+      Bind(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::connection::BindRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::connection::BindResponse*>(response),
+             done);
+      break;
+    case 2:
+      Echo(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::connection::EchoRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::connection::EchoResponse*>(response),
+             done);
+      break;
+    case 3:
+      ForceDisconnect(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::connection::DisconnectNotification*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NO_RESPONSE*>(response),
+             done);
+      break;
+    case 4:
+      Null(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::connection::NullRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NO_RESPONSE*>(response),
+             done);
+      break;
+    case 5:
+      Encrypt(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::connection::EncryptRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    case 6:
+      RequestDisconnect(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::connection::DisconnectRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NO_RESPONSE*>(response),
+             done);
+      break;
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      break;
+  }
+}
+
+const ::google::protobuf::Message& ConnectionService::GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::connection::ConnectRequest::default_instance();
+    case 1:
+      return ::bnet::protocol::connection::BindRequest::default_instance();
+    case 2:
+      return ::bnet::protocol::connection::EchoRequest::default_instance();
+    case 3:
+      return ::bnet::protocol::connection::DisconnectNotification::default_instance();
+    case 4:
+      return ::bnet::protocol::connection::NullRequest::default_instance();
+    case 5:
+      return ::bnet::protocol::connection::EncryptRequest::default_instance();
+    case 6:
+      return ::bnet::protocol::connection::DisconnectRequest::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+const ::google::protobuf::Message& ConnectionService::GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::connection::ConnectResponse::default_instance();
+    case 1:
+      return ::bnet::protocol::connection::BindResponse::default_instance();
+    case 2:
+      return ::bnet::protocol::connection::EchoResponse::default_instance();
+    case 3:
+      return ::bnet::protocol::NO_RESPONSE::default_instance();
+    case 4:
+      return ::bnet::protocol::NO_RESPONSE::default_instance();
+    case 5:
+      return ::bnet::protocol::NoData::default_instance();
+    case 6:
+      return ::bnet::protocol::NO_RESPONSE::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+ConnectionService_Stub::ConnectionService_Stub(::google::protobuf::RpcChannel* channel)
+  : channel_(channel), owns_channel_(false) {}
+ConnectionService_Stub::ConnectionService_Stub(
+    ::google::protobuf::RpcChannel* channel,
+    ::google::protobuf::Service::ChannelOwnership ownership)
+  : channel_(channel),
+    owns_channel_(ownership == ::google::protobuf::Service::STUB_OWNS_CHANNEL) {}
+ConnectionService_Stub::~ConnectionService_Stub() {
+  if (owns_channel_) delete channel_;
+}
+
+void ConnectionService_Stub::Connect(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::connection::ConnectRequest* request,
+                              ::bnet::protocol::connection::ConnectResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(0),
+                       controller, request, response, done);
+}
+void ConnectionService_Stub::Bind(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::connection::BindRequest* request,
+                              ::bnet::protocol::connection::BindResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(1),
+                       controller, request, response, done);
+}
+void ConnectionService_Stub::Echo(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::connection::EchoRequest* request,
+                              ::bnet::protocol::connection::EchoResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(2),
+                       controller, request, response, done);
+}
+void ConnectionService_Stub::ForceDisconnect(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::connection::DisconnectNotification* request,
+                              ::bnet::protocol::NO_RESPONSE* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(3),
+                       controller, request, response, done);
+}
+void ConnectionService_Stub::Null(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::connection::NullRequest* request,
+                              ::bnet::protocol::NO_RESPONSE* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(4),
+                       controller, request, response, done);
+}
+void ConnectionService_Stub::Encrypt(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::connection::EncryptRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(5),
+                       controller, request, response, done);
+}
+void ConnectionService_Stub::RequestDisconnect(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::connection::DisconnectRequest* request,
+                              ::bnet::protocol::NO_RESPONSE* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(6),
+                       controller, request, response, done);
+}
 
 // @@protoc_insertion_point(namespace_scope)
 

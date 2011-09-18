@@ -23,6 +23,7 @@
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/generated_message_reflection.h>
+#include <google/protobuf/service.h>
 #include "lib/protocol/attribute.pb.h"
 #include "lib/protocol/entity.pb.h"
 #include "lib/rpc/rpc.pb.h"
@@ -519,6 +520,89 @@ class QueryResponse : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static QueryResponse* default_instance_;
 };
+// ===================================================================
+
+class PresenceService_Stub;
+
+class PresenceService : public ::google::protobuf::Service {
+ protected:
+  // This class should be treated as an abstract interface.
+  inline PresenceService() {};
+ public:
+  virtual ~PresenceService();
+  
+  typedef PresenceService_Stub Stub;
+  
+  static const ::google::protobuf::ServiceDescriptor* descriptor();
+  
+  virtual void Subscribe(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::presence::SubscribeRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void Unsubscribe(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::presence::UnsubscribeRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void Update(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::presence::UpdateRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void Query(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::presence::QueryRequest* request,
+                       ::bnet::protocol::presence::QueryResponse* response,
+                       ::google::protobuf::Closure* done);
+  
+  // implements Service ----------------------------------------------
+  
+  const ::google::protobuf::ServiceDescriptor* GetDescriptor();
+  void CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                  ::google::protobuf::RpcController* controller,
+                  const ::google::protobuf::Message* request,
+                  ::google::protobuf::Message* response,
+                  ::google::protobuf::Closure* done);
+  const ::google::protobuf::Message& GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+  const ::google::protobuf::Message& GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+
+ private:
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(PresenceService);
+};
+
+class PresenceService_Stub : public PresenceService {
+ public:
+  PresenceService_Stub(::google::protobuf::RpcChannel* channel);
+  PresenceService_Stub(::google::protobuf::RpcChannel* channel,
+                   ::google::protobuf::Service::ChannelOwnership ownership);
+  ~PresenceService_Stub();
+  
+  inline ::google::protobuf::RpcChannel* channel() { return channel_; }
+  
+  // implements PresenceService ------------------------------------------
+  
+  void Subscribe(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::presence::SubscribeRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void Unsubscribe(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::presence::UnsubscribeRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void Update(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::presence::UpdateRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void Query(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::presence::QueryRequest* request,
+                       ::bnet::protocol::presence::QueryResponse* response,
+                       ::google::protobuf::Closure* done);
+ private:
+  ::google::protobuf::RpcChannel* channel_;
+  bool owns_channel_;
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(PresenceService_Stub);
+};
+
+
 // ===================================================================
 
 

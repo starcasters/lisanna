@@ -23,6 +23,7 @@
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/generated_message_reflection.h>
+#include <google/protobuf/service.h>
 #include "lib/protocol/attribute.pb.h"
 #include "lib/protocol/entity.pb.h"
 #include "lib/rpc/rpc.pb.h"
@@ -1601,6 +1602,172 @@ class BlockedPlayerNotification : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static BlockedPlayerNotification* default_instance_;
 };
+// ===================================================================
+
+class UserManagerService_Stub;
+
+class UserManagerService : public ::google::protobuf::Service {
+ protected:
+  // This class should be treated as an abstract interface.
+  inline UserManagerService() {};
+ public:
+  virtual ~UserManagerService();
+  
+  typedef UserManagerService_Stub Stub;
+  
+  static const ::google::protobuf::ServiceDescriptor* descriptor();
+  
+  virtual void SubscribeToUserManager(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::user_manager::SubscribeToUserManagerRequest* request,
+                       ::bnet::protocol::user_manager::SubscribeToUserManagerResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void ReportPlayer(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::user_manager::ReportPlayerRequest* request,
+                       ::bnet::protocol::user_manager::ReportPlayerResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void BlockPlayer(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::user_manager::BlockPlayerRequest* request,
+                       ::bnet::protocol::user_manager::BlockPlayerResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void RemovePlayerBlock(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::user_manager::RemovePlayerBlockRequest* request,
+                       ::bnet::protocol::user_manager::RemovePlayerBlockResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void AddRecentPlayers(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::user_manager::AddRecentPlayersRequest* request,
+                       ::bnet::protocol::user_manager::AddRecentPlayersResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void RemoveRecentPlayers(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::user_manager::RemoveRecentPlayersRequest* request,
+                       ::bnet::protocol::user_manager::RemoveRecentPlayersResponse* response,
+                       ::google::protobuf::Closure* done);
+  
+  // implements Service ----------------------------------------------
+  
+  const ::google::protobuf::ServiceDescriptor* GetDescriptor();
+  void CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                  ::google::protobuf::RpcController* controller,
+                  const ::google::protobuf::Message* request,
+                  ::google::protobuf::Message* response,
+                  ::google::protobuf::Closure* done);
+  const ::google::protobuf::Message& GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+  const ::google::protobuf::Message& GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+
+ private:
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(UserManagerService);
+};
+
+class UserManagerService_Stub : public UserManagerService {
+ public:
+  UserManagerService_Stub(::google::protobuf::RpcChannel* channel);
+  UserManagerService_Stub(::google::protobuf::RpcChannel* channel,
+                   ::google::protobuf::Service::ChannelOwnership ownership);
+  ~UserManagerService_Stub();
+  
+  inline ::google::protobuf::RpcChannel* channel() { return channel_; }
+  
+  // implements UserManagerService ------------------------------------------
+  
+  void SubscribeToUserManager(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::user_manager::SubscribeToUserManagerRequest* request,
+                       ::bnet::protocol::user_manager::SubscribeToUserManagerResponse* response,
+                       ::google::protobuf::Closure* done);
+  void ReportPlayer(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::user_manager::ReportPlayerRequest* request,
+                       ::bnet::protocol::user_manager::ReportPlayerResponse* response,
+                       ::google::protobuf::Closure* done);
+  void BlockPlayer(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::user_manager::BlockPlayerRequest* request,
+                       ::bnet::protocol::user_manager::BlockPlayerResponse* response,
+                       ::google::protobuf::Closure* done);
+  void RemovePlayerBlock(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::user_manager::RemovePlayerBlockRequest* request,
+                       ::bnet::protocol::user_manager::RemovePlayerBlockResponse* response,
+                       ::google::protobuf::Closure* done);
+  void AddRecentPlayers(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::user_manager::AddRecentPlayersRequest* request,
+                       ::bnet::protocol::user_manager::AddRecentPlayersResponse* response,
+                       ::google::protobuf::Closure* done);
+  void RemoveRecentPlayers(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::user_manager::RemoveRecentPlayersRequest* request,
+                       ::bnet::protocol::user_manager::RemoveRecentPlayersResponse* response,
+                       ::google::protobuf::Closure* done);
+ private:
+  ::google::protobuf::RpcChannel* channel_;
+  bool owns_channel_;
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(UserManagerService_Stub);
+};
+
+
+// -------------------------------------------------------------------
+
+class UserManagerNotify_Stub;
+
+class UserManagerNotify : public ::google::protobuf::Service {
+ protected:
+  // This class should be treated as an abstract interface.
+  inline UserManagerNotify() {};
+ public:
+  virtual ~UserManagerNotify();
+  
+  typedef UserManagerNotify_Stub Stub;
+  
+  static const ::google::protobuf::ServiceDescriptor* descriptor();
+  
+  virtual void NotifyPlayerBlocked(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::user_manager::BlockedPlayerNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  virtual void NotifyPlayerBlockRemoved(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::user_manager::BlockedPlayerNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  
+  // implements Service ----------------------------------------------
+  
+  const ::google::protobuf::ServiceDescriptor* GetDescriptor();
+  void CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                  ::google::protobuf::RpcController* controller,
+                  const ::google::protobuf::Message* request,
+                  ::google::protobuf::Message* response,
+                  ::google::protobuf::Closure* done);
+  const ::google::protobuf::Message& GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+  const ::google::protobuf::Message& GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+
+ private:
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(UserManagerNotify);
+};
+
+class UserManagerNotify_Stub : public UserManagerNotify {
+ public:
+  UserManagerNotify_Stub(::google::protobuf::RpcChannel* channel);
+  UserManagerNotify_Stub(::google::protobuf::RpcChannel* channel,
+                   ::google::protobuf::Service::ChannelOwnership ownership);
+  ~UserManagerNotify_Stub();
+  
+  inline ::google::protobuf::RpcChannel* channel() { return channel_; }
+  
+  // implements UserManagerNotify ------------------------------------------
+  
+  void NotifyPlayerBlocked(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::user_manager::BlockedPlayerNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  void NotifyPlayerBlockRemoved(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::user_manager::BlockedPlayerNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+ private:
+  ::google::protobuf::RpcChannel* channel_;
+  bool owns_channel_;
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(UserManagerNotify_Stub);
+};
+
+
 // ===================================================================
 
 

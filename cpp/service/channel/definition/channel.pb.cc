@@ -61,6 +61,9 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* UpdateMemberStateNotification_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   UpdateMemberStateNotification_reflection_ = NULL;
+const ::google::protobuf::ServiceDescriptor* Channel_descriptor_ = NULL;
+const ::google::protobuf::ServiceDescriptor* ChannelOwner_descriptor_ = NULL;
+const ::google::protobuf::ServiceDescriptor* ChannelSubscriber_descriptor_ = NULL;
 
 }  // namespace
 
@@ -302,6 +305,9 @@ void protobuf_AssignDesc_service_2fchannel_2fdefinition_2fchannel_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(UpdateMemberStateNotification));
+  Channel_descriptor_ = file->service(0);
+  ChannelOwner_descriptor_ = file->service(1);
+  ChannelSubscriber_descriptor_ = file->service(2);
 }
 
 namespace {
@@ -400,44 +406,90 @@ void protobuf_AddDesc_service_2fchannel_2fdefinition_2fchannel_2eproto() {
     "(\004\"|\n\023RemoveMemberRequest\022)\n\010agent_id\030\001 "
     "\001(\0132\027.bnet.protocol.EntityId\022*\n\tmember_i"
     "d\030\002 \002(\0132\027.bnet.protocol.EntityId\022\016\n\006reas"
-    "on\030\003 \001(\r\"\215\001\n\022SendMessageRequest\022)\n\010agent"
+    "on\030\003 \001(\r\"\220\001\n\022SendMessageRequest\022)\n\010agent"
     "_id\030\001 \001(\0132\027.bnet.protocol.EntityId\022/\n\007me"
     "ssage\030\002 \002(\0132\036.bnet.protocol.channel.Mess"
-    "age\022\033\n\023required_privileges\030\003 \001(\004\"\201\001\n\031Upd"
-    "ateChannelStateRequest\022)\n\010agent_id\030\001 \001(\013"
-    "2\027.bnet.protocol.EntityId\0229\n\014state_chang"
-    "e\030\002 \002(\0132#.bnet.protocol.channel.ChannelS"
-    "tate\"z\n\030UpdateMemberStateRequest\022)\n\010agen"
-    "t_id\030\001 \001(\0132\027.bnet.protocol.EntityId\0223\n\014s"
-    "tate_change\030\002 \003(\0132\035.bnet.protocol.channe"
-    "l.Member\"L\n\017DissolveRequest\022)\n\010agent_id\030"
-    "\001 \001(\0132\027.bnet.protocol.EntityId\022\016\n\006reason"
-    "\030\002 \001(\r\"v\n\017SetRolesRequest\022)\n\010agent_id\030\001 "
-    "\001(\0132\027.bnet.protocol.EntityId\022\014\n\004role\030\002 \003"
-    "(\r\022*\n\tmember_id\030\003 \003(\0132\027.bnet.protocol.En"
-    "tityId\"\251\001\n\017AddNotification\022+\n\004self\030\001 \001(\013"
-    "2\035.bnet.protocol.channel.Member\022-\n\006membe"
-    "r\030\002 \003(\0132\035.bnet.protocol.channel.Member\022:"
-    "\n\rchannel_state\030\003 \002(\0132#.bnet.protocol.ch"
-    "annel.ChannelState\"A\n\020JoinNotification\022-"
-    "\n\006member\030\001 \002(\0132\035.bnet.protocol.channel.M"
-    "ember\"{\n\022RemoveNotification\022)\n\010agent_id\030"
-    "\001 \001(\0132\027.bnet.protocol.EntityId\022*\n\tmember"
-    "_id\030\002 \002(\0132\027.bnet.protocol.EntityId\022\016\n\006re"
-    "ason\030\003 \001(\r\"j\n\021LeaveNotification\022)\n\010agent"
-    "_id\030\001 \001(\0132\027.bnet.protocol.EntityId\022*\n\tme"
-    "mber_id\030\002 \002(\0132\027.bnet.protocol.EntityId\"\222"
-    "\001\n\027SendMessageNotification\022)\n\010agent_id\030\001"
-    " \001(\0132\027.bnet.protocol.EntityId\022/\n\007message"
-    "\030\002 \002(\0132\036.bnet.protocol.channel.Message\022\033"
-    "\n\023required_privileges\030\003 \001(\004\"\206\001\n\036UpdateCh"
-    "annelStateNotification\022)\n\010agent_id\030\001 \001(\013"
-    "2\027.bnet.protocol.EntityId\0229\n\014state_chang"
-    "e\030\002 \002(\0132#.bnet.protocol.channel.ChannelS"
-    "tate\"\177\n\035UpdateMemberStateNotification\022)\n"
-    "\010agent_id\030\001 \001(\0132\027.bnet.protocol.EntityId"
-    "\0223\n\014state_change\030\002 \003(\0132\035.bnet.protocol.c"
-    "hannel.Member", 1973);
+    "age\022\036\n\023required_privileges\030\003 \001(\004:\0010\"\201\001\n\031"
+    "UpdateChannelStateRequest\022)\n\010agent_id\030\001 "
+    "\001(\0132\027.bnet.protocol.EntityId\0229\n\014state_ch"
+    "ange\030\002 \002(\0132#.bnet.protocol.channel.Chann"
+    "elState\"z\n\030UpdateMemberStateRequest\022)\n\010a"
+    "gent_id\030\001 \001(\0132\027.bnet.protocol.EntityId\0223"
+    "\n\014state_change\030\002 \003(\0132\035.bnet.protocol.cha"
+    "nnel.Member\"L\n\017DissolveRequest\022)\n\010agent_"
+    "id\030\001 \001(\0132\027.bnet.protocol.EntityId\022\016\n\006rea"
+    "son\030\002 \001(\r\"v\n\017SetRolesRequest\022)\n\010agent_id"
+    "\030\001 \001(\0132\027.bnet.protocol.EntityId\022\014\n\004role\030"
+    "\002 \003(\r\022*\n\tmember_id\030\003 \003(\0132\027.bnet.protocol"
+    ".EntityId\"\251\001\n\017AddNotification\022+\n\004self\030\001 "
+    "\001(\0132\035.bnet.protocol.channel.Member\022-\n\006me"
+    "mber\030\002 \003(\0132\035.bnet.protocol.channel.Membe"
+    "r\022:\n\rchannel_state\030\003 \002(\0132#.bnet.protocol"
+    ".channel.ChannelState\"A\n\020JoinNotificatio"
+    "n\022-\n\006member\030\001 \002(\0132\035.bnet.protocol.channe"
+    "l.Member\"{\n\022RemoveNotification\022)\n\010agent_"
+    "id\030\001 \001(\0132\027.bnet.protocol.EntityId\022*\n\tmem"
+    "ber_id\030\002 \002(\0132\027.bnet.protocol.EntityId\022\016\n"
+    "\006reason\030\003 \001(\r\"j\n\021LeaveNotification\022)\n\010ag"
+    "ent_id\030\001 \001(\0132\027.bnet.protocol.EntityId\022*\n"
+    "\tmember_id\030\002 \002(\0132\027.bnet.protocol.EntityI"
+    "d\"\225\001\n\027SendMessageNotification\022)\n\010agent_i"
+    "d\030\001 \001(\0132\027.bnet.protocol.EntityId\022/\n\007mess"
+    "age\030\002 \002(\0132\036.bnet.protocol.channel.Messag"
+    "e\022\036\n\023required_privileges\030\003 \001(\004:\0010\"\206\001\n\036Up"
+    "dateChannelStateNotification\022)\n\010agent_id"
+    "\030\001 \001(\0132\027.bnet.protocol.EntityId\0229\n\014state"
+    "_change\030\002 \002(\0132#.bnet.protocol.channel.Ch"
+    "annelState\"\177\n\035UpdateMemberStateNotificat"
+    "ion\022)\n\010agent_id\030\001 \001(\0132\027.bnet.protocol.En"
+    "tityId\0223\n\014state_change\030\002 \003(\0132\035.bnet.prot"
+    "ocol.channel.Member2\314\004\n\007Channel\022K\n\tAddMe"
+    "mber\022\'.bnet.protocol.channel.AddMemberRe"
+    "quest\032\025.bnet.protocol.NoData\022Q\n\014RemoveMe"
+    "mber\022*.bnet.protocol.channel.RemoveMembe"
+    "rRequest\032\025.bnet.protocol.NoData\022O\n\013SendM"
+    "essage\022).bnet.protocol.channel.SendMessa"
+    "geRequest\032\025.bnet.protocol.NoData\022]\n\022Upda"
+    "teChannelState\0220.bnet.protocol.channel.U"
+    "pdateChannelStateRequest\032\025.bnet.protocol"
+    ".NoData\022[\n\021UpdateMemberState\022/.bnet.prot"
+    "ocol.channel.UpdateMemberStateRequest\032\025."
+    "bnet.protocol.NoData\022I\n\010Dissolve\022&.bnet."
+    "protocol.channel.DissolveRequest\032\025.bnet."
+    "protocol.NoData\022I\n\010SetRoles\022&.bnet.proto"
+    "col.channel.SetRolesRequest\032\025.bnet.proto"
+    "col.NoData2\236\004\n\014ChannelOwner\022g\n\014GetChanne"
+    "lId\022*.bnet.protocol.channel.GetChannelId"
+    "Request\032+.bnet.protocol.channel.GetChann"
+    "elIdResponse\022j\n\rCreateChannel\022+.bnet.pro"
+    "tocol.channel.CreateChannelRequest\032,.bne"
+    "t.protocol.channel.CreateChannelResponse"
+    "\022d\n\013JoinChannel\022).bnet.protocol.channel."
+    "JoinChannelRequest\032*.bnet.protocol.chann"
+    "el.JoinChannelResponse\022d\n\013FindChannel\022)."
+    "bnet.protocol.channel.FindChannelRequest"
+    "\032*.bnet.protocol.channel.FindChannelResp"
+    "onse\022m\n\016GetChannelInfo\022,.bnet.protocol.c"
+    "hannel.GetChannelInfoRequest\032-.bnet.prot"
+    "ocol.channel.GetChannelInfoResponse2\240\005\n\021"
+    "ChannelSubscriber\022O\n\tNotifyAdd\022&.bnet.pr"
+    "otocol.channel.AddNotification\032\032.bnet.pr"
+    "otocol.NO_RESPONSE\022Q\n\nNotifyJoin\022\'.bnet."
+    "protocol.channel.JoinNotification\032\032.bnet"
+    ".protocol.NO_RESPONSE\022U\n\014NotifyRemove\022)."
+    "bnet.protocol.channel.RemoveNotification"
+    "\032\032.bnet.protocol.NO_RESPONSE\022S\n\013NotifyLe"
+    "ave\022(.bnet.protocol.channel.LeaveNotific"
+    "ation\032\032.bnet.protocol.NO_RESPONSE\022_\n\021Not"
+    "ifySendMessage\022..bnet.protocol.channel.S"
+    "endMessageNotification\032\032.bnet.protocol.N"
+    "O_RESPONSE\022m\n\030NotifyUpdateChannelState\0225"
+    ".bnet.protocol.channel.UpdateChannelStat"
+    "eNotification\032\032.bnet.protocol.NO_RESPONS"
+    "E\022k\n\027NotifyUpdateMemberState\0224.bnet.prot"
+    "ocol.channel.UpdateMemberStateNotificati"
+    "on\032\032.bnet.protocol.NO_RESPONSEB\rB\010CChann"
+    "el\200\001\001", 3805);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "service/channel/definition/channel.proto", &protobuf_RegisterTypes);
   AddMemberRequest::default_instance_ = new AddMemberRequest();
@@ -1245,7 +1297,7 @@ bool SendMessageRequest::MergePartialFromCodedStream(
         break;
       }
       
-      // optional uint64 required_privileges = 3;
+      // optional uint64 required_privileges = 3 [default = 0];
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -1291,7 +1343,7 @@ void SendMessageRequest::SerializeWithCachedSizes(
       2, this->message(), output);
   }
   
-  // optional uint64 required_privileges = 3;
+  // optional uint64 required_privileges = 3 [default = 0];
   if (has_required_privileges()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt64(3, this->required_privileges(), output);
   }
@@ -1318,7 +1370,7 @@ void SendMessageRequest::SerializeWithCachedSizes(
         2, this->message(), target);
   }
   
-  // optional uint64 required_privileges = 3;
+  // optional uint64 required_privileges = 3 [default = 0];
   if (has_required_privileges()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(3, this->required_privileges(), target);
   }
@@ -1348,7 +1400,7 @@ int SendMessageRequest::ByteSize() const {
           this->message());
     }
     
-    // optional uint64 required_privileges = 3;
+    // optional uint64 required_privileges = 3 [default = 0];
     if (has_required_privileges()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt64Size(
@@ -3723,7 +3775,7 @@ bool SendMessageNotification::MergePartialFromCodedStream(
         break;
       }
       
-      // optional uint64 required_privileges = 3;
+      // optional uint64 required_privileges = 3 [default = 0];
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -3769,7 +3821,7 @@ void SendMessageNotification::SerializeWithCachedSizes(
       2, this->message(), output);
   }
   
-  // optional uint64 required_privileges = 3;
+  // optional uint64 required_privileges = 3 [default = 0];
   if (has_required_privileges()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt64(3, this->required_privileges(), output);
   }
@@ -3796,7 +3848,7 @@ void SendMessageNotification::SerializeWithCachedSizes(
         2, this->message(), target);
   }
   
-  // optional uint64 required_privileges = 3;
+  // optional uint64 required_privileges = 3 [default = 0];
   if (has_required_privileges()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(3, this->required_privileges(), target);
   }
@@ -3826,7 +3878,7 @@ int SendMessageNotification::ByteSize() const {
           this->message());
     }
     
-    // optional uint64 required_privileges = 3;
+    // optional uint64 required_privileges = 3 [default = 0];
     if (has_required_privileges()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt64Size(
@@ -4438,6 +4490,656 @@ void UpdateMemberStateNotification::Swap(UpdateMemberStateNotification* other) {
   return metadata;
 }
 
+
+// ===================================================================
+
+Channel::~Channel() {}
+
+const ::google::protobuf::ServiceDescriptor* Channel::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return Channel_descriptor_;
+}
+
+const ::google::protobuf::ServiceDescriptor* Channel::GetDescriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return Channel_descriptor_;
+}
+
+void Channel::AddMember(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel::AddMemberRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method AddMember() not implemented.");
+  done->Run();
+}
+
+void Channel::RemoveMember(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel::RemoveMemberRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method RemoveMember() not implemented.");
+  done->Run();
+}
+
+void Channel::SendMessage(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel::SendMessageRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method SendMessage() not implemented.");
+  done->Run();
+}
+
+void Channel::UpdateChannelState(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel::UpdateChannelStateRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method UpdateChannelState() not implemented.");
+  done->Run();
+}
+
+void Channel::UpdateMemberState(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel::UpdateMemberStateRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method UpdateMemberState() not implemented.");
+  done->Run();
+}
+
+void Channel::Dissolve(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel::DissolveRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method Dissolve() not implemented.");
+  done->Run();
+}
+
+void Channel::SetRoles(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel::SetRolesRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method SetRoles() not implemented.");
+  done->Run();
+}
+
+void Channel::CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                             ::google::protobuf::RpcController* controller,
+                             const ::google::protobuf::Message* request,
+                             ::google::protobuf::Message* response,
+                             ::google::protobuf::Closure* done) {
+  GOOGLE_DCHECK_EQ(method->service(), Channel_descriptor_);
+  switch(method->index()) {
+    case 0:
+      AddMember(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel::AddMemberRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    case 1:
+      RemoveMember(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel::RemoveMemberRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    case 2:
+      SendMessage(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel::SendMessageRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    case 3:
+      UpdateChannelState(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel::UpdateChannelStateRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    case 4:
+      UpdateMemberState(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel::UpdateMemberStateRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    case 5:
+      Dissolve(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel::DissolveRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    case 6:
+      SetRoles(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel::SetRolesRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      break;
+  }
+}
+
+const ::google::protobuf::Message& Channel::GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::channel::AddMemberRequest::default_instance();
+    case 1:
+      return ::bnet::protocol::channel::RemoveMemberRequest::default_instance();
+    case 2:
+      return ::bnet::protocol::channel::SendMessageRequest::default_instance();
+    case 3:
+      return ::bnet::protocol::channel::UpdateChannelStateRequest::default_instance();
+    case 4:
+      return ::bnet::protocol::channel::UpdateMemberStateRequest::default_instance();
+    case 5:
+      return ::bnet::protocol::channel::DissolveRequest::default_instance();
+    case 6:
+      return ::bnet::protocol::channel::SetRolesRequest::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+const ::google::protobuf::Message& Channel::GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::NoData::default_instance();
+    case 1:
+      return ::bnet::protocol::NoData::default_instance();
+    case 2:
+      return ::bnet::protocol::NoData::default_instance();
+    case 3:
+      return ::bnet::protocol::NoData::default_instance();
+    case 4:
+      return ::bnet::protocol::NoData::default_instance();
+    case 5:
+      return ::bnet::protocol::NoData::default_instance();
+    case 6:
+      return ::bnet::protocol::NoData::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+Channel_Stub::Channel_Stub(::google::protobuf::RpcChannel* channel)
+  : channel_(channel), owns_channel_(false) {}
+Channel_Stub::Channel_Stub(
+    ::google::protobuf::RpcChannel* channel,
+    ::google::protobuf::Service::ChannelOwnership ownership)
+  : channel_(channel),
+    owns_channel_(ownership == ::google::protobuf::Service::STUB_OWNS_CHANNEL) {}
+Channel_Stub::~Channel_Stub() {
+  if (owns_channel_) delete channel_;
+}
+
+void Channel_Stub::AddMember(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel::AddMemberRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(0),
+                       controller, request, response, done);
+}
+void Channel_Stub::RemoveMember(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel::RemoveMemberRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(1),
+                       controller, request, response, done);
+}
+void Channel_Stub::SendMessage(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel::SendMessageRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(2),
+                       controller, request, response, done);
+}
+void Channel_Stub::UpdateChannelState(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel::UpdateChannelStateRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(3),
+                       controller, request, response, done);
+}
+void Channel_Stub::UpdateMemberState(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel::UpdateMemberStateRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(4),
+                       controller, request, response, done);
+}
+void Channel_Stub::Dissolve(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel::DissolveRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(5),
+                       controller, request, response, done);
+}
+void Channel_Stub::SetRoles(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel::SetRolesRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(6),
+                       controller, request, response, done);
+}
+// ===================================================================
+
+ChannelOwner::~ChannelOwner() {}
+
+const ::google::protobuf::ServiceDescriptor* ChannelOwner::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return ChannelOwner_descriptor_;
+}
+
+const ::google::protobuf::ServiceDescriptor* ChannelOwner::GetDescriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return ChannelOwner_descriptor_;
+}
+
+void ChannelOwner::GetChannelId(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel::GetChannelIdRequest*,
+                         ::bnet::protocol::channel::GetChannelIdResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method GetChannelId() not implemented.");
+  done->Run();
+}
+
+void ChannelOwner::CreateChannel(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel::CreateChannelRequest*,
+                         ::bnet::protocol::channel::CreateChannelResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method CreateChannel() not implemented.");
+  done->Run();
+}
+
+void ChannelOwner::JoinChannel(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel::JoinChannelRequest*,
+                         ::bnet::protocol::channel::JoinChannelResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method JoinChannel() not implemented.");
+  done->Run();
+}
+
+void ChannelOwner::FindChannel(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel::FindChannelRequest*,
+                         ::bnet::protocol::channel::FindChannelResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method FindChannel() not implemented.");
+  done->Run();
+}
+
+void ChannelOwner::GetChannelInfo(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel::GetChannelInfoRequest*,
+                         ::bnet::protocol::channel::GetChannelInfoResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method GetChannelInfo() not implemented.");
+  done->Run();
+}
+
+void ChannelOwner::CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                             ::google::protobuf::RpcController* controller,
+                             const ::google::protobuf::Message* request,
+                             ::google::protobuf::Message* response,
+                             ::google::protobuf::Closure* done) {
+  GOOGLE_DCHECK_EQ(method->service(), ChannelOwner_descriptor_);
+  switch(method->index()) {
+    case 0:
+      GetChannelId(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel::GetChannelIdRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::channel::GetChannelIdResponse*>(response),
+             done);
+      break;
+    case 1:
+      CreateChannel(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel::CreateChannelRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::channel::CreateChannelResponse*>(response),
+             done);
+      break;
+    case 2:
+      JoinChannel(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel::JoinChannelRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::channel::JoinChannelResponse*>(response),
+             done);
+      break;
+    case 3:
+      FindChannel(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel::FindChannelRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::channel::FindChannelResponse*>(response),
+             done);
+      break;
+    case 4:
+      GetChannelInfo(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel::GetChannelInfoRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::channel::GetChannelInfoResponse*>(response),
+             done);
+      break;
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      break;
+  }
+}
+
+const ::google::protobuf::Message& ChannelOwner::GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::channel::GetChannelIdRequest::default_instance();
+    case 1:
+      return ::bnet::protocol::channel::CreateChannelRequest::default_instance();
+    case 2:
+      return ::bnet::protocol::channel::JoinChannelRequest::default_instance();
+    case 3:
+      return ::bnet::protocol::channel::FindChannelRequest::default_instance();
+    case 4:
+      return ::bnet::protocol::channel::GetChannelInfoRequest::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+const ::google::protobuf::Message& ChannelOwner::GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::channel::GetChannelIdResponse::default_instance();
+    case 1:
+      return ::bnet::protocol::channel::CreateChannelResponse::default_instance();
+    case 2:
+      return ::bnet::protocol::channel::JoinChannelResponse::default_instance();
+    case 3:
+      return ::bnet::protocol::channel::FindChannelResponse::default_instance();
+    case 4:
+      return ::bnet::protocol::channel::GetChannelInfoResponse::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+ChannelOwner_Stub::ChannelOwner_Stub(::google::protobuf::RpcChannel* channel)
+  : channel_(channel), owns_channel_(false) {}
+ChannelOwner_Stub::ChannelOwner_Stub(
+    ::google::protobuf::RpcChannel* channel,
+    ::google::protobuf::Service::ChannelOwnership ownership)
+  : channel_(channel),
+    owns_channel_(ownership == ::google::protobuf::Service::STUB_OWNS_CHANNEL) {}
+ChannelOwner_Stub::~ChannelOwner_Stub() {
+  if (owns_channel_) delete channel_;
+}
+
+void ChannelOwner_Stub::GetChannelId(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel::GetChannelIdRequest* request,
+                              ::bnet::protocol::channel::GetChannelIdResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(0),
+                       controller, request, response, done);
+}
+void ChannelOwner_Stub::CreateChannel(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel::CreateChannelRequest* request,
+                              ::bnet::protocol::channel::CreateChannelResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(1),
+                       controller, request, response, done);
+}
+void ChannelOwner_Stub::JoinChannel(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel::JoinChannelRequest* request,
+                              ::bnet::protocol::channel::JoinChannelResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(2),
+                       controller, request, response, done);
+}
+void ChannelOwner_Stub::FindChannel(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel::FindChannelRequest* request,
+                              ::bnet::protocol::channel::FindChannelResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(3),
+                       controller, request, response, done);
+}
+void ChannelOwner_Stub::GetChannelInfo(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel::GetChannelInfoRequest* request,
+                              ::bnet::protocol::channel::GetChannelInfoResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(4),
+                       controller, request, response, done);
+}
+// ===================================================================
+
+ChannelSubscriber::~ChannelSubscriber() {}
+
+const ::google::protobuf::ServiceDescriptor* ChannelSubscriber::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return ChannelSubscriber_descriptor_;
+}
+
+const ::google::protobuf::ServiceDescriptor* ChannelSubscriber::GetDescriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return ChannelSubscriber_descriptor_;
+}
+
+void ChannelSubscriber::NotifyAdd(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel::AddNotification*,
+                         ::bnet::protocol::NO_RESPONSE*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method NotifyAdd() not implemented.");
+  done->Run();
+}
+
+void ChannelSubscriber::NotifyJoin(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel::JoinNotification*,
+                         ::bnet::protocol::NO_RESPONSE*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method NotifyJoin() not implemented.");
+  done->Run();
+}
+
+void ChannelSubscriber::NotifyRemove(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel::RemoveNotification*,
+                         ::bnet::protocol::NO_RESPONSE*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method NotifyRemove() not implemented.");
+  done->Run();
+}
+
+void ChannelSubscriber::NotifyLeave(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel::LeaveNotification*,
+                         ::bnet::protocol::NO_RESPONSE*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method NotifyLeave() not implemented.");
+  done->Run();
+}
+
+void ChannelSubscriber::NotifySendMessage(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel::SendMessageNotification*,
+                         ::bnet::protocol::NO_RESPONSE*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method NotifySendMessage() not implemented.");
+  done->Run();
+}
+
+void ChannelSubscriber::NotifyUpdateChannelState(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel::UpdateChannelStateNotification*,
+                         ::bnet::protocol::NO_RESPONSE*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method NotifyUpdateChannelState() not implemented.");
+  done->Run();
+}
+
+void ChannelSubscriber::NotifyUpdateMemberState(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::channel::UpdateMemberStateNotification*,
+                         ::bnet::protocol::NO_RESPONSE*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method NotifyUpdateMemberState() not implemented.");
+  done->Run();
+}
+
+void ChannelSubscriber::CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                             ::google::protobuf::RpcController* controller,
+                             const ::google::protobuf::Message* request,
+                             ::google::protobuf::Message* response,
+                             ::google::protobuf::Closure* done) {
+  GOOGLE_DCHECK_EQ(method->service(), ChannelSubscriber_descriptor_);
+  switch(method->index()) {
+    case 0:
+      NotifyAdd(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel::AddNotification*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NO_RESPONSE*>(response),
+             done);
+      break;
+    case 1:
+      NotifyJoin(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel::JoinNotification*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NO_RESPONSE*>(response),
+             done);
+      break;
+    case 2:
+      NotifyRemove(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel::RemoveNotification*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NO_RESPONSE*>(response),
+             done);
+      break;
+    case 3:
+      NotifyLeave(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel::LeaveNotification*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NO_RESPONSE*>(response),
+             done);
+      break;
+    case 4:
+      NotifySendMessage(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel::SendMessageNotification*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NO_RESPONSE*>(response),
+             done);
+      break;
+    case 5:
+      NotifyUpdateChannelState(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel::UpdateChannelStateNotification*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NO_RESPONSE*>(response),
+             done);
+      break;
+    case 6:
+      NotifyUpdateMemberState(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::channel::UpdateMemberStateNotification*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NO_RESPONSE*>(response),
+             done);
+      break;
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      break;
+  }
+}
+
+const ::google::protobuf::Message& ChannelSubscriber::GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::channel::AddNotification::default_instance();
+    case 1:
+      return ::bnet::protocol::channel::JoinNotification::default_instance();
+    case 2:
+      return ::bnet::protocol::channel::RemoveNotification::default_instance();
+    case 3:
+      return ::bnet::protocol::channel::LeaveNotification::default_instance();
+    case 4:
+      return ::bnet::protocol::channel::SendMessageNotification::default_instance();
+    case 5:
+      return ::bnet::protocol::channel::UpdateChannelStateNotification::default_instance();
+    case 6:
+      return ::bnet::protocol::channel::UpdateMemberStateNotification::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+const ::google::protobuf::Message& ChannelSubscriber::GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::NO_RESPONSE::default_instance();
+    case 1:
+      return ::bnet::protocol::NO_RESPONSE::default_instance();
+    case 2:
+      return ::bnet::protocol::NO_RESPONSE::default_instance();
+    case 3:
+      return ::bnet::protocol::NO_RESPONSE::default_instance();
+    case 4:
+      return ::bnet::protocol::NO_RESPONSE::default_instance();
+    case 5:
+      return ::bnet::protocol::NO_RESPONSE::default_instance();
+    case 6:
+      return ::bnet::protocol::NO_RESPONSE::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+ChannelSubscriber_Stub::ChannelSubscriber_Stub(::google::protobuf::RpcChannel* channel)
+  : channel_(channel), owns_channel_(false) {}
+ChannelSubscriber_Stub::ChannelSubscriber_Stub(
+    ::google::protobuf::RpcChannel* channel,
+    ::google::protobuf::Service::ChannelOwnership ownership)
+  : channel_(channel),
+    owns_channel_(ownership == ::google::protobuf::Service::STUB_OWNS_CHANNEL) {}
+ChannelSubscriber_Stub::~ChannelSubscriber_Stub() {
+  if (owns_channel_) delete channel_;
+}
+
+void ChannelSubscriber_Stub::NotifyAdd(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel::AddNotification* request,
+                              ::bnet::protocol::NO_RESPONSE* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(0),
+                       controller, request, response, done);
+}
+void ChannelSubscriber_Stub::NotifyJoin(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel::JoinNotification* request,
+                              ::bnet::protocol::NO_RESPONSE* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(1),
+                       controller, request, response, done);
+}
+void ChannelSubscriber_Stub::NotifyRemove(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel::RemoveNotification* request,
+                              ::bnet::protocol::NO_RESPONSE* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(2),
+                       controller, request, response, done);
+}
+void ChannelSubscriber_Stub::NotifyLeave(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel::LeaveNotification* request,
+                              ::bnet::protocol::NO_RESPONSE* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(3),
+                       controller, request, response, done);
+}
+void ChannelSubscriber_Stub::NotifySendMessage(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel::SendMessageNotification* request,
+                              ::bnet::protocol::NO_RESPONSE* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(4),
+                       controller, request, response, done);
+}
+void ChannelSubscriber_Stub::NotifyUpdateChannelState(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel::UpdateChannelStateNotification* request,
+                              ::bnet::protocol::NO_RESPONSE* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(5),
+                       controller, request, response, done);
+}
+void ChannelSubscriber_Stub::NotifyUpdateMemberState(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::channel::UpdateMemberStateNotification* request,
+                              ::bnet::protocol::NO_RESPONSE* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(6),
+                       controller, request, response, done);
+}
 
 // @@protoc_insertion_point(namespace_scope)
 

@@ -138,7 +138,7 @@ class FieldKey : public ::google::protobuf::Message {
   inline ::google::protobuf::uint32 field() const;
   inline void set_field(::google::protobuf::uint32 value);
   
-  // optional uint64 index = 4;
+  // optional uint64 index = 4 [default = 0];
   inline bool has_index() const;
   inline void clear_index();
   static const int kIndexFieldNumber = 4;
@@ -355,7 +355,7 @@ class FieldOperation : public ::google::protobuf::Message {
   inline ::bnet::protocol::presence::Field* mutable_field();
   inline ::bnet::protocol::presence::Field* release_field();
   
-  // optional .bnet.protocol.presence.FieldOperation.OperationType operation = 2;
+  // optional .bnet.protocol.presence.FieldOperation.OperationType operation = 2 [default = SET];
   inline bool has_operation() const;
   inline void clear_operation();
   static const int kOperationFieldNumber = 2;
@@ -460,6 +460,10 @@ class ChannelState : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedPtrField< ::bnet::protocol::presence::FieldOperation >*
       mutable_field_operation();
   
+  static const int kPresenceFieldNumber = 101;
+  static ::google::protobuf::internal::ExtensionIdentifier< ::bnet::protocol::channel::ChannelState,
+      ::google::protobuf::internal::MessageTypeTraits< ::bnet::protocol::presence::ChannelState >, 11, false >
+    presence;
   // @@protoc_insertion_point(class_scope:bnet.protocol.presence.ChannelState)
  private:
   inline void set_has_entity_id();
@@ -553,7 +557,7 @@ inline void FieldKey::set_field(::google::protobuf::uint32 value) {
   field_ = value;
 }
 
-// optional uint64 index = 4;
+// optional uint64 index = 4 [default = 0];
 inline bool FieldKey::has_index() const {
   return (_has_bits_[0] & 0x00000008u) != 0;
 }
@@ -670,7 +674,7 @@ inline ::bnet::protocol::presence::Field* FieldOperation::release_field() {
   return temp;
 }
 
-// optional .bnet.protocol.presence.FieldOperation.OperationType operation = 2;
+// optional .bnet.protocol.presence.FieldOperation.OperationType operation = 2 [default = SET];
 inline bool FieldOperation::has_operation() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }

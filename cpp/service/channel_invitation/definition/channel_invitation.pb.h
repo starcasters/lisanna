@@ -23,6 +23,7 @@
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/generated_message_reflection.h>
+#include <google/protobuf/service.h>
 #include "lib/protocol/entity.pb.h"
 #include "lib/protocol/invitation.pb.h"
 #include "lib/rpc/rpc.pb.h"
@@ -1082,6 +1083,196 @@ class SuggestionAddedNotification : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static SuggestionAddedNotification* default_instance_;
 };
+// ===================================================================
+
+class ChannelInvitationService_Stub;
+
+class ChannelInvitationService : public ::google::protobuf::Service {
+ protected:
+  // This class should be treated as an abstract interface.
+  inline ChannelInvitationService() {};
+ public:
+  virtual ~ChannelInvitationService();
+  
+  typedef ChannelInvitationService_Stub Stub;
+  
+  static const ::google::protobuf::ServiceDescriptor* descriptor();
+  
+  virtual void Subscribe(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel_invitation::SubscribeRequest* request,
+                       ::bnet::protocol::channel_invitation::SubscribeResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void Unsubscribe(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel_invitation::UnsubscribeRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void SendInvitation(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::invitation::SendInvitationRequest* request,
+                       ::bnet::protocol::invitation::SendInvitationResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void AcceptInvitation(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel_invitation::AcceptInvitationRequest* request,
+                       ::bnet::protocol::channel_invitation::AcceptInvitationResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void DeclineInvitation(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::invitation::GenericRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void RevokeInvitation(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel_invitation::RevokeInvitationRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void SuggestInvitation(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel_invitation::SuggestInvitationRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  
+  // implements Service ----------------------------------------------
+  
+  const ::google::protobuf::ServiceDescriptor* GetDescriptor();
+  void CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                  ::google::protobuf::RpcController* controller,
+                  const ::google::protobuf::Message* request,
+                  ::google::protobuf::Message* response,
+                  ::google::protobuf::Closure* done);
+  const ::google::protobuf::Message& GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+  const ::google::protobuf::Message& GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+
+ private:
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ChannelInvitationService);
+};
+
+class ChannelInvitationService_Stub : public ChannelInvitationService {
+ public:
+  ChannelInvitationService_Stub(::google::protobuf::RpcChannel* channel);
+  ChannelInvitationService_Stub(::google::protobuf::RpcChannel* channel,
+                   ::google::protobuf::Service::ChannelOwnership ownership);
+  ~ChannelInvitationService_Stub();
+  
+  inline ::google::protobuf::RpcChannel* channel() { return channel_; }
+  
+  // implements ChannelInvitationService ------------------------------------------
+  
+  void Subscribe(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel_invitation::SubscribeRequest* request,
+                       ::bnet::protocol::channel_invitation::SubscribeResponse* response,
+                       ::google::protobuf::Closure* done);
+  void Unsubscribe(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel_invitation::UnsubscribeRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void SendInvitation(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::invitation::SendInvitationRequest* request,
+                       ::bnet::protocol::invitation::SendInvitationResponse* response,
+                       ::google::protobuf::Closure* done);
+  void AcceptInvitation(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel_invitation::AcceptInvitationRequest* request,
+                       ::bnet::protocol::channel_invitation::AcceptInvitationResponse* response,
+                       ::google::protobuf::Closure* done);
+  void DeclineInvitation(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::invitation::GenericRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void RevokeInvitation(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel_invitation::RevokeInvitationRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void SuggestInvitation(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel_invitation::SuggestInvitationRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+ private:
+  ::google::protobuf::RpcChannel* channel_;
+  bool owns_channel_;
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ChannelInvitationService_Stub);
+};
+
+
+// -------------------------------------------------------------------
+
+class ChannelInvitationNotify_Stub;
+
+class ChannelInvitationNotify : public ::google::protobuf::Service {
+ protected:
+  // This class should be treated as an abstract interface.
+  inline ChannelInvitationNotify() {};
+ public:
+  virtual ~ChannelInvitationNotify();
+  
+  typedef ChannelInvitationNotify_Stub Stub;
+  
+  static const ::google::protobuf::ServiceDescriptor* descriptor();
+  
+  virtual void NotifyReceivedInvitationAdded(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel_invitation::InvitationAddedNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  virtual void NotifyReceivedInvitationRemoved(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel_invitation::InvitationRemovedNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  virtual void NotifyReceivedSuggestionAdded(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel_invitation::SuggestionAddedNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  virtual void HasRoomForInvitation(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel_invitation::HasRoomForInvitationRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  
+  // implements Service ----------------------------------------------
+  
+  const ::google::protobuf::ServiceDescriptor* GetDescriptor();
+  void CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                  ::google::protobuf::RpcController* controller,
+                  const ::google::protobuf::Message* request,
+                  ::google::protobuf::Message* response,
+                  ::google::protobuf::Closure* done);
+  const ::google::protobuf::Message& GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+  const ::google::protobuf::Message& GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+
+ private:
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ChannelInvitationNotify);
+};
+
+class ChannelInvitationNotify_Stub : public ChannelInvitationNotify {
+ public:
+  ChannelInvitationNotify_Stub(::google::protobuf::RpcChannel* channel);
+  ChannelInvitationNotify_Stub(::google::protobuf::RpcChannel* channel,
+                   ::google::protobuf::Service::ChannelOwnership ownership);
+  ~ChannelInvitationNotify_Stub();
+  
+  inline ::google::protobuf::RpcChannel* channel() { return channel_; }
+  
+  // implements ChannelInvitationNotify ------------------------------------------
+  
+  void NotifyReceivedInvitationAdded(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel_invitation::InvitationAddedNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  void NotifyReceivedInvitationRemoved(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel_invitation::InvitationRemovedNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  void NotifyReceivedSuggestionAdded(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel_invitation::SuggestionAddedNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  void HasRoomForInvitation(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel_invitation::HasRoomForInvitationRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+ private:
+  ::google::protobuf::RpcChannel* channel_;
+  bool owns_channel_;
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ChannelInvitationNotify_Stub);
+};
+
+
 // ===================================================================
 
 

@@ -55,6 +55,7 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* VariablesResponse_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   VariablesResponse_reflection_ = NULL;
+const ::google::protobuf::ServiceDescriptor* GameUtilities_descriptor_ = NULL;
 
 }  // namespace
 
@@ -274,6 +275,7 @@ void protobuf_AssignDesc_service_2fgame_5futilities_2fgame_5futilities_2eproto()
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(VariablesResponse));
+  GameUtilities_descriptor_ = file->service(0);
 }
 
 namespace {
@@ -410,7 +412,31 @@ void protobuf_AddDesc_service_2fgame_5futilities_2fgame_5futilities_2eproto() {
     "\001 \003(\0132\".bnet.protocol.attribute.Attribut"
     "e\022\020\n\010variable\030\002 \003(\t\022&\n\004host\030\003 \001(\0132\030.bnet"
     ".protocol.ProcessId\"\"\n\021VariablesResponse"
-    "\022\r\n\005value\030\001 \003(\002", 2295);
+    "\022\r\n\005value\030\001 \003(\0022\273\007\n\rGameUtilities\022q\n\024Pro"
+    "cessClientRequest\022+.bnet.protocol.game_u"
+    "tilities.ClientRequest\032,.bnet.protocol.g"
+    "ame_utilities.ClientResponse\022o\n\nCreateTo"
+    "on\022/.bnet.protocol.game_utilities.Create"
+    "ToonRequest\0320.bnet.protocol.game_utiliti"
+    "es.CreateToonResponse\022T\n\nDeleteToon\022/.bn"
+    "et.protocol.game_utilities.DeleteToonReq"
+    "uest\032\025.bnet.protocol.NoData\022X\n\014TransferT"
+    "oon\0221.bnet.protocol.game_utilities.Trans"
+    "ferToonRequest\032\025.bnet.protocol.NoData\022T\n"
+    "\nSelectToon\022/.bnet.protocol.game_utiliti"
+    "es.SelectToonRequest\032\025.bnet.protocol.NoD"
+    "ata\022l\n\026PresenceChannelCreated\022;.bnet.pro"
+    "tocol.game_utilities.PresenceChannelCrea"
+    "tedRequest\032\025.bnet.protocol.NoData\022{\n\022Get"
+    "PlayerVariables\0224.bnet.protocol.game_uti"
+    "lities.PlayerVariablesRequest\032/.bnet.pro"
+    "tocol.game_utilities.VariablesResponse\022w"
+    "\n\020GetGameVariables\0222.bnet.protocol.game_"
+    "utilities.GameVariablesRequest\032/.bnet.pr"
+    "otocol.game_utilities.VariablesResponse\022"
+    "\\\n\007GetLoad\022).bnet.protocol.server_pool.G"
+    "etLoadRequest\032&.bnet.protocol.server_poo"
+    "l.ServerStateB\021B\014CGameUtilies\200\001\001", 3272);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "service/game_utilities/game_utilities.proto", &protobuf_RegisterTypes);
   ClientRequest::default_instance_ = new ClientRequest();
@@ -4411,6 +4437,290 @@ void VariablesResponse::Swap(VariablesResponse* other) {
   return metadata;
 }
 
+
+// ===================================================================
+
+GameUtilities::~GameUtilities() {}
+
+const ::google::protobuf::ServiceDescriptor* GameUtilities::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return GameUtilities_descriptor_;
+}
+
+const ::google::protobuf::ServiceDescriptor* GameUtilities::GetDescriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return GameUtilities_descriptor_;
+}
+
+void GameUtilities::ProcessClientRequest(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::game_utilities::ClientRequest*,
+                         ::bnet::protocol::game_utilities::ClientResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method ProcessClientRequest() not implemented.");
+  done->Run();
+}
+
+void GameUtilities::CreateToon(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::game_utilities::CreateToonRequest*,
+                         ::bnet::protocol::game_utilities::CreateToonResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method CreateToon() not implemented.");
+  done->Run();
+}
+
+void GameUtilities::DeleteToon(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::game_utilities::DeleteToonRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method DeleteToon() not implemented.");
+  done->Run();
+}
+
+void GameUtilities::TransferToon(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::game_utilities::TransferToonRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method TransferToon() not implemented.");
+  done->Run();
+}
+
+void GameUtilities::SelectToon(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::game_utilities::SelectToonRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method SelectToon() not implemented.");
+  done->Run();
+}
+
+void GameUtilities::PresenceChannelCreated(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::game_utilities::PresenceChannelCreatedRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method PresenceChannelCreated() not implemented.");
+  done->Run();
+}
+
+void GameUtilities::GetPlayerVariables(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::game_utilities::PlayerVariablesRequest*,
+                         ::bnet::protocol::game_utilities::VariablesResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method GetPlayerVariables() not implemented.");
+  done->Run();
+}
+
+void GameUtilities::GetGameVariables(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::game_utilities::GameVariablesRequest*,
+                         ::bnet::protocol::game_utilities::VariablesResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method GetGameVariables() not implemented.");
+  done->Run();
+}
+
+void GameUtilities::GetLoad(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::server_pool::GetLoadRequest*,
+                         ::bnet::protocol::server_pool::ServerState*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method GetLoad() not implemented.");
+  done->Run();
+}
+
+void GameUtilities::CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                             ::google::protobuf::RpcController* controller,
+                             const ::google::protobuf::Message* request,
+                             ::google::protobuf::Message* response,
+                             ::google::protobuf::Closure* done) {
+  GOOGLE_DCHECK_EQ(method->service(), GameUtilities_descriptor_);
+  switch(method->index()) {
+    case 0:
+      ProcessClientRequest(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::game_utilities::ClientRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::game_utilities::ClientResponse*>(response),
+             done);
+      break;
+    case 1:
+      CreateToon(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::game_utilities::CreateToonRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::game_utilities::CreateToonResponse*>(response),
+             done);
+      break;
+    case 2:
+      DeleteToon(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::game_utilities::DeleteToonRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    case 3:
+      TransferToon(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::game_utilities::TransferToonRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    case 4:
+      SelectToon(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::game_utilities::SelectToonRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    case 5:
+      PresenceChannelCreated(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::game_utilities::PresenceChannelCreatedRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    case 6:
+      GetPlayerVariables(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::game_utilities::PlayerVariablesRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::game_utilities::VariablesResponse*>(response),
+             done);
+      break;
+    case 7:
+      GetGameVariables(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::game_utilities::GameVariablesRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::game_utilities::VariablesResponse*>(response),
+             done);
+      break;
+    case 8:
+      GetLoad(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::server_pool::GetLoadRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::server_pool::ServerState*>(response),
+             done);
+      break;
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      break;
+  }
+}
+
+const ::google::protobuf::Message& GameUtilities::GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::game_utilities::ClientRequest::default_instance();
+    case 1:
+      return ::bnet::protocol::game_utilities::CreateToonRequest::default_instance();
+    case 2:
+      return ::bnet::protocol::game_utilities::DeleteToonRequest::default_instance();
+    case 3:
+      return ::bnet::protocol::game_utilities::TransferToonRequest::default_instance();
+    case 4:
+      return ::bnet::protocol::game_utilities::SelectToonRequest::default_instance();
+    case 5:
+      return ::bnet::protocol::game_utilities::PresenceChannelCreatedRequest::default_instance();
+    case 6:
+      return ::bnet::protocol::game_utilities::PlayerVariablesRequest::default_instance();
+    case 7:
+      return ::bnet::protocol::game_utilities::GameVariablesRequest::default_instance();
+    case 8:
+      return ::bnet::protocol::server_pool::GetLoadRequest::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+const ::google::protobuf::Message& GameUtilities::GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::game_utilities::ClientResponse::default_instance();
+    case 1:
+      return ::bnet::protocol::game_utilities::CreateToonResponse::default_instance();
+    case 2:
+      return ::bnet::protocol::NoData::default_instance();
+    case 3:
+      return ::bnet::protocol::NoData::default_instance();
+    case 4:
+      return ::bnet::protocol::NoData::default_instance();
+    case 5:
+      return ::bnet::protocol::NoData::default_instance();
+    case 6:
+      return ::bnet::protocol::game_utilities::VariablesResponse::default_instance();
+    case 7:
+      return ::bnet::protocol::game_utilities::VariablesResponse::default_instance();
+    case 8:
+      return ::bnet::protocol::server_pool::ServerState::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+GameUtilities_Stub::GameUtilities_Stub(::google::protobuf::RpcChannel* channel)
+  : channel_(channel), owns_channel_(false) {}
+GameUtilities_Stub::GameUtilities_Stub(
+    ::google::protobuf::RpcChannel* channel,
+    ::google::protobuf::Service::ChannelOwnership ownership)
+  : channel_(channel),
+    owns_channel_(ownership == ::google::protobuf::Service::STUB_OWNS_CHANNEL) {}
+GameUtilities_Stub::~GameUtilities_Stub() {
+  if (owns_channel_) delete channel_;
+}
+
+void GameUtilities_Stub::ProcessClientRequest(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::game_utilities::ClientRequest* request,
+                              ::bnet::protocol::game_utilities::ClientResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(0),
+                       controller, request, response, done);
+}
+void GameUtilities_Stub::CreateToon(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::game_utilities::CreateToonRequest* request,
+                              ::bnet::protocol::game_utilities::CreateToonResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(1),
+                       controller, request, response, done);
+}
+void GameUtilities_Stub::DeleteToon(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::game_utilities::DeleteToonRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(2),
+                       controller, request, response, done);
+}
+void GameUtilities_Stub::TransferToon(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::game_utilities::TransferToonRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(3),
+                       controller, request, response, done);
+}
+void GameUtilities_Stub::SelectToon(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::game_utilities::SelectToonRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(4),
+                       controller, request, response, done);
+}
+void GameUtilities_Stub::PresenceChannelCreated(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::game_utilities::PresenceChannelCreatedRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(5),
+                       controller, request, response, done);
+}
+void GameUtilities_Stub::GetPlayerVariables(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::game_utilities::PlayerVariablesRequest* request,
+                              ::bnet::protocol::game_utilities::VariablesResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(6),
+                       controller, request, response, done);
+}
+void GameUtilities_Stub::GetGameVariables(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::game_utilities::GameVariablesRequest* request,
+                              ::bnet::protocol::game_utilities::VariablesResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(7),
+                       controller, request, response, done);
+}
+void GameUtilities_Stub::GetLoad(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::server_pool::GetLoadRequest* request,
+                              ::bnet::protocol::server_pool::ServerState* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(8),
+                       controller, request, response, done);
+}
 
 // @@protoc_insertion_point(namespace_scope)
 

@@ -150,10 +150,13 @@ class Message : public ::google::protobuf::Message {
   inline ::google::protobuf::uint32 role() const;
   inline void set_role(::google::protobuf::uint32 value);
   
+  GOOGLE_PROTOBUF_EXTENSION_ACCESSORS(Message)
   // @@protoc_insertion_point(class_scope:bnet.protocol.channel.Message)
  private:
   inline void set_has_role();
   inline void clear_has_role();
+  
+  ::google::protobuf::internal::ExtensionSet _extensions_;
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
@@ -249,6 +252,7 @@ class ChannelDescription : public ::google::protobuf::Message {
   inline ::bnet::protocol::channel::ChannelState* mutable_state();
   inline ::bnet::protocol::channel::ChannelState* release_state();
   
+  GOOGLE_PROTOBUF_EXTENSION_ACCESSORS(ChannelDescription)
   // @@protoc_insertion_point(class_scope:bnet.protocol.channel.ChannelDescription)
  private:
   inline void set_has_channel_id();
@@ -257,6 +261,8 @@ class ChannelDescription : public ::google::protobuf::Message {
   inline void clear_has_current_members();
   inline void set_has_state();
   inline void clear_has_state();
+  
+  ::google::protobuf::internal::ExtensionSet _extensions_;
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
@@ -350,10 +356,13 @@ class ChannelInfo : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedPtrField< ::bnet::protocol::channel::Member >*
       mutable_member();
   
+  GOOGLE_PROTOBUF_EXTENSION_ACCESSORS(ChannelInfo)
   // @@protoc_insertion_point(class_scope:bnet.protocol.channel.ChannelInfo)
  private:
   inline void set_has_description();
   inline void clear_has_description();
+  
+  ::google::protobuf::internal::ExtensionSet _extensions_;
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
@@ -1090,7 +1099,7 @@ class JoinChannelResponse : public ::google::protobuf::Message {
   inline ::google::protobuf::uint64 object_id() const;
   inline void set_object_id(::google::protobuf::uint64 value);
   
-  // optional bool require_friend_validation = 2;
+  // optional bool require_friend_validation = 2 [default = false];
   inline bool has_require_friend_validation() const;
   inline void clear_require_friend_validation();
   static const int kRequireFriendValidationFieldNumber = 2;
@@ -1434,7 +1443,7 @@ class ChannelState : public ::google::protobuf::Message {
   inline ::google::protobuf::uint32 reason() const;
   inline void set_reason(::google::protobuf::uint32 value);
   
-  // optional .bnet.protocol.channel.ChannelState.PrivacyLevel privacy_level = 7;
+  // optional .bnet.protocol.channel.ChannelState.PrivacyLevel privacy_level = 7 [default = PRIVACY_LEVEL_OPEN];
   inline bool has_privacy_level() const;
   inline void clear_privacy_level();
   static const int kPrivacyLevelFieldNumber = 7;
@@ -1470,7 +1479,7 @@ class ChannelState : public ::google::protobuf::Message {
   inline ::std::string* mutable_delegate_name();
   inline ::std::string* release_delegate_name();
   
-  // optional string channel_type = 11;
+  // optional string channel_type = 11 [default = "default"];
   inline bool has_channel_type() const;
   inline void clear_channel_type();
   static const int kChannelTypeFieldNumber = 11;
@@ -1481,6 +1490,7 @@ class ChannelState : public ::google::protobuf::Message {
   inline ::std::string* mutable_channel_type();
   inline ::std::string* release_channel_type();
   
+  GOOGLE_PROTOBUF_EXTENSION_ACCESSORS(ChannelState)
   // @@protoc_insertion_point(class_scope:bnet.protocol.channel.ChannelState)
  private:
   inline void set_has_max_members();
@@ -1502,6 +1512,8 @@ class ChannelState : public ::google::protobuf::Message {
   inline void set_has_channel_type();
   inline void clear_has_channel_type();
   
+  ::google::protobuf::internal::ExtensionSet _extensions_;
+  
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
   ::google::protobuf::uint32 max_members_;
@@ -1515,6 +1527,7 @@ class ChannelState : public ::google::protobuf::Message {
   ::std::string* name_;
   ::std::string* delegate_name_;
   ::std::string* channel_type_;
+  static const ::std::string _default_channel_type_;
   
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(11 + 31) / 32];
@@ -1606,17 +1619,20 @@ class MemberState : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
       mutable_role();
   
-  // optional uint64 privileges = 3;
+  // optional uint64 privileges = 3 [default = 0];
   inline bool has_privileges() const;
   inline void clear_privileges();
   static const int kPrivilegesFieldNumber = 3;
   inline ::google::protobuf::uint64 privileges() const;
   inline void set_privileges(::google::protobuf::uint64 value);
   
+  GOOGLE_PROTOBUF_EXTENSION_ACCESSORS(MemberState)
   // @@protoc_insertion_point(class_scope:bnet.protocol.channel.MemberState)
  private:
   inline void set_has_privileges();
   inline void clear_has_privileges();
+  
+  ::google::protobuf::internal::ExtensionSet _extensions_;
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
@@ -2359,7 +2375,7 @@ inline void JoinChannelResponse::set_object_id(::google::protobuf::uint64 value)
   object_id_ = value;
 }
 
-// optional bool require_friend_validation = 2;
+// optional bool require_friend_validation = 2 [default = false];
 inline bool JoinChannelResponse::has_require_friend_validation() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -2610,7 +2626,7 @@ inline void ChannelState::set_reason(::google::protobuf::uint32 value) {
   reason_ = value;
 }
 
-// optional .bnet.protocol.channel.ChannelState.PrivacyLevel privacy_level = 7;
+// optional .bnet.protocol.channel.ChannelState.PrivacyLevel privacy_level = 7 [default = PRIVACY_LEVEL_OPEN];
 inline bool ChannelState::has_privacy_level() const {
   return (_has_bits_[0] & 0x00000040u) != 0;
 }
@@ -2771,7 +2787,7 @@ inline ::std::string* ChannelState::release_delegate_name() {
   }
 }
 
-// optional string channel_type = 11;
+// optional string channel_type = 11 [default = "default"];
 inline bool ChannelState::has_channel_type() const {
   return (_has_bits_[0] & 0x00000400u) != 0;
 }
@@ -2782,8 +2798,8 @@ inline void ChannelState::clear_has_channel_type() {
   _has_bits_[0] &= ~0x00000400u;
 }
 inline void ChannelState::clear_channel_type() {
-  if (channel_type_ != &::google::protobuf::internal::kEmptyString) {
-    channel_type_->clear();
+  if (channel_type_ != &_default_channel_type_) {
+    channel_type_->assign(_default_channel_type_);
   }
   clear_has_channel_type();
 }
@@ -2792,39 +2808,39 @@ inline const ::std::string& ChannelState::channel_type() const {
 }
 inline void ChannelState::set_channel_type(const ::std::string& value) {
   set_has_channel_type();
-  if (channel_type_ == &::google::protobuf::internal::kEmptyString) {
+  if (channel_type_ == &_default_channel_type_) {
     channel_type_ = new ::std::string;
   }
   channel_type_->assign(value);
 }
 inline void ChannelState::set_channel_type(const char* value) {
   set_has_channel_type();
-  if (channel_type_ == &::google::protobuf::internal::kEmptyString) {
+  if (channel_type_ == &_default_channel_type_) {
     channel_type_ = new ::std::string;
   }
   channel_type_->assign(value);
 }
 inline void ChannelState::set_channel_type(const char* value, size_t size) {
   set_has_channel_type();
-  if (channel_type_ == &::google::protobuf::internal::kEmptyString) {
+  if (channel_type_ == &_default_channel_type_) {
     channel_type_ = new ::std::string;
   }
   channel_type_->assign(reinterpret_cast<const char*>(value), size);
 }
 inline ::std::string* ChannelState::mutable_channel_type() {
   set_has_channel_type();
-  if (channel_type_ == &::google::protobuf::internal::kEmptyString) {
-    channel_type_ = new ::std::string;
+  if (channel_type_ == &_default_channel_type_) {
+    channel_type_ = new ::std::string(_default_channel_type_);
   }
   return channel_type_;
 }
 inline ::std::string* ChannelState::release_channel_type() {
   clear_has_channel_type();
-  if (channel_type_ == &::google::protobuf::internal::kEmptyString) {
+  if (channel_type_ == &_default_channel_type_) {
     return NULL;
   } else {
     ::std::string* temp = channel_type_;
-    channel_type_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    channel_type_ = const_cast< ::std::string*>(&_default_channel_type_);
     return temp;
   }
 }
@@ -2883,7 +2899,7 @@ MemberState::mutable_role() {
   return &role_;
 }
 
-// optional uint64 privileges = 3;
+// optional uint64 privileges = 3 [default = 0];
 inline bool MemberState::has_privileges() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }

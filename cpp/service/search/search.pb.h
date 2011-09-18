@@ -23,6 +23,7 @@
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/generated_message_reflection.h>
+#include <google/protobuf/service.h>
 #include "lib/rpc/rpc.pb.h"
 #include "service/search/search_types.pb.h"
 // @@protoc_insertion_point(includes)
@@ -121,14 +122,14 @@ class FindMatchesRequest : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedPtrField< ::bnet::protocol::search::Filter >*
       mutable_filters();
   
-  // optional uint32 starting_index = 3;
+  // optional uint32 starting_index = 3 [default = 0];
   inline bool has_starting_index() const;
   inline void clear_starting_index();
   static const int kStartingIndexFieldNumber = 3;
   inline ::google::protobuf::uint32 starting_index() const;
   inline void set_starting_index(::google::protobuf::uint32 value);
   
-  // optional uint32 count = 4;
+  // optional uint32 count = 4 [default = 0];
   inline bool has_count() const;
   inline void clear_count();
   static const int kCountFieldNumber = 4;
@@ -515,6 +516,81 @@ class SearchConfig : public ::google::protobuf::Message {
 };
 // ===================================================================
 
+class SearchService_Stub;
+
+class SearchService : public ::google::protobuf::Service {
+ protected:
+  // This class should be treated as an abstract interface.
+  inline SearchService() {};
+ public:
+  virtual ~SearchService();
+  
+  typedef SearchService_Stub Stub;
+  
+  static const ::google::protobuf::ServiceDescriptor* descriptor();
+  
+  virtual void FindMatches(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::search::FindMatchesRequest* request,
+                       ::bnet::protocol::search::FindMatchesResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void SetObject(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::search::SetObjectRequest* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  virtual void RemoveObjects(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::search::RemoveObjectsRequest* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  
+  // implements Service ----------------------------------------------
+  
+  const ::google::protobuf::ServiceDescriptor* GetDescriptor();
+  void CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                  ::google::protobuf::RpcController* controller,
+                  const ::google::protobuf::Message* request,
+                  ::google::protobuf::Message* response,
+                  ::google::protobuf::Closure* done);
+  const ::google::protobuf::Message& GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+  const ::google::protobuf::Message& GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+
+ private:
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(SearchService);
+};
+
+class SearchService_Stub : public SearchService {
+ public:
+  SearchService_Stub(::google::protobuf::RpcChannel* channel);
+  SearchService_Stub(::google::protobuf::RpcChannel* channel,
+                   ::google::protobuf::Service::ChannelOwnership ownership);
+  ~SearchService_Stub();
+  
+  inline ::google::protobuf::RpcChannel* channel() { return channel_; }
+  
+  // implements SearchService ------------------------------------------
+  
+  void FindMatches(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::search::FindMatchesRequest* request,
+                       ::bnet::protocol::search::FindMatchesResponse* response,
+                       ::google::protobuf::Closure* done);
+  void SetObject(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::search::SetObjectRequest* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  void RemoveObjects(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::search::RemoveObjectsRequest* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+ private:
+  ::google::protobuf::RpcChannel* channel_;
+  bool owns_channel_;
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(SearchService_Stub);
+};
+
+
+// ===================================================================
+
 
 // ===================================================================
 
@@ -603,7 +679,7 @@ FindMatchesRequest::mutable_filters() {
   return &filters_;
 }
 
-// optional uint32 starting_index = 3;
+// optional uint32 starting_index = 3 [default = 0];
 inline bool FindMatchesRequest::has_starting_index() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
@@ -625,7 +701,7 @@ inline void FindMatchesRequest::set_starting_index(::google::protobuf::uint32 va
   starting_index_ = value;
 }
 
-// optional uint32 count = 4;
+// optional uint32 count = 4 [default = 0];
 inline bool FindMatchesRequest::has_count() const {
   return (_has_bits_[0] & 0x00000008u) != 0;
 }

@@ -23,6 +23,8 @@
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/generated_message_reflection.h>
+#include <google/protobuf/service.h>
+#include "google/protobuf/csharp_options.pb.h"
 #include "lib/rpc/rpc.pb.h"
 #include "lib/protocol/exchange.pb.h"
 #include "lib/protocol/exchange_object_provider.pb.h"
@@ -3517,6 +3519,356 @@ class BidNotificationRequest : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static BidNotificationRequest* default_instance_;
 };
+// ===================================================================
+
+class ExchangeService_Stub;
+
+class ExchangeService : public ::google::protobuf::Service {
+ protected:
+  // This class should be treated as an abstract interface.
+  inline ExchangeService() {};
+ public:
+  virtual ~ExchangeService();
+  
+  typedef ExchangeService_Stub Stub;
+  
+  static const ::google::protobuf::ServiceDescriptor* descriptor();
+  
+  virtual void CreateOrderBook(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::CreateOrderBookRequest* request,
+                       ::bnet::protocol::exchange::CreateOrderBookResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void PlaceOfferOnOrderBook(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::PlaceOfferOnOrderBookRequest* request,
+                       ::bnet::protocol::exchange::PlaceOfferOnOrderBookResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void PlaceOfferCreateOrderBookIfNeeded(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::PlaceOfferCreateOrderBookIfNeededRequest* request,
+                       ::bnet::protocol::exchange::PlaceOfferCreateOrderBookIfNeededResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void PlaceBidOnOrderBook(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::PlaceBidOnOrderBookRequest* request,
+                       ::bnet::protocol::exchange::PlaceBidOnOrderBookResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void PlaceBidCreateOrderBookIfNeeded(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::PlaceBidCreateOrderBookIfNeededRequest* request,
+                       ::bnet::protocol::exchange::PlaceBidCreateOrderBookIfNeededResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void QueryOffersByOrderBook(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::QueryOffersByOrderBookRequest* request,
+                       ::bnet::protocol::exchange::QueryOffersByOrderBookResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void QueryBidsByOrderBook(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::QueryBidsByOrderBookRequest* request,
+                       ::bnet::protocol::exchange::QueryBidsByOrderBookResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void QueryOffersByAccountForItem(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::QueryOffersByAccountForItemRequest* request,
+                       ::bnet::protocol::exchange::QueryOffersByAccountForItemResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void QueryBidsByAccountForItem(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::QueryBidsByAccountForItemRequest* request,
+                       ::bnet::protocol::exchange::QueryBidsByAccountForItemResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void QueryOrderBooksSummary(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::QueryOrderBooksSummaryRequest* request,
+                       ::bnet::protocol::exchange::QueryOrderBooksSummaryResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void QuerySettlementsByOrderBook(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::QuerySettlementsByOrderBookRequest* request,
+                       ::bnet::protocol::exchange::QuerySettlementsByOrderBookResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void ReportAuthorize(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange_object_provider::ReportAuthorizeRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void ReportSettle(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange_object_provider::ReportSettleRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void ReportCancel(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange_object_provider::ReportCancelRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void SubscribeOrderBookStatusChange(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::SubscribeOrderBookStatusChangeRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void UnsubscribeOrderBookStatusChange(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::UnsubscribeOrderBookStatusChangeRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void SubscribeOrderStatusChange(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::SubscribeOrderStatusChangeRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void UnsubscribeOrderStatusChange(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::UnsubscribeOrderStatusChangeRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void GetPaymentMethods(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange_object_provider::GetPaymentMethodsRequest* request,
+                       ::bnet::protocol::exchange_object_provider::GetPaymentMethodsResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void ClaimBidItem(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::ClaimRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void ClaimBidMoney(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::ClaimRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void ClaimOfferItem(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::ClaimRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void ClaimOfferMoney(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::ClaimRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void CancelBid(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::CancelRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void CancelOffer(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::CancelRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void GetConfiguration(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::GetConfigurationRequest* request,
+                       ::bnet::protocol::exchange::GetConfigurationResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void GetBidFeeEstimation(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::GetBidFeeEstimationRequest* request,
+                       ::bnet::protocol::exchange::GetFeeEstimationResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void GetOfferFeeEstimation(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::GetOfferFeeEstimationRequest* request,
+                       ::bnet::protocol::exchange::GetFeeEstimationResponse* response,
+                       ::google::protobuf::Closure* done);
+  
+  // implements Service ----------------------------------------------
+  
+  const ::google::protobuf::ServiceDescriptor* GetDescriptor();
+  void CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                  ::google::protobuf::RpcController* controller,
+                  const ::google::protobuf::Message* request,
+                  ::google::protobuf::Message* response,
+                  ::google::protobuf::Closure* done);
+  const ::google::protobuf::Message& GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+  const ::google::protobuf::Message& GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+
+ private:
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ExchangeService);
+};
+
+class ExchangeService_Stub : public ExchangeService {
+ public:
+  ExchangeService_Stub(::google::protobuf::RpcChannel* channel);
+  ExchangeService_Stub(::google::protobuf::RpcChannel* channel,
+                   ::google::protobuf::Service::ChannelOwnership ownership);
+  ~ExchangeService_Stub();
+  
+  inline ::google::protobuf::RpcChannel* channel() { return channel_; }
+  
+  // implements ExchangeService ------------------------------------------
+  
+  void CreateOrderBook(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::CreateOrderBookRequest* request,
+                       ::bnet::protocol::exchange::CreateOrderBookResponse* response,
+                       ::google::protobuf::Closure* done);
+  void PlaceOfferOnOrderBook(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::PlaceOfferOnOrderBookRequest* request,
+                       ::bnet::protocol::exchange::PlaceOfferOnOrderBookResponse* response,
+                       ::google::protobuf::Closure* done);
+  void PlaceOfferCreateOrderBookIfNeeded(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::PlaceOfferCreateOrderBookIfNeededRequest* request,
+                       ::bnet::protocol::exchange::PlaceOfferCreateOrderBookIfNeededResponse* response,
+                       ::google::protobuf::Closure* done);
+  void PlaceBidOnOrderBook(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::PlaceBidOnOrderBookRequest* request,
+                       ::bnet::protocol::exchange::PlaceBidOnOrderBookResponse* response,
+                       ::google::protobuf::Closure* done);
+  void PlaceBidCreateOrderBookIfNeeded(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::PlaceBidCreateOrderBookIfNeededRequest* request,
+                       ::bnet::protocol::exchange::PlaceBidCreateOrderBookIfNeededResponse* response,
+                       ::google::protobuf::Closure* done);
+  void QueryOffersByOrderBook(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::QueryOffersByOrderBookRequest* request,
+                       ::bnet::protocol::exchange::QueryOffersByOrderBookResponse* response,
+                       ::google::protobuf::Closure* done);
+  void QueryBidsByOrderBook(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::QueryBidsByOrderBookRequest* request,
+                       ::bnet::protocol::exchange::QueryBidsByOrderBookResponse* response,
+                       ::google::protobuf::Closure* done);
+  void QueryOffersByAccountForItem(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::QueryOffersByAccountForItemRequest* request,
+                       ::bnet::protocol::exchange::QueryOffersByAccountForItemResponse* response,
+                       ::google::protobuf::Closure* done);
+  void QueryBidsByAccountForItem(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::QueryBidsByAccountForItemRequest* request,
+                       ::bnet::protocol::exchange::QueryBidsByAccountForItemResponse* response,
+                       ::google::protobuf::Closure* done);
+  void QueryOrderBooksSummary(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::QueryOrderBooksSummaryRequest* request,
+                       ::bnet::protocol::exchange::QueryOrderBooksSummaryResponse* response,
+                       ::google::protobuf::Closure* done);
+  void QuerySettlementsByOrderBook(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::QuerySettlementsByOrderBookRequest* request,
+                       ::bnet::protocol::exchange::QuerySettlementsByOrderBookResponse* response,
+                       ::google::protobuf::Closure* done);
+  void ReportAuthorize(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange_object_provider::ReportAuthorizeRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void ReportSettle(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange_object_provider::ReportSettleRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void ReportCancel(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange_object_provider::ReportCancelRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void SubscribeOrderBookStatusChange(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::SubscribeOrderBookStatusChangeRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void UnsubscribeOrderBookStatusChange(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::UnsubscribeOrderBookStatusChangeRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void SubscribeOrderStatusChange(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::SubscribeOrderStatusChangeRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void UnsubscribeOrderStatusChange(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::UnsubscribeOrderStatusChangeRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void GetPaymentMethods(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange_object_provider::GetPaymentMethodsRequest* request,
+                       ::bnet::protocol::exchange_object_provider::GetPaymentMethodsResponse* response,
+                       ::google::protobuf::Closure* done);
+  void ClaimBidItem(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::ClaimRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void ClaimBidMoney(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::ClaimRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void ClaimOfferItem(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::ClaimRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void ClaimOfferMoney(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::ClaimRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void CancelBid(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::CancelRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void CancelOffer(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::CancelRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void GetConfiguration(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::GetConfigurationRequest* request,
+                       ::bnet::protocol::exchange::GetConfigurationResponse* response,
+                       ::google::protobuf::Closure* done);
+  void GetBidFeeEstimation(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::GetBidFeeEstimationRequest* request,
+                       ::bnet::protocol::exchange::GetFeeEstimationResponse* response,
+                       ::google::protobuf::Closure* done);
+  void GetOfferFeeEstimation(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::GetOfferFeeEstimationRequest* request,
+                       ::bnet::protocol::exchange::GetFeeEstimationResponse* response,
+                       ::google::protobuf::Closure* done);
+ private:
+  ::google::protobuf::RpcChannel* channel_;
+  bool owns_channel_;
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ExchangeService_Stub);
+};
+
+
+// -------------------------------------------------------------------
+
+class ExchangeNotify_Stub;
+
+class ExchangeNotify : public ::google::protobuf::Service {
+ protected:
+  // This class should be treated as an abstract interface.
+  inline ExchangeNotify() {};
+ public:
+  virtual ~ExchangeNotify();
+  
+  typedef ExchangeNotify_Stub Stub;
+  
+  static const ::google::protobuf::ServiceDescriptor* descriptor();
+  
+  virtual void NotifyOrderBookStatusChange(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::OrderBookNotificationRequest* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  virtual void NotifyOfferStatusChange(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::OfferNotificationRequest* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  virtual void NotifyBidStatusChange(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::BidNotificationRequest* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  
+  // implements Service ----------------------------------------------
+  
+  const ::google::protobuf::ServiceDescriptor* GetDescriptor();
+  void CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                  ::google::protobuf::RpcController* controller,
+                  const ::google::protobuf::Message* request,
+                  ::google::protobuf::Message* response,
+                  ::google::protobuf::Closure* done);
+  const ::google::protobuf::Message& GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+  const ::google::protobuf::Message& GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+
+ private:
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ExchangeNotify);
+};
+
+class ExchangeNotify_Stub : public ExchangeNotify {
+ public:
+  ExchangeNotify_Stub(::google::protobuf::RpcChannel* channel);
+  ExchangeNotify_Stub(::google::protobuf::RpcChannel* channel,
+                   ::google::protobuf::Service::ChannelOwnership ownership);
+  ~ExchangeNotify_Stub();
+  
+  inline ::google::protobuf::RpcChannel* channel() { return channel_; }
+  
+  // implements ExchangeNotify ------------------------------------------
+  
+  void NotifyOrderBookStatusChange(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::OrderBookNotificationRequest* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  void NotifyOfferStatusChange(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::OfferNotificationRequest* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  void NotifyBidStatusChange(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::exchange::BidNotificationRequest* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+ private:
+  ::google::protobuf::RpcChannel* channel_;
+  bool owns_channel_;
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ExchangeNotify_Stub);
+};
+
+
 // ===================================================================
 
 

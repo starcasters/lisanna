@@ -23,6 +23,7 @@
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/generated_message_reflection.h>
+#include <google/protobuf/service.h>
 #include "lib/protocol/attribute.pb.h"
 #include "lib/rpc/rpc.pb.h"
 // @@protoc_insertion_point(includes)
@@ -170,21 +171,21 @@ class ServerState : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional float current_load = 1;
+  // optional float current_load = 1 [default = 1];
   inline bool has_current_load() const;
   inline void clear_current_load();
   static const int kCurrentLoadFieldNumber = 1;
   inline float current_load() const;
   inline void set_current_load(float value);
   
-  // optional int32 game_count = 2;
+  // optional int32 game_count = 2 [default = 0];
   inline bool has_game_count() const;
   inline void clear_game_count();
   static const int kGameCountFieldNumber = 2;
   inline ::google::protobuf::int32 game_count() const;
   inline void set_game_count(::google::protobuf::int32 value);
   
-  // optional int32 player_count = 3;
+  // optional int32 player_count = 3 [default = 0];
   inline bool has_player_count() const;
   inline void clear_player_count();
   static const int kPlayerCountFieldNumber = 3;
@@ -280,7 +281,7 @@ class ServerInfo : public ::google::protobuf::Message {
   inline ::bnet::protocol::ProcessId* mutable_host();
   inline ::bnet::protocol::ProcessId* release_host();
   
-  // optional bool replace = 2;
+  // optional bool replace = 2 [default = false];
   inline bool has_replace() const;
   inline void clear_replace();
   static const int kReplaceFieldNumber = 2;
@@ -502,6 +503,65 @@ class PoolStateResponse : public ::google::protobuf::Message {
 };
 // ===================================================================
 
+class ServerPoolService_Stub;
+
+class ServerPoolService : public ::google::protobuf::Service {
+ protected:
+  // This class should be treated as an abstract interface.
+  inline ServerPoolService() {};
+ public:
+  virtual ~ServerPoolService();
+  
+  typedef ServerPoolService_Stub Stub;
+  
+  static const ::google::protobuf::ServiceDescriptor* descriptor();
+  
+  virtual void GetPoolState(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::server_pool::PoolStateRequest* request,
+                       ::bnet::protocol::server_pool::PoolStateResponse* response,
+                       ::google::protobuf::Closure* done);
+  
+  // implements Service ----------------------------------------------
+  
+  const ::google::protobuf::ServiceDescriptor* GetDescriptor();
+  void CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                  ::google::protobuf::RpcController* controller,
+                  const ::google::protobuf::Message* request,
+                  ::google::protobuf::Message* response,
+                  ::google::protobuf::Closure* done);
+  const ::google::protobuf::Message& GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+  const ::google::protobuf::Message& GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+
+ private:
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ServerPoolService);
+};
+
+class ServerPoolService_Stub : public ServerPoolService {
+ public:
+  ServerPoolService_Stub(::google::protobuf::RpcChannel* channel);
+  ServerPoolService_Stub(::google::protobuf::RpcChannel* channel,
+                   ::google::protobuf::Service::ChannelOwnership ownership);
+  ~ServerPoolService_Stub();
+  
+  inline ::google::protobuf::RpcChannel* channel() { return channel_; }
+  
+  // implements ServerPoolService ------------------------------------------
+  
+  void GetPoolState(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::server_pool::PoolStateRequest* request,
+                       ::bnet::protocol::server_pool::PoolStateResponse* response,
+                       ::google::protobuf::Closure* done);
+ private:
+  ::google::protobuf::RpcChannel* channel_;
+  bool owns_channel_;
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ServerPoolService_Stub);
+};
+
+
+// ===================================================================
+
 
 // ===================================================================
 
@@ -511,7 +571,7 @@ class PoolStateResponse : public ::google::protobuf::Message {
 
 // ServerState
 
-// optional float current_load = 1;
+// optional float current_load = 1 [default = 1];
 inline bool ServerState::has_current_load() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -522,7 +582,7 @@ inline void ServerState::clear_has_current_load() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void ServerState::clear_current_load() {
-  current_load_ = 0;
+  current_load_ = 1;
   clear_has_current_load();
 }
 inline float ServerState::current_load() const {
@@ -533,7 +593,7 @@ inline void ServerState::set_current_load(float value) {
   current_load_ = value;
 }
 
-// optional int32 game_count = 2;
+// optional int32 game_count = 2 [default = 0];
 inline bool ServerState::has_game_count() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -555,7 +615,7 @@ inline void ServerState::set_game_count(::google::protobuf::int32 value) {
   game_count_ = value;
 }
 
-// optional int32 player_count = 3;
+// optional int32 player_count = 3 [default = 0];
 inline bool ServerState::has_player_count() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
@@ -610,7 +670,7 @@ inline ::bnet::protocol::ProcessId* ServerInfo::release_host() {
   return temp;
 }
 
-// optional bool replace = 2;
+// optional bool replace = 2 [default = false];
 inline bool ServerInfo::has_replace() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }

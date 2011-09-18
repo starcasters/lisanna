@@ -157,19 +157,22 @@ void protobuf_AddDesc_service_2fpresence_2fpresence_5ftypes_2eproto() {
     "\n%service/presence/presence_types.proto\022"
     "\026bnet.protocol.presence\032\034lib/protocol/at"
     "tribute.proto\032\031lib/protocol/entity.proto"
-    "\032#service/channel/channel_types.proto\"H\n"
+    "\032#service/channel/channel_types.proto\"K\n"
     "\010FieldKey\022\017\n\007program\030\001 \002(\r\022\r\n\005group\030\002 \002("
-    "\r\022\r\n\005field\030\003 \002(\r\022\r\n\005index\030\004 \001(\004\"g\n\005Field"
-    "\022-\n\003key\030\001 \002(\0132 .bnet.protocol.presence.F"
-    "ieldKey\022/\n\005value\030\002 \002(\0132 .bnet.protocol.a"
-    "ttribute.Variant\"\254\001\n\016FieldOperation\022,\n\005f"
-    "ield\030\001 \002(\0132\035.bnet.protocol.presence.Fiel"
-    "d\022G\n\toperation\030\002 \001(\01624.bnet.protocol.pre"
-    "sence.FieldOperation.OperationType\"#\n\rOp"
-    "erationType\022\007\n\003SET\020\000\022\t\n\005CLEAR\020\001\"{\n\014Chann"
-    "elState\022*\n\tentity_id\030\001 \001(\0132\027.bnet.protoc"
-    "ol.EntityId\022\?\n\017field_operation\030\002 \003(\0132&.b"
-    "net.protocol.presence.FieldOperation", 636);
+    "\r\022\r\n\005field\030\003 \002(\r\022\020\n\005index\030\004 \001(\004:\0010\"g\n\005Fi"
+    "eld\022-\n\003key\030\001 \002(\0132 .bnet.protocol.presenc"
+    "e.FieldKey\022/\n\005value\030\002 \002(\0132 .bnet.protoco"
+    "l.attribute.Variant\"\261\001\n\016FieldOperation\022,"
+    "\n\005field\030\001 \002(\0132\035.bnet.protocol.presence.F"
+    "ield\022L\n\toperation\030\002 \001(\01624.bnet.protocol."
+    "presence.FieldOperation.OperationType:\003S"
+    "ET\"#\n\rOperationType\022\007\n\003SET\020\000\022\t\n\005CLEAR\020\001\""
+    "\330\001\n\014ChannelState\022*\n\tentity_id\030\001 \001(\0132\027.bn"
+    "et.protocol.EntityId\022\?\n\017field_operation\030"
+    "\002 \003(\0132&.bnet.protocol.presence.FieldOper"
+    "ation2[\n\010presence\022#.bnet.protocol.channe"
+    "l.ChannelState\030e \001(\0132$.bnet.protocol.pre"
+    "sence.ChannelState", 738);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "service/presence/presence_types.proto", &protobuf_RegisterTypes);
   FieldKey::default_instance_ = new FieldKey();
@@ -180,6 +183,10 @@ void protobuf_AddDesc_service_2fpresence_2fpresence_5ftypes_2eproto() {
   Field::default_instance_->InitAsDefaultInstance();
   FieldOperation::default_instance_->InitAsDefaultInstance();
   ChannelState::default_instance_->InitAsDefaultInstance();
+  ::google::protobuf::internal::ExtensionSet::RegisterMessageExtension(
+    &::bnet::protocol::channel::ChannelState::default_instance(),
+    101, 11, false, false,
+    &::bnet::protocol::presence::ChannelState::default_instance());
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_service_2fpresence_2fpresence_5ftypes_2eproto);
 }
 
@@ -316,7 +323,7 @@ bool FieldKey::MergePartialFromCodedStream(
         break;
       }
       
-      // optional uint64 index = 4;
+      // optional uint64 index = 4 [default = 0];
       case 4: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -365,7 +372,7 @@ void FieldKey::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(3, this->field(), output);
   }
   
-  // optional uint64 index = 4;
+  // optional uint64 index = 4 [default = 0];
   if (has_index()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt64(4, this->index(), output);
   }
@@ -393,7 +400,7 @@ void FieldKey::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(3, this->field(), target);
   }
   
-  // optional uint64 index = 4;
+  // optional uint64 index = 4 [default = 0];
   if (has_index()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(4, this->index(), target);
   }
@@ -430,7 +437,7 @@ int FieldKey::ByteSize() const {
           this->field());
     }
     
-    // optional uint64 index = 4;
+    // optional uint64 index = 4 [default = 0];
     if (has_index()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt64Size(
@@ -890,7 +897,7 @@ bool FieldOperation::MergePartialFromCodedStream(
         break;
       }
       
-      // optional .bnet.protocol.presence.FieldOperation.OperationType operation = 2;
+      // optional .bnet.protocol.presence.FieldOperation.OperationType operation = 2 [default = SET];
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -935,7 +942,7 @@ void FieldOperation::SerializeWithCachedSizes(
       1, this->field(), output);
   }
   
-  // optional .bnet.protocol.presence.FieldOperation.OperationType operation = 2;
+  // optional .bnet.protocol.presence.FieldOperation.OperationType operation = 2 [default = SET];
   if (has_operation()) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       2, this->operation(), output);
@@ -956,7 +963,7 @@ void FieldOperation::SerializeWithCachedSizes(
         1, this->field(), target);
   }
   
-  // optional .bnet.protocol.presence.FieldOperation.OperationType operation = 2;
+  // optional .bnet.protocol.presence.FieldOperation.OperationType operation = 2 [default = SET];
   if (has_operation()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       2, this->operation(), target);
@@ -980,7 +987,7 @@ int FieldOperation::ByteSize() const {
           this->field());
     }
     
-    // optional .bnet.protocol.presence.FieldOperation.OperationType operation = 2;
+    // optional .bnet.protocol.presence.FieldOperation.OperationType operation = 2 [default = SET];
     if (has_operation()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::EnumSize(this->operation());
@@ -1070,6 +1077,12 @@ const int ChannelState::kEntityIdFieldNumber;
 const int ChannelState::kFieldOperationFieldNumber;
 #endif  // !_MSC_VER
 
+#ifndef _MSC_VER
+const int ChannelState::kPresenceFieldNumber;
+#endif
+::google::protobuf::internal::ExtensionIdentifier< ::bnet::protocol::channel::ChannelState,
+    ::google::protobuf::internal::MessageTypeTraits< ::bnet::protocol::presence::ChannelState >, 11, false >
+  ChannelState::presence(kPresenceFieldNumber, ::bnet::protocol::presence::ChannelState::default_instance());
 ChannelState::ChannelState()
   : ::google::protobuf::Message() {
   SharedCtor();

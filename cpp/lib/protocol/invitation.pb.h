@@ -168,6 +168,7 @@ class Invitation : public ::google::protobuf::Message {
   inline ::google::protobuf::uint64 expiration_time() const;
   inline void set_expiration_time(::google::protobuf::uint64 value);
   
+  GOOGLE_PROTOBUF_EXTENSION_ACCESSORS(Invitation)
   // @@protoc_insertion_point(class_scope:bnet.protocol.invitation.Invitation)
  private:
   inline void set_has_id();
@@ -186,6 +187,8 @@ class Invitation : public ::google::protobuf::Message {
   inline void clear_has_creation_time();
   inline void set_has_expiration_time();
   inline void clear_has_expiration_time();
+  
+  ::google::protobuf::internal::ExtensionSet _extensions_;
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
@@ -424,13 +427,14 @@ class SendInvitationRequest : public ::google::protobuf::Message {
   inline ::std::string* mutable_invitation_message();
   inline ::std::string* release_invitation_message();
   
-  // optional uint64 expiration_time = 4;
+  // optional uint64 expiration_time = 4 [default = 0];
   inline bool has_expiration_time() const;
   inline void clear_expiration_time();
   static const int kExpirationTimeFieldNumber = 4;
   inline ::google::protobuf::uint64 expiration_time() const;
   inline void set_expiration_time(::google::protobuf::uint64 value);
   
+  GOOGLE_PROTOBUF_EXTENSION_ACCESSORS(SendInvitationRequest)
   // @@protoc_insertion_point(class_scope:bnet.protocol.invitation.SendInvitationRequest)
  private:
   inline void set_has_agent_identity();
@@ -441,6 +445,8 @@ class SendInvitationRequest : public ::google::protobuf::Message {
   inline void clear_has_invitation_message();
   inline void set_has_expiration_time();
   inline void clear_has_expiration_time();
+  
+  ::google::protobuf::internal::ExtensionSet _extensions_;
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
@@ -1278,7 +1284,7 @@ inline ::std::string* SendInvitationRequest::release_invitation_message() {
   }
 }
 
-// optional uint64 expiration_time = 4;
+// optional uint64 expiration_time = 4 [default = 0];
 inline bool SendInvitationRequest::has_expiration_time() const {
   return (_has_bits_[0] & 0x00000008u) != 0;
 }

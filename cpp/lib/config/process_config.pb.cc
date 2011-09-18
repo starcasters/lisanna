@@ -328,24 +328,24 @@ void protobuf_AddDesc_lib_2fconfig_2fprocess_5fconfig_2eproto() {
     "net.protocol.config.ServerAddress\022\030\n\020exp"
     "orted_service\030\002 \003(\t\022\030\n\020imported_service\030"
     "\003 \003(\t\"1\n\023SupplementalService\022\014\n\004name\030\001 \002"
-    "(\t\022\014\n\004port\030\002 \002(\r\"]\n\013ListenPoint\022\014\n\004port\030"
-    "\001 \002(\r\022\017\n\007address\030\002 \001(\t\022/\n\006accept\030\003 \003(\0132\037"
-    ".bnet.protocol.config.ServerSet\"$\n\014Servi"
-    "ceShard\022\024\n\014process_name\030\001 \002(\t\"]\n\rService"
-    "Config\022\014\n\004name\030\001 \002(\t\022\013\n\003url\030\002 \002(\t\0221\n\005sha"
-    "rd\030\003 \003(\0132\".bnet.protocol.config.ServiceS"
-    "hard\"\204\001\n\017RPCServerConfig\022\014\n\004name\030\001 \002(\t\0221"
-    "\n\006listen\030\002 \001(\0132!.bnet.protocol.config.Li"
-    "stenPoint\0220\n\007connect\030\003 \003(\0132\037.bnet.protoc"
-    "ol.config.ServerSet\"\265\002\n\rProcessConfig\022\024\n"
-    "\014process_name\030\001 \002(\t\0225\n\006server\030\002 \003(\0132%.bn"
-    "et.protocol.config.RPCServerConfig\0220\n\010re"
-    "source\030\003 \003(\0132\036.bnet.protocol.config.Reso"
-    "urce\0224\n\007service\030\004 \003(\0132#.bnet.protocol.co"
-    "nfig.ServiceConfig\022&\n\003var\030\005 \003(\0132\031.bnet.p"
-    "rotocol.config.Var\022G\n\024supplemental_servi"
-    "ce\030\006 \003(\0132).bnet.protocol.config.Suppleme"
-    "ntalService", 1171);
+    "(\t\022\014\n\004port\030\002 \002(\r\"f\n\013ListenPoint\022\014\n\004port\030"
+    "\001 \002(\r\022\030\n\007address\030\002 \001(\t:\0070.0.0.0\022/\n\006accep"
+    "t\030\003 \003(\0132\037.bnet.protocol.config.ServerSet"
+    "\"$\n\014ServiceShard\022\024\n\014process_name\030\001 \002(\t\"]"
+    "\n\rServiceConfig\022\014\n\004name\030\001 \002(\t\022\013\n\003url\030\002 \002"
+    "(\t\0221\n\005shard\030\003 \003(\0132\".bnet.protocol.config"
+    ".ServiceShard\"\204\001\n\017RPCServerConfig\022\014\n\004nam"
+    "e\030\001 \002(\t\0221\n\006listen\030\002 \001(\0132!.bnet.protocol."
+    "config.ListenPoint\0220\n\007connect\030\003 \003(\0132\037.bn"
+    "et.protocol.config.ServerSet\"\265\002\n\rProcess"
+    "Config\022\024\n\014process_name\030\001 \002(\t\0225\n\006server\030\002"
+    " \003(\0132%.bnet.protocol.config.RPCServerCon"
+    "fig\0220\n\010resource\030\003 \003(\0132\036.bnet.protocol.co"
+    "nfig.Resource\0224\n\007service\030\004 \003(\0132#.bnet.pr"
+    "otocol.config.ServiceConfig\022&\n\003var\030\005 \003(\013"
+    "2\031.bnet.protocol.config.Var\022G\n\024supplemen"
+    "tal_service\030\006 \003(\0132).bnet.protocol.config"
+    ".SupplementalServiceB\020B\016CProcessConfig", 1198);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "lib/config/process_config.proto", &protobuf_RegisterTypes);
   Var::default_instance_ = new Var();
@@ -2046,6 +2046,7 @@ void SupplementalService::Swap(SupplementalService* other) {
 
 // ===================================================================
 
+const ::std::string ListenPoint::_default_address_("0.0.0.0");
 #ifndef _MSC_VER
 const int ListenPoint::kPortFieldNumber;
 const int ListenPoint::kAddressFieldNumber;
@@ -2069,7 +2070,7 @@ ListenPoint::ListenPoint(const ListenPoint& from)
 void ListenPoint::SharedCtor() {
   _cached_size_ = 0;
   port_ = 0u;
-  address_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  address_ = const_cast< ::std::string*>(&_default_address_);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -2078,7 +2079,7 @@ ListenPoint::~ListenPoint() {
 }
 
 void ListenPoint::SharedDtor() {
-  if (address_ != &::google::protobuf::internal::kEmptyString) {
+  if (address_ != &_default_address_) {
     delete address_;
   }
   if (this != default_instance_) {
@@ -2109,8 +2110,8 @@ void ListenPoint::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     port_ = 0u;
     if (has_address()) {
-      if (address_ != &::google::protobuf::internal::kEmptyString) {
-        address_->clear();
+      if (address_ != &_default_address_) {
+        address_->assign(_default_address_);
       }
     }
   }
@@ -2140,7 +2141,7 @@ bool ListenPoint::MergePartialFromCodedStream(
         break;
       }
       
-      // optional string address = 2;
+      // optional string address = 2 [default = "0.0.0.0"];
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -2195,7 +2196,7 @@ void ListenPoint::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->port(), output);
   }
   
-  // optional string address = 2;
+  // optional string address = 2 [default = "0.0.0.0"];
   if (has_address()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->address().data(), this->address().length(),
@@ -2223,7 +2224,7 @@ void ListenPoint::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->port(), target);
   }
   
-  // optional string address = 2;
+  // optional string address = 2 [default = "0.0.0.0"];
   if (has_address()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->address().data(), this->address().length(),
@@ -2258,7 +2259,7 @@ int ListenPoint::ByteSize() const {
           this->port());
     }
     
-    // optional string address = 2;
+    // optional string address = 2 [default = "0.0.0.0"];
     if (has_address()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(

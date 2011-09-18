@@ -137,25 +137,40 @@ void protobuf_AddDesc_service_2fchannel_5finvitation_2fchannel_5finvitation_5fty
     "itation_types.proto\022 bnet.protocol.chann"
     "el_invitation\032\035lib/protocol/invitation.p"
     "roto\032\031lib/protocol/entity.proto\032#service"
-    "/channel/channel_types.proto\"\214\001\n\nInvitat"
+    "/channel/channel_types.proto\"\212\002\n\nInvitat"
     "ion\022F\n\023channel_description\030\001 \002(\0132).bnet."
-    "protocol.channel.ChannelDescription\022\020\n\010r"
-    "eserved\030\002 \001(\010\022\016\n\006rejoin\030\003 \001(\010\022\024\n\014service"
-    "_type\030\004 \001(\r\"|\n\025SendInvitationRequest\022+\n\n"
-    "channel_id\030\001 \001(\0132\027.bnet.protocol.EntityI"
-    "d\022\020\n\010reserved\030\002 \001(\010\022\016\n\006rejoin\030\003 \001(\010\022\024\n\014s"
-    "ervice_type\030\004 \001(\r\"\244\001\n\024InvitationCollecti"
-    "on\022\024\n\014service_type\030\001 \001(\r\022 \n\030max_received"
-    "_invitations\030\002 \001(\r\022\021\n\tobject_id\030\003 \001(\004\022A\n"
-    "\023received_invitation\030\004 \003(\0132$.bnet.protoc"
-    "ol.invitation.Invitation", 624);
+    "protocol.channel.ChannelDescription\022\027\n\010r"
+    "eserved\030\002 \001(\010:\005false\022\025\n\006rejoin\030\003 \001(\010:\005fa"
+    "lse\022\024\n\014service_type\030\004 \001(\r2n\n\022channel_inv"
+    "itation\022$.bnet.protocol.invitation.Invit"
+    "ation\030i \001(\0132,.bnet.protocol.channel_invi"
+    "tation.Invitation\"\203\002\n\025SendInvitationRequ"
+    "est\022+\n\nchannel_id\030\001 \001(\0132\027.bnet.protocol."
+    "EntityId\022\020\n\010reserved\030\002 \001(\010\022\016\n\006rejoin\030\003 \001"
+    "(\010\022\024\n\014service_type\030\004 \001(\r2\204\001\n\022channel_inv"
+    "itation\022/.bnet.protocol.invitation.SendI"
+    "nvitationRequest\030i \001(\01327.bnet.protocol.c"
+    "hannel_invitation.SendInvitationRequest\""
+    "\244\001\n\024InvitationCollection\022\024\n\014service_type"
+    "\030\001 \001(\r\022 \n\030max_received_invitations\030\002 \001(\r"
+    "\022\021\n\tobject_id\030\003 \001(\004\022A\n\023received_invitati"
+    "on\030\004 \003(\0132$.bnet.protocol.invitation.Invi"
+    "tation", 886);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "service/channel_invitation/channel_invitation_types.proto", &protobuf_RegisterTypes);
   Invitation::default_instance_ = new Invitation();
   SendInvitationRequest::default_instance_ = new SendInvitationRequest();
   InvitationCollection::default_instance_ = new InvitationCollection();
   Invitation::default_instance_->InitAsDefaultInstance();
+  ::google::protobuf::internal::ExtensionSet::RegisterMessageExtension(
+    &::bnet::protocol::invitation::Invitation::default_instance(),
+    105, 11, false, false,
+    &::bnet::protocol::channel_invitation::Invitation::default_instance());
   SendInvitationRequest::default_instance_->InitAsDefaultInstance();
+  ::google::protobuf::internal::ExtensionSet::RegisterMessageExtension(
+    &::bnet::protocol::invitation::SendInvitationRequest::default_instance(),
+    105, 11, false, false,
+    &::bnet::protocol::channel_invitation::SendInvitationRequest::default_instance());
   InvitationCollection::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_service_2fchannel_5finvitation_2fchannel_5finvitation_5ftypes_2eproto);
 }
@@ -177,6 +192,12 @@ const int Invitation::kRejoinFieldNumber;
 const int Invitation::kServiceTypeFieldNumber;
 #endif  // !_MSC_VER
 
+#ifndef _MSC_VER
+const int Invitation::kChannelInvitationFieldNumber;
+#endif
+::google::protobuf::internal::ExtensionIdentifier< ::bnet::protocol::invitation::Invitation,
+    ::google::protobuf::internal::MessageTypeTraits< ::bnet::protocol::channel_invitation::Invitation >, 11, false >
+  Invitation::channel_invitation(kChannelInvitationFieldNumber, ::bnet::protocol::channel_invitation::Invitation::default_instance());
 Invitation::Invitation()
   : ::google::protobuf::Message() {
   SharedCtor();
@@ -263,7 +284,7 @@ bool Invitation::MergePartialFromCodedStream(
         break;
       }
       
-      // optional bool reserved = 2;
+      // optional bool reserved = 2 [default = false];
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -279,7 +300,7 @@ bool Invitation::MergePartialFromCodedStream(
         break;
       }
       
-      // optional bool rejoin = 3;
+      // optional bool rejoin = 3 [default = false];
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -335,12 +356,12 @@ void Invitation::SerializeWithCachedSizes(
       1, this->channel_description(), output);
   }
   
-  // optional bool reserved = 2;
+  // optional bool reserved = 2 [default = false];
   if (has_reserved()) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(2, this->reserved(), output);
   }
   
-  // optional bool rejoin = 3;
+  // optional bool rejoin = 3 [default = false];
   if (has_rejoin()) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(3, this->rejoin(), output);
   }
@@ -365,12 +386,12 @@ void Invitation::SerializeWithCachedSizes(
         1, this->channel_description(), target);
   }
   
-  // optional bool reserved = 2;
+  // optional bool reserved = 2 [default = false];
   if (has_reserved()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(2, this->reserved(), target);
   }
   
-  // optional bool rejoin = 3;
+  // optional bool rejoin = 3 [default = false];
   if (has_rejoin()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(3, this->rejoin(), target);
   }
@@ -398,12 +419,12 @@ int Invitation::ByteSize() const {
           this->channel_description());
     }
     
-    // optional bool reserved = 2;
+    // optional bool reserved = 2 [default = false];
     if (has_reserved()) {
       total_size += 1 + 1;
     }
     
-    // optional bool rejoin = 3;
+    // optional bool rejoin = 3 [default = false];
     if (has_rejoin()) {
       total_size += 1 + 1;
     }
@@ -509,6 +530,12 @@ const int SendInvitationRequest::kRejoinFieldNumber;
 const int SendInvitationRequest::kServiceTypeFieldNumber;
 #endif  // !_MSC_VER
 
+#ifndef _MSC_VER
+const int SendInvitationRequest::kChannelInvitationFieldNumber;
+#endif
+::google::protobuf::internal::ExtensionIdentifier< ::bnet::protocol::invitation::SendInvitationRequest,
+    ::google::protobuf::internal::MessageTypeTraits< ::bnet::protocol::channel_invitation::SendInvitationRequest >, 11, false >
+  SendInvitationRequest::channel_invitation(kChannelInvitationFieldNumber, ::bnet::protocol::channel_invitation::SendInvitationRequest::default_instance());
 SendInvitationRequest::SendInvitationRequest()
   : ::google::protobuf::Message() {
   SharedCtor();

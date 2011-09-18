@@ -1,0 +1,23 @@
+if [ -z "$INCLUDE" ]; then
+	export INCLUDE=/usr/local/include
+    echo "INCLUDE not set, assuming /user/lib/include"
+fi  
+if [ -z "$LIB" ]; then
+	export LIB=/usr/local/lib/
+    echo "LIB not set, assuming /usr/local/lib/"
+fi  
+
+echo "CC=g++" > Makefile
+printf "PRE=\$(CC) -c \n" >> Makefile
+printf "POST= -I${PWD} -I${INCLUDE} -L${LIB} -lprotobuf\n" >> Makefile
+printf "all: \n" >> Makefile
+echo "" > Makefile.tmp
+find -name "*.cc" -exec  echo 'echo " {} " | sed "s/\.\/\(.*\)\.cc/\1.cc -o \1.o/" | sed "s/\(.*\)/\t\t\${PRE}\1\${POST}/" >> Makefile' \; >> Makefile.tmp
+$(PWD)/Makefile.tmp
+echo "" >> Makefile
+echo "" >> Makefile
+echo "" >> Makefile
+echo "" >> Makefile
+
+
+

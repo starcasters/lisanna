@@ -34,6 +34,8 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* UnregisterClientRequest_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   UnregisterClientRequest_reflection_ = NULL;
+const ::google::protobuf::ServiceDescriptor* NotificationService_descriptor_ = NULL;
+const ::google::protobuf::ServiceDescriptor* NotificationListener_descriptor_ = NULL;
 
 }  // namespace
 
@@ -124,6 +126,8 @@ void protobuf_AssignDesc_service_2fnotification_2fnotification_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(UnregisterClientRequest));
+  NotificationService_descriptor_ = file->service(0);
+  NotificationListener_descriptor_ = file->service(1);
 }
 
 namespace {
@@ -189,7 +193,21 @@ void protobuf_AddDesc_service_2fnotification_2fnotification_2eproto() {
     "rocessId\"C\n\025RegisterClientRequest\022*\n\tent"
     "ity_id\030\001 \002(\0132\027.bnet.protocol.EntityId\"E\n"
     "\027UnregisterClientRequest\022*\n\tentity_id\030\001 "
-    "\002(\0132\027.bnet.protocol.EntityId", 668);
+    "\002(\0132\027.bnet.protocol.EntityId2\223\003\n\023Notific"
+    "ationService\022S\n\020SendNotification\022(.bnet."
+    "protocol.notification.Notification\032\025.bne"
+    "t.protocol.NoData\022Z\n\016RegisterClient\0221.bn"
+    "et.protocol.notification.RegisterClientR"
+    "equest\032\025.bnet.protocol.NoData\022^\n\020Unregis"
+    "terClient\0223.bnet.protocol.notification.U"
+    "nregisterClientRequest\032\025.bnet.protocol.N"
+    "oData\022k\n\nFindClient\022-.bnet.protocol.noti"
+    "fication.FindClientRequest\032..bnet.protoc"
+    "ol.notification.FindClientResponse2v\n\024No"
+    "tificationListener\022^\n\026OnNotificationRece"
+    "ived\022(.bnet.protocol.notification.Notifi"
+    "cation\032\032.bnet.protocol.NO_RESPONSEB\022B\rCN"
+    "otification\200\001\001", 1214);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "service/notification/notification.proto", &protobuf_RegisterTypes);
   Notification::default_instance_ = new Notification();
@@ -1528,6 +1546,248 @@ void UnregisterClientRequest::Swap(UnregisterClientRequest* other) {
   return metadata;
 }
 
+
+// ===================================================================
+
+NotificationService::~NotificationService() {}
+
+const ::google::protobuf::ServiceDescriptor* NotificationService::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return NotificationService_descriptor_;
+}
+
+const ::google::protobuf::ServiceDescriptor* NotificationService::GetDescriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return NotificationService_descriptor_;
+}
+
+void NotificationService::SendNotification(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::notification::Notification*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method SendNotification() not implemented.");
+  done->Run();
+}
+
+void NotificationService::RegisterClient(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::notification::RegisterClientRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method RegisterClient() not implemented.");
+  done->Run();
+}
+
+void NotificationService::UnregisterClient(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::notification::UnregisterClientRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method UnregisterClient() not implemented.");
+  done->Run();
+}
+
+void NotificationService::FindClient(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::notification::FindClientRequest*,
+                         ::bnet::protocol::notification::FindClientResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method FindClient() not implemented.");
+  done->Run();
+}
+
+void NotificationService::CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                             ::google::protobuf::RpcController* controller,
+                             const ::google::protobuf::Message* request,
+                             ::google::protobuf::Message* response,
+                             ::google::protobuf::Closure* done) {
+  GOOGLE_DCHECK_EQ(method->service(), NotificationService_descriptor_);
+  switch(method->index()) {
+    case 0:
+      SendNotification(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::notification::Notification*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    case 1:
+      RegisterClient(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::notification::RegisterClientRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    case 2:
+      UnregisterClient(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::notification::UnregisterClientRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    case 3:
+      FindClient(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::notification::FindClientRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::notification::FindClientResponse*>(response),
+             done);
+      break;
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      break;
+  }
+}
+
+const ::google::protobuf::Message& NotificationService::GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::notification::Notification::default_instance();
+    case 1:
+      return ::bnet::protocol::notification::RegisterClientRequest::default_instance();
+    case 2:
+      return ::bnet::protocol::notification::UnregisterClientRequest::default_instance();
+    case 3:
+      return ::bnet::protocol::notification::FindClientRequest::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+const ::google::protobuf::Message& NotificationService::GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::NoData::default_instance();
+    case 1:
+      return ::bnet::protocol::NoData::default_instance();
+    case 2:
+      return ::bnet::protocol::NoData::default_instance();
+    case 3:
+      return ::bnet::protocol::notification::FindClientResponse::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+NotificationService_Stub::NotificationService_Stub(::google::protobuf::RpcChannel* channel)
+  : channel_(channel), owns_channel_(false) {}
+NotificationService_Stub::NotificationService_Stub(
+    ::google::protobuf::RpcChannel* channel,
+    ::google::protobuf::Service::ChannelOwnership ownership)
+  : channel_(channel),
+    owns_channel_(ownership == ::google::protobuf::Service::STUB_OWNS_CHANNEL) {}
+NotificationService_Stub::~NotificationService_Stub() {
+  if (owns_channel_) delete channel_;
+}
+
+void NotificationService_Stub::SendNotification(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::notification::Notification* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(0),
+                       controller, request, response, done);
+}
+void NotificationService_Stub::RegisterClient(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::notification::RegisterClientRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(1),
+                       controller, request, response, done);
+}
+void NotificationService_Stub::UnregisterClient(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::notification::UnregisterClientRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(2),
+                       controller, request, response, done);
+}
+void NotificationService_Stub::FindClient(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::notification::FindClientRequest* request,
+                              ::bnet::protocol::notification::FindClientResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(3),
+                       controller, request, response, done);
+}
+// ===================================================================
+
+NotificationListener::~NotificationListener() {}
+
+const ::google::protobuf::ServiceDescriptor* NotificationListener::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return NotificationListener_descriptor_;
+}
+
+const ::google::protobuf::ServiceDescriptor* NotificationListener::GetDescriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return NotificationListener_descriptor_;
+}
+
+void NotificationListener::OnNotificationReceived(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::notification::Notification*,
+                         ::bnet::protocol::NO_RESPONSE*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method OnNotificationReceived() not implemented.");
+  done->Run();
+}
+
+void NotificationListener::CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                             ::google::protobuf::RpcController* controller,
+                             const ::google::protobuf::Message* request,
+                             ::google::protobuf::Message* response,
+                             ::google::protobuf::Closure* done) {
+  GOOGLE_DCHECK_EQ(method->service(), NotificationListener_descriptor_);
+  switch(method->index()) {
+    case 0:
+      OnNotificationReceived(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::notification::Notification*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NO_RESPONSE*>(response),
+             done);
+      break;
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      break;
+  }
+}
+
+const ::google::protobuf::Message& NotificationListener::GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::notification::Notification::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+const ::google::protobuf::Message& NotificationListener::GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::NO_RESPONSE::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+NotificationListener_Stub::NotificationListener_Stub(::google::protobuf::RpcChannel* channel)
+  : channel_(channel), owns_channel_(false) {}
+NotificationListener_Stub::NotificationListener_Stub(
+    ::google::protobuf::RpcChannel* channel,
+    ::google::protobuf::Service::ChannelOwnership ownership)
+  : channel_(channel),
+    owns_channel_(ownership == ::google::protobuf::Service::STUB_OWNS_CHANNEL) {}
+NotificationListener_Stub::~NotificationListener_Stub() {
+  if (owns_channel_) delete channel_;
+}
+
+void NotificationListener_Stub::OnNotificationReceived(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::notification::Notification* request,
+                              ::bnet::protocol::NO_RESPONSE* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(0),
+                       controller, request, response, done);
+}
 
 // @@protoc_insertion_point(namespace_scope)
 

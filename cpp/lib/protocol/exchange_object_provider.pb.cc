@@ -232,7 +232,7 @@ void protobuf_AddDesc_lib_2fprotocol_2fexchange_5fobject_5fprovider_2eproto() {
     "obFrom\022\023\n\013description\030\002 \002(\t\022\016\n\006amount\030\003 "
     "\001(\004\"c\n\031GetPaymentMethodsResponse\022F\n\007meth"
     "ods\030\001 \003(\01325.bnet.protocol.exchange_objec"
-    "t_provider.PaymentMethod", 1144);
+    "t_provider.PaymentMethodB\003\200\001\001", 1149);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "lib/protocol/exchange_object_provider.proto", &protobuf_RegisterTypes);
   ReportAuthorizeRequest::default_instance_ = new ReportAuthorizeRequest();

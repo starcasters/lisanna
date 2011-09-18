@@ -23,6 +23,7 @@
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/generated_message_reflection.h>
+#include <google/protobuf/service.h>
 #include "lib/protocol/attribute.pb.h"
 #include "lib/protocol/entity.pb.h"
 #include "lib/rpc/rpc.pb.h"
@@ -344,7 +345,7 @@ class SendMessageRequest : public ::google::protobuf::Message {
   inline ::bnet::protocol::channel::Message* mutable_message();
   inline ::bnet::protocol::channel::Message* release_message();
   
-  // optional uint64 required_privileges = 3;
+  // optional uint64 required_privileges = 3 [default = 0];
   inline bool has_required_privileges() const;
   inline void clear_required_privileges();
   static const int kRequiredPrivilegesFieldNumber = 3;
@@ -1228,7 +1229,7 @@ class SendMessageNotification : public ::google::protobuf::Message {
   inline ::bnet::protocol::channel::Message* mutable_message();
   inline ::bnet::protocol::channel::Message* release_message();
   
-  // optional uint64 required_privileges = 3;
+  // optional uint64 required_privileges = 3 [default = 0];
   inline bool has_required_privileges() const;
   inline void clear_required_privileges();
   static const int kRequiredPrivilegesFieldNumber = 3;
@@ -1450,6 +1451,311 @@ class UpdateMemberStateNotification : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static UpdateMemberStateNotification* default_instance_;
 };
+// ===================================================================
+
+class Channel_Stub;
+
+class Channel : public ::google::protobuf::Service {
+ protected:
+  // This class should be treated as an abstract interface.
+  inline Channel() {};
+ public:
+  virtual ~Channel();
+  
+  typedef Channel_Stub Stub;
+  
+  static const ::google::protobuf::ServiceDescriptor* descriptor();
+  
+  virtual void AddMember(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::AddMemberRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void RemoveMember(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::RemoveMemberRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void SendMessage(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::SendMessageRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void UpdateChannelState(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::UpdateChannelStateRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void UpdateMemberState(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::UpdateMemberStateRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void Dissolve(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::DissolveRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void SetRoles(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::SetRolesRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  
+  // implements Service ----------------------------------------------
+  
+  const ::google::protobuf::ServiceDescriptor* GetDescriptor();
+  void CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                  ::google::protobuf::RpcController* controller,
+                  const ::google::protobuf::Message* request,
+                  ::google::protobuf::Message* response,
+                  ::google::protobuf::Closure* done);
+  const ::google::protobuf::Message& GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+  const ::google::protobuf::Message& GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+
+ private:
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(Channel);
+};
+
+class Channel_Stub : public Channel {
+ public:
+  Channel_Stub(::google::protobuf::RpcChannel* channel);
+  Channel_Stub(::google::protobuf::RpcChannel* channel,
+                   ::google::protobuf::Service::ChannelOwnership ownership);
+  ~Channel_Stub();
+  
+  inline ::google::protobuf::RpcChannel* channel() { return channel_; }
+  
+  // implements Channel ------------------------------------------
+  
+  void AddMember(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::AddMemberRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void RemoveMember(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::RemoveMemberRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void SendMessage(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::SendMessageRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void UpdateChannelState(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::UpdateChannelStateRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void UpdateMemberState(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::UpdateMemberStateRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void Dissolve(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::DissolveRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void SetRoles(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::SetRolesRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+ private:
+  ::google::protobuf::RpcChannel* channel_;
+  bool owns_channel_;
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(Channel_Stub);
+};
+
+
+// -------------------------------------------------------------------
+
+class ChannelOwner_Stub;
+
+class ChannelOwner : public ::google::protobuf::Service {
+ protected:
+  // This class should be treated as an abstract interface.
+  inline ChannelOwner() {};
+ public:
+  virtual ~ChannelOwner();
+  
+  typedef ChannelOwner_Stub Stub;
+  
+  static const ::google::protobuf::ServiceDescriptor* descriptor();
+  
+  virtual void GetChannelId(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::GetChannelIdRequest* request,
+                       ::bnet::protocol::channel::GetChannelIdResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void CreateChannel(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::CreateChannelRequest* request,
+                       ::bnet::protocol::channel::CreateChannelResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void JoinChannel(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::JoinChannelRequest* request,
+                       ::bnet::protocol::channel::JoinChannelResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void FindChannel(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::FindChannelRequest* request,
+                       ::bnet::protocol::channel::FindChannelResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void GetChannelInfo(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::GetChannelInfoRequest* request,
+                       ::bnet::protocol::channel::GetChannelInfoResponse* response,
+                       ::google::protobuf::Closure* done);
+  
+  // implements Service ----------------------------------------------
+  
+  const ::google::protobuf::ServiceDescriptor* GetDescriptor();
+  void CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                  ::google::protobuf::RpcController* controller,
+                  const ::google::protobuf::Message* request,
+                  ::google::protobuf::Message* response,
+                  ::google::protobuf::Closure* done);
+  const ::google::protobuf::Message& GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+  const ::google::protobuf::Message& GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+
+ private:
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ChannelOwner);
+};
+
+class ChannelOwner_Stub : public ChannelOwner {
+ public:
+  ChannelOwner_Stub(::google::protobuf::RpcChannel* channel);
+  ChannelOwner_Stub(::google::protobuf::RpcChannel* channel,
+                   ::google::protobuf::Service::ChannelOwnership ownership);
+  ~ChannelOwner_Stub();
+  
+  inline ::google::protobuf::RpcChannel* channel() { return channel_; }
+  
+  // implements ChannelOwner ------------------------------------------
+  
+  void GetChannelId(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::GetChannelIdRequest* request,
+                       ::bnet::protocol::channel::GetChannelIdResponse* response,
+                       ::google::protobuf::Closure* done);
+  void CreateChannel(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::CreateChannelRequest* request,
+                       ::bnet::protocol::channel::CreateChannelResponse* response,
+                       ::google::protobuf::Closure* done);
+  void JoinChannel(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::JoinChannelRequest* request,
+                       ::bnet::protocol::channel::JoinChannelResponse* response,
+                       ::google::protobuf::Closure* done);
+  void FindChannel(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::FindChannelRequest* request,
+                       ::bnet::protocol::channel::FindChannelResponse* response,
+                       ::google::protobuf::Closure* done);
+  void GetChannelInfo(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::GetChannelInfoRequest* request,
+                       ::bnet::protocol::channel::GetChannelInfoResponse* response,
+                       ::google::protobuf::Closure* done);
+ private:
+  ::google::protobuf::RpcChannel* channel_;
+  bool owns_channel_;
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ChannelOwner_Stub);
+};
+
+
+// -------------------------------------------------------------------
+
+class ChannelSubscriber_Stub;
+
+class ChannelSubscriber : public ::google::protobuf::Service {
+ protected:
+  // This class should be treated as an abstract interface.
+  inline ChannelSubscriber() {};
+ public:
+  virtual ~ChannelSubscriber();
+  
+  typedef ChannelSubscriber_Stub Stub;
+  
+  static const ::google::protobuf::ServiceDescriptor* descriptor();
+  
+  virtual void NotifyAdd(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::AddNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  virtual void NotifyJoin(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::JoinNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  virtual void NotifyRemove(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::RemoveNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  virtual void NotifyLeave(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::LeaveNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  virtual void NotifySendMessage(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::SendMessageNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  virtual void NotifyUpdateChannelState(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::UpdateChannelStateNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  virtual void NotifyUpdateMemberState(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::UpdateMemberStateNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  
+  // implements Service ----------------------------------------------
+  
+  const ::google::protobuf::ServiceDescriptor* GetDescriptor();
+  void CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                  ::google::protobuf::RpcController* controller,
+                  const ::google::protobuf::Message* request,
+                  ::google::protobuf::Message* response,
+                  ::google::protobuf::Closure* done);
+  const ::google::protobuf::Message& GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+  const ::google::protobuf::Message& GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+
+ private:
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ChannelSubscriber);
+};
+
+class ChannelSubscriber_Stub : public ChannelSubscriber {
+ public:
+  ChannelSubscriber_Stub(::google::protobuf::RpcChannel* channel);
+  ChannelSubscriber_Stub(::google::protobuf::RpcChannel* channel,
+                   ::google::protobuf::Service::ChannelOwnership ownership);
+  ~ChannelSubscriber_Stub();
+  
+  inline ::google::protobuf::RpcChannel* channel() { return channel_; }
+  
+  // implements ChannelSubscriber ------------------------------------------
+  
+  void NotifyAdd(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::AddNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  void NotifyJoin(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::JoinNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  void NotifyRemove(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::RemoveNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  void NotifyLeave(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::LeaveNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  void NotifySendMessage(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::SendMessageNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  void NotifyUpdateChannelState(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::UpdateChannelStateNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  void NotifyUpdateMemberState(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::channel::UpdateMemberStateNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+ private:
+  ::google::protobuf::RpcChannel* channel_;
+  bool owns_channel_;
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ChannelSubscriber_Stub);
+};
+
+
 // ===================================================================
 
 
@@ -1712,7 +2018,7 @@ inline ::bnet::protocol::channel::Message* SendMessageRequest::release_message()
   return temp;
 }
 
-// optional uint64 required_privileges = 3;
+// optional uint64 required_privileges = 3 [default = 0];
 inline bool SendMessageRequest::has_required_privileges() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
@@ -2320,7 +2626,7 @@ inline ::bnet::protocol::channel::Message* SendMessageNotification::release_mess
   return temp;
 }
 
-// optional uint64 required_privileges = 3;
+// optional uint64 required_privileges = 3 [default = 0];
 inline bool SendMessageNotification::has_required_privileges() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }

@@ -129,7 +129,7 @@ void protobuf_AddDesc_service_2ftoon_2ftoon_2eproto() {
     "am\030\002 \002(\007\022\016\n\006region\030\003 \002(\r\022\r\n\005realm\030\004 \002(\r\""
     "\035\n\010ToonName\022\021\n\tfull_name\030\001 \002(\t\"6\n\010ToonIn"
     "fo\022*\n\004name\030\001 \002(\0132\034.bnet.protocol.toon.To"
-    "onName", 206);
+    "onNameB\003\200\001\001", 211);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "service/toon/toon.proto", &protobuf_RegisterTypes);
   ToonHandle::default_instance_ = new ToonHandle();

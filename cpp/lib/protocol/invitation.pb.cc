@@ -62,7 +62,7 @@ void protobuf_AssignDesc_lib_2fprotocol_2finvitation_2eproto() {
       Invitation_offsets_,
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Invitation, _has_bits_[0]),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Invitation, _unknown_fields_),
-      -1,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Invitation, _extensions_),
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Invitation));
@@ -99,7 +99,7 @@ void protobuf_AssignDesc_lib_2fprotocol_2finvitation_2eproto() {
       SendInvitationRequest_offsets_,
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SendInvitationRequest, _has_bits_[0]),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SendInvitationRequest, _unknown_fields_),
-      -1,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SendInvitationRequest, _extensions_),
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(SendInvitationRequest));
@@ -185,28 +185,29 @@ void protobuf_AddDesc_lib_2fprotocol_2finvitation_2eproto() {
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\035lib/protocol/invitation.proto\022\030bnet.pr"
     "otocol.invitation\032\034lib/protocol/attribut"
-    "e.proto\032\031lib/protocol/entity.proto\"\366\001\n\nI"
+    "e.proto\032\031lib/protocol/entity.proto\"\375\001\n\nI"
     "nvitation\022\n\n\002id\030\001 \002(\006\0221\n\020inviter_identit"
     "y\030\002 \002(\0132\027.bnet.protocol.Identity\0221\n\020invi"
     "tee_identity\030\003 \002(\0132\027.bnet.protocol.Ident"
     "ity\022\024\n\014inviter_name\030\004 \001(\t\022\024\n\014invitee_nam"
     "e\030\005 \001(\t\022\032\n\022invitation_message\030\006 \001(\t\022\025\n\rc"
     "reation_time\030\007 \001(\004\022\027\n\017expiration_time\030\010 "
-    "\001(\004\"\307\001\n\nSuggestion\022+\n\nchannel_id\030\001 \001(\0132\027"
-    ".bnet.protocol.EntityId\022-\n\014suggester_id\030"
-    "\002 \002(\0132\027.bnet.protocol.EntityId\022-\n\014sugges"
-    "tee_id\030\003 \002(\0132\027.bnet.protocol.EntityId\022\026\n"
-    "\016suggester_name\030\004 \001(\t\022\026\n\016suggestee_name\030"
-    "\005 \001(\t\"\251\001\n\025SendInvitationRequest\022/\n\016agent"
-    "_identity\030\001 \001(\0132\027.bnet.protocol.Identity"
-    "\022*\n\ttarget_id\030\002 \002(\0132\027.bnet.protocol.Enti"
-    "tyId\022\032\n\022invitation_message\030\003 \001(\t\022\027\n\017expi"
-    "ration_time\030\004 \001(\004\"R\n\026SendInvitationRespo"
-    "nse\0228\n\ninvitation\030\002 \001(\0132$.bnet.protocol."
-    "invitation.Invitation\"~\n\016GenericRequest\022"
-    ")\n\010agent_id\030\001 \001(\0132\027.bnet.protocol.Entity"
-    "Id\022*\n\ttarget_id\030\002 \001(\0132\027.bnet.protocol.En"
-    "tityId\022\025\n\rinvitation_id\030\003 \002(\006", 949);
+    "\001(\004*\005\010d\020\220N\"\307\001\n\nSuggestion\022+\n\nchannel_id\030"
+    "\001 \001(\0132\027.bnet.protocol.EntityId\022-\n\014sugges"
+    "ter_id\030\002 \002(\0132\027.bnet.protocol.EntityId\022-\n"
+    "\014suggestee_id\030\003 \002(\0132\027.bnet.protocol.Enti"
+    "tyId\022\026\n\016suggester_name\030\004 \001(\t\022\026\n\016suggeste"
+    "e_name\030\005 \001(\t\"\263\001\n\025SendInvitationRequest\022/"
+    "\n\016agent_identity\030\001 \001(\0132\027.bnet.protocol.I"
+    "dentity\022*\n\ttarget_id\030\002 \002(\0132\027.bnet.protoc"
+    "ol.EntityId\022\032\n\022invitation_message\030\003 \001(\t\022"
+    "\032\n\017expiration_time\030\004 \001(\004:\0010*\005\010d\020\220N\"R\n\026Se"
+    "ndInvitationResponse\0228\n\ninvitation\030\002 \001(\013"
+    "2$.bnet.protocol.invitation.Invitation\"~"
+    "\n\016GenericRequest\022)\n\010agent_id\030\001 \001(\0132\027.bne"
+    "t.protocol.EntityId\022*\n\ttarget_id\030\002 \001(\0132\027"
+    ".bnet.protocol.EntityId\022\025\n\rinvitation_id"
+    "\030\003 \002(\006B\rB\013CInvitation", 981);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "lib/protocol/invitation.proto", &protobuf_RegisterTypes);
   Invitation::default_instance_ = new Invitation();
@@ -313,6 +314,7 @@ Invitation* Invitation::New() const {
 }
 
 void Invitation::Clear() {
+  _extensions_.Clear();
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     id_ = GOOGLE_ULONGLONG(0);
     if (has_inviter_identity()) {
@@ -481,6 +483,11 @@ bool Invitation::MergePartialFromCodedStream(
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
           return true;
         }
+        if ((800u <= tag && tag < 80000u)) {
+          DO_(_extensions_.ParseField(tag, input, default_instance_,
+                                      mutable_unknown_fields()));
+          continue;
+        }
         DO_(::google::protobuf::internal::WireFormat::SkipField(
               input, tag, mutable_unknown_fields()));
         break;
@@ -546,6 +553,10 @@ void Invitation::SerializeWithCachedSizes(
   if (has_expiration_time()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt64(8, this->expiration_time(), output);
   }
+  
+  // Extension range [100, 10000)
+  _extensions_.SerializeWithCachedSizes(
+      100, 10000, output);
   
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
@@ -614,6 +625,10 @@ void Invitation::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(8, this->expiration_time(), target);
   }
   
+  // Extension range [100, 10000)
+  target = _extensions_.SerializeWithCachedSizesToArray(
+      100, 10000, target);
+  
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
@@ -680,6 +695,8 @@ int Invitation::ByteSize() const {
     }
     
   }
+  total_size += _extensions_.ByteSize();
+  
   if (!unknown_fields().empty()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
@@ -731,6 +748,7 @@ void Invitation::MergeFrom(const Invitation& from) {
       set_expiration_time(from.expiration_time());
     }
   }
+  _extensions_.MergeFrom(from._extensions_);
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
@@ -755,7 +773,8 @@ bool Invitation::IsInitialized() const {
   if (has_invitee_identity()) {
     if (!this->invitee_identity().IsInitialized()) return false;
   }
-  return true;
+  
+  if (!_extensions_.IsInitialized()) return false;  return true;
 }
 
 void Invitation::Swap(Invitation* other) {
@@ -771,6 +790,7 @@ void Invitation::Swap(Invitation* other) {
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
+    _extensions_.Swap(&other->_extensions_);
   }
 }
 
@@ -1278,6 +1298,7 @@ SendInvitationRequest* SendInvitationRequest::New() const {
 }
 
 void SendInvitationRequest::Clear() {
+  _extensions_.Clear();
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (has_agent_identity()) {
       if (agent_identity_ != NULL) agent_identity_->::bnet::protocol::Identity::Clear();
@@ -1346,7 +1367,7 @@ bool SendInvitationRequest::MergePartialFromCodedStream(
         break;
       }
       
-      // optional uint64 expiration_time = 4;
+      // optional uint64 expiration_time = 4 [default = 0];
       case 4: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -1367,6 +1388,11 @@ bool SendInvitationRequest::MergePartialFromCodedStream(
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
           return true;
+        }
+        if ((800u <= tag && tag < 80000u)) {
+          DO_(_extensions_.ParseField(tag, input, default_instance_,
+                                      mutable_unknown_fields()));
+          continue;
         }
         DO_(::google::protobuf::internal::WireFormat::SkipField(
               input, tag, mutable_unknown_fields()));
@@ -1401,10 +1427,14 @@ void SendInvitationRequest::SerializeWithCachedSizes(
       3, this->invitation_message(), output);
   }
   
-  // optional uint64 expiration_time = 4;
+  // optional uint64 expiration_time = 4 [default = 0];
   if (has_expiration_time()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt64(4, this->expiration_time(), output);
   }
+  
+  // Extension range [100, 10000)
+  _extensions_.SerializeWithCachedSizes(
+      100, 10000, output);
   
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
@@ -1438,10 +1468,14 @@ void SendInvitationRequest::SerializeWithCachedSizes(
         3, this->invitation_message(), target);
   }
   
-  // optional uint64 expiration_time = 4;
+  // optional uint64 expiration_time = 4 [default = 0];
   if (has_expiration_time()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(4, this->expiration_time(), target);
   }
+  
+  // Extension range [100, 10000)
+  target = _extensions_.SerializeWithCachedSizesToArray(
+      100, 10000, target);
   
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
@@ -1475,7 +1509,7 @@ int SendInvitationRequest::ByteSize() const {
           this->invitation_message());
     }
     
-    // optional uint64 expiration_time = 4;
+    // optional uint64 expiration_time = 4 [default = 0];
     if (has_expiration_time()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt64Size(
@@ -1483,6 +1517,8 @@ int SendInvitationRequest::ByteSize() const {
     }
     
   }
+  total_size += _extensions_.ByteSize();
+  
   if (!unknown_fields().empty()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
@@ -1522,6 +1558,7 @@ void SendInvitationRequest::MergeFrom(const SendInvitationRequest& from) {
       set_expiration_time(from.expiration_time());
     }
   }
+  _extensions_.MergeFrom(from._extensions_);
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
@@ -1546,7 +1583,8 @@ bool SendInvitationRequest::IsInitialized() const {
   if (has_target_id()) {
     if (!this->target_id().IsInitialized()) return false;
   }
-  return true;
+  
+  if (!_extensions_.IsInitialized()) return false;  return true;
 }
 
 void SendInvitationRequest::Swap(SendInvitationRequest* other) {
@@ -1558,6 +1596,7 @@ void SendInvitationRequest::Swap(SendInvitationRequest* other) {
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
+    _extensions_.Swap(&other->_extensions_);
   }
 }
 

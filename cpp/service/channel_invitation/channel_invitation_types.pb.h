@@ -105,14 +105,14 @@ class Invitation : public ::google::protobuf::Message {
   inline ::bnet::protocol::channel::ChannelDescription* mutable_channel_description();
   inline ::bnet::protocol::channel::ChannelDescription* release_channel_description();
   
-  // optional bool reserved = 2;
+  // optional bool reserved = 2 [default = false];
   inline bool has_reserved() const;
   inline void clear_reserved();
   static const int kReservedFieldNumber = 2;
   inline bool reserved() const;
   inline void set_reserved(bool value);
   
-  // optional bool rejoin = 3;
+  // optional bool rejoin = 3 [default = false];
   inline bool has_rejoin() const;
   inline void clear_rejoin();
   static const int kRejoinFieldNumber = 3;
@@ -126,6 +126,10 @@ class Invitation : public ::google::protobuf::Message {
   inline ::google::protobuf::uint32 service_type() const;
   inline void set_service_type(::google::protobuf::uint32 value);
   
+  static const int kChannelInvitationFieldNumber = 105;
+  static ::google::protobuf::internal::ExtensionIdentifier< ::bnet::protocol::invitation::Invitation,
+      ::google::protobuf::internal::MessageTypeTraits< ::bnet::protocol::channel_invitation::Invitation >, 11, false >
+    channel_invitation;
   // @@protoc_insertion_point(class_scope:bnet.protocol.channel_invitation.Invitation)
  private:
   inline void set_has_channel_description();
@@ -239,6 +243,10 @@ class SendInvitationRequest : public ::google::protobuf::Message {
   inline ::google::protobuf::uint32 service_type() const;
   inline void set_service_type(::google::protobuf::uint32 value);
   
+  static const int kChannelInvitationFieldNumber = 105;
+  static ::google::protobuf::internal::ExtensionIdentifier< ::bnet::protocol::invitation::SendInvitationRequest,
+      ::google::protobuf::internal::MessageTypeTraits< ::bnet::protocol::channel_invitation::SendInvitationRequest >, 11, false >
+    channel_invitation;
   // @@protoc_insertion_point(class_scope:bnet.protocol.channel_invitation.SendInvitationRequest)
  private:
   inline void set_has_channel_id();
@@ -418,7 +426,7 @@ inline ::bnet::protocol::channel::ChannelDescription* Invitation::release_channe
   return temp;
 }
 
-// optional bool reserved = 2;
+// optional bool reserved = 2 [default = false];
 inline bool Invitation::has_reserved() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -440,7 +448,7 @@ inline void Invitation::set_reserved(bool value) {
   reserved_ = value;
 }
 
-// optional bool rejoin = 3;
+// optional bool rejoin = 3 [default = false];
 inline bool Invitation::has_rejoin() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }

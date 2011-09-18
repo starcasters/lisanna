@@ -49,6 +49,8 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* AuthAgreement_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   AuthAgreement_reflection_ = NULL;
+const ::google::protobuf::ServiceDescriptor* AuthenticationClient_descriptor_ = NULL;
+const ::google::protobuf::ServiceDescriptor* AuthenticationServer_descriptor_ = NULL;
 
 }  // namespace
 
@@ -225,6 +227,8 @@ void protobuf_AssignDesc_service_2fauthentication_2fauthentication_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(AuthAgreement));
+  AuthenticationClient_descriptor_ = file->service(0);
+  AuthenticationServer_descriptor_ = file->service(1);
 }
 
 namespace {
@@ -322,7 +326,18 @@ void protobuf_AddDesc_service_2fauthentication_2fauthentication_2eproto() {
     "le\030\002 \002(\t\"\201\001\n\rAuthAgreement\022\014\n\004type\030\001 \002(\t"
     "\022\017\n\007program\030\002 \002(\t\022\016\n\006scheme\030\003 \002(\r\022A\n\006loc"
     "ale\030\004 \003(\01321.bnet.protocol.authentication"
-    ".AuthAgreementLocale", 1100);
+    ".AuthAgreementLocale2\343\001\n\024AuthenticationC"
+    "lient\022o\n\nModuleLoad\022/.bnet.protocol.auth"
+    "entication.ModuleLoadRequest\0320.bnet.prot"
+    "ocol.authentication.ModuleLoadResponse\022Z"
+    "\n\rModuleMessage\0222.bnet.protocol.authenti"
+    "cation.ModuleMessageRequest\032\025.bnet.proto"
+    "col.NoData2\324\001\n\024AuthenticationServer\022`\n\005L"
+    "ogon\022*.bnet.protocol.authentication.Logo"
+    "nRequest\032+.bnet.protocol.authentication."
+    "LogonResponse\022Z\n\rModuleMessage\0222.bnet.pr"
+    "otocol.authentication.ModuleMessageReque"
+    "st\032\025.bnet.protocol.NoDataB\003\200\001\001", 1550);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "service/authentication/authentication.proto", &protobuf_RegisterTypes);
   ModuleLoadRequest::default_instance_ = new ModuleLoadRequest();
@@ -3314,6 +3329,223 @@ void AuthAgreement::Swap(AuthAgreement* other) {
   return metadata;
 }
 
+
+// ===================================================================
+
+AuthenticationClient::~AuthenticationClient() {}
+
+const ::google::protobuf::ServiceDescriptor* AuthenticationClient::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return AuthenticationClient_descriptor_;
+}
+
+const ::google::protobuf::ServiceDescriptor* AuthenticationClient::GetDescriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return AuthenticationClient_descriptor_;
+}
+
+void AuthenticationClient::ModuleLoad(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::authentication::ModuleLoadRequest*,
+                         ::bnet::protocol::authentication::ModuleLoadResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method ModuleLoad() not implemented.");
+  done->Run();
+}
+
+void AuthenticationClient::ModuleMessage(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::authentication::ModuleMessageRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method ModuleMessage() not implemented.");
+  done->Run();
+}
+
+void AuthenticationClient::CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                             ::google::protobuf::RpcController* controller,
+                             const ::google::protobuf::Message* request,
+                             ::google::protobuf::Message* response,
+                             ::google::protobuf::Closure* done) {
+  GOOGLE_DCHECK_EQ(method->service(), AuthenticationClient_descriptor_);
+  switch(method->index()) {
+    case 0:
+      ModuleLoad(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::authentication::ModuleLoadRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::authentication::ModuleLoadResponse*>(response),
+             done);
+      break;
+    case 1:
+      ModuleMessage(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::authentication::ModuleMessageRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      break;
+  }
+}
+
+const ::google::protobuf::Message& AuthenticationClient::GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::authentication::ModuleLoadRequest::default_instance();
+    case 1:
+      return ::bnet::protocol::authentication::ModuleMessageRequest::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+const ::google::protobuf::Message& AuthenticationClient::GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::authentication::ModuleLoadResponse::default_instance();
+    case 1:
+      return ::bnet::protocol::NoData::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+AuthenticationClient_Stub::AuthenticationClient_Stub(::google::protobuf::RpcChannel* channel)
+  : channel_(channel), owns_channel_(false) {}
+AuthenticationClient_Stub::AuthenticationClient_Stub(
+    ::google::protobuf::RpcChannel* channel,
+    ::google::protobuf::Service::ChannelOwnership ownership)
+  : channel_(channel),
+    owns_channel_(ownership == ::google::protobuf::Service::STUB_OWNS_CHANNEL) {}
+AuthenticationClient_Stub::~AuthenticationClient_Stub() {
+  if (owns_channel_) delete channel_;
+}
+
+void AuthenticationClient_Stub::ModuleLoad(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::authentication::ModuleLoadRequest* request,
+                              ::bnet::protocol::authentication::ModuleLoadResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(0),
+                       controller, request, response, done);
+}
+void AuthenticationClient_Stub::ModuleMessage(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::authentication::ModuleMessageRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(1),
+                       controller, request, response, done);
+}
+// ===================================================================
+
+AuthenticationServer::~AuthenticationServer() {}
+
+const ::google::protobuf::ServiceDescriptor* AuthenticationServer::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return AuthenticationServer_descriptor_;
+}
+
+const ::google::protobuf::ServiceDescriptor* AuthenticationServer::GetDescriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return AuthenticationServer_descriptor_;
+}
+
+void AuthenticationServer::Logon(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::authentication::LogonRequest*,
+                         ::bnet::protocol::authentication::LogonResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method Logon() not implemented.");
+  done->Run();
+}
+
+void AuthenticationServer::ModuleMessage(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::authentication::ModuleMessageRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method ModuleMessage() not implemented.");
+  done->Run();
+}
+
+void AuthenticationServer::CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                             ::google::protobuf::RpcController* controller,
+                             const ::google::protobuf::Message* request,
+                             ::google::protobuf::Message* response,
+                             ::google::protobuf::Closure* done) {
+  GOOGLE_DCHECK_EQ(method->service(), AuthenticationServer_descriptor_);
+  switch(method->index()) {
+    case 0:
+      Logon(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::authentication::LogonRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::authentication::LogonResponse*>(response),
+             done);
+      break;
+    case 1:
+      ModuleMessage(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::authentication::ModuleMessageRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      break;
+  }
+}
+
+const ::google::protobuf::Message& AuthenticationServer::GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::authentication::LogonRequest::default_instance();
+    case 1:
+      return ::bnet::protocol::authentication::ModuleMessageRequest::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+const ::google::protobuf::Message& AuthenticationServer::GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::authentication::LogonResponse::default_instance();
+    case 1:
+      return ::bnet::protocol::NoData::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+AuthenticationServer_Stub::AuthenticationServer_Stub(::google::protobuf::RpcChannel* channel)
+  : channel_(channel), owns_channel_(false) {}
+AuthenticationServer_Stub::AuthenticationServer_Stub(
+    ::google::protobuf::RpcChannel* channel,
+    ::google::protobuf::Service::ChannelOwnership ownership)
+  : channel_(channel),
+    owns_channel_(ownership == ::google::protobuf::Service::STUB_OWNS_CHANNEL) {}
+AuthenticationServer_Stub::~AuthenticationServer_Stub() {
+  if (owns_channel_) delete channel_;
+}
+
+void AuthenticationServer_Stub::Logon(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::authentication::LogonRequest* request,
+                              ::bnet::protocol::authentication::LogonResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(0),
+                       controller, request, response, done);
+}
+void AuthenticationServer_Stub::ModuleMessage(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::authentication::ModuleMessageRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(1),
+                       controller, request, response, done);
+}
 
 // @@protoc_insertion_point(namespace_scope)
 

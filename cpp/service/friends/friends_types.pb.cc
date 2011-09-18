@@ -109,14 +109,21 @@ void protobuf_AddDesc_service_2ffriends_2ffriends_5ftypes_2eproto() {
     "ib/protocol/invitation.proto\"d\n\006Friend\022#"
     "\n\002id\030\001 \002(\0132\027.bnet.protocol.EntityId\0225\n\ta"
     "ttribute\030\002 \003(\0132\".bnet.protocol.attribute"
-    ".Attribute\"*\n\020FriendInvitation\022\026\n\016first_"
-    "received\030\001 \001(\010", 294);
+    ".Attribute\"\233\001\n\020FriendInvitation\022\035\n\016first"
+    "_received\030\001 \001(\010:\005false2h\n\021friend_invitat"
+    "ion\022$.bnet.protocol.invitation.Invitatio"
+    "n\030g \001(\0132\'.bnet.protocol.friends.FriendIn"
+    "vitation", 408);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "service/friends/friends_types.proto", &protobuf_RegisterTypes);
   Friend::default_instance_ = new Friend();
   FriendInvitation::default_instance_ = new FriendInvitation();
   Friend::default_instance_->InitAsDefaultInstance();
   FriendInvitation::default_instance_->InitAsDefaultInstance();
+  ::google::protobuf::internal::ExtensionSet::RegisterMessageExtension(
+    &::bnet::protocol::invitation::Invitation::default_instance(),
+    103, 11, false, false,
+    &::bnet::protocol::friends::FriendInvitation::default_instance());
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_service_2ffriends_2ffriends_5ftypes_2eproto);
 }
 
@@ -393,6 +400,12 @@ void Friend::Swap(Friend* other) {
 const int FriendInvitation::kFirstReceivedFieldNumber;
 #endif  // !_MSC_VER
 
+#ifndef _MSC_VER
+const int FriendInvitation::kFriendInvitationFieldNumber;
+#endif
+::google::protobuf::internal::ExtensionIdentifier< ::bnet::protocol::invitation::Invitation,
+    ::google::protobuf::internal::MessageTypeTraits< ::bnet::protocol::friends::FriendInvitation >, 11, false >
+  FriendInvitation::friend_invitation(kFriendInvitationFieldNumber, ::bnet::protocol::friends::FriendInvitation::default_instance());
 FriendInvitation::FriendInvitation()
   : ::google::protobuf::Message() {
   SharedCtor();
@@ -456,7 +469,7 @@ bool FriendInvitation::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional bool first_received = 1;
+      // optional bool first_received = 1 [default = false];
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -489,7 +502,7 @@ bool FriendInvitation::MergePartialFromCodedStream(
 
 void FriendInvitation::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // optional bool first_received = 1;
+  // optional bool first_received = 1 [default = false];
   if (has_first_received()) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(1, this->first_received(), output);
   }
@@ -502,7 +515,7 @@ void FriendInvitation::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* FriendInvitation::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional bool first_received = 1;
+  // optional bool first_received = 1 [default = false];
   if (has_first_received()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(1, this->first_received(), target);
   }
@@ -518,7 +531,7 @@ int FriendInvitation::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional bool first_received = 1;
+    // optional bool first_received = 1 [default = false];
     if (has_first_received()) {
       total_size += 1 + 1;
     }

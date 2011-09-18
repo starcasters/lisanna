@@ -1,0 +1,12 @@
+sort well.txt | uniq >> well1.txt
+sed 's/\(.*\)::\(.*\)\* request,/ services.add_method(service, 0, (void*) \&handle_\2, (Message*) \1::\2::default_instance()));/' well3.txt >> well4.txt
+sed 's/\(.*\)::\(.*\)\* request,/ void handle_\2(TCPSocket *sock, \1::\2* message, rpcheader* pheader)) {\n\n/}\n' well3.txt
+
+sed 's/\(.*\)::\(.*\)Request\* request,/bool handle_\2Request(TCPSocket *sock, \1::\2Request* message, rpcheader* pheader) {\n\t\1::\2Response response;\nreturn true;\n}\n/' well3.txt >> well6.txt
+
+rm cpp/protoimport.h
+find cpp/ -name "*.h" -print >> cpp/protoimport.tmp.h
+sed 's/^\(.*\)/\#include "\1"/g' cpp/protoimport.tmp.h >> cpp/protoimport.h
+rm cpp/protoimport.tmp.h
+
+for i in *.out; do mv "$i" "${i/.out}".h; done

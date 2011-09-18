@@ -23,6 +23,7 @@
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/generated_message_reflection.h>
+#include <google/protobuf/service.h>
 #include "lib/rpc/rpc.pb.h"
 #include "lib/protocol/entity.pb.h"
 #include "lib/protocol/attribute.pb.h"
@@ -697,6 +698,89 @@ class DeleteToonResponse : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static DeleteToonResponse* default_instance_;
 };
+// ===================================================================
+
+class ToonServiceExternal_Stub;
+
+class ToonServiceExternal : public ::google::protobuf::Service {
+ protected:
+  // This class should be treated as an abstract interface.
+  inline ToonServiceExternal() {};
+ public:
+  virtual ~ToonServiceExternal();
+  
+  typedef ToonServiceExternal_Stub Stub;
+  
+  static const ::google::protobuf::ServiceDescriptor* descriptor();
+  
+  virtual void ToonList(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::toon::external::ToonListRequest* request,
+                       ::bnet::protocol::toon::external::ToonListResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void SelectToon(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::toon::external::SelectToonRequest* request,
+                       ::bnet::protocol::toon::external::SelectToonResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void CreateToon(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::toon::external::CreateToonRequest* request,
+                       ::bnet::protocol::toon::external::CreateToonResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void DeleteToon(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::toon::external::DeleteToonRequest* request,
+                       ::bnet::protocol::toon::external::DeleteToonResponse* response,
+                       ::google::protobuf::Closure* done);
+  
+  // implements Service ----------------------------------------------
+  
+  const ::google::protobuf::ServiceDescriptor* GetDescriptor();
+  void CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                  ::google::protobuf::RpcController* controller,
+                  const ::google::protobuf::Message* request,
+                  ::google::protobuf::Message* response,
+                  ::google::protobuf::Closure* done);
+  const ::google::protobuf::Message& GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+  const ::google::protobuf::Message& GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+
+ private:
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ToonServiceExternal);
+};
+
+class ToonServiceExternal_Stub : public ToonServiceExternal {
+ public:
+  ToonServiceExternal_Stub(::google::protobuf::RpcChannel* channel);
+  ToonServiceExternal_Stub(::google::protobuf::RpcChannel* channel,
+                   ::google::protobuf::Service::ChannelOwnership ownership);
+  ~ToonServiceExternal_Stub();
+  
+  inline ::google::protobuf::RpcChannel* channel() { return channel_; }
+  
+  // implements ToonServiceExternal ------------------------------------------
+  
+  void ToonList(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::toon::external::ToonListRequest* request,
+                       ::bnet::protocol::toon::external::ToonListResponse* response,
+                       ::google::protobuf::Closure* done);
+  void SelectToon(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::toon::external::SelectToonRequest* request,
+                       ::bnet::protocol::toon::external::SelectToonResponse* response,
+                       ::google::protobuf::Closure* done);
+  void CreateToon(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::toon::external::CreateToonRequest* request,
+                       ::bnet::protocol::toon::external::CreateToonResponse* response,
+                       ::google::protobuf::Closure* done);
+  void DeleteToon(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::toon::external::DeleteToonRequest* request,
+                       ::bnet::protocol::toon::external::DeleteToonResponse* response,
+                       ::google::protobuf::Closure* done);
+ private:
+  ::google::protobuf::RpcChannel* channel_;
+  bool owns_channel_;
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ToonServiceExternal_Stub);
+};
+
+
 // ===================================================================
 
 

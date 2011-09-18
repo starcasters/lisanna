@@ -85,10 +85,10 @@ void protobuf_AddDesc_service_2fgame_5fmaster_2fgame_5ffactory_2eproto() {
     "\n&service/game_master/game_factory.proto"
     "\022\031bnet.protocol.game_master\032\034lib/protoco"
     "l/attribute.proto\032\031lib/protocol/entity.p"
-    "roto\"|\n\016GameProperties\0228\n\006filter\030\001 \001(\0132("
-    ".bnet.protocol.attribute.AttributeFilter"
-    "\022\016\n\006create\030\002 \001(\010\022\014\n\004open\030\003 \001(\010\022\022\n\nprogra"
-    "m_id\030\004 \001(\007", 250);
+    "roto\"\211\001\n\016GameProperties\0228\n\006filter\030\001 \001(\0132"
+    "(.bnet.protocol.attribute.AttributeFilte"
+    "r\022\025\n\006create\030\002 \001(\010:\005false\022\022\n\004open\030\003 \001(\010:\004"
+    "true\022\022\n\nprogram_id\030\004 \001(\007", 264);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "service/game_master/game_factory.proto", &protobuf_RegisterTypes);
   GameProperties::default_instance_ = new GameProperties();
@@ -132,7 +132,7 @@ void GameProperties::SharedCtor() {
   _cached_size_ = 0;
   filter_ = NULL;
   create_ = false;
-  open_ = false;
+  open_ = true;
   program_id_ = 0u;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
@@ -173,7 +173,7 @@ void GameProperties::Clear() {
       if (filter_ != NULL) filter_->::bnet::protocol::attribute::AttributeFilter::Clear();
     }
     create_ = false;
-    open_ = false;
+    open_ = true;
     program_id_ = 0u;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -199,7 +199,7 @@ bool GameProperties::MergePartialFromCodedStream(
         break;
       }
       
-      // optional bool create = 2;
+      // optional bool create = 2 [default = false];
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -215,7 +215,7 @@ bool GameProperties::MergePartialFromCodedStream(
         break;
       }
       
-      // optional bool open = 3;
+      // optional bool open = 3 [default = true];
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -271,12 +271,12 @@ void GameProperties::SerializeWithCachedSizes(
       1, this->filter(), output);
   }
   
-  // optional bool create = 2;
+  // optional bool create = 2 [default = false];
   if (has_create()) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(2, this->create(), output);
   }
   
-  // optional bool open = 3;
+  // optional bool open = 3 [default = true];
   if (has_open()) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(3, this->open(), output);
   }
@@ -301,12 +301,12 @@ void GameProperties::SerializeWithCachedSizes(
         1, this->filter(), target);
   }
   
-  // optional bool create = 2;
+  // optional bool create = 2 [default = false];
   if (has_create()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(2, this->create(), target);
   }
   
-  // optional bool open = 3;
+  // optional bool open = 3 [default = true];
   if (has_open()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(3, this->open(), target);
   }
@@ -334,12 +334,12 @@ int GameProperties::ByteSize() const {
           this->filter());
     }
     
-    // optional bool create = 2;
+    // optional bool create = 2 [default = false];
     if (has_create()) {
       total_size += 1 + 1;
     }
     
-    // optional bool open = 3;
+    // optional bool open = 3 [default = true];
     if (has_open()) {
       total_size += 1 + 1;
     }

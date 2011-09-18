@@ -89,6 +89,9 @@ const ::google::protobuf::EnumDescriptor* FactoryUpdateNotification_Operation_de
 const ::google::protobuf::Descriptor* GameFoundNotification_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   GameFoundNotification_reflection_ = NULL;
+const ::google::protobuf::ServiceDescriptor* GameMaster_descriptor_ = NULL;
+const ::google::protobuf::ServiceDescriptor* GameMasterSubscriber_descriptor_ = NULL;
+const ::google::protobuf::ServiceDescriptor* GameFactorySubscriber_descriptor_ = NULL;
 
 }  // namespace
 
@@ -470,6 +473,9 @@ void protobuf_AssignDesc_service_2fgame_5fmaster_2fgame_5fmaster_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(GameFoundNotification));
+  GameMaster_descriptor_ = file->service(0);
+  GameMasterSubscriber_descriptor_ = file->service(1);
+  GameFactorySubscriber_descriptor_ = file->service(2);
 }
 
 namespace {
@@ -609,65 +615,110 @@ void protobuf_AddDesc_service_2fgame_5fmaster_2fgame_5fmaster_2eproto() {
     "annel_request\030\003 \001(\0132).bnet.protocol.chan"
     "nel.JoinChannelRequest\"P\n\020JoinGameRespon"
     "se\022<\n\014connect_info\030\001 \003(\0132&.bnet.protocol"
-    ".game_master.ConnectInfo\"z\n\024ListFactorie"
-    "sRequest\0228\n\006filter\030\001 \002(\0132(.bnet.protocol"
-    ".attribute.AttributeFilter\022\023\n\013start_inde"
-    "x\030\002 \001(\r\022\023\n\013max_results\030\003 \001(\r\"v\n\025ListFact"
-    "oriesResponse\022F\n\013description\030\001 \003(\01321.bne"
-    "t.protocol.game_master.GameFactoryDescri"
-    "ption\022\025\n\rtotal_results\030\002 \001(\r\"\360\001\n\017FindGam"
-    "eRequest\0221\n\006player\030\001 \003(\0132!.bnet.protocol"
-    ".game_master.Player\022\022\n\nfactory_id\030\002 \001(\006\022"
-    "=\n\nproperties\030\003 \001(\0132).bnet.protocol.game"
-    "_master.GameProperties\022\021\n\tobject_id\030\004 \002("
-    "\004\022D\n\017channel_request\030\005 \001(\0132+.bnet.protoc"
-    "ol.channel.CreateChannelRequest\":\n\020FindG"
-    "ameResponse\022\022\n\nrequest_id\030\001 \001(\004\022\022\n\nfacto"
-    "ry_id\030\002 \001(\006\"\?\n\025CancelFindGameRequest\022\022\n\n"
-    "factory_id\030\001 \002(\006\022\022\n\nrequest_id\030\002 \002(\004\"S\n\025"
-    "GameEndedNotification\022:\n\013game_handle\030\001 \002"
-    "(\0132%.bnet.protocol.game_master.GameHandl"
-    "e\"\216\001\n\026PlayerLeftNotification\022:\n\013game_han"
-    "dle\030\001 \002(\0132%.bnet.protocol.game_master.Ga"
-    "meHandle\022(\n\007toon_id\030\002 \002(\0132\027.bnet.protoco"
-    "l.EntityId\022\016\n\006reason\030\003 \001(\r\"\231\001\n\025RegisterS"
-    "erverRequest\0225\n\tattribute\030\001 \003(\0132\".bnet.p"
-    "rotocol.attribute.Attribute\0225\n\005state\030\002 \001"
-    "(\0132&.bnet.protocol.server_pool.ServerSta"
-    "te\022\022\n\nprogram_id\030\003 \002(\007\"\031\n\027UnregisterServ"
-    "erRequest\"\234\001\n\030RegisterUtilitiesRequest\0225"
-    "\n\tattribute\030\001 \003(\0132\".bnet.protocol.attrib"
-    "ute.Attribute\0225\n\005state\030\002 \001(\0132&.bnet.prot"
-    "ocol.server_pool.ServerState\022\022\n\nprogram_"
-    "id\030\003 \002(\007\"\034\n\032UnregisterUtilitiesRequest\"%"
-    "\n\020SubscribeRequest\022\021\n\tobject_id\030\001 \002(\004\",\n"
-    "\021SubscribeResponse\022\027\n\017subscription_id\030\001 "
-    "\001(\004\"-\n\022UnsubscribeRequest\022\027\n\017subscriptio"
-    "n_id\030\001 \002(\004\"\245\001\n\021ChangeGameRequest\022:\n\013game"
-    "_handle\030\001 \002(\0132%.bnet.protocol.game_maste"
-    "r.GameHandle\022\014\n\004open\030\002 \001(\010\0225\n\tattribute\030"
-    "\003 \003(\0132\".bnet.protocol.attribute.Attribut"
-    "e\022\017\n\007replace\030\004 \001(\010\"+\n\025GetFactoryInfoRequ"
-    "est\022\022\n\nfactory_id\030\001 \002(\006\"\221\001\n\026GetFactoryIn"
-    "foResponse\0225\n\tattribute\030\001 \003(\0132\".bnet.pro"
-    "tocol.attribute.Attribute\022@\n\014stats_bucke"
-    "t\030\002 \003(\0132*.bnet.protocol.game_master.Game"
-    "StatsBucket\"c\n\023GetGameStatsRequest\022\022\n\nfa"
-    "ctory_id\030\001 \002(\006\0228\n\006filter\030\002 \002(\0132(.bnet.pr"
-    "otocol.attribute.AttributeFilter\"X\n\024GetG"
-    "ameStatsResponse\022@\n\014stats_bucket\030\001 \003(\0132*"
-    ".bnet.protocol.game_master.GameStatsBuck"
-    "et\"\361\001\n\031FactoryUpdateNotification\022J\n\002op\030\001"
-    " \002(\0162>.bnet.protocol.game_master.Factory"
-    "UpdateNotification.Operation\022F\n\013descript"
-    "ion\030\002 \002(\01321.bnet.protocol.game_master.Ga"
-    "meFactoryDescription\022\022\n\nprogram_id\030\003 \001(\007"
-    "\",\n\tOperation\022\007\n\003ADD\020\001\022\n\n\006REMOVE\020\002\022\n\n\006CH"
-    "ANGE\020\003\"\271\001\n\025GameFoundNotification\022\022\n\nrequ"
-    "est_id\030\001 \002(\004\022\022\n\nerror_code\030\002 \001(\r\022:\n\013game"
-    "_handle\030\003 \001(\0132%.bnet.protocol.game_maste"
-    "r.GameHandle\022<\n\014connect_info\030\004 \003(\0132&.bne"
-    "t.protocol.game_master.ConnectInfo", 2914);
+    ".game_master.ConnectInfo\"\202\001\n\024ListFactori"
+    "esRequest\0228\n\006filter\030\001 \002(\0132(.bnet.protoco"
+    "l.attribute.AttributeFilter\022\026\n\013start_ind"
+    "ex\030\002 \001(\r:\0010\022\030\n\013max_results\030\003 \001(\r:\003100\"v\n"
+    "\025ListFactoriesResponse\022F\n\013description\030\001 "
+    "\003(\01321.bnet.protocol.game_master.GameFact"
+    "oryDescription\022\025\n\rtotal_results\030\002 \001(\r\"\360\001"
+    "\n\017FindGameRequest\0221\n\006player\030\001 \003(\0132!.bnet"
+    ".protocol.game_master.Player\022\022\n\nfactory_"
+    "id\030\002 \001(\006\022=\n\nproperties\030\003 \001(\0132).bnet.prot"
+    "ocol.game_master.GameProperties\022\021\n\tobjec"
+    "t_id\030\004 \002(\004\022D\n\017channel_request\030\005 \001(\0132+.bn"
+    "et.protocol.channel.CreateChannelRequest"
+    "\":\n\020FindGameResponse\022\022\n\nrequest_id\030\001 \001(\004"
+    "\022\022\n\nfactory_id\030\002 \001(\006\"\?\n\025CancelFindGameRe"
+    "quest\022\022\n\nfactory_id\030\001 \002(\006\022\022\n\nrequest_id\030"
+    "\002 \002(\004\"S\n\025GameEndedNotification\022:\n\013game_h"
+    "andle\030\001 \002(\0132%.bnet.protocol.game_master."
+    "GameHandle\"\221\001\n\026PlayerLeftNotification\022:\n"
+    "\013game_handle\030\001 \002(\0132%.bnet.protocol.game_"
+    "master.GameHandle\022(\n\007toon_id\030\002 \002(\0132\027.bne"
+    "t.protocol.EntityId\022\021\n\006reason\030\003 \001(\r:\0010\"\231"
+    "\001\n\025RegisterServerRequest\0225\n\tattribute\030\001 "
+    "\003(\0132\".bnet.protocol.attribute.Attribute\022"
+    "5\n\005state\030\002 \001(\0132&.bnet.protocol.server_po"
+    "ol.ServerState\022\022\n\nprogram_id\030\003 \002(\007\"\031\n\027Un"
+    "registerServerRequest\"\234\001\n\030RegisterUtilit"
+    "iesRequest\0225\n\tattribute\030\001 \003(\0132\".bnet.pro"
+    "tocol.attribute.Attribute\0225\n\005state\030\002 \001(\013"
+    "2&.bnet.protocol.server_pool.ServerState"
+    "\022\022\n\nprogram_id\030\003 \002(\007\"\034\n\032UnregisterUtilit"
+    "iesRequest\"%\n\020SubscribeRequest\022\021\n\tobject"
+    "_id\030\001 \002(\004\",\n\021SubscribeResponse\022\027\n\017subscr"
+    "iption_id\030\001 \001(\004\"-\n\022UnsubscribeRequest\022\027\n"
+    "\017subscription_id\030\001 \002(\004\"\254\001\n\021ChangeGameReq"
+    "uest\022:\n\013game_handle\030\001 \002(\0132%.bnet.protoco"
+    "l.game_master.GameHandle\022\014\n\004open\030\002 \001(\010\0225"
+    "\n\tattribute\030\003 \003(\0132\".bnet.protocol.attrib"
+    "ute.Attribute\022\026\n\007replace\030\004 \001(\010:\005false\"+\n"
+    "\025GetFactoryInfoRequest\022\022\n\nfactory_id\030\001 \002"
+    "(\006\"\221\001\n\026GetFactoryInfoResponse\0225\n\tattribu"
+    "te\030\001 \003(\0132\".bnet.protocol.attribute.Attri"
+    "bute\022@\n\014stats_bucket\030\002 \003(\0132*.bnet.protoc"
+    "ol.game_master.GameStatsBucket\"c\n\023GetGam"
+    "eStatsRequest\022\022\n\nfactory_id\030\001 \002(\006\0228\n\006fil"
+    "ter\030\002 \002(\0132(.bnet.protocol.attribute.Attr"
+    "ibuteFilter\"X\n\024GetGameStatsResponse\022@\n\014s"
+    "tats_bucket\030\001 \003(\0132*.bnet.protocol.game_m"
+    "aster.GameStatsBucket\"\361\001\n\031FactoryUpdateN"
+    "otification\022J\n\002op\030\001 \002(\0162>.bnet.protocol."
+    "game_master.FactoryUpdateNotification.Op"
+    "eration\022F\n\013description\030\002 \002(\01321.bnet.prot"
+    "ocol.game_master.GameFactoryDescription\022"
+    "\022\n\nprogram_id\030\003 \001(\007\",\n\tOperation\022\007\n\003ADD\020"
+    "\001\022\n\n\006REMOVE\020\002\022\n\n\006CHANGE\020\003\"\274\001\n\025GameFoundN"
+    "otification\022\022\n\nrequest_id\030\001 \002(\004\022\025\n\nerror"
+    "_code\030\002 \001(\r:\0010\022:\n\013game_handle\030\003 \001(\0132%.bn"
+    "et.protocol.game_master.GameHandle\022<\n\014co"
+    "nnect_info\030\004 \003(\0132&.bnet.protocol.game_ma"
+    "ster.ConnectInfo2\344\013\n\nGameMaster\022c\n\010JoinG"
+    "ame\022*.bnet.protocol.game_master.JoinGame"
+    "Request\032+.bnet.protocol.game_master.Join"
+    "GameResponse\022r\n\rListFactories\022/.bnet.pro"
+    "tocol.game_master.ListFactoriesRequest\0320"
+    ".bnet.protocol.game_master.ListFactories"
+    "Response\022c\n\010FindGame\022*.bnet.protocol.gam"
+    "e_master.FindGameRequest\032+.bnet.protocol"
+    ".game_master.FindGameResponse\022Y\n\016CancelF"
+    "indGame\0220.bnet.protocol.game_master.Canc"
+    "elFindGameRequest\032\025.bnet.protocol.NoData"
+    "\022Y\n\tGameEnded\0220.bnet.protocol.game_maste"
+    "r.GameEndedNotification\032\032.bnet.protocol."
+    "NO_RESPONSE\022[\n\nPlayerLeft\0221.bnet.protoco"
+    "l.game_master.PlayerLeftNotification\032\032.b"
+    "net.protocol.NO_RESPONSE\022Y\n\016RegisterServ"
+    "er\0220.bnet.protocol.game_master.RegisterS"
+    "erverRequest\032\025.bnet.protocol.NoData\022b\n\020U"
+    "nregisterServer\0222.bnet.protocol.game_mas"
+    "ter.UnregisterServerRequest\032\032.bnet.proto"
+    "col.NO_RESPONSE\022_\n\021RegisterUtilities\0223.b"
+    "net.protocol.game_master.RegisterUtiliti"
+    "esRequest\032\025.bnet.protocol.NoData\022h\n\023Unre"
+    "gisterUtilities\0225.bnet.protocol.game_mas"
+    "ter.UnregisterUtilitiesRequest\032\032.bnet.pr"
+    "otocol.NO_RESPONSE\022f\n\tSubscribe\022+.bnet.p"
+    "rotocol.game_master.SubscribeRequest\032,.b"
+    "net.protocol.game_master.SubscribeRespon"
+    "se\022X\n\013Unsubscribe\022-.bnet.protocol.game_m"
+    "aster.UnsubscribeRequest\032\032.bnet.protocol"
+    ".NO_RESPONSE\022Q\n\nChangeGame\022,.bnet.protoc"
+    "ol.game_master.ChangeGameRequest\032\025.bnet."
+    "protocol.NoData\022u\n\016GetFactoryInfo\0220.bnet"
+    ".protocol.game_master.GetFactoryInfoRequ"
+    "est\0321.bnet.protocol.game_master.GetFacto"
+    "ryInfoResponse\022o\n\014GetGameStats\022..bnet.pr"
+    "otocol.game_master.GetGameStatsRequest\032/"
+    ".bnet.protocol.game_master.GetGameStatsR"
+    "esponse2\177\n\024GameMasterSubscriber\022g\n\023Notif"
+    "yFactoryUpdate\0224.bnet.protocol.game_mast"
+    "er.FactoryUpdateNotification\032\032.bnet.prot"
+    "ocol.NO_RESPONSE2x\n\025GameFactorySubscribe"
+    "r\022_\n\017NotifyGameFound\0220.bnet.protocol.gam"
+    "e_master.GameFoundNotification\032\032.bnet.pr"
+    "otocol.NO_RESPONSEB\020B\013CGameMaster\200\001\001", 4716);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "service/game_master/game_master.proto", &protobuf_RegisterTypes);
   JoinGameRequest::default_instance_ = new JoinGameRequest();
@@ -1266,7 +1317,7 @@ void ListFactoriesRequest::SharedCtor() {
   _cached_size_ = 0;
   filter_ = NULL;
   start_index_ = 0u;
-  max_results_ = 0u;
+  max_results_ = 100u;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -1306,7 +1357,7 @@ void ListFactoriesRequest::Clear() {
       if (filter_ != NULL) filter_->::bnet::protocol::attribute::AttributeFilter::Clear();
     }
     start_index_ = 0u;
-    max_results_ = 0u;
+    max_results_ = 100u;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
@@ -1331,7 +1382,7 @@ bool ListFactoriesRequest::MergePartialFromCodedStream(
         break;
       }
       
-      // optional uint32 start_index = 2;
+      // optional uint32 start_index = 2 [default = 0];
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -1347,7 +1398,7 @@ bool ListFactoriesRequest::MergePartialFromCodedStream(
         break;
       }
       
-      // optional uint32 max_results = 3;
+      // optional uint32 max_results = 3 [default = 100];
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -1387,12 +1438,12 @@ void ListFactoriesRequest::SerializeWithCachedSizes(
       1, this->filter(), output);
   }
   
-  // optional uint32 start_index = 2;
+  // optional uint32 start_index = 2 [default = 0];
   if (has_start_index()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(2, this->start_index(), output);
   }
   
-  // optional uint32 max_results = 3;
+  // optional uint32 max_results = 3 [default = 100];
   if (has_max_results()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(3, this->max_results(), output);
   }
@@ -1412,12 +1463,12 @@ void ListFactoriesRequest::SerializeWithCachedSizes(
         1, this->filter(), target);
   }
   
-  // optional uint32 start_index = 2;
+  // optional uint32 start_index = 2 [default = 0];
   if (has_start_index()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(2, this->start_index(), target);
   }
   
-  // optional uint32 max_results = 3;
+  // optional uint32 max_results = 3 [default = 100];
   if (has_max_results()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(3, this->max_results(), target);
   }
@@ -1440,14 +1491,14 @@ int ListFactoriesRequest::ByteSize() const {
           this->filter());
     }
     
-    // optional uint32 start_index = 2;
+    // optional uint32 start_index = 2 [default = 0];
     if (has_start_index()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
           this->start_index());
     }
     
-    // optional uint32 max_results = 3;
+    // optional uint32 max_results = 3 [default = 100];
     if (has_max_results()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
@@ -2989,7 +3040,7 @@ bool PlayerLeftNotification::MergePartialFromCodedStream(
         break;
       }
       
-      // optional uint32 reason = 3;
+      // optional uint32 reason = 3 [default = 0];
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -3035,7 +3086,7 @@ void PlayerLeftNotification::SerializeWithCachedSizes(
       2, this->toon_id(), output);
   }
   
-  // optional uint32 reason = 3;
+  // optional uint32 reason = 3 [default = 0];
   if (has_reason()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(3, this->reason(), output);
   }
@@ -3062,7 +3113,7 @@ void PlayerLeftNotification::SerializeWithCachedSizes(
         2, this->toon_id(), target);
   }
   
-  // optional uint32 reason = 3;
+  // optional uint32 reason = 3 [default = 0];
   if (has_reason()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(3, this->reason(), target);
   }
@@ -3092,7 +3143,7 @@ int PlayerLeftNotification::ByteSize() const {
           this->toon_id());
     }
     
-    // optional uint32 reason = 3;
+    // optional uint32 reason = 3 [default = 0];
     if (has_reason()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
@@ -4831,7 +4882,7 @@ bool ChangeGameRequest::MergePartialFromCodedStream(
         break;
       }
       
-      // optional bool replace = 4;
+      // optional bool replace = 4 [default = false];
       case 4: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -4882,7 +4933,7 @@ void ChangeGameRequest::SerializeWithCachedSizes(
       3, this->attribute(i), output);
   }
   
-  // optional bool replace = 4;
+  // optional bool replace = 4 [default = false];
   if (has_replace()) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(4, this->replace(), output);
   }
@@ -4914,7 +4965,7 @@ void ChangeGameRequest::SerializeWithCachedSizes(
         3, this->attribute(i), target);
   }
   
-  // optional bool replace = 4;
+  // optional bool replace = 4 [default = false];
   if (has_replace()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(4, this->replace(), target);
   }
@@ -4942,7 +4993,7 @@ int ChangeGameRequest::ByteSize() const {
       total_size += 1 + 1;
     }
     
-    // optional bool replace = 4;
+    // optional bool replace = 4 [default = false];
     if (has_replace()) {
       total_size += 1 + 1;
     }
@@ -6367,7 +6418,7 @@ bool GameFoundNotification::MergePartialFromCodedStream(
         break;
       }
       
-      // optional uint32 error_code = 2;
+      // optional uint32 error_code = 2 [default = 0];
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -6435,7 +6486,7 @@ void GameFoundNotification::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt64(1, this->request_id(), output);
   }
   
-  // optional uint32 error_code = 2;
+  // optional uint32 error_code = 2 [default = 0];
   if (has_error_code()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(2, this->error_code(), output);
   }
@@ -6465,7 +6516,7 @@ void GameFoundNotification::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(1, this->request_id(), target);
   }
   
-  // optional uint32 error_code = 2;
+  // optional uint32 error_code = 2 [default = 0];
   if (has_error_code()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(2, this->error_code(), target);
   }
@@ -6502,7 +6553,7 @@ int GameFoundNotification::ByteSize() const {
           this->request_id());
     }
     
-    // optional uint32 error_code = 2;
+    // optional uint32 error_code = 2 [default = 0];
     if (has_error_code()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
@@ -6609,6 +6660,606 @@ void GameFoundNotification::Swap(GameFoundNotification* other) {
   return metadata;
 }
 
+
+// ===================================================================
+
+GameMaster::~GameMaster() {}
+
+const ::google::protobuf::ServiceDescriptor* GameMaster::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return GameMaster_descriptor_;
+}
+
+const ::google::protobuf::ServiceDescriptor* GameMaster::GetDescriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return GameMaster_descriptor_;
+}
+
+void GameMaster::JoinGame(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::game_master::JoinGameRequest*,
+                         ::bnet::protocol::game_master::JoinGameResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method JoinGame() not implemented.");
+  done->Run();
+}
+
+void GameMaster::ListFactories(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::game_master::ListFactoriesRequest*,
+                         ::bnet::protocol::game_master::ListFactoriesResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method ListFactories() not implemented.");
+  done->Run();
+}
+
+void GameMaster::FindGame(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::game_master::FindGameRequest*,
+                         ::bnet::protocol::game_master::FindGameResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method FindGame() not implemented.");
+  done->Run();
+}
+
+void GameMaster::CancelFindGame(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::game_master::CancelFindGameRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method CancelFindGame() not implemented.");
+  done->Run();
+}
+
+void GameMaster::GameEnded(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::game_master::GameEndedNotification*,
+                         ::bnet::protocol::NO_RESPONSE*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method GameEnded() not implemented.");
+  done->Run();
+}
+
+void GameMaster::PlayerLeft(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::game_master::PlayerLeftNotification*,
+                         ::bnet::protocol::NO_RESPONSE*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method PlayerLeft() not implemented.");
+  done->Run();
+}
+
+void GameMaster::RegisterServer(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::game_master::RegisterServerRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method RegisterServer() not implemented.");
+  done->Run();
+}
+
+void GameMaster::UnregisterServer(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::game_master::UnregisterServerRequest*,
+                         ::bnet::protocol::NO_RESPONSE*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method UnregisterServer() not implemented.");
+  done->Run();
+}
+
+void GameMaster::RegisterUtilities(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::game_master::RegisterUtilitiesRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method RegisterUtilities() not implemented.");
+  done->Run();
+}
+
+void GameMaster::UnregisterUtilities(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::game_master::UnregisterUtilitiesRequest*,
+                         ::bnet::protocol::NO_RESPONSE*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method UnregisterUtilities() not implemented.");
+  done->Run();
+}
+
+void GameMaster::Subscribe(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::game_master::SubscribeRequest*,
+                         ::bnet::protocol::game_master::SubscribeResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method Subscribe() not implemented.");
+  done->Run();
+}
+
+void GameMaster::Unsubscribe(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::game_master::UnsubscribeRequest*,
+                         ::bnet::protocol::NO_RESPONSE*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method Unsubscribe() not implemented.");
+  done->Run();
+}
+
+void GameMaster::ChangeGame(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::game_master::ChangeGameRequest*,
+                         ::bnet::protocol::NoData*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method ChangeGame() not implemented.");
+  done->Run();
+}
+
+void GameMaster::GetFactoryInfo(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::game_master::GetFactoryInfoRequest*,
+                         ::bnet::protocol::game_master::GetFactoryInfoResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method GetFactoryInfo() not implemented.");
+  done->Run();
+}
+
+void GameMaster::GetGameStats(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::game_master::GetGameStatsRequest*,
+                         ::bnet::protocol::game_master::GetGameStatsResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method GetGameStats() not implemented.");
+  done->Run();
+}
+
+void GameMaster::CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                             ::google::protobuf::RpcController* controller,
+                             const ::google::protobuf::Message* request,
+                             ::google::protobuf::Message* response,
+                             ::google::protobuf::Closure* done) {
+  GOOGLE_DCHECK_EQ(method->service(), GameMaster_descriptor_);
+  switch(method->index()) {
+    case 0:
+      JoinGame(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::game_master::JoinGameRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::game_master::JoinGameResponse*>(response),
+             done);
+      break;
+    case 1:
+      ListFactories(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::game_master::ListFactoriesRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::game_master::ListFactoriesResponse*>(response),
+             done);
+      break;
+    case 2:
+      FindGame(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::game_master::FindGameRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::game_master::FindGameResponse*>(response),
+             done);
+      break;
+    case 3:
+      CancelFindGame(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::game_master::CancelFindGameRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    case 4:
+      GameEnded(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::game_master::GameEndedNotification*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NO_RESPONSE*>(response),
+             done);
+      break;
+    case 5:
+      PlayerLeft(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::game_master::PlayerLeftNotification*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NO_RESPONSE*>(response),
+             done);
+      break;
+    case 6:
+      RegisterServer(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::game_master::RegisterServerRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    case 7:
+      UnregisterServer(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::game_master::UnregisterServerRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NO_RESPONSE*>(response),
+             done);
+      break;
+    case 8:
+      RegisterUtilities(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::game_master::RegisterUtilitiesRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    case 9:
+      UnregisterUtilities(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::game_master::UnregisterUtilitiesRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NO_RESPONSE*>(response),
+             done);
+      break;
+    case 10:
+      Subscribe(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::game_master::SubscribeRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::game_master::SubscribeResponse*>(response),
+             done);
+      break;
+    case 11:
+      Unsubscribe(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::game_master::UnsubscribeRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NO_RESPONSE*>(response),
+             done);
+      break;
+    case 12:
+      ChangeGame(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::game_master::ChangeGameRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NoData*>(response),
+             done);
+      break;
+    case 13:
+      GetFactoryInfo(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::game_master::GetFactoryInfoRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::game_master::GetFactoryInfoResponse*>(response),
+             done);
+      break;
+    case 14:
+      GetGameStats(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::game_master::GetGameStatsRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::game_master::GetGameStatsResponse*>(response),
+             done);
+      break;
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      break;
+  }
+}
+
+const ::google::protobuf::Message& GameMaster::GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::game_master::JoinGameRequest::default_instance();
+    case 1:
+      return ::bnet::protocol::game_master::ListFactoriesRequest::default_instance();
+    case 2:
+      return ::bnet::protocol::game_master::FindGameRequest::default_instance();
+    case 3:
+      return ::bnet::protocol::game_master::CancelFindGameRequest::default_instance();
+    case 4:
+      return ::bnet::protocol::game_master::GameEndedNotification::default_instance();
+    case 5:
+      return ::bnet::protocol::game_master::PlayerLeftNotification::default_instance();
+    case 6:
+      return ::bnet::protocol::game_master::RegisterServerRequest::default_instance();
+    case 7:
+      return ::bnet::protocol::game_master::UnregisterServerRequest::default_instance();
+    case 8:
+      return ::bnet::protocol::game_master::RegisterUtilitiesRequest::default_instance();
+    case 9:
+      return ::bnet::protocol::game_master::UnregisterUtilitiesRequest::default_instance();
+    case 10:
+      return ::bnet::protocol::game_master::SubscribeRequest::default_instance();
+    case 11:
+      return ::bnet::protocol::game_master::UnsubscribeRequest::default_instance();
+    case 12:
+      return ::bnet::protocol::game_master::ChangeGameRequest::default_instance();
+    case 13:
+      return ::bnet::protocol::game_master::GetFactoryInfoRequest::default_instance();
+    case 14:
+      return ::bnet::protocol::game_master::GetGameStatsRequest::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+const ::google::protobuf::Message& GameMaster::GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::game_master::JoinGameResponse::default_instance();
+    case 1:
+      return ::bnet::protocol::game_master::ListFactoriesResponse::default_instance();
+    case 2:
+      return ::bnet::protocol::game_master::FindGameResponse::default_instance();
+    case 3:
+      return ::bnet::protocol::NoData::default_instance();
+    case 4:
+      return ::bnet::protocol::NO_RESPONSE::default_instance();
+    case 5:
+      return ::bnet::protocol::NO_RESPONSE::default_instance();
+    case 6:
+      return ::bnet::protocol::NoData::default_instance();
+    case 7:
+      return ::bnet::protocol::NO_RESPONSE::default_instance();
+    case 8:
+      return ::bnet::protocol::NoData::default_instance();
+    case 9:
+      return ::bnet::protocol::NO_RESPONSE::default_instance();
+    case 10:
+      return ::bnet::protocol::game_master::SubscribeResponse::default_instance();
+    case 11:
+      return ::bnet::protocol::NO_RESPONSE::default_instance();
+    case 12:
+      return ::bnet::protocol::NoData::default_instance();
+    case 13:
+      return ::bnet::protocol::game_master::GetFactoryInfoResponse::default_instance();
+    case 14:
+      return ::bnet::protocol::game_master::GetGameStatsResponse::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+GameMaster_Stub::GameMaster_Stub(::google::protobuf::RpcChannel* channel)
+  : channel_(channel), owns_channel_(false) {}
+GameMaster_Stub::GameMaster_Stub(
+    ::google::protobuf::RpcChannel* channel,
+    ::google::protobuf::Service::ChannelOwnership ownership)
+  : channel_(channel),
+    owns_channel_(ownership == ::google::protobuf::Service::STUB_OWNS_CHANNEL) {}
+GameMaster_Stub::~GameMaster_Stub() {
+  if (owns_channel_) delete channel_;
+}
+
+void GameMaster_Stub::JoinGame(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::game_master::JoinGameRequest* request,
+                              ::bnet::protocol::game_master::JoinGameResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(0),
+                       controller, request, response, done);
+}
+void GameMaster_Stub::ListFactories(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::game_master::ListFactoriesRequest* request,
+                              ::bnet::protocol::game_master::ListFactoriesResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(1),
+                       controller, request, response, done);
+}
+void GameMaster_Stub::FindGame(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::game_master::FindGameRequest* request,
+                              ::bnet::protocol::game_master::FindGameResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(2),
+                       controller, request, response, done);
+}
+void GameMaster_Stub::CancelFindGame(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::game_master::CancelFindGameRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(3),
+                       controller, request, response, done);
+}
+void GameMaster_Stub::GameEnded(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::game_master::GameEndedNotification* request,
+                              ::bnet::protocol::NO_RESPONSE* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(4),
+                       controller, request, response, done);
+}
+void GameMaster_Stub::PlayerLeft(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::game_master::PlayerLeftNotification* request,
+                              ::bnet::protocol::NO_RESPONSE* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(5),
+                       controller, request, response, done);
+}
+void GameMaster_Stub::RegisterServer(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::game_master::RegisterServerRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(6),
+                       controller, request, response, done);
+}
+void GameMaster_Stub::UnregisterServer(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::game_master::UnregisterServerRequest* request,
+                              ::bnet::protocol::NO_RESPONSE* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(7),
+                       controller, request, response, done);
+}
+void GameMaster_Stub::RegisterUtilities(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::game_master::RegisterUtilitiesRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(8),
+                       controller, request, response, done);
+}
+void GameMaster_Stub::UnregisterUtilities(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::game_master::UnregisterUtilitiesRequest* request,
+                              ::bnet::protocol::NO_RESPONSE* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(9),
+                       controller, request, response, done);
+}
+void GameMaster_Stub::Subscribe(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::game_master::SubscribeRequest* request,
+                              ::bnet::protocol::game_master::SubscribeResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(10),
+                       controller, request, response, done);
+}
+void GameMaster_Stub::Unsubscribe(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::game_master::UnsubscribeRequest* request,
+                              ::bnet::protocol::NO_RESPONSE* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(11),
+                       controller, request, response, done);
+}
+void GameMaster_Stub::ChangeGame(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::game_master::ChangeGameRequest* request,
+                              ::bnet::protocol::NoData* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(12),
+                       controller, request, response, done);
+}
+void GameMaster_Stub::GetFactoryInfo(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::game_master::GetFactoryInfoRequest* request,
+                              ::bnet::protocol::game_master::GetFactoryInfoResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(13),
+                       controller, request, response, done);
+}
+void GameMaster_Stub::GetGameStats(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::game_master::GetGameStatsRequest* request,
+                              ::bnet::protocol::game_master::GetGameStatsResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(14),
+                       controller, request, response, done);
+}
+// ===================================================================
+
+GameMasterSubscriber::~GameMasterSubscriber() {}
+
+const ::google::protobuf::ServiceDescriptor* GameMasterSubscriber::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return GameMasterSubscriber_descriptor_;
+}
+
+const ::google::protobuf::ServiceDescriptor* GameMasterSubscriber::GetDescriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return GameMasterSubscriber_descriptor_;
+}
+
+void GameMasterSubscriber::NotifyFactoryUpdate(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::game_master::FactoryUpdateNotification*,
+                         ::bnet::protocol::NO_RESPONSE*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method NotifyFactoryUpdate() not implemented.");
+  done->Run();
+}
+
+void GameMasterSubscriber::CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                             ::google::protobuf::RpcController* controller,
+                             const ::google::protobuf::Message* request,
+                             ::google::protobuf::Message* response,
+                             ::google::protobuf::Closure* done) {
+  GOOGLE_DCHECK_EQ(method->service(), GameMasterSubscriber_descriptor_);
+  switch(method->index()) {
+    case 0:
+      NotifyFactoryUpdate(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::game_master::FactoryUpdateNotification*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NO_RESPONSE*>(response),
+             done);
+      break;
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      break;
+  }
+}
+
+const ::google::protobuf::Message& GameMasterSubscriber::GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::game_master::FactoryUpdateNotification::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+const ::google::protobuf::Message& GameMasterSubscriber::GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::NO_RESPONSE::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+GameMasterSubscriber_Stub::GameMasterSubscriber_Stub(::google::protobuf::RpcChannel* channel)
+  : channel_(channel), owns_channel_(false) {}
+GameMasterSubscriber_Stub::GameMasterSubscriber_Stub(
+    ::google::protobuf::RpcChannel* channel,
+    ::google::protobuf::Service::ChannelOwnership ownership)
+  : channel_(channel),
+    owns_channel_(ownership == ::google::protobuf::Service::STUB_OWNS_CHANNEL) {}
+GameMasterSubscriber_Stub::~GameMasterSubscriber_Stub() {
+  if (owns_channel_) delete channel_;
+}
+
+void GameMasterSubscriber_Stub::NotifyFactoryUpdate(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::game_master::FactoryUpdateNotification* request,
+                              ::bnet::protocol::NO_RESPONSE* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(0),
+                       controller, request, response, done);
+}
+// ===================================================================
+
+GameFactorySubscriber::~GameFactorySubscriber() {}
+
+const ::google::protobuf::ServiceDescriptor* GameFactorySubscriber::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return GameFactorySubscriber_descriptor_;
+}
+
+const ::google::protobuf::ServiceDescriptor* GameFactorySubscriber::GetDescriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return GameFactorySubscriber_descriptor_;
+}
+
+void GameFactorySubscriber::NotifyGameFound(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::game_master::GameFoundNotification*,
+                         ::bnet::protocol::NO_RESPONSE*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method NotifyGameFound() not implemented.");
+  done->Run();
+}
+
+void GameFactorySubscriber::CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                             ::google::protobuf::RpcController* controller,
+                             const ::google::protobuf::Message* request,
+                             ::google::protobuf::Message* response,
+                             ::google::protobuf::Closure* done) {
+  GOOGLE_DCHECK_EQ(method->service(), GameFactorySubscriber_descriptor_);
+  switch(method->index()) {
+    case 0:
+      NotifyGameFound(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::game_master::GameFoundNotification*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NO_RESPONSE*>(response),
+             done);
+      break;
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      break;
+  }
+}
+
+const ::google::protobuf::Message& GameFactorySubscriber::GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::game_master::GameFoundNotification::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+const ::google::protobuf::Message& GameFactorySubscriber::GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::NO_RESPONSE::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+GameFactorySubscriber_Stub::GameFactorySubscriber_Stub(::google::protobuf::RpcChannel* channel)
+  : channel_(channel), owns_channel_(false) {}
+GameFactorySubscriber_Stub::GameFactorySubscriber_Stub(
+    ::google::protobuf::RpcChannel* channel,
+    ::google::protobuf::Service::ChannelOwnership ownership)
+  : channel_(channel),
+    owns_channel_(ownership == ::google::protobuf::Service::STUB_OWNS_CHANNEL) {}
+GameFactorySubscriber_Stub::~GameFactorySubscriber_Stub() {
+  if (owns_channel_) delete channel_;
+}
+
+void GameFactorySubscriber_Stub::NotifyGameFound(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::game_master::GameFoundNotification* request,
+                              ::bnet::protocol::NO_RESPONSE* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(0),
+                       controller, request, response, done);
+}
 
 // @@protoc_insertion_point(namespace_scope)
 

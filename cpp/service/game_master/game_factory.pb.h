@@ -102,14 +102,14 @@ class GameProperties : public ::google::protobuf::Message {
   inline ::bnet::protocol::attribute::AttributeFilter* mutable_filter();
   inline ::bnet::protocol::attribute::AttributeFilter* release_filter();
   
-  // optional bool create = 2;
+  // optional bool create = 2 [default = false];
   inline bool has_create() const;
   inline void clear_create();
   static const int kCreateFieldNumber = 2;
   inline bool create() const;
   inline void set_create(bool value);
   
-  // optional bool open = 3;
+  // optional bool open = 3 [default = true];
   inline bool has_open() const;
   inline void clear_open();
   static const int kOpenFieldNumber = 3;
@@ -187,7 +187,7 @@ inline ::bnet::protocol::attribute::AttributeFilter* GameProperties::release_fil
   return temp;
 }
 
-// optional bool create = 2;
+// optional bool create = 2 [default = false];
 inline bool GameProperties::has_create() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -209,7 +209,7 @@ inline void GameProperties::set_create(bool value) {
   create_ = value;
 }
 
-// optional bool open = 3;
+// optional bool open = 3 [default = true];
 inline bool GameProperties::has_open() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
@@ -220,7 +220,7 @@ inline void GameProperties::clear_has_open() {
   _has_bits_[0] &= ~0x00000004u;
 }
 inline void GameProperties::clear_open() {
-  open_ = false;
+  open_ = true;
   clear_has_open();
 }
 inline bool GameProperties::open() const {

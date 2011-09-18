@@ -23,6 +23,7 @@
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/generated_message_reflection.h>
+#include <google/protobuf/service.h>
 #include "lib/rpc/rpc.pb.h"
 // @@protoc_insertion_point(includes)
 
@@ -372,7 +373,7 @@ class BindRequest : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // repeated fixed32 imported_service_hash = 1;
+  // repeated fixed32 imported_service_hash = 1 [packed = true];
   inline int imported_service_hash_size() const;
   inline void clear_imported_service_hash();
   static const int kImportedServiceHashFieldNumber = 1;
@@ -402,6 +403,7 @@ class BindRequest : public ::google::protobuf::Message {
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
   ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > imported_service_hash_;
+  mutable int _imported_service_hash_cached_byte_size_;
   ::google::protobuf::RepeatedPtrField< ::bnet::protocol::connection::BoundService > exported_service_;
   
   mutable int _cached_size_;
@@ -470,7 +472,7 @@ class BindResponse : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // repeated uint32 imported_service_id = 1;
+  // repeated uint32 imported_service_id = 1 [packed = true];
   inline int imported_service_id_size() const;
   inline void clear_imported_service_id();
   static const int kImportedServiceIdFieldNumber = 1;
@@ -488,6 +490,7 @@ class BindResponse : public ::google::protobuf::Message {
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
   ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > imported_service_id_;
+  mutable int _imported_service_id_cached_byte_size_;
   
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
@@ -562,7 +565,7 @@ class EchoRequest : public ::google::protobuf::Message {
   inline ::google::protobuf::uint64 time() const;
   inline void set_time(::google::protobuf::uint64 value);
   
-  // optional bool network_only = 2;
+  // optional bool network_only = 2 [default = false];
   inline bool has_network_only() const;
   inline void clear_network_only();
   static const int kNetworkOnlyFieldNumber = 2;
@@ -1025,6 +1028,113 @@ class EncryptRequest : public ::google::protobuf::Message {
 };
 // ===================================================================
 
+class ConnectionService_Stub;
+
+class ConnectionService : public ::google::protobuf::Service {
+ protected:
+  // This class should be treated as an abstract interface.
+  inline ConnectionService() {};
+ public:
+  virtual ~ConnectionService();
+  
+  typedef ConnectionService_Stub Stub;
+  
+  static const ::google::protobuf::ServiceDescriptor* descriptor();
+  
+  virtual void Connect(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::connection::ConnectRequest* request,
+                       ::bnet::protocol::connection::ConnectResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void Bind(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::connection::BindRequest* request,
+                       ::bnet::protocol::connection::BindResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void Echo(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::connection::EchoRequest* request,
+                       ::bnet::protocol::connection::EchoResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void ForceDisconnect(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::connection::DisconnectNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  virtual void Null(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::connection::NullRequest* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  virtual void Encrypt(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::connection::EncryptRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void RequestDisconnect(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::connection::DisconnectRequest* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  
+  // implements Service ----------------------------------------------
+  
+  const ::google::protobuf::ServiceDescriptor* GetDescriptor();
+  void CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                  ::google::protobuf::RpcController* controller,
+                  const ::google::protobuf::Message* request,
+                  ::google::protobuf::Message* response,
+                  ::google::protobuf::Closure* done);
+  const ::google::protobuf::Message& GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+  const ::google::protobuf::Message& GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+
+ private:
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ConnectionService);
+};
+
+class ConnectionService_Stub : public ConnectionService {
+ public:
+  ConnectionService_Stub(::google::protobuf::RpcChannel* channel);
+  ConnectionService_Stub(::google::protobuf::RpcChannel* channel,
+                   ::google::protobuf::Service::ChannelOwnership ownership);
+  ~ConnectionService_Stub();
+  
+  inline ::google::protobuf::RpcChannel* channel() { return channel_; }
+  
+  // implements ConnectionService ------------------------------------------
+  
+  void Connect(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::connection::ConnectRequest* request,
+                       ::bnet::protocol::connection::ConnectResponse* response,
+                       ::google::protobuf::Closure* done);
+  void Bind(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::connection::BindRequest* request,
+                       ::bnet::protocol::connection::BindResponse* response,
+                       ::google::protobuf::Closure* done);
+  void Echo(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::connection::EchoRequest* request,
+                       ::bnet::protocol::connection::EchoResponse* response,
+                       ::google::protobuf::Closure* done);
+  void ForceDisconnect(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::connection::DisconnectNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  void Null(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::connection::NullRequest* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  void Encrypt(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::connection::EncryptRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void RequestDisconnect(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::connection::DisconnectRequest* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+ private:
+  ::google::protobuf::RpcChannel* channel_;
+  bool owns_channel_;
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ConnectionService_Stub);
+};
+
+
+// ===================================================================
+
 
 // ===================================================================
 
@@ -1173,7 +1283,7 @@ inline void BoundService::set_id(::google::protobuf::uint32 value) {
 
 // BindRequest
 
-// repeated fixed32 imported_service_hash = 1;
+// repeated fixed32 imported_service_hash = 1 [packed = true];
 inline int BindRequest::imported_service_hash_size() const {
   return imported_service_hash_.size();
 }
@@ -1227,7 +1337,7 @@ BindRequest::mutable_exported_service() {
 
 // BindResponse
 
-// repeated uint32 imported_service_id = 1;
+// repeated uint32 imported_service_id = 1 [packed = true];
 inline int BindResponse::imported_service_id_size() const {
   return imported_service_id_.size();
 }
@@ -1278,7 +1388,7 @@ inline void EchoRequest::set_time(::google::protobuf::uint64 value) {
   time_ = value;
 }
 
-// optional bool network_only = 2;
+// optional bool network_only = 2 [default = false];
 inline bool EchoRequest::has_network_only() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }

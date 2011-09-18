@@ -34,6 +34,7 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* SearchConfig_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   SearchConfig_reflection_ = NULL;
+const ::google::protobuf::ServiceDescriptor* SearchService_descriptor_ = NULL;
 
 }  // namespace
 
@@ -123,6 +124,7 @@ void protobuf_AssignDesc_service_2fsearch_2fsearch_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(SearchConfig));
+  SearchService_descriptor_ = file->service(0);
 }
 
 namespace {
@@ -173,16 +175,24 @@ void protobuf_AddDesc_service_2fsearch_2fsearch_2eproto() {
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\033service/search/search.proto\022\024bnet.prot"
     "ocol.search\032\021lib/rpc/rpc.proto\032!service/"
-    "search/search_types.proto\"|\n\022FindMatches"
-    "Request\022\020\n\010universe\030\001 \002(\t\022-\n\007filters\030\002 \003"
-    "(\0132\034.bnet.protocol.search.Filter\022\026\n\016star"
-    "ting_index\030\003 \001(\r\022\r\n\005count\030\004 \001(\r\"Y\n\023FindM"
-    "atchesResponse\022\023\n\013total_count\030\001 \002(\r\022-\n\007o"
-    "bjects\030\002 \003(\0132\034.bnet.protocol.search.Obje"
-    "ct\"A\n\020SetObjectRequest\022-\n\007objects\030\001 \003(\0132"
-    "\034.bnet.protocol.search.Object\"8\n\024RemoveO"
-    "bjectsRequest\022\020\n\010start_id\030\001 \002(\014\022\016\n\006end_i"
-    "d\030\002 \002(\014\"\016\n\014SearchConfig", 463);
+    "search/search_types.proto\"\202\001\n\022FindMatche"
+    "sRequest\022\020\n\010universe\030\001 \002(\t\022-\n\007filters\030\002 "
+    "\003(\0132\034.bnet.protocol.search.Filter\022\031\n\016sta"
+    "rting_index\030\003 \001(\r:\0010\022\020\n\005count\030\004 \001(\r:\0010\"Y"
+    "\n\023FindMatchesResponse\022\023\n\013total_count\030\001 \002"
+    "(\r\022-\n\007objects\030\002 \003(\0132\034.bnet.protocol.sear"
+    "ch.Object\"A\n\020SetObjectRequest\022-\n\007objects"
+    "\030\001 \003(\0132\034.bnet.protocol.search.Object\"8\n\024"
+    "RemoveObjectsRequest\022\020\n\010start_id\030\001 \002(\014\022\016"
+    "\n\006end_id\030\002 \002(\014\"\016\n\014SearchConfig2\235\002\n\rSearc"
+    "hService\022b\n\013FindMatches\022(.bnet.protocol."
+    "search.FindMatchesRequest\032).bnet.protoco"
+    "l.search.FindMatchesResponse\022O\n\tSetObjec"
+    "t\022&.bnet.protocol.search.SetObjectReques"
+    "t\032\032.bnet.protocol.NO_RESPONSE\022W\n\rRemoveO"
+    "bjects\022*.bnet.protocol.search.RemoveObje"
+    "ctsRequest\032\032.bnet.protocol.NO_RESPONSEB\003"
+    "\200\001\001", 763);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "service/search/search.proto", &protobuf_RegisterTypes);
   FindMatchesRequest::default_instance_ = new FindMatchesRequest();
@@ -321,7 +331,7 @@ bool FindMatchesRequest::MergePartialFromCodedStream(
         break;
       }
       
-      // optional uint32 starting_index = 3;
+      // optional uint32 starting_index = 3 [default = 0];
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -337,7 +347,7 @@ bool FindMatchesRequest::MergePartialFromCodedStream(
         break;
       }
       
-      // optional uint32 count = 4;
+      // optional uint32 count = 4 [default = 0];
       case 4: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -386,12 +396,12 @@ void FindMatchesRequest::SerializeWithCachedSizes(
       2, this->filters(i), output);
   }
   
-  // optional uint32 starting_index = 3;
+  // optional uint32 starting_index = 3 [default = 0];
   if (has_starting_index()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(3, this->starting_index(), output);
   }
   
-  // optional uint32 count = 4;
+  // optional uint32 count = 4 [default = 0];
   if (has_count()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(4, this->count(), output);
   }
@@ -421,12 +431,12 @@ void FindMatchesRequest::SerializeWithCachedSizes(
         2, this->filters(i), target);
   }
   
-  // optional uint32 starting_index = 3;
+  // optional uint32 starting_index = 3 [default = 0];
   if (has_starting_index()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(3, this->starting_index(), target);
   }
   
-  // optional uint32 count = 4;
+  // optional uint32 count = 4 [default = 0];
   if (has_count()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(4, this->count(), target);
   }
@@ -449,14 +459,14 @@ int FindMatchesRequest::ByteSize() const {
           this->universe());
     }
     
-    // optional uint32 starting_index = 3;
+    // optional uint32 starting_index = 3 [default = 0];
     if (has_starting_index()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
           this->starting_index());
     }
     
-    // optional uint32 count = 4;
+    // optional uint32 count = 4 [default = 0];
     if (has_count()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
@@ -1428,6 +1438,140 @@ void SearchConfig::Swap(SearchConfig* other) {
   return metadata;
 }
 
+
+// ===================================================================
+
+SearchService::~SearchService() {}
+
+const ::google::protobuf::ServiceDescriptor* SearchService::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return SearchService_descriptor_;
+}
+
+const ::google::protobuf::ServiceDescriptor* SearchService::GetDescriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return SearchService_descriptor_;
+}
+
+void SearchService::FindMatches(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::search::FindMatchesRequest*,
+                         ::bnet::protocol::search::FindMatchesResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method FindMatches() not implemented.");
+  done->Run();
+}
+
+void SearchService::SetObject(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::search::SetObjectRequest*,
+                         ::bnet::protocol::NO_RESPONSE*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method SetObject() not implemented.");
+  done->Run();
+}
+
+void SearchService::RemoveObjects(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::search::RemoveObjectsRequest*,
+                         ::bnet::protocol::NO_RESPONSE*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method RemoveObjects() not implemented.");
+  done->Run();
+}
+
+void SearchService::CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                             ::google::protobuf::RpcController* controller,
+                             const ::google::protobuf::Message* request,
+                             ::google::protobuf::Message* response,
+                             ::google::protobuf::Closure* done) {
+  GOOGLE_DCHECK_EQ(method->service(), SearchService_descriptor_);
+  switch(method->index()) {
+    case 0:
+      FindMatches(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::search::FindMatchesRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::search::FindMatchesResponse*>(response),
+             done);
+      break;
+    case 1:
+      SetObject(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::search::SetObjectRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NO_RESPONSE*>(response),
+             done);
+      break;
+    case 2:
+      RemoveObjects(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::search::RemoveObjectsRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NO_RESPONSE*>(response),
+             done);
+      break;
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      break;
+  }
+}
+
+const ::google::protobuf::Message& SearchService::GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::search::FindMatchesRequest::default_instance();
+    case 1:
+      return ::bnet::protocol::search::SetObjectRequest::default_instance();
+    case 2:
+      return ::bnet::protocol::search::RemoveObjectsRequest::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+const ::google::protobuf::Message& SearchService::GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::search::FindMatchesResponse::default_instance();
+    case 1:
+      return ::bnet::protocol::NO_RESPONSE::default_instance();
+    case 2:
+      return ::bnet::protocol::NO_RESPONSE::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+SearchService_Stub::SearchService_Stub(::google::protobuf::RpcChannel* channel)
+  : channel_(channel), owns_channel_(false) {}
+SearchService_Stub::SearchService_Stub(
+    ::google::protobuf::RpcChannel* channel,
+    ::google::protobuf::Service::ChannelOwnership ownership)
+  : channel_(channel),
+    owns_channel_(ownership == ::google::protobuf::Service::STUB_OWNS_CHANNEL) {}
+SearchService_Stub::~SearchService_Stub() {
+  if (owns_channel_) delete channel_;
+}
+
+void SearchService_Stub::FindMatches(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::search::FindMatchesRequest* request,
+                              ::bnet::protocol::search::FindMatchesResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(0),
+                       controller, request, response, done);
+}
+void SearchService_Stub::SetObject(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::search::SetObjectRequest* request,
+                              ::bnet::protocol::NO_RESPONSE* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(1),
+                       controller, request, response, done);
+}
+void SearchService_Stub::RemoveObjects(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::search::RemoveObjectsRequest* request,
+                              ::bnet::protocol::NO_RESPONSE* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(2),
+                       controller, request, response, done);
+}
 
 // @@protoc_insertion_point(namespace_scope)
 

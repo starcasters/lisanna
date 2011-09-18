@@ -721,7 +721,7 @@ class ListenPoint : public ::google::protobuf::Message {
   inline ::google::protobuf::uint32 port() const;
   inline void set_port(::google::protobuf::uint32 value);
   
-  // optional string address = 2;
+  // optional string address = 2 [default = "0.0.0.0"];
   inline bool has_address() const;
   inline void clear_address();
   static const int kAddressFieldNumber = 2;
@@ -754,6 +754,7 @@ class ListenPoint : public ::google::protobuf::Message {
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
   ::std::string* address_;
+  static const ::std::string _default_address_;
   ::google::protobuf::RepeatedPtrField< ::bnet::protocol::config::ServerSet > accept_;
   ::google::protobuf::uint32 port_;
   
@@ -1875,7 +1876,7 @@ inline void ListenPoint::set_port(::google::protobuf::uint32 value) {
   port_ = value;
 }
 
-// optional string address = 2;
+// optional string address = 2 [default = "0.0.0.0"];
 inline bool ListenPoint::has_address() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -1886,8 +1887,8 @@ inline void ListenPoint::clear_has_address() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void ListenPoint::clear_address() {
-  if (address_ != &::google::protobuf::internal::kEmptyString) {
-    address_->clear();
+  if (address_ != &_default_address_) {
+    address_->assign(_default_address_);
   }
   clear_has_address();
 }
@@ -1896,39 +1897,39 @@ inline const ::std::string& ListenPoint::address() const {
 }
 inline void ListenPoint::set_address(const ::std::string& value) {
   set_has_address();
-  if (address_ == &::google::protobuf::internal::kEmptyString) {
+  if (address_ == &_default_address_) {
     address_ = new ::std::string;
   }
   address_->assign(value);
 }
 inline void ListenPoint::set_address(const char* value) {
   set_has_address();
-  if (address_ == &::google::protobuf::internal::kEmptyString) {
+  if (address_ == &_default_address_) {
     address_ = new ::std::string;
   }
   address_->assign(value);
 }
 inline void ListenPoint::set_address(const char* value, size_t size) {
   set_has_address();
-  if (address_ == &::google::protobuf::internal::kEmptyString) {
+  if (address_ == &_default_address_) {
     address_ = new ::std::string;
   }
   address_->assign(reinterpret_cast<const char*>(value), size);
 }
 inline ::std::string* ListenPoint::mutable_address() {
   set_has_address();
-  if (address_ == &::google::protobuf::internal::kEmptyString) {
-    address_ = new ::std::string;
+  if (address_ == &_default_address_) {
+    address_ = new ::std::string(_default_address_);
   }
   return address_;
 }
 inline ::std::string* ListenPoint::release_address() {
   clear_has_address();
-  if (address_ == &::google::protobuf::internal::kEmptyString) {
+  if (address_ == &_default_address_) {
     return NULL;
   } else {
     ::std::string* temp = address_;
-    address_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    address_ = const_cast< ::std::string*>(&_default_address_);
     return temp;
   }
 }

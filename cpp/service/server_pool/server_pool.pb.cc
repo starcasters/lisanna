@@ -34,6 +34,7 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* PoolStateResponse_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   PoolStateResponse_reflection_ = NULL;
+const ::google::protobuf::ServiceDescriptor* ServerPoolService_descriptor_ = NULL;
 
 }  // namespace
 
@@ -123,6 +124,7 @@ void protobuf_AssignDesc_service_2fserver_5fpool_2fserver_5fpool_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(PoolStateResponse));
+  ServerPoolService_descriptor_ = file->service(0);
 }
 
 namespace {
@@ -174,16 +176,20 @@ void protobuf_AddDesc_service_2fserver_5fpool_2fserver_5fpool_2eproto() {
     "\n%service/server_pool/server_pool.proto\022"
     "\031bnet.protocol.server_pool\032\034lib/protocol"
     "/attribute.proto\032\021lib/rpc/rpc.proto\"\020\n\016G"
-    "etLoadRequest\"M\n\013ServerState\022\024\n\014current_"
-    "load\030\001 \001(\002\022\022\n\ngame_count\030\002 \001(\005\022\024\n\014player"
-    "_count\030\003 \001(\005\"\307\001\n\nServerInfo\022&\n\004host\030\001 \002("
-    "\0132\030.bnet.protocol.ProcessId\022\017\n\007replace\030\002"
-    " \001(\010\0225\n\005state\030\003 \001(\0132&.bnet.protocol.serv"
-    "er_pool.ServerState\0225\n\tattribute\030\004 \003(\0132\""
-    ".bnet.protocol.attribute.Attribute\022\022\n\npr"
-    "ogram_id\030\005 \001(\007\"\022\n\020PoolStateRequest\"H\n\021Po"
-    "olStateResponse\0223\n\004info\030\001 \003(\0132%.bnet.pro"
-    "tocol.server_pool.ServerInfo", 508);
+    "etLoadRequest\"V\n\013ServerState\022\027\n\014current_"
+    "load\030\001 \001(\002:\0011\022\025\n\ngame_count\030\002 \001(\005:\0010\022\027\n\014"
+    "player_count\030\003 \001(\005:\0010\"\316\001\n\nServerInfo\022&\n\004"
+    "host\030\001 \002(\0132\030.bnet.protocol.ProcessId\022\026\n\007"
+    "replace\030\002 \001(\010:\005false\0225\n\005state\030\003 \001(\0132&.bn"
+    "et.protocol.server_pool.ServerState\0225\n\ta"
+    "ttribute\030\004 \003(\0132\".bnet.protocol.attribute"
+    ".Attribute\022\022\n\nprogram_id\030\005 \001(\007\"\022\n\020PoolSt"
+    "ateRequest\"H\n\021PoolStateResponse\0223\n\004info\030"
+    "\001 \003(\0132%.bnet.protocol.server_pool.Server"
+    "Info2~\n\021ServerPoolService\022i\n\014GetPoolStat"
+    "e\022+.bnet.protocol.server_pool.PoolStateR"
+    "equest\032,.bnet.protocol.server_pool.PoolS"
+    "tateResponseB\003\200\001\001", 657);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "service/server_pool/server_pool.proto", &protobuf_RegisterTypes);
   GetLoadRequest::default_instance_ = new GetLoadRequest();
@@ -386,7 +392,7 @@ ServerState::ServerState(const ServerState& from)
 
 void ServerState::SharedCtor() {
   _cached_size_ = 0;
-  current_load_ = 0;
+  current_load_ = 1;
   game_count_ = 0;
   player_count_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -423,7 +429,7 @@ ServerState* ServerState::New() const {
 
 void ServerState::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    current_load_ = 0;
+    current_load_ = 1;
     game_count_ = 0;
     player_count_ = 0;
   }
@@ -437,7 +443,7 @@ bool ServerState::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional float current_load = 1;
+      // optional float current_load = 1 [default = 1];
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED32) {
@@ -452,7 +458,7 @@ bool ServerState::MergePartialFromCodedStream(
         break;
       }
       
-      // optional int32 game_count = 2;
+      // optional int32 game_count = 2 [default = 0];
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -468,7 +474,7 @@ bool ServerState::MergePartialFromCodedStream(
         break;
       }
       
-      // optional int32 player_count = 3;
+      // optional int32 player_count = 3 [default = 0];
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -502,17 +508,17 @@ bool ServerState::MergePartialFromCodedStream(
 
 void ServerState::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // optional float current_load = 1;
+  // optional float current_load = 1 [default = 1];
   if (has_current_load()) {
     ::google::protobuf::internal::WireFormatLite::WriteFloat(1, this->current_load(), output);
   }
   
-  // optional int32 game_count = 2;
+  // optional int32 game_count = 2 [default = 0];
   if (has_game_count()) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->game_count(), output);
   }
   
-  // optional int32 player_count = 3;
+  // optional int32 player_count = 3 [default = 0];
   if (has_player_count()) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->player_count(), output);
   }
@@ -525,17 +531,17 @@ void ServerState::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* ServerState::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional float current_load = 1;
+  // optional float current_load = 1 [default = 1];
   if (has_current_load()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(1, this->current_load(), target);
   }
   
-  // optional int32 game_count = 2;
+  // optional int32 game_count = 2 [default = 0];
   if (has_game_count()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->game_count(), target);
   }
   
-  // optional int32 player_count = 3;
+  // optional int32 player_count = 3 [default = 0];
   if (has_player_count()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->player_count(), target);
   }
@@ -551,19 +557,19 @@ int ServerState::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional float current_load = 1;
+    // optional float current_load = 1 [default = 1];
     if (has_current_load()) {
       total_size += 1 + 4;
     }
     
-    // optional int32 game_count = 2;
+    // optional int32 game_count = 2 [default = 0];
     if (has_game_count()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->game_count());
     }
     
-    // optional int32 player_count = 3;
+    // optional int32 player_count = 3 [default = 0];
     if (has_player_count()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
@@ -748,7 +754,7 @@ bool ServerInfo::MergePartialFromCodedStream(
         break;
       }
       
-      // optional bool replace = 2;
+      // optional bool replace = 2 [default = false];
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -833,7 +839,7 @@ void ServerInfo::SerializeWithCachedSizes(
       1, this->host(), output);
   }
   
-  // optional bool replace = 2;
+  // optional bool replace = 2 [default = false];
   if (has_replace()) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(2, this->replace(), output);
   }
@@ -870,7 +876,7 @@ void ServerInfo::SerializeWithCachedSizes(
         1, this->host(), target);
   }
   
-  // optional bool replace = 2;
+  // optional bool replace = 2 [default = false];
   if (has_replace()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(2, this->replace(), target);
   }
@@ -912,7 +918,7 @@ int ServerInfo::ByteSize() const {
           this->host());
     }
     
-    // optional bool replace = 2;
+    // optional bool replace = 2 [default = false];
     if (has_replace()) {
       total_size += 1 + 1;
     }
@@ -1386,6 +1392,90 @@ void PoolStateResponse::Swap(PoolStateResponse* other) {
   return metadata;
 }
 
+
+// ===================================================================
+
+ServerPoolService::~ServerPoolService() {}
+
+const ::google::protobuf::ServiceDescriptor* ServerPoolService::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return ServerPoolService_descriptor_;
+}
+
+const ::google::protobuf::ServiceDescriptor* ServerPoolService::GetDescriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return ServerPoolService_descriptor_;
+}
+
+void ServerPoolService::GetPoolState(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::server_pool::PoolStateRequest*,
+                         ::bnet::protocol::server_pool::PoolStateResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method GetPoolState() not implemented.");
+  done->Run();
+}
+
+void ServerPoolService::CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                             ::google::protobuf::RpcController* controller,
+                             const ::google::protobuf::Message* request,
+                             ::google::protobuf::Message* response,
+                             ::google::protobuf::Closure* done) {
+  GOOGLE_DCHECK_EQ(method->service(), ServerPoolService_descriptor_);
+  switch(method->index()) {
+    case 0:
+      GetPoolState(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::server_pool::PoolStateRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::server_pool::PoolStateResponse*>(response),
+             done);
+      break;
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      break;
+  }
+}
+
+const ::google::protobuf::Message& ServerPoolService::GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::server_pool::PoolStateRequest::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+const ::google::protobuf::Message& ServerPoolService::GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::server_pool::PoolStateResponse::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+ServerPoolService_Stub::ServerPoolService_Stub(::google::protobuf::RpcChannel* channel)
+  : channel_(channel), owns_channel_(false) {}
+ServerPoolService_Stub::ServerPoolService_Stub(
+    ::google::protobuf::RpcChannel* channel,
+    ::google::protobuf::Service::ChannelOwnership ownership)
+  : channel_(channel),
+    owns_channel_(ownership == ::google::protobuf::Service::STUB_OWNS_CHANNEL) {}
+ServerPoolService_Stub::~ServerPoolService_Stub() {
+  if (owns_channel_) delete channel_;
+}
+
+void ServerPoolService_Stub::GetPoolState(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::server_pool::PoolStateRequest* request,
+                              ::bnet::protocol::server_pool::PoolStateResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(0),
+                       controller, request, response, done);
+}
 
 // @@protoc_insertion_point(namespace_scope)
 

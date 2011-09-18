@@ -4,7 +4,7 @@
 #*
 #*   This program is free software; you can redistribute it and/or modify
 #*   it under the terms of the GNU General Public License as published by
-#*   the Free Software Foundation; either version 2 of the License, or
+#*   the Free Software Foundation; either version 3 of the License, or
 #*   (at your option) any later version.
 #*
 #*   This program is distributed in the hope that it will be useful,
@@ -15,10 +15,46 @@
 #*   You should have received a copy of the GNU General Public License
 #*   along with this program; if not, write to the Free Software
 #*   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- 
-THIS=${PWD}
-GPLIBS=rpc/cpp/
-GPLIBSI=rpc/rpc.o rpc/headers.o
+
+SHELL = /bin/sh
+SERVICES= \
+	services/AuthenticationClient.cpp \
+	services/AuthenticationServer.cpp \
+	services/Channel.cpp \
+	services/ChannelInvitationNotify.cpp \
+	services/ChannelInvitationService.cpp \
+	services/ChannelOwner.cpp \
+	services/ChannelSubscriber.cpp \
+	services/ChatService.cpp \
+	services/ExchangeNotify.cpp \
+	services/ExchangeService.cpp \
+	services/FollowersNotify.cpp \
+	services/FollowersService.cpp \
+	services/FriendsNotify.cpp \
+	services/FriendsService.cpp \
+	services/GameFactorySubscriber.cpp \
+	services/GameMaster.cpp \
+	services/GameMasterSubscriber.cpp \
+	services/GameUtilities.cpp \
+	services/NotificationListener.cpp \
+	services/NotificationService.cpp \
+	services/PartyService.cpp \
+	services/PresenceService.cpp \
+	services/SearchService.cpp \
+	services/ServerPoolService.cpp \
+	services/StorageService.cpp \
+	services/ToonServiceExternal.cpp \
+	services/UserManagerNotify.cpp \
+	services/UserManagerService.cpp 
+	
+SOURCES=$(SERVICES) \
+		rpc/rpc.cpp \
+		rpc/headers.cpp \
+		rpc/Service.cpp \
+		rpc/ServiceMgr.cpp \
+		rpc/BaseService.cpp 
+		
+OBJECTS=$(SOURCES:.cpp=.o)
 CC=g++
 
 PLIBS= \
@@ -54,10 +90,12 @@ PLIBS= \
  cpp/service/exchange/exchange_types.pb.o \
  cpp/service/friends/definition/friends.pb.o \
  cpp/service/friends/friends_types.pb.o \
+ cpp/service/followers/definition/followers.pb.o \
  cpp/service/game_master/game_factory.pb.o \
  cpp/service/game_master/game_master.pb.o \
  cpp/service/game_master/game_master_types.pb.o \
  cpp/service/game_utilities/game_utilities.pb.o \
+ cpp/google/protobuf/csharp_options.pb.o \
  cpp/service/notification/notification.pb.o \
  cpp/service/presence/presence.pb.o \
  cpp/service/presence/presence_types.pb.o \
@@ -71,18 +109,14 @@ PLIBS= \
  cpp/Settings.pb.o \
  cpp/Stats.pb.o
 
+all: $(OBJECTS)
+	${CC} -o TCPServer server/TCPServer.cpp server/PracticalSocket.cpp ${PLIBS} ${OBJECTS} -lws2_32 -I${PWD} -Icpp/ -I/usr/local/include -L/usr/local/lib/ -lprotobuf 
 
-all: libs
-	echo ${THIS}
-	${CC} -o TCPServer server/TCPServer.cpp server/PracticalSocket.cpp ${PLIBS} ${GPLIBSI} -lws2_32 -I${THIS} -Icpp/ -I/usr/local/include -L/usr/local/lib/ -lprotobuf 
-
-rpc/headers.o: rpc/headers.cpp rpc/headers.h
-	rm -f rpc/headers.o
-	${CC} -c -o rpc/headers.o rpc/headers.cpp -lws2_32 -Icpp/ -I/usr/local/include -L/usr/local/lib/ -lprotobuf 
-	
-rpc/rpc.o: rpc/rpc.cpp rpc/rpc.h
-	rm -f rpc/rpc.o
-	${CC} -c -o rpc/rpc.o rpc/rpc.cpp -lws2_32 -Icpp/ -I/usr/local/include -L/usr/local/lib/ -lprotobuf 
-
-libs: rpc/headers.o rpc/rpc.o
-
+clean:
+		rm services/*.o
+		rm rpc/*.o
+		rm TCPServer.exe
+		rm TCPServer
+		
+.cpp.o:
+	$(CC) $(CFLAGS) -c $< -o $@ -lws2_32 -I${PWD} -Icpp/ -I/usr/local/include -L/usr/local/lib/ -lprotobuf 

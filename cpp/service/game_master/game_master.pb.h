@@ -23,6 +23,7 @@
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/generated_message_reflection.h>
+#include <google/protobuf/service.h>
 #include "service/game_master/game_factory.pb.h"
 #include "service/server_pool/server_pool.pb.h"
 #include "service/channel/channel_types.pb.h"
@@ -341,14 +342,14 @@ class ListFactoriesRequest : public ::google::protobuf::Message {
   inline ::bnet::protocol::attribute::AttributeFilter* mutable_filter();
   inline ::bnet::protocol::attribute::AttributeFilter* release_filter();
   
-  // optional uint32 start_index = 2;
+  // optional uint32 start_index = 2 [default = 0];
   inline bool has_start_index() const;
   inline void clear_start_index();
   static const int kStartIndexFieldNumber = 2;
   inline ::google::protobuf::uint32 start_index() const;
   inline void set_start_index(::google::protobuf::uint32 value);
   
-  // optional uint32 max_results = 3;
+  // optional uint32 max_results = 3 [default = 100];
   inline bool has_max_results() const;
   inline void clear_max_results();
   static const int kMaxResultsFieldNumber = 3;
@@ -941,7 +942,7 @@ class PlayerLeftNotification : public ::google::protobuf::Message {
   inline ::bnet::protocol::EntityId* mutable_toon_id();
   inline ::bnet::protocol::EntityId* release_toon_id();
   
-  // optional uint32 reason = 3;
+  // optional uint32 reason = 3 [default = 0];
   inline bool has_reason() const;
   inline void clear_reason();
   static const int kReasonFieldNumber = 3;
@@ -1658,7 +1659,7 @@ class ChangeGameRequest : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedPtrField< ::bnet::protocol::attribute::Attribute >*
       mutable_attribute();
   
-  // optional bool replace = 4;
+  // optional bool replace = 4 [default = false];
   inline bool has_replace() const;
   inline void clear_replace();
   static const int kReplaceFieldNumber = 4;
@@ -2240,7 +2241,7 @@ class GameFoundNotification : public ::google::protobuf::Message {
   inline ::google::protobuf::uint64 request_id() const;
   inline void set_request_id(::google::protobuf::uint64 value);
   
-  // optional uint32 error_code = 2;
+  // optional uint32 error_code = 2 [default = 0];
   inline bool has_error_code() const;
   inline void clear_error_code();
   static const int kErrorCodeFieldNumber = 2;
@@ -2293,6 +2294,295 @@ class GameFoundNotification : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static GameFoundNotification* default_instance_;
 };
+// ===================================================================
+
+class GameMaster_Stub;
+
+class GameMaster : public ::google::protobuf::Service {
+ protected:
+  // This class should be treated as an abstract interface.
+  inline GameMaster() {};
+ public:
+  virtual ~GameMaster();
+  
+  typedef GameMaster_Stub Stub;
+  
+  static const ::google::protobuf::ServiceDescriptor* descriptor();
+  
+  virtual void JoinGame(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::JoinGameRequest* request,
+                       ::bnet::protocol::game_master::JoinGameResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void ListFactories(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::ListFactoriesRequest* request,
+                       ::bnet::protocol::game_master::ListFactoriesResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void FindGame(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::FindGameRequest* request,
+                       ::bnet::protocol::game_master::FindGameResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void CancelFindGame(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::CancelFindGameRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void GameEnded(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::GameEndedNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  virtual void PlayerLeft(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::PlayerLeftNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  virtual void RegisterServer(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::RegisterServerRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void UnregisterServer(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::UnregisterServerRequest* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  virtual void RegisterUtilities(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::RegisterUtilitiesRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void UnregisterUtilities(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::UnregisterUtilitiesRequest* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  virtual void Subscribe(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::SubscribeRequest* request,
+                       ::bnet::protocol::game_master::SubscribeResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void Unsubscribe(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::UnsubscribeRequest* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  virtual void ChangeGame(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::ChangeGameRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void GetFactoryInfo(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::GetFactoryInfoRequest* request,
+                       ::bnet::protocol::game_master::GetFactoryInfoResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void GetGameStats(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::GetGameStatsRequest* request,
+                       ::bnet::protocol::game_master::GetGameStatsResponse* response,
+                       ::google::protobuf::Closure* done);
+  
+  // implements Service ----------------------------------------------
+  
+  const ::google::protobuf::ServiceDescriptor* GetDescriptor();
+  void CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                  ::google::protobuf::RpcController* controller,
+                  const ::google::protobuf::Message* request,
+                  ::google::protobuf::Message* response,
+                  ::google::protobuf::Closure* done);
+  const ::google::protobuf::Message& GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+  const ::google::protobuf::Message& GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+
+ private:
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(GameMaster);
+};
+
+class GameMaster_Stub : public GameMaster {
+ public:
+  GameMaster_Stub(::google::protobuf::RpcChannel* channel);
+  GameMaster_Stub(::google::protobuf::RpcChannel* channel,
+                   ::google::protobuf::Service::ChannelOwnership ownership);
+  ~GameMaster_Stub();
+  
+  inline ::google::protobuf::RpcChannel* channel() { return channel_; }
+  
+  // implements GameMaster ------------------------------------------
+  
+  void JoinGame(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::JoinGameRequest* request,
+                       ::bnet::protocol::game_master::JoinGameResponse* response,
+                       ::google::protobuf::Closure* done);
+  void ListFactories(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::ListFactoriesRequest* request,
+                       ::bnet::protocol::game_master::ListFactoriesResponse* response,
+                       ::google::protobuf::Closure* done);
+  void FindGame(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::FindGameRequest* request,
+                       ::bnet::protocol::game_master::FindGameResponse* response,
+                       ::google::protobuf::Closure* done);
+  void CancelFindGame(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::CancelFindGameRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void GameEnded(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::GameEndedNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  void PlayerLeft(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::PlayerLeftNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  void RegisterServer(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::RegisterServerRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void UnregisterServer(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::UnregisterServerRequest* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  void RegisterUtilities(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::RegisterUtilitiesRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void UnregisterUtilities(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::UnregisterUtilitiesRequest* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  void Subscribe(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::SubscribeRequest* request,
+                       ::bnet::protocol::game_master::SubscribeResponse* response,
+                       ::google::protobuf::Closure* done);
+  void Unsubscribe(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::UnsubscribeRequest* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  void ChangeGame(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::ChangeGameRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void GetFactoryInfo(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::GetFactoryInfoRequest* request,
+                       ::bnet::protocol::game_master::GetFactoryInfoResponse* response,
+                       ::google::protobuf::Closure* done);
+  void GetGameStats(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::GetGameStatsRequest* request,
+                       ::bnet::protocol::game_master::GetGameStatsResponse* response,
+                       ::google::protobuf::Closure* done);
+ private:
+  ::google::protobuf::RpcChannel* channel_;
+  bool owns_channel_;
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(GameMaster_Stub);
+};
+
+
+// -------------------------------------------------------------------
+
+class GameMasterSubscriber_Stub;
+
+class GameMasterSubscriber : public ::google::protobuf::Service {
+ protected:
+  // This class should be treated as an abstract interface.
+  inline GameMasterSubscriber() {};
+ public:
+  virtual ~GameMasterSubscriber();
+  
+  typedef GameMasterSubscriber_Stub Stub;
+  
+  static const ::google::protobuf::ServiceDescriptor* descriptor();
+  
+  virtual void NotifyFactoryUpdate(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::FactoryUpdateNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  
+  // implements Service ----------------------------------------------
+  
+  const ::google::protobuf::ServiceDescriptor* GetDescriptor();
+  void CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                  ::google::protobuf::RpcController* controller,
+                  const ::google::protobuf::Message* request,
+                  ::google::protobuf::Message* response,
+                  ::google::protobuf::Closure* done);
+  const ::google::protobuf::Message& GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+  const ::google::protobuf::Message& GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+
+ private:
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(GameMasterSubscriber);
+};
+
+class GameMasterSubscriber_Stub : public GameMasterSubscriber {
+ public:
+  GameMasterSubscriber_Stub(::google::protobuf::RpcChannel* channel);
+  GameMasterSubscriber_Stub(::google::protobuf::RpcChannel* channel,
+                   ::google::protobuf::Service::ChannelOwnership ownership);
+  ~GameMasterSubscriber_Stub();
+  
+  inline ::google::protobuf::RpcChannel* channel() { return channel_; }
+  
+  // implements GameMasterSubscriber ------------------------------------------
+  
+  void NotifyFactoryUpdate(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::FactoryUpdateNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+ private:
+  ::google::protobuf::RpcChannel* channel_;
+  bool owns_channel_;
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(GameMasterSubscriber_Stub);
+};
+
+
+// -------------------------------------------------------------------
+
+class GameFactorySubscriber_Stub;
+
+class GameFactorySubscriber : public ::google::protobuf::Service {
+ protected:
+  // This class should be treated as an abstract interface.
+  inline GameFactorySubscriber() {};
+ public:
+  virtual ~GameFactorySubscriber();
+  
+  typedef GameFactorySubscriber_Stub Stub;
+  
+  static const ::google::protobuf::ServiceDescriptor* descriptor();
+  
+  virtual void NotifyGameFound(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::GameFoundNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  
+  // implements Service ----------------------------------------------
+  
+  const ::google::protobuf::ServiceDescriptor* GetDescriptor();
+  void CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                  ::google::protobuf::RpcController* controller,
+                  const ::google::protobuf::Message* request,
+                  ::google::protobuf::Message* response,
+                  ::google::protobuf::Closure* done);
+  const ::google::protobuf::Message& GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+  const ::google::protobuf::Message& GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+
+ private:
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(GameFactorySubscriber);
+};
+
+class GameFactorySubscriber_Stub : public GameFactorySubscriber {
+ public:
+  GameFactorySubscriber_Stub(::google::protobuf::RpcChannel* channel);
+  GameFactorySubscriber_Stub(::google::protobuf::RpcChannel* channel,
+                   ::google::protobuf::Service::ChannelOwnership ownership);
+  ~GameFactorySubscriber_Stub();
+  
+  inline ::google::protobuf::RpcChannel* channel() { return channel_; }
+  
+  // implements GameFactorySubscriber ------------------------------------------
+  
+  void NotifyGameFound(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::game_master::GameFoundNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+ private:
+  ::google::protobuf::RpcChannel* channel_;
+  bool owns_channel_;
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(GameFactorySubscriber_Stub);
+};
+
+
 // ===================================================================
 
 
@@ -2445,7 +2735,7 @@ inline ::bnet::protocol::attribute::AttributeFilter* ListFactoriesRequest::relea
   return temp;
 }
 
-// optional uint32 start_index = 2;
+// optional uint32 start_index = 2 [default = 0];
 inline bool ListFactoriesRequest::has_start_index() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -2467,7 +2757,7 @@ inline void ListFactoriesRequest::set_start_index(::google::protobuf::uint32 val
   start_index_ = value;
 }
 
-// optional uint32 max_results = 3;
+// optional uint32 max_results = 3 [default = 100];
 inline bool ListFactoriesRequest::has_max_results() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
@@ -2478,7 +2768,7 @@ inline void ListFactoriesRequest::clear_has_max_results() {
   _has_bits_[0] &= ~0x00000004u;
 }
 inline void ListFactoriesRequest::clear_max_results() {
-  max_results_ = 0u;
+  max_results_ = 100u;
   clear_has_max_results();
 }
 inline ::google::protobuf::uint32 ListFactoriesRequest::max_results() const {
@@ -2862,7 +3152,7 @@ inline ::bnet::protocol::EntityId* PlayerLeftNotification::release_toon_id() {
   return temp;
 }
 
-// optional uint32 reason = 3;
+// optional uint32 reason = 3 [default = 0];
 inline bool PlayerLeftNotification::has_reason() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
@@ -3210,7 +3500,7 @@ ChangeGameRequest::mutable_attribute() {
   return &attribute_;
 }
 
-// optional bool replace = 4;
+// optional bool replace = 4 [default = false];
 inline bool ChangeGameRequest::has_replace() const {
   return (_has_bits_[0] & 0x00000008u) != 0;
 }
@@ -3500,7 +3790,7 @@ inline void GameFoundNotification::set_request_id(::google::protobuf::uint64 val
   request_id_ = value;
 }
 
-// optional uint32 error_code = 2;
+// optional uint32 error_code = 2 [default = 0];
 inline bool GameFoundNotification::has_error_code() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }

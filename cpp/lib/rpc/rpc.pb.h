@@ -478,6 +478,18 @@ class NoData : public ::google::protobuf::Message {
 };
 // ===================================================================
 
+static const int kMethodIdFieldNumber = 50000;
+extern ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::MethodOptions,
+    ::google::protobuf::internal::PrimitiveTypeTraits< ::google::protobuf::uint32 >, 13, false >
+  method_id;
+static const int kCostFieldNumber = 50001;
+extern ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::MethodOptions,
+    ::google::protobuf::internal::PrimitiveTypeTraits< ::google::protobuf::uint32 >, 13, false >
+  cost;
+static const int kTimeoutFieldNumber = 50002;
+extern ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::MethodOptions,
+    ::google::protobuf::internal::PrimitiveTypeTraits< float >, 2, false >
+  timeout;
 
 // ===================================================================
 

@@ -23,6 +23,7 @@
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/generated_message_reflection.h>
+#include <google/protobuf/service.h>
 #include "lib/protocol/attribute.pb.h"
 #include "lib/protocol/entity.pb.h"
 #include "lib/rpc/rpc.pb.h"
@@ -517,6 +518,148 @@ class UnregisterClientRequest : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static UnregisterClientRequest* default_instance_;
 };
+// ===================================================================
+
+class NotificationService_Stub;
+
+class NotificationService : public ::google::protobuf::Service {
+ protected:
+  // This class should be treated as an abstract interface.
+  inline NotificationService() {};
+ public:
+  virtual ~NotificationService();
+  
+  typedef NotificationService_Stub Stub;
+  
+  static const ::google::protobuf::ServiceDescriptor* descriptor();
+  
+  virtual void SendNotification(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::notification::Notification* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void RegisterClient(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::notification::RegisterClientRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void UnregisterClient(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::notification::UnregisterClientRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void FindClient(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::notification::FindClientRequest* request,
+                       ::bnet::protocol::notification::FindClientResponse* response,
+                       ::google::protobuf::Closure* done);
+  
+  // implements Service ----------------------------------------------
+  
+  const ::google::protobuf::ServiceDescriptor* GetDescriptor();
+  void CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                  ::google::protobuf::RpcController* controller,
+                  const ::google::protobuf::Message* request,
+                  ::google::protobuf::Message* response,
+                  ::google::protobuf::Closure* done);
+  const ::google::protobuf::Message& GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+  const ::google::protobuf::Message& GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+
+ private:
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(NotificationService);
+};
+
+class NotificationService_Stub : public NotificationService {
+ public:
+  NotificationService_Stub(::google::protobuf::RpcChannel* channel);
+  NotificationService_Stub(::google::protobuf::RpcChannel* channel,
+                   ::google::protobuf::Service::ChannelOwnership ownership);
+  ~NotificationService_Stub();
+  
+  inline ::google::protobuf::RpcChannel* channel() { return channel_; }
+  
+  // implements NotificationService ------------------------------------------
+  
+  void SendNotification(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::notification::Notification* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void RegisterClient(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::notification::RegisterClientRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void UnregisterClient(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::notification::UnregisterClientRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void FindClient(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::notification::FindClientRequest* request,
+                       ::bnet::protocol::notification::FindClientResponse* response,
+                       ::google::protobuf::Closure* done);
+ private:
+  ::google::protobuf::RpcChannel* channel_;
+  bool owns_channel_;
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(NotificationService_Stub);
+};
+
+
+// -------------------------------------------------------------------
+
+class NotificationListener_Stub;
+
+class NotificationListener : public ::google::protobuf::Service {
+ protected:
+  // This class should be treated as an abstract interface.
+  inline NotificationListener() {};
+ public:
+  virtual ~NotificationListener();
+  
+  typedef NotificationListener_Stub Stub;
+  
+  static const ::google::protobuf::ServiceDescriptor* descriptor();
+  
+  virtual void OnNotificationReceived(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::notification::Notification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  
+  // implements Service ----------------------------------------------
+  
+  const ::google::protobuf::ServiceDescriptor* GetDescriptor();
+  void CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                  ::google::protobuf::RpcController* controller,
+                  const ::google::protobuf::Message* request,
+                  ::google::protobuf::Message* response,
+                  ::google::protobuf::Closure* done);
+  const ::google::protobuf::Message& GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+  const ::google::protobuf::Message& GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+
+ private:
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(NotificationListener);
+};
+
+class NotificationListener_Stub : public NotificationListener {
+ public:
+  NotificationListener_Stub(::google::protobuf::RpcChannel* channel);
+  NotificationListener_Stub(::google::protobuf::RpcChannel* channel,
+                   ::google::protobuf::Service::ChannelOwnership ownership);
+  ~NotificationListener_Stub();
+  
+  inline ::google::protobuf::RpcChannel* channel() { return channel_; }
+  
+  // implements NotificationListener ------------------------------------------
+  
+  void OnNotificationReceived(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::notification::Notification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+ private:
+  ::google::protobuf::RpcChannel* channel_;
+  bool owns_channel_;
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(NotificationListener_Stub);
+};
+
+
 // ===================================================================
 
 

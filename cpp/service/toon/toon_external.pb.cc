@@ -44,6 +44,7 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* DeleteToonResponse_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   DeleteToonResponse_reflection_ = NULL;
+const ::google::protobuf::ServiceDescriptor* ToonServiceExternal_descriptor_ = NULL;
 
 }  // namespace
 
@@ -172,6 +173,7 @@ void protobuf_AssignDesc_service_2ftoon_2ftoon_5fexternal_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(DeleteToonResponse));
+  ToonServiceExternal_descriptor_ = file->service(0);
 }
 
 namespace {
@@ -247,7 +249,19 @@ void protobuf_AddDesc_service_2ftoon_2ftoon_5fexternal_2eproto() {
     "ibute.Attribute\";\n\022CreateToonResponse\022%\n"
     "\004toon\030\002 \001(\0132\027.bnet.protocol.EntityId\":\n\021"
     "DeleteToonRequest\022%\n\004toon\030\001 \002(\0132\027.bnet.p"
-    "rotocol.EntityId\"\024\n\022DeleteToonResponse", 558);
+    "rotocol.EntityId\"\024\n\022DeleteToonResponse2\313"
+    "\003\n\023ToonServiceExternal\022g\n\010ToonList\022,.bne"
+    "t.protocol.toon.external.ToonListRequest"
+    "\032-.bnet.protocol.toon.external.ToonListR"
+    "esponse\022m\n\nSelectToon\022..bnet.protocol.to"
+    "on.external.SelectToonRequest\032/.bnet.pro"
+    "tocol.toon.external.SelectToonResponse\022m"
+    "\n\nCreateToon\022..bnet.protocol.toon.extern"
+    "al.CreateToonRequest\032/.bnet.protocol.too"
+    "n.external.CreateToonResponse\022m\n\nDeleteT"
+    "oon\022..bnet.protocol.toon.external.Delete"
+    "ToonRequest\032/.bnet.protocol.toon.externa"
+    "l.DeleteToonResponseB\003\200\001\001", 1025);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "service/toon/toon_external.proto", &protobuf_RegisterTypes);
   ToonListRequest::default_instance_ = new ToonListRequest();
@@ -1860,6 +1874,165 @@ void DeleteToonResponse::Swap(DeleteToonResponse* other) {
   return metadata;
 }
 
+
+// ===================================================================
+
+ToonServiceExternal::~ToonServiceExternal() {}
+
+const ::google::protobuf::ServiceDescriptor* ToonServiceExternal::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return ToonServiceExternal_descriptor_;
+}
+
+const ::google::protobuf::ServiceDescriptor* ToonServiceExternal::GetDescriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return ToonServiceExternal_descriptor_;
+}
+
+void ToonServiceExternal::ToonList(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::toon::external::ToonListRequest*,
+                         ::bnet::protocol::toon::external::ToonListResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method ToonList() not implemented.");
+  done->Run();
+}
+
+void ToonServiceExternal::SelectToon(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::toon::external::SelectToonRequest*,
+                         ::bnet::protocol::toon::external::SelectToonResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method SelectToon() not implemented.");
+  done->Run();
+}
+
+void ToonServiceExternal::CreateToon(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::toon::external::CreateToonRequest*,
+                         ::bnet::protocol::toon::external::CreateToonResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method CreateToon() not implemented.");
+  done->Run();
+}
+
+void ToonServiceExternal::DeleteToon(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::toon::external::DeleteToonRequest*,
+                         ::bnet::protocol::toon::external::DeleteToonResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method DeleteToon() not implemented.");
+  done->Run();
+}
+
+void ToonServiceExternal::CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                             ::google::protobuf::RpcController* controller,
+                             const ::google::protobuf::Message* request,
+                             ::google::protobuf::Message* response,
+                             ::google::protobuf::Closure* done) {
+  GOOGLE_DCHECK_EQ(method->service(), ToonServiceExternal_descriptor_);
+  switch(method->index()) {
+    case 0:
+      ToonList(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::toon::external::ToonListRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::toon::external::ToonListResponse*>(response),
+             done);
+      break;
+    case 1:
+      SelectToon(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::toon::external::SelectToonRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::toon::external::SelectToonResponse*>(response),
+             done);
+      break;
+    case 2:
+      CreateToon(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::toon::external::CreateToonRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::toon::external::CreateToonResponse*>(response),
+             done);
+      break;
+    case 3:
+      DeleteToon(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::toon::external::DeleteToonRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::toon::external::DeleteToonResponse*>(response),
+             done);
+      break;
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      break;
+  }
+}
+
+const ::google::protobuf::Message& ToonServiceExternal::GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::toon::external::ToonListRequest::default_instance();
+    case 1:
+      return ::bnet::protocol::toon::external::SelectToonRequest::default_instance();
+    case 2:
+      return ::bnet::protocol::toon::external::CreateToonRequest::default_instance();
+    case 3:
+      return ::bnet::protocol::toon::external::DeleteToonRequest::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+const ::google::protobuf::Message& ToonServiceExternal::GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::toon::external::ToonListResponse::default_instance();
+    case 1:
+      return ::bnet::protocol::toon::external::SelectToonResponse::default_instance();
+    case 2:
+      return ::bnet::protocol::toon::external::CreateToonResponse::default_instance();
+    case 3:
+      return ::bnet::protocol::toon::external::DeleteToonResponse::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+ToonServiceExternal_Stub::ToonServiceExternal_Stub(::google::protobuf::RpcChannel* channel)
+  : channel_(channel), owns_channel_(false) {}
+ToonServiceExternal_Stub::ToonServiceExternal_Stub(
+    ::google::protobuf::RpcChannel* channel,
+    ::google::protobuf::Service::ChannelOwnership ownership)
+  : channel_(channel),
+    owns_channel_(ownership == ::google::protobuf::Service::STUB_OWNS_CHANNEL) {}
+ToonServiceExternal_Stub::~ToonServiceExternal_Stub() {
+  if (owns_channel_) delete channel_;
+}
+
+void ToonServiceExternal_Stub::ToonList(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::toon::external::ToonListRequest* request,
+                              ::bnet::protocol::toon::external::ToonListResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(0),
+                       controller, request, response, done);
+}
+void ToonServiceExternal_Stub::SelectToon(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::toon::external::SelectToonRequest* request,
+                              ::bnet::protocol::toon::external::SelectToonResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(1),
+                       controller, request, response, done);
+}
+void ToonServiceExternal_Stub::CreateToon(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::toon::external::CreateToonRequest* request,
+                              ::bnet::protocol::toon::external::CreateToonResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(2),
+                       controller, request, response, done);
+}
+void ToonServiceExternal_Stub::DeleteToon(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::toon::external::DeleteToonRequest* request,
+                              ::bnet::protocol::toon::external::DeleteToonResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(3),
+                       controller, request, response, done);
+}
 
 // @@protoc_insertion_point(namespace_scope)
 

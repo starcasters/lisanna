@@ -174,7 +174,11 @@ void protobuf_AddDesc_lib_2frpc_2frpc_2eproto() {
     "ess\")\n\tProcessId\022\r\n\005label\030\001 \002(\r\022\r\n\005epoch"
     "\030\002 \002(\r\"J\n\rObjectAddress\022&\n\004host\030\001 \002(\0132\030."
     "bnet.protocol.ProcessId\022\021\n\tobject_id\030\002 \002"
-    "(\004\"\010\n\006NoData", 292);
+    "(\004\"\010\n\006NoData:3\n\tmethod_id\022\036.google.proto"
+    "buf.MethodOptions\030\320\206\003 \001(\r:.\n\004cost\022\036.goog"
+    "le.protobuf.MethodOptions\030\321\206\003 \001(\r:1\n\007tim"
+    "eout\022\036.google.protobuf.MethodOptions\030\322\206\003"
+    " \001(\002", 444);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "lib/rpc/rpc.proto", &protobuf_RegisterTypes);
   NO_RESPONSE::default_instance_ = new NO_RESPONSE();
@@ -182,6 +186,15 @@ void protobuf_AddDesc_lib_2frpc_2frpc_2eproto() {
   ProcessId::default_instance_ = new ProcessId();
   ObjectAddress::default_instance_ = new ObjectAddress();
   NoData::default_instance_ = new NoData();
+  ::google::protobuf::internal::ExtensionSet::RegisterExtension(
+    &::google::protobuf::MethodOptions::default_instance(),
+    50000, 13, false, false);
+  ::google::protobuf::internal::ExtensionSet::RegisterExtension(
+    &::google::protobuf::MethodOptions::default_instance(),
+    50001, 13, false, false);
+  ::google::protobuf::internal::ExtensionSet::RegisterExtension(
+    &::google::protobuf::MethodOptions::default_instance(),
+    50002, 2, false, false);
   NO_RESPONSE::default_instance_->InitAsDefaultInstance();
   Address::default_instance_->InitAsDefaultInstance();
   ProcessId::default_instance_->InitAsDefaultInstance();
@@ -1324,6 +1337,15 @@ void NoData::Swap(NoData* other) {
   return metadata;
 }
 
+::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::MethodOptions,
+    ::google::protobuf::internal::PrimitiveTypeTraits< ::google::protobuf::uint32 >, 13, false >
+  method_id(kMethodIdFieldNumber, 0u);
+::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::MethodOptions,
+    ::google::protobuf::internal::PrimitiveTypeTraits< ::google::protobuf::uint32 >, 13, false >
+  cost(kCostFieldNumber, 0u);
+::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::MethodOptions,
+    ::google::protobuf::internal::PrimitiveTypeTraits< float >, 2, false >
+  timeout(kTimeoutFieldNumber, 0);
 
 // @@protoc_insertion_point(namespace_scope)
 

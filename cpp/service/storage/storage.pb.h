@@ -23,6 +23,7 @@
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/generated_message_reflection.h>
+#include <google/protobuf/service.h>
 #include "lib/protocol/descriptor.pb.h"
 #include "lib/protocol/entity.pb.h"
 #include "lib/rpc/rpc.pb.h"
@@ -504,14 +505,14 @@ class Privilege : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional fixed64 bits = 1;
+  // optional fixed64 bits = 1 [default = 0];
   inline bool has_bits() const;
   inline void clear_bits();
   static const int kBitsFieldNumber = 1;
   inline ::google::protobuf::uint64 bits() const;
   inline void set_bits(::google::protobuf::uint64 value);
   
-  // optional fixed32 program = 2;
+  // optional fixed32 program = 2 [default = 0];
   inline bool has_program() const;
   inline void clear_program();
   static const int kProgramFieldNumber = 2;
@@ -1261,7 +1262,7 @@ class OperationResult : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional uint32 error_code = 1;
+  // optional uint32 error_code = 1 [default = 0];
   inline bool has_error_code() const;
   inline void clear_error_code();
   static const int kErrorCodeFieldNumber = 1;
@@ -1367,7 +1368,7 @@ class OpenTableRequest : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional string schema = 1;
+  // optional string schema = 1 [default = "DEFAULT"];
   inline bool has_schema() const;
   inline void clear_schema();
   static const int kSchemaFieldNumber = 1;
@@ -1429,6 +1430,7 @@ class OpenTableRequest : public ::google::protobuf::Message {
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
   ::std::string* schema_;
+  static const ::std::string _default_schema_;
   ::bnet::protocol::storage::Privilege* privilege_;
   ::bnet::protocol::storage::TableId* table_id_;
   ::bnet::protocol::EntityId* agent_id_;
@@ -1572,7 +1574,7 @@ class OpenColumnRequest : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional string schema = 1;
+  // optional string schema = 1 [default = "DEFAULT"];
   inline bool has_schema() const;
   inline void clear_schema();
   static const int kSchemaFieldNumber = 1;
@@ -1657,6 +1659,7 @@ class OpenColumnRequest : public ::google::protobuf::Message {
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
   ::std::string* schema_;
+  static const ::std::string _default_schema_;
   ::bnet::protocol::storage::Privilege* privilege_;
   ::bnet::protocol::storage::TableId* table_id_;
   ::bnet::protocol::storage::ColumnId* column_id_;
@@ -1730,7 +1733,7 @@ class OpenColumnResponse : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional bool server_field_ops = 2;
+  // optional bool server_field_ops = 2 [default = false];
   inline bool has_server_field_ops() const;
   inline void clear_server_field_ops();
   static const int kServerFieldOpsFieldNumber = 2;
@@ -1812,7 +1815,7 @@ class ExecuteRequest : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional string schema = 1;
+  // optional string schema = 1 [default = "DEFAULT"];
   inline bool has_schema() const;
   inline void clear_schema();
   static const int kSchemaFieldNumber = 1;
@@ -1831,28 +1834,28 @@ class ExecuteRequest : public ::google::protobuf::Message {
   inline ::bnet::protocol::storage::Privilege* mutable_privilege();
   inline ::bnet::protocol::storage::Privilege* release_privilege();
   
-  // optional bool read_only = 3;
+  // optional bool read_only = 3 [default = false];
   inline bool has_read_only() const;
   inline void clear_read_only();
   static const int kReadOnlyFieldNumber = 3;
   inline bool read_only() const;
   inline void set_read_only(bool value);
   
-  // optional bool wants_row_key = 4;
+  // optional bool wants_row_key = 4 [default = false];
   inline bool has_wants_row_key() const;
   inline void clear_wants_row_key();
   static const int kWantsRowKeyFieldNumber = 4;
   inline bool wants_row_key() const;
   inline void set_wants_row_key(bool value);
   
-  // optional bool wants_column_name = 5;
+  // optional bool wants_column_name = 5 [default = false];
   inline bool has_wants_column_name() const;
   inline void clear_wants_column_name();
   static const int kWantsColumnNameFieldNumber = 5;
   inline bool wants_column_name() const;
   inline void set_wants_column_name(bool value);
   
-  // optional uint32 max_data_size = 6;
+  // optional uint32 max_data_size = 6 [default = 16777215];
   inline bool has_max_data_size() const;
   inline void clear_max_data_size();
   static const int kMaxDataSizeFieldNumber = 6;
@@ -1886,7 +1889,7 @@ class ExecuteRequest : public ::google::protobuf::Message {
   inline ::bnet::protocol::EntityId* mutable_agent_id();
   inline ::bnet::protocol::EntityId* release_agent_id();
   
-  // optional string query_name = 10;
+  // optional string query_name = 10 [default = "NoName"];
   inline bool has_query_name() const;
   inline void clear_query_name();
   static const int kQueryNameFieldNumber = 10;
@@ -1934,6 +1937,7 @@ class ExecuteRequest : public ::google::protobuf::Message {
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
   ::std::string* schema_;
+  static const ::std::string _default_schema_;
   ::bnet::protocol::storage::Privilege* privilege_;
   bool read_only_;
   bool wants_row_key_;
@@ -1942,6 +1946,7 @@ class ExecuteRequest : public ::google::protobuf::Message {
   ::google::protobuf::RepeatedPtrField< ::bnet::protocol::storage::Operation > operations_;
   ::bnet::protocol::EntityId* agent_id_;
   ::std::string* query_name_;
+  static const ::std::string _default_query_name_;
   ::std::string* process_name_;
   ::google::protobuf::uint32 timeout_;
   
@@ -2011,7 +2016,7 @@ class ExecuteResponse : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional uint32 error_code = 1;
+  // optional uint32 error_code = 1 [default = 0];
   inline bool has_error_code() const;
   inline void clear_error_code();
   static const int kErrorCodeFieldNumber = 1;
@@ -2064,6 +2069,81 @@ class ExecuteResponse : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static ExecuteResponse* default_instance_;
 };
+// ===================================================================
+
+class StorageService_Stub;
+
+class StorageService : public ::google::protobuf::Service {
+ protected:
+  // This class should be treated as an abstract interface.
+  inline StorageService() {};
+ public:
+  virtual ~StorageService();
+  
+  typedef StorageService_Stub Stub;
+  
+  static const ::google::protobuf::ServiceDescriptor* descriptor();
+  
+  virtual void Execute(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::storage::ExecuteRequest* request,
+                       ::bnet::protocol::storage::ExecuteResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void OpenTable(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::storage::OpenTableRequest* request,
+                       ::bnet::protocol::storage::OpenTableResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void OpenColumn(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::storage::OpenColumnRequest* request,
+                       ::bnet::protocol::storage::OpenColumnResponse* response,
+                       ::google::protobuf::Closure* done);
+  
+  // implements Service ----------------------------------------------
+  
+  const ::google::protobuf::ServiceDescriptor* GetDescriptor();
+  void CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                  ::google::protobuf::RpcController* controller,
+                  const ::google::protobuf::Message* request,
+                  ::google::protobuf::Message* response,
+                  ::google::protobuf::Closure* done);
+  const ::google::protobuf::Message& GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+  const ::google::protobuf::Message& GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+
+ private:
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(StorageService);
+};
+
+class StorageService_Stub : public StorageService {
+ public:
+  StorageService_Stub(::google::protobuf::RpcChannel* channel);
+  StorageService_Stub(::google::protobuf::RpcChannel* channel,
+                   ::google::protobuf::Service::ChannelOwnership ownership);
+  ~StorageService_Stub();
+  
+  inline ::google::protobuf::RpcChannel* channel() { return channel_; }
+  
+  // implements StorageService ------------------------------------------
+  
+  void Execute(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::storage::ExecuteRequest* request,
+                       ::bnet::protocol::storage::ExecuteResponse* response,
+                       ::google::protobuf::Closure* done);
+  void OpenTable(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::storage::OpenTableRequest* request,
+                       ::bnet::protocol::storage::OpenTableResponse* response,
+                       ::google::protobuf::Closure* done);
+  void OpenColumn(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::storage::OpenColumnRequest* request,
+                       ::bnet::protocol::storage::OpenColumnResponse* response,
+                       ::google::protobuf::Closure* done);
+ private:
+  ::google::protobuf::RpcChannel* channel_;
+  bool owns_channel_;
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(StorageService_Stub);
+};
+
+
 // ===================================================================
 
 
@@ -2257,7 +2337,7 @@ inline ::std::string* RowId::release_hash() {
 
 // Privilege
 
-// optional fixed64 bits = 1;
+// optional fixed64 bits = 1 [default = 0];
 inline bool Privilege::has_bits() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -2279,7 +2359,7 @@ inline void Privilege::set_bits(::google::protobuf::uint64 value) {
   bits_ = value;
 }
 
-// optional fixed32 program = 2;
+// optional fixed32 program = 2 [default = 0];
 inline bool Privilege::has_program() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -3094,7 +3174,7 @@ inline ::std::string* Cell::release_data() {
 
 // OperationResult
 
-// optional uint32 error_code = 1;
+// optional uint32 error_code = 1 [default = 0];
 inline bool OperationResult::has_error_code() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -3174,7 +3254,7 @@ OperationResult::mutable_data() {
 
 // OpenTableRequest
 
-// optional string schema = 1;
+// optional string schema = 1 [default = "DEFAULT"];
 inline bool OpenTableRequest::has_schema() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -3185,8 +3265,8 @@ inline void OpenTableRequest::clear_has_schema() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void OpenTableRequest::clear_schema() {
-  if (schema_ != &::google::protobuf::internal::kEmptyString) {
-    schema_->clear();
+  if (schema_ != &_default_schema_) {
+    schema_->assign(_default_schema_);
   }
   clear_has_schema();
 }
@@ -3195,39 +3275,39 @@ inline const ::std::string& OpenTableRequest::schema() const {
 }
 inline void OpenTableRequest::set_schema(const ::std::string& value) {
   set_has_schema();
-  if (schema_ == &::google::protobuf::internal::kEmptyString) {
+  if (schema_ == &_default_schema_) {
     schema_ = new ::std::string;
   }
   schema_->assign(value);
 }
 inline void OpenTableRequest::set_schema(const char* value) {
   set_has_schema();
-  if (schema_ == &::google::protobuf::internal::kEmptyString) {
+  if (schema_ == &_default_schema_) {
     schema_ = new ::std::string;
   }
   schema_->assign(value);
 }
 inline void OpenTableRequest::set_schema(const char* value, size_t size) {
   set_has_schema();
-  if (schema_ == &::google::protobuf::internal::kEmptyString) {
+  if (schema_ == &_default_schema_) {
     schema_ = new ::std::string;
   }
   schema_->assign(reinterpret_cast<const char*>(value), size);
 }
 inline ::std::string* OpenTableRequest::mutable_schema() {
   set_has_schema();
-  if (schema_ == &::google::protobuf::internal::kEmptyString) {
-    schema_ = new ::std::string;
+  if (schema_ == &_default_schema_) {
+    schema_ = new ::std::string(_default_schema_);
   }
   return schema_;
 }
 inline ::std::string* OpenTableRequest::release_schema() {
   clear_has_schema();
-  if (schema_ == &::google::protobuf::internal::kEmptyString) {
+  if (schema_ == &_default_schema_) {
     return NULL;
   } else {
     ::std::string* temp = schema_;
-    schema_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    schema_ = const_cast< ::std::string*>(&_default_schema_);
     return temp;
   }
 }
@@ -3385,7 +3465,7 @@ inline ::std::string* OpenTableRequest::release_process_name() {
 
 // OpenColumnRequest
 
-// optional string schema = 1;
+// optional string schema = 1 [default = "DEFAULT"];
 inline bool OpenColumnRequest::has_schema() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -3396,8 +3476,8 @@ inline void OpenColumnRequest::clear_has_schema() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void OpenColumnRequest::clear_schema() {
-  if (schema_ != &::google::protobuf::internal::kEmptyString) {
-    schema_->clear();
+  if (schema_ != &_default_schema_) {
+    schema_->assign(_default_schema_);
   }
   clear_has_schema();
 }
@@ -3406,39 +3486,39 @@ inline const ::std::string& OpenColumnRequest::schema() const {
 }
 inline void OpenColumnRequest::set_schema(const ::std::string& value) {
   set_has_schema();
-  if (schema_ == &::google::protobuf::internal::kEmptyString) {
+  if (schema_ == &_default_schema_) {
     schema_ = new ::std::string;
   }
   schema_->assign(value);
 }
 inline void OpenColumnRequest::set_schema(const char* value) {
   set_has_schema();
-  if (schema_ == &::google::protobuf::internal::kEmptyString) {
+  if (schema_ == &_default_schema_) {
     schema_ = new ::std::string;
   }
   schema_->assign(value);
 }
 inline void OpenColumnRequest::set_schema(const char* value, size_t size) {
   set_has_schema();
-  if (schema_ == &::google::protobuf::internal::kEmptyString) {
+  if (schema_ == &_default_schema_) {
     schema_ = new ::std::string;
   }
   schema_->assign(reinterpret_cast<const char*>(value), size);
 }
 inline ::std::string* OpenColumnRequest::mutable_schema() {
   set_has_schema();
-  if (schema_ == &::google::protobuf::internal::kEmptyString) {
-    schema_ = new ::std::string;
+  if (schema_ == &_default_schema_) {
+    schema_ = new ::std::string(_default_schema_);
   }
   return schema_;
 }
 inline ::std::string* OpenColumnRequest::release_schema() {
   clear_has_schema();
-  if (schema_ == &::google::protobuf::internal::kEmptyString) {
+  if (schema_ == &_default_schema_) {
     return NULL;
   } else {
     ::std::string* temp = schema_;
-    schema_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    schema_ = const_cast< ::std::string*>(&_default_schema_);
     return temp;
   }
 }
@@ -3679,7 +3759,7 @@ inline ::std::string* OpenColumnRequest::release_process_name() {
 
 // OpenColumnResponse
 
-// optional bool server_field_ops = 2;
+// optional bool server_field_ops = 2 [default = false];
 inline bool OpenColumnResponse::has_server_field_ops() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -3705,7 +3785,7 @@ inline void OpenColumnResponse::set_server_field_ops(bool value) {
 
 // ExecuteRequest
 
-// optional string schema = 1;
+// optional string schema = 1 [default = "DEFAULT"];
 inline bool ExecuteRequest::has_schema() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -3716,8 +3796,8 @@ inline void ExecuteRequest::clear_has_schema() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void ExecuteRequest::clear_schema() {
-  if (schema_ != &::google::protobuf::internal::kEmptyString) {
-    schema_->clear();
+  if (schema_ != &_default_schema_) {
+    schema_->assign(_default_schema_);
   }
   clear_has_schema();
 }
@@ -3726,39 +3806,39 @@ inline const ::std::string& ExecuteRequest::schema() const {
 }
 inline void ExecuteRequest::set_schema(const ::std::string& value) {
   set_has_schema();
-  if (schema_ == &::google::protobuf::internal::kEmptyString) {
+  if (schema_ == &_default_schema_) {
     schema_ = new ::std::string;
   }
   schema_->assign(value);
 }
 inline void ExecuteRequest::set_schema(const char* value) {
   set_has_schema();
-  if (schema_ == &::google::protobuf::internal::kEmptyString) {
+  if (schema_ == &_default_schema_) {
     schema_ = new ::std::string;
   }
   schema_->assign(value);
 }
 inline void ExecuteRequest::set_schema(const char* value, size_t size) {
   set_has_schema();
-  if (schema_ == &::google::protobuf::internal::kEmptyString) {
+  if (schema_ == &_default_schema_) {
     schema_ = new ::std::string;
   }
   schema_->assign(reinterpret_cast<const char*>(value), size);
 }
 inline ::std::string* ExecuteRequest::mutable_schema() {
   set_has_schema();
-  if (schema_ == &::google::protobuf::internal::kEmptyString) {
-    schema_ = new ::std::string;
+  if (schema_ == &_default_schema_) {
+    schema_ = new ::std::string(_default_schema_);
   }
   return schema_;
 }
 inline ::std::string* ExecuteRequest::release_schema() {
   clear_has_schema();
-  if (schema_ == &::google::protobuf::internal::kEmptyString) {
+  if (schema_ == &_default_schema_) {
     return NULL;
   } else {
     ::std::string* temp = schema_;
-    schema_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    schema_ = const_cast< ::std::string*>(&_default_schema_);
     return temp;
   }
 }
@@ -3792,7 +3872,7 @@ inline ::bnet::protocol::storage::Privilege* ExecuteRequest::release_privilege()
   return temp;
 }
 
-// optional bool read_only = 3;
+// optional bool read_only = 3 [default = false];
 inline bool ExecuteRequest::has_read_only() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
@@ -3814,7 +3894,7 @@ inline void ExecuteRequest::set_read_only(bool value) {
   read_only_ = value;
 }
 
-// optional bool wants_row_key = 4;
+// optional bool wants_row_key = 4 [default = false];
 inline bool ExecuteRequest::has_wants_row_key() const {
   return (_has_bits_[0] & 0x00000008u) != 0;
 }
@@ -3836,7 +3916,7 @@ inline void ExecuteRequest::set_wants_row_key(bool value) {
   wants_row_key_ = value;
 }
 
-// optional bool wants_column_name = 5;
+// optional bool wants_column_name = 5 [default = false];
 inline bool ExecuteRequest::has_wants_column_name() const {
   return (_has_bits_[0] & 0x00000010u) != 0;
 }
@@ -3858,7 +3938,7 @@ inline void ExecuteRequest::set_wants_column_name(bool value) {
   wants_column_name_ = value;
 }
 
-// optional uint32 max_data_size = 6;
+// optional uint32 max_data_size = 6 [default = 16777215];
 inline bool ExecuteRequest::has_max_data_size() const {
   return (_has_bits_[0] & 0x00000020u) != 0;
 }
@@ -3869,7 +3949,7 @@ inline void ExecuteRequest::clear_has_max_data_size() {
   _has_bits_[0] &= ~0x00000020u;
 }
 inline void ExecuteRequest::clear_max_data_size() {
-  max_data_size_ = 0u;
+  max_data_size_ = 16777215u;
   clear_has_max_data_size();
 }
 inline ::google::protobuf::uint32 ExecuteRequest::max_data_size() const {
@@ -3956,7 +4036,7 @@ inline ::bnet::protocol::EntityId* ExecuteRequest::release_agent_id() {
   return temp;
 }
 
-// optional string query_name = 10;
+// optional string query_name = 10 [default = "NoName"];
 inline bool ExecuteRequest::has_query_name() const {
   return (_has_bits_[0] & 0x00000200u) != 0;
 }
@@ -3967,8 +4047,8 @@ inline void ExecuteRequest::clear_has_query_name() {
   _has_bits_[0] &= ~0x00000200u;
 }
 inline void ExecuteRequest::clear_query_name() {
-  if (query_name_ != &::google::protobuf::internal::kEmptyString) {
-    query_name_->clear();
+  if (query_name_ != &_default_query_name_) {
+    query_name_->assign(_default_query_name_);
   }
   clear_has_query_name();
 }
@@ -3977,39 +4057,39 @@ inline const ::std::string& ExecuteRequest::query_name() const {
 }
 inline void ExecuteRequest::set_query_name(const ::std::string& value) {
   set_has_query_name();
-  if (query_name_ == &::google::protobuf::internal::kEmptyString) {
+  if (query_name_ == &_default_query_name_) {
     query_name_ = new ::std::string;
   }
   query_name_->assign(value);
 }
 inline void ExecuteRequest::set_query_name(const char* value) {
   set_has_query_name();
-  if (query_name_ == &::google::protobuf::internal::kEmptyString) {
+  if (query_name_ == &_default_query_name_) {
     query_name_ = new ::std::string;
   }
   query_name_->assign(value);
 }
 inline void ExecuteRequest::set_query_name(const char* value, size_t size) {
   set_has_query_name();
-  if (query_name_ == &::google::protobuf::internal::kEmptyString) {
+  if (query_name_ == &_default_query_name_) {
     query_name_ = new ::std::string;
   }
   query_name_->assign(reinterpret_cast<const char*>(value), size);
 }
 inline ::std::string* ExecuteRequest::mutable_query_name() {
   set_has_query_name();
-  if (query_name_ == &::google::protobuf::internal::kEmptyString) {
-    query_name_ = new ::std::string;
+  if (query_name_ == &_default_query_name_) {
+    query_name_ = new ::std::string(_default_query_name_);
   }
   return query_name_;
 }
 inline ::std::string* ExecuteRequest::release_query_name() {
   clear_has_query_name();
-  if (query_name_ == &::google::protobuf::internal::kEmptyString) {
+  if (query_name_ == &_default_query_name_) {
     return NULL;
   } else {
     ::std::string* temp = query_name_;
-    query_name_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    query_name_ = const_cast< ::std::string*>(&_default_query_name_);
     return temp;
   }
 }
@@ -4076,7 +4156,7 @@ inline ::std::string* ExecuteRequest::release_process_name() {
 
 // ExecuteResponse
 
-// optional uint32 error_code = 1;
+// optional uint32 error_code = 1 [default = 0];
 inline bool ExecuteResponse::has_error_code() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }

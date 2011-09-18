@@ -192,13 +192,17 @@ class FriendInvitation : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional bool first_received = 1;
+  // optional bool first_received = 1 [default = false];
   inline bool has_first_received() const;
   inline void clear_first_received();
   static const int kFirstReceivedFieldNumber = 1;
   inline bool first_received() const;
   inline void set_first_received(bool value);
   
+  static const int kFriendInvitationFieldNumber = 103;
+  static ::google::protobuf::internal::ExtensionIdentifier< ::bnet::protocol::invitation::Invitation,
+      ::google::protobuf::internal::MessageTypeTraits< ::bnet::protocol::friends::FriendInvitation >, 11, false >
+    friend_invitation;
   // @@protoc_insertion_point(class_scope:bnet.protocol.friends.FriendInvitation)
  private:
   inline void set_has_first_received();
@@ -283,7 +287,7 @@ Friend::mutable_attribute() {
 
 // FriendInvitation
 
-// optional bool first_received = 1;
+// optional bool first_received = 1 [default = false];
 inline bool FriendInvitation::has_first_received() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }

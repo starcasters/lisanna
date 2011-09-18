@@ -141,7 +141,7 @@ class Player : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional .bnet.protocol.game_master.Player.Type type = 1;
+  // optional .bnet.protocol.game_master.Player.Type type = 1 [default = TOON];
   inline bool has_type() const;
   inline void clear_type();
   static const int kTypeFieldNumber = 1;
@@ -403,56 +403,56 @@ class GameStatsBucket : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional float bucket_min = 1;
+  // optional float bucket_min = 1 [default = 0];
   inline bool has_bucket_min() const;
   inline void clear_bucket_min();
   static const int kBucketMinFieldNumber = 1;
   inline float bucket_min() const;
   inline void set_bucket_min(float value);
   
-  // optional float bucket_max = 2;
+  // optional float bucket_max = 2 [default = 4.2949673e+009];
   inline bool has_bucket_max() const;
   inline void clear_bucket_max();
   static const int kBucketMaxFieldNumber = 2;
   inline float bucket_max() const;
   inline void set_bucket_max(float value);
   
-  // optional uint32 wait_milliseconds = 3;
+  // optional uint32 wait_milliseconds = 3 [default = 0];
   inline bool has_wait_milliseconds() const;
   inline void clear_wait_milliseconds();
   static const int kWaitMillisecondsFieldNumber = 3;
   inline ::google::protobuf::uint32 wait_milliseconds() const;
   inline void set_wait_milliseconds(::google::protobuf::uint32 value);
   
-  // optional uint32 games_per_hour = 4;
+  // optional uint32 games_per_hour = 4 [default = 0];
   inline bool has_games_per_hour() const;
   inline void clear_games_per_hour();
   static const int kGamesPerHourFieldNumber = 4;
   inline ::google::protobuf::uint32 games_per_hour() const;
   inline void set_games_per_hour(::google::protobuf::uint32 value);
   
-  // optional uint32 active_games = 5;
+  // optional uint32 active_games = 5 [default = 0];
   inline bool has_active_games() const;
   inline void clear_active_games();
   static const int kActiveGamesFieldNumber = 5;
   inline ::google::protobuf::uint32 active_games() const;
   inline void set_active_games(::google::protobuf::uint32 value);
   
-  // optional uint32 active_players = 6;
+  // optional uint32 active_players = 6 [default = 0];
   inline bool has_active_players() const;
   inline void clear_active_players();
   static const int kActivePlayersFieldNumber = 6;
   inline ::google::protobuf::uint32 active_players() const;
   inline void set_active_players(::google::protobuf::uint32 value);
   
-  // optional uint32 forming_games = 7;
+  // optional uint32 forming_games = 7 [default = 0];
   inline bool has_forming_games() const;
   inline void clear_forming_games();
   static const int kFormingGamesFieldNumber = 7;
   inline ::google::protobuf::uint32 forming_games() const;
   inline void set_forming_games(::google::protobuf::uint32 value);
   
-  // optional uint32 waiting_players = 8;
+  // optional uint32 waiting_players = 8 [default = 0];
   inline bool has_waiting_players() const;
   inline void clear_waiting_players();
   static const int kWaitingPlayersFieldNumber = 8;
@@ -721,7 +721,7 @@ class GameHandle : public ::google::protobuf::Message {
 
 // Player
 
-// optional .bnet.protocol.game_master.Player.Type type = 1;
+// optional .bnet.protocol.game_master.Player.Type type = 1 [default = TOON];
 inline bool Player::has_type() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -1056,7 +1056,7 @@ ConnectInfo::mutable_attribute() {
 
 // GameStatsBucket
 
-// optional float bucket_min = 1;
+// optional float bucket_min = 1 [default = 0];
 inline bool GameStatsBucket::has_bucket_min() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -1078,7 +1078,7 @@ inline void GameStatsBucket::set_bucket_min(float value) {
   bucket_min_ = value;
 }
 
-// optional float bucket_max = 2;
+// optional float bucket_max = 2 [default = 4.2949673e+009];
 inline bool GameStatsBucket::has_bucket_max() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -1089,7 +1089,7 @@ inline void GameStatsBucket::clear_has_bucket_max() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void GameStatsBucket::clear_bucket_max() {
-  bucket_max_ = 0;
+  bucket_max_ = 4.2949673e+009f;
   clear_has_bucket_max();
 }
 inline float GameStatsBucket::bucket_max() const {
@@ -1100,7 +1100,7 @@ inline void GameStatsBucket::set_bucket_max(float value) {
   bucket_max_ = value;
 }
 
-// optional uint32 wait_milliseconds = 3;
+// optional uint32 wait_milliseconds = 3 [default = 0];
 inline bool GameStatsBucket::has_wait_milliseconds() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
@@ -1122,7 +1122,7 @@ inline void GameStatsBucket::set_wait_milliseconds(::google::protobuf::uint32 va
   wait_milliseconds_ = value;
 }
 
-// optional uint32 games_per_hour = 4;
+// optional uint32 games_per_hour = 4 [default = 0];
 inline bool GameStatsBucket::has_games_per_hour() const {
   return (_has_bits_[0] & 0x00000008u) != 0;
 }
@@ -1144,7 +1144,7 @@ inline void GameStatsBucket::set_games_per_hour(::google::protobuf::uint32 value
   games_per_hour_ = value;
 }
 
-// optional uint32 active_games = 5;
+// optional uint32 active_games = 5 [default = 0];
 inline bool GameStatsBucket::has_active_games() const {
   return (_has_bits_[0] & 0x00000010u) != 0;
 }
@@ -1166,7 +1166,7 @@ inline void GameStatsBucket::set_active_games(::google::protobuf::uint32 value) 
   active_games_ = value;
 }
 
-// optional uint32 active_players = 6;
+// optional uint32 active_players = 6 [default = 0];
 inline bool GameStatsBucket::has_active_players() const {
   return (_has_bits_[0] & 0x00000020u) != 0;
 }
@@ -1188,7 +1188,7 @@ inline void GameStatsBucket::set_active_players(::google::protobuf::uint32 value
   active_players_ = value;
 }
 
-// optional uint32 forming_games = 7;
+// optional uint32 forming_games = 7 [default = 0];
 inline bool GameStatsBucket::has_forming_games() const {
   return (_has_bits_[0] & 0x00000040u) != 0;
 }
@@ -1210,7 +1210,7 @@ inline void GameStatsBucket::set_forming_games(::google::protobuf::uint32 value)
   forming_games_ = value;
 }
 
-// optional uint32 waiting_players = 8;
+// optional uint32 waiting_players = 8 [default = 0];
 inline bool GameStatsBucket::has_waiting_players() const {
   return (_has_bits_[0] & 0x00000080u) != 0;
 }

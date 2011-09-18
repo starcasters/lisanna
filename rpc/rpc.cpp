@@ -20,69 +20,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <iostream>
-
+#include <vector>
 #include "rpc.h"
 
-aservice* CServices::add_service(int hash, std::string name, int id) {
-  aservice* service = new aservice();
-  service->hash = hash;
-  service->id = id;
-  service->name = name;
-  Items.push_back(service);
-  return service;
-}
-aservice* CServices::add_service(int hash, std::string name) {
-  int id = 0;
-  char space[0xFF];
-  for (int i=1; i<0xFE; i++) {
-	space[i]=0;
-  }
-  for (int i=0; i<Items.size(); i++) {
-    space[Items.at(i)->id] = 1;
-  }
-  for (int i=1; i<0xFE; i++) {
-	if (space[i] == 0) {
-		id = i;
-		break;
-	}
-  }
-  aservice* service = new aservice();
-  service->hash = hash;
-  service->id = id;
-  service->name = name;
-  Items.push_back(service);
-  return service;
-}
 
-void CServices::add_method(aservice* service, int id, void* proc, google::protobuf::Message* msg)
-{
-  amethod* method = new amethod();
-  method->id = id;
-  method->proc = proc;
-  method->msgtype = msg;
-  service->methods.push_back(method);
-}
-
-void CServices::clear()
-{
-  aservice* service = new aservice();
-  amethod* method = new amethod();
-  while (Items.size()) {
- 	service = Items.back();
-	Items.pop_back();
-	while (service->methods.size()) {
-		method = service->methods.back();
-		service->methods.pop_back();
-		delete method;
-	}
-	delete service;
-  };
-}
-
-CServices::CServices()
-{
-}
-
-CServices::~CServices()
-{
-}

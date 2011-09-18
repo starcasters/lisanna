@@ -68,6 +68,7 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* ExecuteResponse_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   ExecuteResponse_reflection_ = NULL;
+const ::google::protobuf::ServiceDescriptor* StorageService_descriptor_ = NULL;
 
 }  // namespace
 
@@ -351,6 +352,7 @@ void protobuf_AssignDesc_service_2fstorage_2fstorage_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(ExecuteResponse));
+  StorageService_descriptor_ = file->service(0);
 }
 
 namespace {
@@ -445,75 +447,85 @@ void protobuf_AddDesc_service_2fstorage_2fstorage_2eproto() {
     "proto\032\031lib/protocol/entity.proto\032\021lib/rp"
     "c/rpc.proto\"\027\n\007TableId\022\014\n\004hash\030\001 \002(\014\"\030\n\010"
     "ColumnId\022\014\n\004hash\030\001 \002(\014\"\025\n\005RowId\022\014\n\004hash\030"
-    "\001 \002(\014\"m\n\tPrivilege\022\014\n\004bits\030\001 \001(\006\022\017\n\007prog"
-    "ram\030\002 \001(\007\"A\n\nPermission\022\t\n\005OWNER\020\001\022\n\n\006FR"
-    "IEND\020\002\022\t\n\005OTHER\020\004\022\010\n\004GAME\020\010\022\007\n\003ALL\020\017\"\373\001\n"
-    "\rScanOperation\0223\n\002op\030\001 \002(\0162\'.bnet.protoc"
-    "ol.storage.ScanOperation.Op\022\"\n\005field\030\002 \002"
-    "(\0132\023.bnet.protocol.Path\"\220\001\n\002Op\022\014\n\010IS_CLE"
-    "AR\020\001\022\r\n\tNOT_CLEAR\020\002\022\r\n\tIS_EQUALS\020\003\022\016\n\nNO"
-    "T_EQUALS\020\004\022\023\n\017IS_GREATER_THAN\020\005\022\024\n\020NOT_G"
-    "REATER_THAN\020\006\022\020\n\014IS_LESS_THAN\020\007\022\021\n\rNOT_L"
-    "ESS_THAN\020\010\"\205\006\n\007Command\022-\n\002op\030\001 \002(\0162!.bne"
-    "t.protocol.storage.Command.Op\022\014\n\004data\030\002 "
-    "\001(\014\022#\n\006fields\030\003 \003(\0132\023.bnet.protocol.Path"
-    "\022\023\n\013min_version\030\004 \001(\006\022\023\n\013max_version\030\005 \001"
-    "(\006\0222\n\004scan\030\006 \001(\0132$.bnet.protocol.storage"
-    ".ScanOperation\022\r\n\005limit\030\007 \001(\r\0226\n\tconditi"
-    "on\030\010 \001(\0162#.bnet.protocol.storage.Command"
-    ".Cond\022\017\n\007message\030\013 \001(\t\"\251\002\n\002Op\022\016\n\nROW_DEL"
-    "ETE\020\001\022\r\n\tROW_FETCH\020\002\022\016\n\nCOL_DELETE\020\003\022\r\n\t"
-    "COL_FETCH\020\004\022\r\n\tCOL_WRITE\020\005\022\r\n\tCOL_MERGE\020"
-    "\006\022\r\n\tFLD_CLEAR\020\007\022\r\n\tFLD_FETCH\020\010\022\r\n\tFLD_W"
-    "RITE\020\t\022\r\n\tFLD_MERGE\020\n\022\014\n\010FLD_INCR\020\013\022\014\n\010F"
-    "LD_TEST\020\014\022\014\n\010FLD_SCAN\020\r\022\014\n\010ROW_TEST\020\016\022\014\n"
-    "\010COL_TEST\020\017\022\014\n\010FLD_SMAX\020\020\022\014\n\010COL_COND\020\021\022"
-    "\014\n\010FLD_COND\020\022\022\014\n\010COND_POP\020\023\022\r\n\tLOG_DEBUG"
-    "\020\024\"\265\001\n\004Cond\022\017\n\013COND_ALWAYS\020\000\022\023\n\017COND_NOT"
-    "_EXISTS\020\001\022\022\n\016COND_NOT_EQUAL\020\002\022\022\n\016COND_LE"
-    "SS_THAN\020\003\022\024\n\020COND_NOT_GREATER\020\004\022\017\n\013COND_"
-    "EQUALS\020\005\022\021\n\rCOND_NOT_LESS\020\006\022\025\n\021COND_GREA"
-    "TER_THAN\020\007\022\016\n\nCOND_NEVER\020\010\"\274\002\n\tOperation"
-    "\0220\n\010table_id\030\001 \002(\0132\036.bnet.protocol.stora"
-    "ge.TableId\0222\n\tcolumn_id\030\002 \001(\0132\037.bnet.pro"
-    "tocol.storage.ColumnId\022,\n\006row_id\030\003 \001(\0132\034"
-    ".bnet.protocol.storage.RowId\022\017\n\007row_key\030"
-    "\004 \001(\014\022\017\n\007version\030\005 \001(\006\022,\n\004rops\030\006 \003(\0132\036.b"
-    "net.protocol.storage.Command\022\026\n\016mutate_v"
-    "ersion\030\007 \001(\006\0223\n\tprivilege\030\010 \001(\0132 .bnet.p"
-    "rotocol.storage.Privilege\"\230\001\n\004Cell\0222\n\tco"
-    "lumn_id\030\001 \002(\0132\037.bnet.protocol.storage.Co"
-    "lumnId\022,\n\006row_id\030\002 \002(\0132\034.bnet.protocol.s"
-    "torage.RowId\022\017\n\007row_key\030\003 \001(\014\022\017\n\007version"
-    "\030\004 \001(\006\022\014\n\004data\030\005 \001(\014\"\202\001\n\017OperationResult"
-    "\022\022\n\nerror_code\030\001 \001(\r\0220\n\010table_id\030\002 \002(\0132\036"
-    ".bnet.protocol.storage.TableId\022)\n\004data\030\003"
-    " \003(\0132\033.bnet.protocol.storage.Cell\"\312\001\n\020Op"
-    "enTableRequest\022\016\n\006schema\030\001 \001(\t\0223\n\tprivil"
-    "ege\030\002 \001(\0132 .bnet.protocol.storage.Privil"
-    "ege\0220\n\010table_id\030\003 \002(\0132\036.bnet.protocol.st"
-    "orage.TableId\022)\n\010agent_id\030\004 \001(\0132\027.bnet.p"
-    "rotocol.EntityId\022\024\n\014process_name\030\005 \001(\t\"\023"
-    "\n\021OpenTableResponse\"\223\002\n\021OpenColumnReques"
-    "t\022\016\n\006schema\030\001 \001(\t\0223\n\tprivilege\030\002 \001(\0132 .b"
-    "net.protocol.storage.Privilege\0220\n\010table_"
-    "id\030\004 \002(\0132\036.bnet.protocol.storage.TableId"
-    "\0222\n\tcolumn_id\030\005 \002(\0132\037.bnet.protocol.stor"
-    "age.ColumnId\022\022\n\nproto_type\030\006 \001(\t\022)\n\010agen"
-    "t_id\030\007 \001(\0132\027.bnet.protocol.EntityId\022\024\n\014p"
-    "rocess_name\030\010 \001(\t\".\n\022OpenColumnResponse\022"
-    "\030\n\020server_field_ops\030\002 \001(\010\"\315\002\n\016ExecuteReq"
-    "uest\022\016\n\006schema\030\001 \001(\t\0223\n\tprivilege\030\002 \001(\0132"
-    " .bnet.protocol.storage.Privilege\022\021\n\trea"
-    "d_only\030\003 \001(\010\022\025\n\rwants_row_key\030\004 \001(\010\022\031\n\021w"
-    "ants_column_name\030\005 \001(\010\022\025\n\rmax_data_size\030"
-    "\006 \001(\r\0224\n\noperations\030\007 \003(\0132 .bnet.protoco"
-    "l.storage.Operation\022\017\n\007timeout\030\014 \001(\r\022)\n\010"
-    "agent_id\030\t \001(\0132\027.bnet.protocol.EntityId\022"
-    "\022\n\nquery_name\030\n \001(\t\022\024\n\014process_name\030\013 \001("
-    "\t\"u\n\017ExecuteResponse\022\022\n\nerror_code\030\001 \001(\r"
-    "\0227\n\007results\030\002 \003(\0132&.bnet.protocol.storag"
-    "e.OperationResult\022\025\n\rerror_message\030\003 \001(\t", 2960);
+    "\001 \002(\014\"s\n\tPrivilege\022\017\n\004bits\030\001 \001(\006:\0010\022\022\n\007p"
+    "rogram\030\002 \001(\007:\0010\"A\n\nPermission\022\t\n\005OWNER\020\001"
+    "\022\n\n\006FRIEND\020\002\022\t\n\005OTHER\020\004\022\010\n\004GAME\020\010\022\007\n\003ALL"
+    "\020\017\"\373\001\n\rScanOperation\0223\n\002op\030\001 \002(\0162\'.bnet."
+    "protocol.storage.ScanOperation.Op\022\"\n\005fie"
+    "ld\030\002 \002(\0132\023.bnet.protocol.Path\"\220\001\n\002Op\022\014\n\010"
+    "IS_CLEAR\020\001\022\r\n\tNOT_CLEAR\020\002\022\r\n\tIS_EQUALS\020\003"
+    "\022\016\n\nNOT_EQUALS\020\004\022\023\n\017IS_GREATER_THAN\020\005\022\024\n"
+    "\020NOT_GREATER_THAN\020\006\022\020\n\014IS_LESS_THAN\020\007\022\021\n"
+    "\rNOT_LESS_THAN\020\010\"\205\006\n\007Command\022-\n\002op\030\001 \002(\016"
+    "2!.bnet.protocol.storage.Command.Op\022\014\n\004d"
+    "ata\030\002 \001(\014\022#\n\006fields\030\003 \003(\0132\023.bnet.protoco"
+    "l.Path\022\023\n\013min_version\030\004 \001(\006\022\023\n\013max_versi"
+    "on\030\005 \001(\006\0222\n\004scan\030\006 \001(\0132$.bnet.protocol.s"
+    "torage.ScanOperation\022\r\n\005limit\030\007 \001(\r\0226\n\tc"
+    "ondition\030\010 \001(\0162#.bnet.protocol.storage.C"
+    "ommand.Cond\022\017\n\007message\030\013 \001(\t\"\251\002\n\002Op\022\016\n\nR"
+    "OW_DELETE\020\001\022\r\n\tROW_FETCH\020\002\022\016\n\nCOL_DELETE"
+    "\020\003\022\r\n\tCOL_FETCH\020\004\022\r\n\tCOL_WRITE\020\005\022\r\n\tCOL_"
+    "MERGE\020\006\022\r\n\tFLD_CLEAR\020\007\022\r\n\tFLD_FETCH\020\010\022\r\n"
+    "\tFLD_WRITE\020\t\022\r\n\tFLD_MERGE\020\n\022\014\n\010FLD_INCR\020"
+    "\013\022\014\n\010FLD_TEST\020\014\022\014\n\010FLD_SCAN\020\r\022\014\n\010ROW_TES"
+    "T\020\016\022\014\n\010COL_TEST\020\017\022\014\n\010FLD_SMAX\020\020\022\014\n\010COL_C"
+    "OND\020\021\022\014\n\010FLD_COND\020\022\022\014\n\010COND_POP\020\023\022\r\n\tLOG"
+    "_DEBUG\020\024\"\265\001\n\004Cond\022\017\n\013COND_ALWAYS\020\000\022\023\n\017CO"
+    "ND_NOT_EXISTS\020\001\022\022\n\016COND_NOT_EQUAL\020\002\022\022\n\016C"
+    "OND_LESS_THAN\020\003\022\024\n\020COND_NOT_GREATER\020\004\022\017\n"
+    "\013COND_EQUALS\020\005\022\021\n\rCOND_NOT_LESS\020\006\022\025\n\021CON"
+    "D_GREATER_THAN\020\007\022\016\n\nCOND_NEVER\020\010\"\274\002\n\tOpe"
+    "ration\0220\n\010table_id\030\001 \002(\0132\036.bnet.protocol"
+    ".storage.TableId\0222\n\tcolumn_id\030\002 \001(\0132\037.bn"
+    "et.protocol.storage.ColumnId\022,\n\006row_id\030\003"
+    " \001(\0132\034.bnet.protocol.storage.RowId\022\017\n\007ro"
+    "w_key\030\004 \001(\014\022\017\n\007version\030\005 \001(\006\022,\n\004rops\030\006 \003"
+    "(\0132\036.bnet.protocol.storage.Command\022\026\n\016mu"
+    "tate_version\030\007 \001(\006\0223\n\tprivilege\030\010 \001(\0132 ."
+    "bnet.protocol.storage.Privilege\"\230\001\n\004Cell"
+    "\0222\n\tcolumn_id\030\001 \002(\0132\037.bnet.protocol.stor"
+    "age.ColumnId\022,\n\006row_id\030\002 \002(\0132\034.bnet.prot"
+    "ocol.storage.RowId\022\017\n\007row_key\030\003 \001(\014\022\017\n\007v"
+    "ersion\030\004 \001(\006\022\014\n\004data\030\005 \001(\014\"\205\001\n\017Operation"
+    "Result\022\025\n\nerror_code\030\001 \001(\r:\0010\0220\n\010table_i"
+    "d\030\002 \002(\0132\036.bnet.protocol.storage.TableId\022"
+    ")\n\004data\030\003 \003(\0132\033.bnet.protocol.storage.Ce"
+    "ll\"\323\001\n\020OpenTableRequest\022\027\n\006schema\030\001 \001(\t:"
+    "\007DEFAULT\0223\n\tprivilege\030\002 \001(\0132 .bnet.proto"
+    "col.storage.Privilege\0220\n\010table_id\030\003 \002(\0132"
+    "\036.bnet.protocol.storage.TableId\022)\n\010agent"
+    "_id\030\004 \001(\0132\027.bnet.protocol.EntityId\022\024\n\014pr"
+    "ocess_name\030\005 \001(\t\"\023\n\021OpenTableResponse\"\234\002"
+    "\n\021OpenColumnRequest\022\027\n\006schema\030\001 \001(\t:\007DEF"
+    "AULT\0223\n\tprivilege\030\002 \001(\0132 .bnet.protocol."
+    "storage.Privilege\0220\n\010table_id\030\004 \002(\0132\036.bn"
+    "et.protocol.storage.TableId\0222\n\tcolumn_id"
+    "\030\005 \002(\0132\037.bnet.protocol.storage.ColumnId\022"
+    "\022\n\nproto_type\030\006 \001(\t\022)\n\010agent_id\030\007 \001(\0132\027."
+    "bnet.protocol.EntityId\022\024\n\014process_name\030\010"
+    " \001(\t\"5\n\022OpenColumnResponse\022\037\n\020server_fie"
+    "ld_ops\030\002 \001(\010:\005false\"\375\002\n\016ExecuteRequest\022\027"
+    "\n\006schema\030\001 \001(\t:\007DEFAULT\0223\n\tprivilege\030\002 \001"
+    "(\0132 .bnet.protocol.storage.Privilege\022\030\n\t"
+    "read_only\030\003 \001(\010:\005false\022\034\n\rwants_row_key\030"
+    "\004 \001(\010:\005false\022 \n\021wants_column_name\030\005 \001(\010:"
+    "\005false\022\037\n\rmax_data_size\030\006 \001(\r:\01016777215\022"
+    "4\n\noperations\030\007 \003(\0132 .bnet.protocol.stor"
+    "age.Operation\022\017\n\007timeout\030\014 \001(\r\022)\n\010agent_"
+    "id\030\t \001(\0132\027.bnet.protocol.EntityId\022\032\n\nque"
+    "ry_name\030\n \001(\t:\006NoName\022\024\n\014process_name\030\013 "
+    "\001(\t\"x\n\017ExecuteResponse\022\025\n\nerror_code\030\001 \001"
+    "(\r:\0010\0227\n\007results\030\002 \003(\0132&.bnet.protocol.s"
+    "torage.OperationResult\022\025\n\rerror_message\030"
+    "\003 \001(\t2\255\002\n\016StorageService\022X\n\007Execute\022%.bn"
+    "et.protocol.storage.ExecuteRequest\032&.bne"
+    "t.protocol.storage.ExecuteResponse\022^\n\tOp"
+    "enTable\022\'.bnet.protocol.storage.OpenTabl"
+    "eRequest\032(.bnet.protocol.storage.OpenTab"
+    "leResponse\022a\n\nOpenColumn\022(.bnet.protocol"
+    ".storage.OpenColumnRequest\032).bnet.protoc"
+    "ol.storage.OpenColumnResponseB\003\200\001\001", 3354);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "service/storage/storage.proto", &protobuf_RegisterTypes);
   TableId::default_instance_ = new TableId();
@@ -1304,7 +1316,7 @@ bool Privilege::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional fixed64 bits = 1;
+      // optional fixed64 bits = 1 [default = 0];
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
@@ -1319,7 +1331,7 @@ bool Privilege::MergePartialFromCodedStream(
         break;
       }
       
-      // optional fixed32 program = 2;
+      // optional fixed32 program = 2 [default = 0];
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED32) {
@@ -1353,12 +1365,12 @@ bool Privilege::MergePartialFromCodedStream(
 
 void Privilege::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // optional fixed64 bits = 1;
+  // optional fixed64 bits = 1 [default = 0];
   if (has_bits()) {
     ::google::protobuf::internal::WireFormatLite::WriteFixed64(1, this->bits(), output);
   }
   
-  // optional fixed32 program = 2;
+  // optional fixed32 program = 2 [default = 0];
   if (has_program()) {
     ::google::protobuf::internal::WireFormatLite::WriteFixed32(2, this->program(), output);
   }
@@ -1371,12 +1383,12 @@ void Privilege::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Privilege::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional fixed64 bits = 1;
+  // optional fixed64 bits = 1 [default = 0];
   if (has_bits()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteFixed64ToArray(1, this->bits(), target);
   }
   
-  // optional fixed32 program = 2;
+  // optional fixed32 program = 2 [default = 0];
   if (has_program()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteFixed32ToArray(2, this->program(), target);
   }
@@ -1392,12 +1404,12 @@ int Privilege::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional fixed64 bits = 1;
+    // optional fixed64 bits = 1 [default = 0];
     if (has_bits()) {
       total_size += 1 + 8;
     }
     
-    // optional fixed32 program = 2;
+    // optional fixed32 program = 2 [default = 0];
     if (has_program()) {
       total_size += 1 + 4;
     }
@@ -3434,7 +3446,7 @@ bool OperationResult::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional uint32 error_code = 1;
+      // optional uint32 error_code = 1 [default = 0];
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -3496,7 +3508,7 @@ bool OperationResult::MergePartialFromCodedStream(
 
 void OperationResult::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // optional uint32 error_code = 1;
+  // optional uint32 error_code = 1 [default = 0];
   if (has_error_code()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->error_code(), output);
   }
@@ -3521,7 +3533,7 @@ void OperationResult::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* OperationResult::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional uint32 error_code = 1;
+  // optional uint32 error_code = 1 [default = 0];
   if (has_error_code()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->error_code(), target);
   }
@@ -3551,7 +3563,7 @@ int OperationResult::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional uint32 error_code = 1;
+    // optional uint32 error_code = 1 [default = 0];
     if (has_error_code()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
@@ -3657,6 +3669,7 @@ void OperationResult::Swap(OperationResult* other) {
 
 // ===================================================================
 
+const ::std::string OpenTableRequest::_default_schema_("DEFAULT");
 #ifndef _MSC_VER
 const int OpenTableRequest::kSchemaFieldNumber;
 const int OpenTableRequest::kPrivilegeFieldNumber;
@@ -3684,7 +3697,7 @@ OpenTableRequest::OpenTableRequest(const OpenTableRequest& from)
 
 void OpenTableRequest::SharedCtor() {
   _cached_size_ = 0;
-  schema_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  schema_ = const_cast< ::std::string*>(&_default_schema_);
   privilege_ = NULL;
   table_id_ = NULL;
   agent_id_ = NULL;
@@ -3697,7 +3710,7 @@ OpenTableRequest::~OpenTableRequest() {
 }
 
 void OpenTableRequest::SharedDtor() {
-  if (schema_ != &::google::protobuf::internal::kEmptyString) {
+  if (schema_ != &_default_schema_) {
     delete schema_;
   }
   if (process_name_ != &::google::protobuf::internal::kEmptyString) {
@@ -3733,8 +3746,8 @@ OpenTableRequest* OpenTableRequest::New() const {
 void OpenTableRequest::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (has_schema()) {
-      if (schema_ != &::google::protobuf::internal::kEmptyString) {
-        schema_->clear();
+      if (schema_ != &_default_schema_) {
+        schema_->assign(_default_schema_);
       }
     }
     if (has_privilege()) {
@@ -3762,7 +3775,7 @@ bool OpenTableRequest::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional string schema = 1;
+      // optional string schema = 1 [default = "DEFAULT"];
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -3855,7 +3868,7 @@ bool OpenTableRequest::MergePartialFromCodedStream(
 
 void OpenTableRequest::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // optional string schema = 1;
+  // optional string schema = 1 [default = "DEFAULT"];
   if (has_schema()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->schema().data(), this->schema().length(),
@@ -3899,7 +3912,7 @@ void OpenTableRequest::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* OpenTableRequest::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional string schema = 1;
+  // optional string schema = 1 [default = "DEFAULT"];
   if (has_schema()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->schema().data(), this->schema().length(),
@@ -3951,7 +3964,7 @@ int OpenTableRequest::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional string schema = 1;
+    // optional string schema = 1 [default = "DEFAULT"];
     if (has_schema()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
@@ -4235,6 +4248,7 @@ void OpenTableResponse::Swap(OpenTableResponse* other) {
 
 // ===================================================================
 
+const ::std::string OpenColumnRequest::_default_schema_("DEFAULT");
 #ifndef _MSC_VER
 const int OpenColumnRequest::kSchemaFieldNumber;
 const int OpenColumnRequest::kPrivilegeFieldNumber;
@@ -4265,7 +4279,7 @@ OpenColumnRequest::OpenColumnRequest(const OpenColumnRequest& from)
 
 void OpenColumnRequest::SharedCtor() {
   _cached_size_ = 0;
-  schema_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  schema_ = const_cast< ::std::string*>(&_default_schema_);
   privilege_ = NULL;
   table_id_ = NULL;
   column_id_ = NULL;
@@ -4280,7 +4294,7 @@ OpenColumnRequest::~OpenColumnRequest() {
 }
 
 void OpenColumnRequest::SharedDtor() {
-  if (schema_ != &::google::protobuf::internal::kEmptyString) {
+  if (schema_ != &_default_schema_) {
     delete schema_;
   }
   if (proto_type_ != &::google::protobuf::internal::kEmptyString) {
@@ -4320,8 +4334,8 @@ OpenColumnRequest* OpenColumnRequest::New() const {
 void OpenColumnRequest::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (has_schema()) {
-      if (schema_ != &::google::protobuf::internal::kEmptyString) {
-        schema_->clear();
+      if (schema_ != &_default_schema_) {
+        schema_->assign(_default_schema_);
       }
     }
     if (has_privilege()) {
@@ -4357,7 +4371,7 @@ bool OpenColumnRequest::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional string schema = 1;
+      // optional string schema = 1 [default = "DEFAULT"];
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -4481,7 +4495,7 @@ bool OpenColumnRequest::MergePartialFromCodedStream(
 
 void OpenColumnRequest::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // optional string schema = 1;
+  // optional string schema = 1 [default = "DEFAULT"];
   if (has_schema()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->schema().data(), this->schema().length(),
@@ -4540,7 +4554,7 @@ void OpenColumnRequest::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* OpenColumnRequest::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional string schema = 1;
+  // optional string schema = 1 [default = "DEFAULT"];
   if (has_schema()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->schema().data(), this->schema().length(),
@@ -4609,7 +4623,7 @@ int OpenColumnRequest::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional string schema = 1;
+    // optional string schema = 1 [default = "DEFAULT"];
     if (has_schema()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
@@ -4830,7 +4844,7 @@ bool OpenColumnResponse::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional bool server_field_ops = 2;
+      // optional bool server_field_ops = 2 [default = false];
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -4863,7 +4877,7 @@ bool OpenColumnResponse::MergePartialFromCodedStream(
 
 void OpenColumnResponse::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // optional bool server_field_ops = 2;
+  // optional bool server_field_ops = 2 [default = false];
   if (has_server_field_ops()) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(2, this->server_field_ops(), output);
   }
@@ -4876,7 +4890,7 @@ void OpenColumnResponse::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* OpenColumnResponse::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional bool server_field_ops = 2;
+  // optional bool server_field_ops = 2 [default = false];
   if (has_server_field_ops()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(2, this->server_field_ops(), target);
   }
@@ -4892,7 +4906,7 @@ int OpenColumnResponse::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional bool server_field_ops = 2;
+    // optional bool server_field_ops = 2 [default = false];
     if (has_server_field_ops()) {
       total_size += 1 + 1;
     }
@@ -4968,6 +4982,8 @@ void OpenColumnResponse::Swap(OpenColumnResponse* other) {
 
 // ===================================================================
 
+const ::std::string ExecuteRequest::_default_schema_("DEFAULT");
+const ::std::string ExecuteRequest::_default_query_name_("NoName");
 #ifndef _MSC_VER
 const int ExecuteRequest::kSchemaFieldNumber;
 const int ExecuteRequest::kPrivilegeFieldNumber;
@@ -5000,15 +5016,15 @@ ExecuteRequest::ExecuteRequest(const ExecuteRequest& from)
 
 void ExecuteRequest::SharedCtor() {
   _cached_size_ = 0;
-  schema_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  schema_ = const_cast< ::std::string*>(&_default_schema_);
   privilege_ = NULL;
   read_only_ = false;
   wants_row_key_ = false;
   wants_column_name_ = false;
-  max_data_size_ = 0u;
+  max_data_size_ = 16777215u;
   timeout_ = 0u;
   agent_id_ = NULL;
-  query_name_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  query_name_ = const_cast< ::std::string*>(&_default_query_name_);
   process_name_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
@@ -5018,10 +5034,10 @@ ExecuteRequest::~ExecuteRequest() {
 }
 
 void ExecuteRequest::SharedDtor() {
-  if (schema_ != &::google::protobuf::internal::kEmptyString) {
+  if (schema_ != &_default_schema_) {
     delete schema_;
   }
-  if (query_name_ != &::google::protobuf::internal::kEmptyString) {
+  if (query_name_ != &_default_query_name_) {
     delete query_name_;
   }
   if (process_name_ != &::google::protobuf::internal::kEmptyString) {
@@ -5056,8 +5072,8 @@ ExecuteRequest* ExecuteRequest::New() const {
 void ExecuteRequest::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (has_schema()) {
-      if (schema_ != &::google::protobuf::internal::kEmptyString) {
-        schema_->clear();
+      if (schema_ != &_default_schema_) {
+        schema_->assign(_default_schema_);
       }
     }
     if (has_privilege()) {
@@ -5066,7 +5082,7 @@ void ExecuteRequest::Clear() {
     read_only_ = false;
     wants_row_key_ = false;
     wants_column_name_ = false;
-    max_data_size_ = 0u;
+    max_data_size_ = 16777215u;
     timeout_ = 0u;
   }
   if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
@@ -5074,8 +5090,8 @@ void ExecuteRequest::Clear() {
       if (agent_id_ != NULL) agent_id_->::bnet::protocol::EntityId::Clear();
     }
     if (has_query_name()) {
-      if (query_name_ != &::google::protobuf::internal::kEmptyString) {
-        query_name_->clear();
+      if (query_name_ != &_default_query_name_) {
+        query_name_->assign(_default_query_name_);
       }
     }
     if (has_process_name()) {
@@ -5095,7 +5111,7 @@ bool ExecuteRequest::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional string schema = 1;
+      // optional string schema = 1 [default = "DEFAULT"];
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -5125,7 +5141,7 @@ bool ExecuteRequest::MergePartialFromCodedStream(
         break;
       }
       
-      // optional bool read_only = 3;
+      // optional bool read_only = 3 [default = false];
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -5141,7 +5157,7 @@ bool ExecuteRequest::MergePartialFromCodedStream(
         break;
       }
       
-      // optional bool wants_row_key = 4;
+      // optional bool wants_row_key = 4 [default = false];
       case 4: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -5157,7 +5173,7 @@ bool ExecuteRequest::MergePartialFromCodedStream(
         break;
       }
       
-      // optional bool wants_column_name = 5;
+      // optional bool wants_column_name = 5 [default = false];
       case 5: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -5173,7 +5189,7 @@ bool ExecuteRequest::MergePartialFromCodedStream(
         break;
       }
       
-      // optional uint32 max_data_size = 6;
+      // optional uint32 max_data_size = 6 [default = 16777215];
       case 6: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -5218,7 +5234,7 @@ bool ExecuteRequest::MergePartialFromCodedStream(
         break;
       }
       
-      // optional string query_name = 10;
+      // optional string query_name = 10 [default = "NoName"];
       case 10: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -5286,7 +5302,7 @@ bool ExecuteRequest::MergePartialFromCodedStream(
 
 void ExecuteRequest::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // optional string schema = 1;
+  // optional string schema = 1 [default = "DEFAULT"];
   if (has_schema()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->schema().data(), this->schema().length(),
@@ -5301,22 +5317,22 @@ void ExecuteRequest::SerializeWithCachedSizes(
       2, this->privilege(), output);
   }
   
-  // optional bool read_only = 3;
+  // optional bool read_only = 3 [default = false];
   if (has_read_only()) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(3, this->read_only(), output);
   }
   
-  // optional bool wants_row_key = 4;
+  // optional bool wants_row_key = 4 [default = false];
   if (has_wants_row_key()) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(4, this->wants_row_key(), output);
   }
   
-  // optional bool wants_column_name = 5;
+  // optional bool wants_column_name = 5 [default = false];
   if (has_wants_column_name()) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(5, this->wants_column_name(), output);
   }
   
-  // optional uint32 max_data_size = 6;
+  // optional uint32 max_data_size = 6 [default = 16777215];
   if (has_max_data_size()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(6, this->max_data_size(), output);
   }
@@ -5333,7 +5349,7 @@ void ExecuteRequest::SerializeWithCachedSizes(
       9, this->agent_id(), output);
   }
   
-  // optional string query_name = 10;
+  // optional string query_name = 10 [default = "NoName"];
   if (has_query_name()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->query_name().data(), this->query_name().length(),
@@ -5364,7 +5380,7 @@ void ExecuteRequest::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* ExecuteRequest::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional string schema = 1;
+  // optional string schema = 1 [default = "DEFAULT"];
   if (has_schema()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->schema().data(), this->schema().length(),
@@ -5381,22 +5397,22 @@ void ExecuteRequest::SerializeWithCachedSizes(
         2, this->privilege(), target);
   }
   
-  // optional bool read_only = 3;
+  // optional bool read_only = 3 [default = false];
   if (has_read_only()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(3, this->read_only(), target);
   }
   
-  // optional bool wants_row_key = 4;
+  // optional bool wants_row_key = 4 [default = false];
   if (has_wants_row_key()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(4, this->wants_row_key(), target);
   }
   
-  // optional bool wants_column_name = 5;
+  // optional bool wants_column_name = 5 [default = false];
   if (has_wants_column_name()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(5, this->wants_column_name(), target);
   }
   
-  // optional uint32 max_data_size = 6;
+  // optional uint32 max_data_size = 6 [default = 16777215];
   if (has_max_data_size()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(6, this->max_data_size(), target);
   }
@@ -5415,7 +5431,7 @@ void ExecuteRequest::SerializeWithCachedSizes(
         9, this->agent_id(), target);
   }
   
-  // optional string query_name = 10;
+  // optional string query_name = 10 [default = "NoName"];
   if (has_query_name()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->query_name().data(), this->query_name().length(),
@@ -5451,7 +5467,7 @@ int ExecuteRequest::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional string schema = 1;
+    // optional string schema = 1 [default = "DEFAULT"];
     if (has_schema()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
@@ -5465,22 +5481,22 @@ int ExecuteRequest::ByteSize() const {
           this->privilege());
     }
     
-    // optional bool read_only = 3;
+    // optional bool read_only = 3 [default = false];
     if (has_read_only()) {
       total_size += 1 + 1;
     }
     
-    // optional bool wants_row_key = 4;
+    // optional bool wants_row_key = 4 [default = false];
     if (has_wants_row_key()) {
       total_size += 1 + 1;
     }
     
-    // optional bool wants_column_name = 5;
+    // optional bool wants_column_name = 5 [default = false];
     if (has_wants_column_name()) {
       total_size += 1 + 1;
     }
     
-    // optional uint32 max_data_size = 6;
+    // optional uint32 max_data_size = 6 [default = 16777215];
     if (has_max_data_size()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
@@ -5503,7 +5519,7 @@ int ExecuteRequest::ByteSize() const {
           this->agent_id());
     }
     
-    // optional string query_name = 10;
+    // optional string query_name = 10 [default = "NoName"];
     if (has_query_name()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
@@ -5721,7 +5737,7 @@ bool ExecuteResponse::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional uint32 error_code = 1;
+      // optional uint32 error_code = 1 [default = 0];
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -5786,7 +5802,7 @@ bool ExecuteResponse::MergePartialFromCodedStream(
 
 void ExecuteResponse::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // optional uint32 error_code = 1;
+  // optional uint32 error_code = 1 [default = 0];
   if (has_error_code()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->error_code(), output);
   }
@@ -5814,7 +5830,7 @@ void ExecuteResponse::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* ExecuteResponse::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional uint32 error_code = 1;
+  // optional uint32 error_code = 1 [default = 0];
   if (has_error_code()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->error_code(), target);
   }
@@ -5847,7 +5863,7 @@ int ExecuteResponse::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional uint32 error_code = 1;
+    // optional uint32 error_code = 1 [default = 0];
     if (has_error_code()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
@@ -5946,6 +5962,140 @@ void ExecuteResponse::Swap(ExecuteResponse* other) {
   return metadata;
 }
 
+
+// ===================================================================
+
+StorageService::~StorageService() {}
+
+const ::google::protobuf::ServiceDescriptor* StorageService::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return StorageService_descriptor_;
+}
+
+const ::google::protobuf::ServiceDescriptor* StorageService::GetDescriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return StorageService_descriptor_;
+}
+
+void StorageService::Execute(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::storage::ExecuteRequest*,
+                         ::bnet::protocol::storage::ExecuteResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method Execute() not implemented.");
+  done->Run();
+}
+
+void StorageService::OpenTable(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::storage::OpenTableRequest*,
+                         ::bnet::protocol::storage::OpenTableResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method OpenTable() not implemented.");
+  done->Run();
+}
+
+void StorageService::OpenColumn(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::storage::OpenColumnRequest*,
+                         ::bnet::protocol::storage::OpenColumnResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method OpenColumn() not implemented.");
+  done->Run();
+}
+
+void StorageService::CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                             ::google::protobuf::RpcController* controller,
+                             const ::google::protobuf::Message* request,
+                             ::google::protobuf::Message* response,
+                             ::google::protobuf::Closure* done) {
+  GOOGLE_DCHECK_EQ(method->service(), StorageService_descriptor_);
+  switch(method->index()) {
+    case 0:
+      Execute(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::storage::ExecuteRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::storage::ExecuteResponse*>(response),
+             done);
+      break;
+    case 1:
+      OpenTable(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::storage::OpenTableRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::storage::OpenTableResponse*>(response),
+             done);
+      break;
+    case 2:
+      OpenColumn(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::storage::OpenColumnRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::storage::OpenColumnResponse*>(response),
+             done);
+      break;
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      break;
+  }
+}
+
+const ::google::protobuf::Message& StorageService::GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::storage::ExecuteRequest::default_instance();
+    case 1:
+      return ::bnet::protocol::storage::OpenTableRequest::default_instance();
+    case 2:
+      return ::bnet::protocol::storage::OpenColumnRequest::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+const ::google::protobuf::Message& StorageService::GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::storage::ExecuteResponse::default_instance();
+    case 1:
+      return ::bnet::protocol::storage::OpenTableResponse::default_instance();
+    case 2:
+      return ::bnet::protocol::storage::OpenColumnResponse::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+StorageService_Stub::StorageService_Stub(::google::protobuf::RpcChannel* channel)
+  : channel_(channel), owns_channel_(false) {}
+StorageService_Stub::StorageService_Stub(
+    ::google::protobuf::RpcChannel* channel,
+    ::google::protobuf::Service::ChannelOwnership ownership)
+  : channel_(channel),
+    owns_channel_(ownership == ::google::protobuf::Service::STUB_OWNS_CHANNEL) {}
+StorageService_Stub::~StorageService_Stub() {
+  if (owns_channel_) delete channel_;
+}
+
+void StorageService_Stub::Execute(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::storage::ExecuteRequest* request,
+                              ::bnet::protocol::storage::ExecuteResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(0),
+                       controller, request, response, done);
+}
+void StorageService_Stub::OpenTable(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::storage::OpenTableRequest* request,
+                              ::bnet::protocol::storage::OpenTableResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(1),
+                       controller, request, response, done);
+}
+void StorageService_Stub::OpenColumn(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::storage::OpenColumnRequest* request,
+                              ::bnet::protocol::storage::OpenColumnResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(2),
+                       controller, request, response, done);
+}
 
 // @@protoc_insertion_point(namespace_scope)
 

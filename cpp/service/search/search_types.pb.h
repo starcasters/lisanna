@@ -135,7 +135,7 @@ class Statistic : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional uint32 id = 1;
+  // optional uint32 id = 1 [default = 0];
   inline bool has_id() const;
   inline void clear_id();
   static const int kIdFieldNumber = 1;
@@ -293,7 +293,7 @@ class Filter : public ::google::protobuf::Message {
   inline ::bnet::protocol::search::Filter_Comparand comparand() const;
   inline void set_comparand(::bnet::protocol::search::Filter_Comparand value);
   
-  // optional .bnet.protocol.search.Filter.SortDirection sort_direction = 3;
+  // optional .bnet.protocol.search.Filter.SortDirection sort_direction = 3 [default = ASC];
   inline bool has_sort_direction() const;
   inline void clear_sort_direction();
   static const int kSortDirectionFieldNumber = 3;
@@ -445,7 +445,7 @@ class Object : public ::google::protobuf::Message {
 
 // Statistic
 
-// optional uint32 id = 1;
+// optional uint32 id = 1 [default = 0];
 inline bool Statistic::has_id() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -545,7 +545,7 @@ inline void Filter::set_comparand(::bnet::protocol::search::Filter_Comparand val
   comparand_ = value;
 }
 
-// optional .bnet.protocol.search.Filter.SortDirection sort_direction = 3;
+// optional .bnet.protocol.search.Filter.SortDirection sort_direction = 3 [default = ASC];
 inline bool Filter::has_sort_direction() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }

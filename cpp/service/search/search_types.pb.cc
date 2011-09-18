@@ -131,19 +131,19 @@ void protobuf_AddDesc_service_2fsearch_2fsearch_5ftypes_2eproto() {
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n!service/search/search_types.proto\022\024bne"
-    "t.protocol.search\"&\n\tStatistic\022\n\n\002id\030\001 \001"
-    "(\r\022\r\n\005value\030\002 \002(\005\"\316\002\n\006Filter\0222\n\tstatisti"
-    "c\030\001 \002(\0132\037.bnet.protocol.search.Statistic"
-    "\0229\n\tcomparand\030\002 \002(\0162&.bnet.protocol.sear"
-    "ch.Filter.Comparand\022B\n\016sort_direction\030\003 "
-    "\001(\0162*.bnet.protocol.search.Filter.SortDi"
-    "rection\"m\n\tComparand\022\n\n\006EQUALS\020\000\022\r\n\tLESS"
-    "_THAN\020\001\022\027\n\023LESS_THAN_OR_EQUALS\020\002\022\020\n\014GREA"
-    "TER_THAN\020\003\022\032\n\026GREATER_THAN_OR_EQUALS\020\004\"\""
-    "\n\rSortDirection\022\007\n\003ASC\020\000\022\010\n\004DESC\020\001\"W\n\006Ob"
-    "ject\022\n\n\002id\030\001 \002(\014\022\014\n\004data\030\002 \001(\014\0223\n\nstatis"
-    "tics\030\003 \003(\0132\037.bnet.protocol.search.Statis"
-    "tic", 523);
+    "t.protocol.search\")\n\tStatistic\022\r\n\002id\030\001 \001"
+    "(\r:\0010\022\r\n\005value\030\002 \002(\005\"\323\002\n\006Filter\0222\n\tstati"
+    "stic\030\001 \002(\0132\037.bnet.protocol.search.Statis"
+    "tic\0229\n\tcomparand\030\002 \002(\0162&.bnet.protocol.s"
+    "earch.Filter.Comparand\022G\n\016sort_direction"
+    "\030\003 \001(\0162*.bnet.protocol.search.Filter.Sor"
+    "tDirection:\003ASC\"m\n\tComparand\022\n\n\006EQUALS\020\000"
+    "\022\r\n\tLESS_THAN\020\001\022\027\n\023LESS_THAN_OR_EQUALS\020\002"
+    "\022\020\n\014GREATER_THAN\020\003\022\032\n\026GREATER_THAN_OR_EQ"
+    "UALS\020\004\"\"\n\rSortDirection\022\007\n\003ASC\020\000\022\010\n\004DESC"
+    "\020\001\"W\n\006Object\022\n\n\002id\030\001 \002(\014\022\014\n\004data\030\002 \001(\014\0223"
+    "\n\nstatistics\030\003 \003(\0132\037.bnet.protocol.searc"
+    "h.Statistic", 531);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "service/search/search_types.proto", &protobuf_RegisterTypes);
   Statistic::default_instance_ = new Statistic();
@@ -235,7 +235,7 @@ bool Statistic::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional uint32 id = 1;
+      // optional uint32 id = 1 [default = 0];
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -284,7 +284,7 @@ bool Statistic::MergePartialFromCodedStream(
 
 void Statistic::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // optional uint32 id = 1;
+  // optional uint32 id = 1 [default = 0];
   if (has_id()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->id(), output);
   }
@@ -302,7 +302,7 @@ void Statistic::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Statistic::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional uint32 id = 1;
+  // optional uint32 id = 1 [default = 0];
   if (has_id()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->id(), target);
   }
@@ -323,7 +323,7 @@ int Statistic::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional uint32 id = 1;
+    // optional uint32 id = 1 [default = 0];
     if (has_id()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
@@ -572,7 +572,7 @@ bool Filter::MergePartialFromCodedStream(
         break;
       }
       
-      // optional .bnet.protocol.search.Filter.SortDirection sort_direction = 3;
+      // optional .bnet.protocol.search.Filter.SortDirection sort_direction = 3 [default = ASC];
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -623,7 +623,7 @@ void Filter::SerializeWithCachedSizes(
       2, this->comparand(), output);
   }
   
-  // optional .bnet.protocol.search.Filter.SortDirection sort_direction = 3;
+  // optional .bnet.protocol.search.Filter.SortDirection sort_direction = 3 [default = ASC];
   if (has_sort_direction()) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       3, this->sort_direction(), output);
@@ -650,7 +650,7 @@ void Filter::SerializeWithCachedSizes(
       2, this->comparand(), target);
   }
   
-  // optional .bnet.protocol.search.Filter.SortDirection sort_direction = 3;
+  // optional .bnet.protocol.search.Filter.SortDirection sort_direction = 3 [default = ASC];
   if (has_sort_direction()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       3, this->sort_direction(), target);
@@ -680,7 +680,7 @@ int Filter::ByteSize() const {
         ::google::protobuf::internal::WireFormatLite::EnumSize(this->comparand());
     }
     
-    // optional .bnet.protocol.search.Filter.SortDirection sort_direction = 3;
+    // optional .bnet.protocol.search.Filter.SortDirection sort_direction = 3 [default = ASC];
     if (has_sort_direction()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::EnumSize(this->sort_direction());

@@ -191,29 +191,30 @@ void protobuf_AddDesc_service_2fgame_5fmaster_2fgame_5fmaster_5ftypes_2eproto() 
     "\n+service/game_master/game_master_types."
     "proto\022\031bnet.protocol.game_master\032\034lib/pr"
     "otocol/attribute.proto\032\031lib/protocol/ent"
-    "ity.proto\"\243\002\n\006Player\0224\n\004type\030\001 \001(\0162&.bne"
-    "t.protocol.game_master.Player.Type\022(\n\007to"
-    "on_id\030\002 \001(\0132\027.bnet.protocol.EntityId\0220\n\017"
-    "game_account_id\030\003 \001(\0132\027.bnet.protocol.En"
-    "tityId\0220\n\017bnet_account_id\030\004 \001(\0132\027.bnet.p"
-    "rotocol.EntityId\0225\n\tattribute\030\005 \003(\0132\".bn"
-    "et.protocol.attribute.Attribute\"\036\n\004Type\022"
-    "\010\n\004TOON\020\000\022\014\n\010COMPUTER\020\001\"\231\001\n\013ConnectInfo\022"
-    "(\n\007toon_id\030\001 \002(\0132\027.bnet.protocol.EntityI"
-    "d\022\014\n\004host\030\002 \002(\t\022\014\n\004port\030\003 \002(\005\022\r\n\005token\030\004"
-    " \001(\014\0225\n\tattribute\030\005 \003(\0132\".bnet.protocol."
-    "attribute.Attribute\"\312\001\n\017GameStatsBucket\022"
-    "\022\n\nbucket_min\030\001 \001(\002\022\022\n\nbucket_max\030\002 \001(\002\022"
-    "\031\n\021wait_milliseconds\030\003 \001(\r\022\026\n\016games_per_"
-    "hour\030\004 \001(\r\022\024\n\014active_games\030\005 \001(\r\022\026\n\016acti"
-    "ve_players\030\006 \001(\r\022\025\n\rforming_games\030\007 \001(\r\022"
-    "\027\n\017waiting_players\030\010 \001(\r\"\253\001\n\026GameFactory"
-    "Description\022\n\n\002id\030\001 \002(\006\022\014\n\004name\030\002 \001(\t\0225\n"
-    "\tattribute\030\003 \003(\0132\".bnet.protocol.attribu"
-    "te.Attribute\022@\n\014stats_bucket\030\004 \003(\0132*.bne"
-    "t.protocol.game_master.GameStatsBucket\"J"
-    "\n\nGameHandle\022\022\n\nfactory_id\030\001 \002(\006\022(\n\007game"
-    "_id\030\002 \002(\0132\027.bnet.protocol.EntityId", 1034);
+    "ity.proto\"\251\002\n\006Player\022:\n\004type\030\001 \001(\0162&.bne"
+    "t.protocol.game_master.Player.Type:\004TOON"
+    "\022(\n\007toon_id\030\002 \001(\0132\027.bnet.protocol.Entity"
+    "Id\0220\n\017game_account_id\030\003 \001(\0132\027.bnet.proto"
+    "col.EntityId\0220\n\017bnet_account_id\030\004 \001(\0132\027."
+    "bnet.protocol.EntityId\0225\n\tattribute\030\005 \003("
+    "\0132\".bnet.protocol.attribute.Attribute\"\036\n"
+    "\004Type\022\010\n\004TOON\020\000\022\014\n\010COMPUTER\020\001\"\231\001\n\013Connec"
+    "tInfo\022(\n\007toon_id\030\001 \002(\0132\027.bnet.protocol.E"
+    "ntityId\022\014\n\004host\030\002 \002(\t\022\014\n\004port\030\003 \002(\005\022\r\n\005t"
+    "oken\030\004 \001(\014\0225\n\tattribute\030\005 \003(\0132\".bnet.pro"
+    "tocol.attribute.Attribute\"\357\001\n\017GameStatsB"
+    "ucket\022\025\n\nbucket_min\030\001 \001(\002:\0010\022\"\n\nbucket_m"
+    "ax\030\002 \001(\002:\0164.2949673e+009\022\034\n\021wait_millise"
+    "conds\030\003 \001(\r:\0010\022\031\n\016games_per_hour\030\004 \001(\r:\001"
+    "0\022\027\n\014active_games\030\005 \001(\r:\0010\022\031\n\016active_pla"
+    "yers\030\006 \001(\r:\0010\022\030\n\rforming_games\030\007 \001(\r:\0010\022"
+    "\032\n\017waiting_players\030\010 \001(\r:\0010\"\253\001\n\026GameFact"
+    "oryDescription\022\n\n\002id\030\001 \002(\006\022\014\n\004name\030\002 \001(\t"
+    "\0225\n\tattribute\030\003 \003(\0132\".bnet.protocol.attr"
+    "ibute.Attribute\022@\n\014stats_bucket\030\004 \003(\0132*."
+    "bnet.protocol.game_master.GameStatsBucke"
+    "t\"J\n\nGameHandle\022\022\n\nfactory_id\030\001 \002(\006\022(\n\007g"
+    "ame_id\030\002 \002(\0132\027.bnet.protocol.EntityId", 1077);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "service/game_master/game_master_types.proto", &protobuf_RegisterTypes);
   Player::default_instance_ = new Player();
@@ -350,7 +351,7 @@ bool Player::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional .bnet.protocol.game_master.Player.Type type = 1;
+      // optional .bnet.protocol.game_master.Player.Type type = 1 [default = TOON];
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -445,7 +446,7 @@ bool Player::MergePartialFromCodedStream(
 
 void Player::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // optional .bnet.protocol.game_master.Player.Type type = 1;
+  // optional .bnet.protocol.game_master.Player.Type type = 1 [default = TOON];
   if (has_type()) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       1, this->type(), output);
@@ -483,7 +484,7 @@ void Player::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Player::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional .bnet.protocol.game_master.Player.Type type = 1;
+  // optional .bnet.protocol.game_master.Player.Type type = 1 [default = TOON];
   if (has_type()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       1, this->type(), target);
@@ -528,7 +529,7 @@ int Player::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional .bnet.protocol.game_master.Player.Type type = 1;
+    // optional .bnet.protocol.game_master.Player.Type type = 1 [default = TOON];
     if (has_type()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::EnumSize(this->type());
@@ -1092,7 +1093,7 @@ GameStatsBucket::GameStatsBucket(const GameStatsBucket& from)
 void GameStatsBucket::SharedCtor() {
   _cached_size_ = 0;
   bucket_min_ = 0;
-  bucket_max_ = 0;
+  bucket_max_ = 4.2949673e+009f;
   wait_milliseconds_ = 0u;
   games_per_hour_ = 0u;
   active_games_ = 0u;
@@ -1134,7 +1135,7 @@ GameStatsBucket* GameStatsBucket::New() const {
 void GameStatsBucket::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     bucket_min_ = 0;
-    bucket_max_ = 0;
+    bucket_max_ = 4.2949673e+009f;
     wait_milliseconds_ = 0u;
     games_per_hour_ = 0u;
     active_games_ = 0u;
@@ -1152,7 +1153,7 @@ bool GameStatsBucket::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional float bucket_min = 1;
+      // optional float bucket_min = 1 [default = 0];
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED32) {
@@ -1167,7 +1168,7 @@ bool GameStatsBucket::MergePartialFromCodedStream(
         break;
       }
       
-      // optional float bucket_max = 2;
+      // optional float bucket_max = 2 [default = 4.2949673e+009];
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED32) {
@@ -1183,7 +1184,7 @@ bool GameStatsBucket::MergePartialFromCodedStream(
         break;
       }
       
-      // optional uint32 wait_milliseconds = 3;
+      // optional uint32 wait_milliseconds = 3 [default = 0];
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -1199,7 +1200,7 @@ bool GameStatsBucket::MergePartialFromCodedStream(
         break;
       }
       
-      // optional uint32 games_per_hour = 4;
+      // optional uint32 games_per_hour = 4 [default = 0];
       case 4: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -1215,7 +1216,7 @@ bool GameStatsBucket::MergePartialFromCodedStream(
         break;
       }
       
-      // optional uint32 active_games = 5;
+      // optional uint32 active_games = 5 [default = 0];
       case 5: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -1231,7 +1232,7 @@ bool GameStatsBucket::MergePartialFromCodedStream(
         break;
       }
       
-      // optional uint32 active_players = 6;
+      // optional uint32 active_players = 6 [default = 0];
       case 6: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -1247,7 +1248,7 @@ bool GameStatsBucket::MergePartialFromCodedStream(
         break;
       }
       
-      // optional uint32 forming_games = 7;
+      // optional uint32 forming_games = 7 [default = 0];
       case 7: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -1263,7 +1264,7 @@ bool GameStatsBucket::MergePartialFromCodedStream(
         break;
       }
       
-      // optional uint32 waiting_players = 8;
+      // optional uint32 waiting_players = 8 [default = 0];
       case 8: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -1297,42 +1298,42 @@ bool GameStatsBucket::MergePartialFromCodedStream(
 
 void GameStatsBucket::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // optional float bucket_min = 1;
+  // optional float bucket_min = 1 [default = 0];
   if (has_bucket_min()) {
     ::google::protobuf::internal::WireFormatLite::WriteFloat(1, this->bucket_min(), output);
   }
   
-  // optional float bucket_max = 2;
+  // optional float bucket_max = 2 [default = 4.2949673e+009];
   if (has_bucket_max()) {
     ::google::protobuf::internal::WireFormatLite::WriteFloat(2, this->bucket_max(), output);
   }
   
-  // optional uint32 wait_milliseconds = 3;
+  // optional uint32 wait_milliseconds = 3 [default = 0];
   if (has_wait_milliseconds()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(3, this->wait_milliseconds(), output);
   }
   
-  // optional uint32 games_per_hour = 4;
+  // optional uint32 games_per_hour = 4 [default = 0];
   if (has_games_per_hour()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(4, this->games_per_hour(), output);
   }
   
-  // optional uint32 active_games = 5;
+  // optional uint32 active_games = 5 [default = 0];
   if (has_active_games()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(5, this->active_games(), output);
   }
   
-  // optional uint32 active_players = 6;
+  // optional uint32 active_players = 6 [default = 0];
   if (has_active_players()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(6, this->active_players(), output);
   }
   
-  // optional uint32 forming_games = 7;
+  // optional uint32 forming_games = 7 [default = 0];
   if (has_forming_games()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(7, this->forming_games(), output);
   }
   
-  // optional uint32 waiting_players = 8;
+  // optional uint32 waiting_players = 8 [default = 0];
   if (has_waiting_players()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(8, this->waiting_players(), output);
   }
@@ -1345,42 +1346,42 @@ void GameStatsBucket::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* GameStatsBucket::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional float bucket_min = 1;
+  // optional float bucket_min = 1 [default = 0];
   if (has_bucket_min()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(1, this->bucket_min(), target);
   }
   
-  // optional float bucket_max = 2;
+  // optional float bucket_max = 2 [default = 4.2949673e+009];
   if (has_bucket_max()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(2, this->bucket_max(), target);
   }
   
-  // optional uint32 wait_milliseconds = 3;
+  // optional uint32 wait_milliseconds = 3 [default = 0];
   if (has_wait_milliseconds()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(3, this->wait_milliseconds(), target);
   }
   
-  // optional uint32 games_per_hour = 4;
+  // optional uint32 games_per_hour = 4 [default = 0];
   if (has_games_per_hour()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(4, this->games_per_hour(), target);
   }
   
-  // optional uint32 active_games = 5;
+  // optional uint32 active_games = 5 [default = 0];
   if (has_active_games()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(5, this->active_games(), target);
   }
   
-  // optional uint32 active_players = 6;
+  // optional uint32 active_players = 6 [default = 0];
   if (has_active_players()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(6, this->active_players(), target);
   }
   
-  // optional uint32 forming_games = 7;
+  // optional uint32 forming_games = 7 [default = 0];
   if (has_forming_games()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(7, this->forming_games(), target);
   }
   
-  // optional uint32 waiting_players = 8;
+  // optional uint32 waiting_players = 8 [default = 0];
   if (has_waiting_players()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(8, this->waiting_players(), target);
   }
@@ -1396,52 +1397,52 @@ int GameStatsBucket::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional float bucket_min = 1;
+    // optional float bucket_min = 1 [default = 0];
     if (has_bucket_min()) {
       total_size += 1 + 4;
     }
     
-    // optional float bucket_max = 2;
+    // optional float bucket_max = 2 [default = 4.2949673e+009];
     if (has_bucket_max()) {
       total_size += 1 + 4;
     }
     
-    // optional uint32 wait_milliseconds = 3;
+    // optional uint32 wait_milliseconds = 3 [default = 0];
     if (has_wait_milliseconds()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
           this->wait_milliseconds());
     }
     
-    // optional uint32 games_per_hour = 4;
+    // optional uint32 games_per_hour = 4 [default = 0];
     if (has_games_per_hour()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
           this->games_per_hour());
     }
     
-    // optional uint32 active_games = 5;
+    // optional uint32 active_games = 5 [default = 0];
     if (has_active_games()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
           this->active_games());
     }
     
-    // optional uint32 active_players = 6;
+    // optional uint32 active_players = 6 [default = 0];
     if (has_active_players()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
           this->active_players());
     }
     
-    // optional uint32 forming_games = 7;
+    // optional uint32 forming_games = 7 [default = 0];
     if (has_forming_games()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
           this->forming_games());
     }
     
-    // optional uint32 waiting_players = 8;
+    // optional uint32 waiting_players = 8 [default = 0];
     if (has_waiting_players()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(

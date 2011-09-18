@@ -23,6 +23,7 @@
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/generated_message_reflection.h>
+#include <google/protobuf/service.h>
 #include "lib/protocol/attribute.pb.h"
 #include "lib/protocol/entity.pb.h"
 #include "lib/protocol/invitation.pb.h"
@@ -635,6 +636,10 @@ class SendInvitationRequest : public ::google::protobuf::Message {
   inline ::std::string* mutable_display_string();
   inline ::std::string* release_display_string();
   
+  static const int kFriendRequestFieldNumber = 103;
+  static ::google::protobuf::internal::ExtensionIdentifier< ::bnet::protocol::invitation::SendInvitationRequest,
+      ::google::protobuf::internal::MessageTypeTraits< ::bnet::protocol::friends::SendInvitationRequest >, 11, false >
+    friend_request;
   // @@protoc_insertion_point(class_scope:bnet.protocol.friends.SendInvitationRequest)
  private:
   inline void set_has_target_email();
@@ -737,14 +742,14 @@ class ViewFriendsRequest : public ::google::protobuf::Message {
   inline ::bnet::protocol::attribute::AttributeFilter* mutable_filter();
   inline ::bnet::protocol::attribute::AttributeFilter* release_filter();
   
-  // optional uint32 start_index = 4;
+  // optional uint32 start_index = 4 [default = 0];
   inline bool has_start_index() const;
   inline void clear_start_index();
   static const int kStartIndexFieldNumber = 4;
   inline ::google::protobuf::uint32 start_index() const;
   inline void set_start_index(::google::protobuf::uint32 value);
   
-  // optional uint32 max_results = 5;
+  // optional uint32 max_results = 5 [default = 100];
   inline bool has_max_results() const;
   inline void clear_max_results();
   static const int kMaxResultsFieldNumber = 5;
@@ -1352,6 +1357,228 @@ class InvitationRemovedNotification : public ::google::protobuf::Message {
 };
 // ===================================================================
 
+class FriendsService_Stub;
+
+class FriendsService : public ::google::protobuf::Service {
+ protected:
+  // This class should be treated as an abstract interface.
+  inline FriendsService() {};
+ public:
+  virtual ~FriendsService();
+  
+  typedef FriendsService_Stub Stub;
+  
+  static const ::google::protobuf::ServiceDescriptor* descriptor();
+  
+  virtual void SubscribeToFriends(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::friends::SubscribeToFriendsRequest* request,
+                       ::bnet::protocol::friends::SubscribeToFriendsResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void SendInvitation(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::invitation::SendInvitationRequest* request,
+                       ::bnet::protocol::invitation::SendInvitationResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void AcceptInvitation(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::invitation::GenericRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void RevokeInvitation(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::invitation::GenericRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void DeclineInvitation(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::invitation::GenericRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void IgnoreInvitation(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::invitation::GenericRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  virtual void RemoveFriend(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::friends::GenericFriendRequest* request,
+                       ::bnet::protocol::friends::GenericFriendResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void ViewFriends(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::friends::ViewFriendsRequest* request,
+                       ::bnet::protocol::friends::ViewFriendsResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void UpdateFriendState(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::friends::UpdateFriendStateRequest* request,
+                       ::bnet::protocol::friends::UpdateFriendStateResponse* response,
+                       ::google::protobuf::Closure* done);
+  virtual void UnsubscribeToFriends(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::friends::UnsubscribeToFriendsRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  
+  // implements Service ----------------------------------------------
+  
+  const ::google::protobuf::ServiceDescriptor* GetDescriptor();
+  void CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                  ::google::protobuf::RpcController* controller,
+                  const ::google::protobuf::Message* request,
+                  ::google::protobuf::Message* response,
+                  ::google::protobuf::Closure* done);
+  const ::google::protobuf::Message& GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+  const ::google::protobuf::Message& GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+
+ private:
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(FriendsService);
+};
+
+class FriendsService_Stub : public FriendsService {
+ public:
+  FriendsService_Stub(::google::protobuf::RpcChannel* channel);
+  FriendsService_Stub(::google::protobuf::RpcChannel* channel,
+                   ::google::protobuf::Service::ChannelOwnership ownership);
+  ~FriendsService_Stub();
+  
+  inline ::google::protobuf::RpcChannel* channel() { return channel_; }
+  
+  // implements FriendsService ------------------------------------------
+  
+  void SubscribeToFriends(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::friends::SubscribeToFriendsRequest* request,
+                       ::bnet::protocol::friends::SubscribeToFriendsResponse* response,
+                       ::google::protobuf::Closure* done);
+  void SendInvitation(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::invitation::SendInvitationRequest* request,
+                       ::bnet::protocol::invitation::SendInvitationResponse* response,
+                       ::google::protobuf::Closure* done);
+  void AcceptInvitation(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::invitation::GenericRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void RevokeInvitation(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::invitation::GenericRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void DeclineInvitation(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::invitation::GenericRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void IgnoreInvitation(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::invitation::GenericRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+  void RemoveFriend(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::friends::GenericFriendRequest* request,
+                       ::bnet::protocol::friends::GenericFriendResponse* response,
+                       ::google::protobuf::Closure* done);
+  void ViewFriends(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::friends::ViewFriendsRequest* request,
+                       ::bnet::protocol::friends::ViewFriendsResponse* response,
+                       ::google::protobuf::Closure* done);
+  void UpdateFriendState(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::friends::UpdateFriendStateRequest* request,
+                       ::bnet::protocol::friends::UpdateFriendStateResponse* response,
+                       ::google::protobuf::Closure* done);
+  void UnsubscribeToFriends(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::friends::UnsubscribeToFriendsRequest* request,
+                       ::bnet::protocol::NoData* response,
+                       ::google::protobuf::Closure* done);
+ private:
+  ::google::protobuf::RpcChannel* channel_;
+  bool owns_channel_;
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(FriendsService_Stub);
+};
+
+
+// -------------------------------------------------------------------
+
+class FriendsNotify_Stub;
+
+class FriendsNotify : public ::google::protobuf::Service {
+ protected:
+  // This class should be treated as an abstract interface.
+  inline FriendsNotify() {};
+ public:
+  virtual ~FriendsNotify();
+  
+  typedef FriendsNotify_Stub Stub;
+  
+  static const ::google::protobuf::ServiceDescriptor* descriptor();
+  
+  virtual void NotifyFriendAdded(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::friends::FriendNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  virtual void NotifyFriendRemoved(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::friends::FriendNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  virtual void NotifyReceivedInvitationAdded(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::friends::InvitationAddedNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  virtual void NotifyReceivedInvitationRemoved(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::friends::InvitationRemovedNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  virtual void NotifySentInvitationRemoved(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::friends::InvitationRemovedNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  
+  // implements Service ----------------------------------------------
+  
+  const ::google::protobuf::ServiceDescriptor* GetDescriptor();
+  void CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                  ::google::protobuf::RpcController* controller,
+                  const ::google::protobuf::Message* request,
+                  ::google::protobuf::Message* response,
+                  ::google::protobuf::Closure* done);
+  const ::google::protobuf::Message& GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+  const ::google::protobuf::Message& GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const;
+
+ private:
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(FriendsNotify);
+};
+
+class FriendsNotify_Stub : public FriendsNotify {
+ public:
+  FriendsNotify_Stub(::google::protobuf::RpcChannel* channel);
+  FriendsNotify_Stub(::google::protobuf::RpcChannel* channel,
+                   ::google::protobuf::Service::ChannelOwnership ownership);
+  ~FriendsNotify_Stub();
+  
+  inline ::google::protobuf::RpcChannel* channel() { return channel_; }
+  
+  // implements FriendsNotify ------------------------------------------
+  
+  void NotifyFriendAdded(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::friends::FriendNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  void NotifyFriendRemoved(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::friends::FriendNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  void NotifyReceivedInvitationAdded(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::friends::InvitationAddedNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  void NotifyReceivedInvitationRemoved(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::friends::InvitationRemovedNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+  void NotifySentInvitationRemoved(::google::protobuf::RpcController* controller,
+                       const ::bnet::protocol::friends::InvitationRemovedNotification* request,
+                       ::bnet::protocol::NO_RESPONSE* response,
+                       ::google::protobuf::Closure* done);
+ private:
+  ::google::protobuf::RpcChannel* channel_;
+  bool owns_channel_;
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(FriendsNotify_Stub);
+};
+
+
+// ===================================================================
+
 
 // ===================================================================
 
@@ -1914,7 +2141,7 @@ inline ::bnet::protocol::attribute::AttributeFilter* ViewFriendsRequest::release
   return temp;
 }
 
-// optional uint32 start_index = 4;
+// optional uint32 start_index = 4 [default = 0];
 inline bool ViewFriendsRequest::has_start_index() const {
   return (_has_bits_[0] & 0x00000008u) != 0;
 }
@@ -1936,7 +2163,7 @@ inline void ViewFriendsRequest::set_start_index(::google::protobuf::uint32 value
   start_index_ = value;
 }
 
-// optional uint32 max_results = 5;
+// optional uint32 max_results = 5 [default = 100];
 inline bool ViewFriendsRequest::has_max_results() const {
   return (_has_bits_[0] & 0x00000010u) != 0;
 }
@@ -1947,7 +2174,7 @@ inline void ViewFriendsRequest::clear_has_max_results() {
   _has_bits_[0] &= ~0x00000010u;
 }
 inline void ViewFriendsRequest::clear_max_results() {
-  max_results_ = 0u;
+  max_results_ = 100u;
   clear_has_max_results();
 }
 inline ::google::protobuf::uint32 ViewFriendsRequest::max_results() const {

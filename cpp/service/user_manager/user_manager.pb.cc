@@ -71,6 +71,8 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* BlockedPlayerNotification_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   BlockedPlayerNotification_reflection_ = NULL;
+const ::google::protobuf::ServiceDescriptor* UserManagerService_descriptor_ = NULL;
+const ::google::protobuf::ServiceDescriptor* UserManagerNotify_descriptor_ = NULL;
 
 }  // namespace
 
@@ -343,6 +345,8 @@ void protobuf_AssignDesc_service_2fuser_5fmanager_2fuser_5fmanager_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(BlockedPlayerNotification));
+  UserManagerService_descriptor_ = file->service(0);
+  UserManagerNotify_descriptor_ = file->service(1);
 }
 
 namespace {
@@ -488,7 +492,33 @@ void protobuf_AddDesc_service_2fuser_5fmanager_2fuser_5fmanager_2eproto() {
     "ersResponse\022A\n\017players_removed\030\001 \003(\0132(.b"
     "net.protocol.user_manager.RecentPlayer\"E"
     "\n\031BlockedPlayerNotification\022(\n\007players\030\001"
-    " \003(\0132\027.bnet.protocol.EntityId", 1949);
+    " \003(\0132\027.bnet.protocol.EntityId2\224\006\n\022UserMa"
+    "nagerService\022\217\001\n\026SubscribeToUserManager\022"
+    "9.bnet.protocol.user_manager.SubscribeTo"
+    "UserManagerRequest\032:.bnet.protocol.user_"
+    "manager.SubscribeToUserManagerResponse\022q"
+    "\n\014ReportPlayer\022/.bnet.protocol.user_mana"
+    "ger.ReportPlayerRequest\0320.bnet.protocol."
+    "user_manager.ReportPlayerResponse\022n\n\013Blo"
+    "ckPlayer\022..bnet.protocol.user_manager.Bl"
+    "ockPlayerRequest\032/.bnet.protocol.user_ma"
+    "nager.BlockPlayerResponse\022\200\001\n\021RemovePlay"
+    "erBlock\0224.bnet.protocol.user_manager.Rem"
+    "ovePlayerBlockRequest\0325.bnet.protocol.us"
+    "er_manager.RemovePlayerBlockResponse\022}\n\020"
+    "AddRecentPlayers\0223.bnet.protocol.user_ma"
+    "nager.AddRecentPlayersRequest\0324.bnet.pro"
+    "tocol.user_manager.AddRecentPlayersRespo"
+    "nse\022\206\001\n\023RemoveRecentPlayers\0226.bnet.proto"
+    "col.user_manager.RemoveRecentPlayersRequ"
+    "est\0327.bnet.protocol.user_manager.RemoveR"
+    "ecentPlayersResponse2\354\001\n\021UserManagerNoti"
+    "fy\022h\n\023NotifyPlayerBlocked\0225.bnet.protoco"
+    "l.user_manager.BlockedPlayerNotification"
+    "\032\032.bnet.protocol.NO_RESPONSE\022m\n\030NotifyPl"
+    "ayerBlockRemoved\0225.bnet.protocol.user_ma"
+    "nager.BlockedPlayerNotification\032\032.bnet.p"
+    "rotocol.NO_RESPONSEB\003\200\001\001", 2984);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "service/user_manager/user_manager.proto", &protobuf_RegisterTypes);
   PlayerReport::default_instance_ = new PlayerReport();
@@ -4428,6 +4458,323 @@ void BlockedPlayerNotification::Swap(BlockedPlayerNotification* other) {
   return metadata;
 }
 
+
+// ===================================================================
+
+UserManagerService::~UserManagerService() {}
+
+const ::google::protobuf::ServiceDescriptor* UserManagerService::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return UserManagerService_descriptor_;
+}
+
+const ::google::protobuf::ServiceDescriptor* UserManagerService::GetDescriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return UserManagerService_descriptor_;
+}
+
+void UserManagerService::SubscribeToUserManager(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::user_manager::SubscribeToUserManagerRequest*,
+                         ::bnet::protocol::user_manager::SubscribeToUserManagerResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method SubscribeToUserManager() not implemented.");
+  done->Run();
+}
+
+void UserManagerService::ReportPlayer(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::user_manager::ReportPlayerRequest*,
+                         ::bnet::protocol::user_manager::ReportPlayerResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method ReportPlayer() not implemented.");
+  done->Run();
+}
+
+void UserManagerService::BlockPlayer(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::user_manager::BlockPlayerRequest*,
+                         ::bnet::protocol::user_manager::BlockPlayerResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method BlockPlayer() not implemented.");
+  done->Run();
+}
+
+void UserManagerService::RemovePlayerBlock(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::user_manager::RemovePlayerBlockRequest*,
+                         ::bnet::protocol::user_manager::RemovePlayerBlockResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method RemovePlayerBlock() not implemented.");
+  done->Run();
+}
+
+void UserManagerService::AddRecentPlayers(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::user_manager::AddRecentPlayersRequest*,
+                         ::bnet::protocol::user_manager::AddRecentPlayersResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method AddRecentPlayers() not implemented.");
+  done->Run();
+}
+
+void UserManagerService::RemoveRecentPlayers(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::user_manager::RemoveRecentPlayersRequest*,
+                         ::bnet::protocol::user_manager::RemoveRecentPlayersResponse*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method RemoveRecentPlayers() not implemented.");
+  done->Run();
+}
+
+void UserManagerService::CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                             ::google::protobuf::RpcController* controller,
+                             const ::google::protobuf::Message* request,
+                             ::google::protobuf::Message* response,
+                             ::google::protobuf::Closure* done) {
+  GOOGLE_DCHECK_EQ(method->service(), UserManagerService_descriptor_);
+  switch(method->index()) {
+    case 0:
+      SubscribeToUserManager(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::user_manager::SubscribeToUserManagerRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::user_manager::SubscribeToUserManagerResponse*>(response),
+             done);
+      break;
+    case 1:
+      ReportPlayer(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::user_manager::ReportPlayerRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::user_manager::ReportPlayerResponse*>(response),
+             done);
+      break;
+    case 2:
+      BlockPlayer(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::user_manager::BlockPlayerRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::user_manager::BlockPlayerResponse*>(response),
+             done);
+      break;
+    case 3:
+      RemovePlayerBlock(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::user_manager::RemovePlayerBlockRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::user_manager::RemovePlayerBlockResponse*>(response),
+             done);
+      break;
+    case 4:
+      AddRecentPlayers(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::user_manager::AddRecentPlayersRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::user_manager::AddRecentPlayersResponse*>(response),
+             done);
+      break;
+    case 5:
+      RemoveRecentPlayers(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::user_manager::RemoveRecentPlayersRequest*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::user_manager::RemoveRecentPlayersResponse*>(response),
+             done);
+      break;
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      break;
+  }
+}
+
+const ::google::protobuf::Message& UserManagerService::GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::user_manager::SubscribeToUserManagerRequest::default_instance();
+    case 1:
+      return ::bnet::protocol::user_manager::ReportPlayerRequest::default_instance();
+    case 2:
+      return ::bnet::protocol::user_manager::BlockPlayerRequest::default_instance();
+    case 3:
+      return ::bnet::protocol::user_manager::RemovePlayerBlockRequest::default_instance();
+    case 4:
+      return ::bnet::protocol::user_manager::AddRecentPlayersRequest::default_instance();
+    case 5:
+      return ::bnet::protocol::user_manager::RemoveRecentPlayersRequest::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+const ::google::protobuf::Message& UserManagerService::GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::user_manager::SubscribeToUserManagerResponse::default_instance();
+    case 1:
+      return ::bnet::protocol::user_manager::ReportPlayerResponse::default_instance();
+    case 2:
+      return ::bnet::protocol::user_manager::BlockPlayerResponse::default_instance();
+    case 3:
+      return ::bnet::protocol::user_manager::RemovePlayerBlockResponse::default_instance();
+    case 4:
+      return ::bnet::protocol::user_manager::AddRecentPlayersResponse::default_instance();
+    case 5:
+      return ::bnet::protocol::user_manager::RemoveRecentPlayersResponse::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+UserManagerService_Stub::UserManagerService_Stub(::google::protobuf::RpcChannel* channel)
+  : channel_(channel), owns_channel_(false) {}
+UserManagerService_Stub::UserManagerService_Stub(
+    ::google::protobuf::RpcChannel* channel,
+    ::google::protobuf::Service::ChannelOwnership ownership)
+  : channel_(channel),
+    owns_channel_(ownership == ::google::protobuf::Service::STUB_OWNS_CHANNEL) {}
+UserManagerService_Stub::~UserManagerService_Stub() {
+  if (owns_channel_) delete channel_;
+}
+
+void UserManagerService_Stub::SubscribeToUserManager(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::user_manager::SubscribeToUserManagerRequest* request,
+                              ::bnet::protocol::user_manager::SubscribeToUserManagerResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(0),
+                       controller, request, response, done);
+}
+void UserManagerService_Stub::ReportPlayer(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::user_manager::ReportPlayerRequest* request,
+                              ::bnet::protocol::user_manager::ReportPlayerResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(1),
+                       controller, request, response, done);
+}
+void UserManagerService_Stub::BlockPlayer(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::user_manager::BlockPlayerRequest* request,
+                              ::bnet::protocol::user_manager::BlockPlayerResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(2),
+                       controller, request, response, done);
+}
+void UserManagerService_Stub::RemovePlayerBlock(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::user_manager::RemovePlayerBlockRequest* request,
+                              ::bnet::protocol::user_manager::RemovePlayerBlockResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(3),
+                       controller, request, response, done);
+}
+void UserManagerService_Stub::AddRecentPlayers(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::user_manager::AddRecentPlayersRequest* request,
+                              ::bnet::protocol::user_manager::AddRecentPlayersResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(4),
+                       controller, request, response, done);
+}
+void UserManagerService_Stub::RemoveRecentPlayers(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::user_manager::RemoveRecentPlayersRequest* request,
+                              ::bnet::protocol::user_manager::RemoveRecentPlayersResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(5),
+                       controller, request, response, done);
+}
+// ===================================================================
+
+UserManagerNotify::~UserManagerNotify() {}
+
+const ::google::protobuf::ServiceDescriptor* UserManagerNotify::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return UserManagerNotify_descriptor_;
+}
+
+const ::google::protobuf::ServiceDescriptor* UserManagerNotify::GetDescriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return UserManagerNotify_descriptor_;
+}
+
+void UserManagerNotify::NotifyPlayerBlocked(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::user_manager::BlockedPlayerNotification*,
+                         ::bnet::protocol::NO_RESPONSE*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method NotifyPlayerBlocked() not implemented.");
+  done->Run();
+}
+
+void UserManagerNotify::NotifyPlayerBlockRemoved(::google::protobuf::RpcController* controller,
+                         const ::bnet::protocol::user_manager::BlockedPlayerNotification*,
+                         ::bnet::protocol::NO_RESPONSE*,
+                         ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method NotifyPlayerBlockRemoved() not implemented.");
+  done->Run();
+}
+
+void UserManagerNotify::CallMethod(const ::google::protobuf::MethodDescriptor* method,
+                             ::google::protobuf::RpcController* controller,
+                             const ::google::protobuf::Message* request,
+                             ::google::protobuf::Message* response,
+                             ::google::protobuf::Closure* done) {
+  GOOGLE_DCHECK_EQ(method->service(), UserManagerNotify_descriptor_);
+  switch(method->index()) {
+    case 0:
+      NotifyPlayerBlocked(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::user_manager::BlockedPlayerNotification*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NO_RESPONSE*>(response),
+             done);
+      break;
+    case 1:
+      NotifyPlayerBlockRemoved(controller,
+             ::google::protobuf::down_cast<const ::bnet::protocol::user_manager::BlockedPlayerNotification*>(request),
+             ::google::protobuf::down_cast< ::bnet::protocol::NO_RESPONSE*>(response),
+             done);
+      break;
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      break;
+  }
+}
+
+const ::google::protobuf::Message& UserManagerNotify::GetRequestPrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::user_manager::BlockedPlayerNotification::default_instance();
+    case 1:
+      return ::bnet::protocol::user_manager::BlockedPlayerNotification::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+const ::google::protobuf::Message& UserManagerNotify::GetResponsePrototype(
+    const ::google::protobuf::MethodDescriptor* method) const {
+  GOOGLE_DCHECK_EQ(method->service(), descriptor());
+  switch(method->index()) {
+    case 0:
+      return ::bnet::protocol::NO_RESPONSE::default_instance();
+    case 1:
+      return ::bnet::protocol::NO_RESPONSE::default_instance();
+    default:
+      GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
+      return *reinterpret_cast< ::google::protobuf::Message*>(NULL);
+  }
+}
+
+UserManagerNotify_Stub::UserManagerNotify_Stub(::google::protobuf::RpcChannel* channel)
+  : channel_(channel), owns_channel_(false) {}
+UserManagerNotify_Stub::UserManagerNotify_Stub(
+    ::google::protobuf::RpcChannel* channel,
+    ::google::protobuf::Service::ChannelOwnership ownership)
+  : channel_(channel),
+    owns_channel_(ownership == ::google::protobuf::Service::STUB_OWNS_CHANNEL) {}
+UserManagerNotify_Stub::~UserManagerNotify_Stub() {
+  if (owns_channel_) delete channel_;
+}
+
+void UserManagerNotify_Stub::NotifyPlayerBlocked(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::user_manager::BlockedPlayerNotification* request,
+                              ::bnet::protocol::NO_RESPONSE* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(0),
+                       controller, request, response, done);
+}
+void UserManagerNotify_Stub::NotifyPlayerBlockRemoved(::google::protobuf::RpcController* controller,
+                              const ::bnet::protocol::user_manager::BlockedPlayerNotification* request,
+                              ::bnet::protocol::NO_RESPONSE* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(1),
+                       controller, request, response, done);
+}
 
 // @@protoc_insertion_point(namespace_scope)
 
