@@ -23,10 +23,33 @@
 
 #include "rpc.h"
 
-aservice* CServices::add_service(int hash, int id) {
+aservice* CServices::add_service(int hash, std::string name, int id) {
   aservice* service = new aservice();
   service->hash = hash;
   service->id = id;
+  service->name = name;
+  Items.push_back(service);
+  return service;
+}
+aservice* CServices::add_service(int hash, std::string name) {
+  int id = 0;
+  char space[0xFF];
+  for (int i=1; i<0xFE; i++) {
+	space[i]=0;
+  }
+  for (int i=0; i<Items.size(); i++) {
+    space[Items.at(i)->id] = 1;
+  }
+  for (int i=1; i<0xFE; i++) {
+	if (space[i] == 0) {
+		id = i;
+		break;
+	}
+  }
+  aservice* service = new aservice();
+  service->hash = hash;
+  service->id = id;
+  service->name = name;
   Items.push_back(service);
   return service;
 }

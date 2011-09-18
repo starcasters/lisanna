@@ -65,6 +65,7 @@ typedef vector<amethod*> g_methods;
 struct aservice {
 	int hash;
 	int id;
+	std::string name;
 	g_methods methods;
 };
 typedef aservice* pservice;
@@ -75,7 +76,8 @@ class CServices {
 	CServices();
 	~CServices();
 	g_services Items;
-	aservice* add_service(int hash, int id);
+	aservice* add_service(int hash, std::string name, int id);
+	aservice* add_service(int hash, std::string name);
 	void add_method(aservice* service, int id, void* proc, google::protobuf::Message* msg);
 	void clear();
 };
