@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0982D710-E145-4C5B-B735-7F18AD3129A7}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>d3sc</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>..\cpp;d:\dev\protobuf\protobuf-2.4.1\src;..\;$(IncludePath)</IncludePath>
+    <SourcePath>..\;$(SourcePath)</SourcePath>
+    <LibraryPath>d:\dev\protobuf\protobuf-2.4.1\vsprojects\Debug;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(OutDir)/obj/$(IntDir)/%(RelativeDir)/</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)/vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);libprotoc.lib;libprotobuf.lib;ws2_32.lib</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\cpp\Account.pb.cc" />
+    <ClCompile Include="..\cpp\AttributeSerializer.pb.cc" />
+    <ClCompile Include="..\cpp\GameMessage.pb.cc" />
+    <ClCompile Include="..\cpp\GBHandle.pb.cc" />
+    <ClCompile Include="..\cpp\Hero.pb.cc" />
+    <ClCompile Include="..\cpp\Hireling.pb.cc" />
+    <ClCompile Include="..\cpp\ItemCrafting.pb.cc" />
+    <ClCompile Include="..\cpp\Items.pb.cc" />
+    <ClCompile Include="..\cpp\lib\config\process_config.pb.cc" />
+    <ClCompile Include="..\cpp\lib\profanity\profanity.pb.cc" />
+    <ClCompile Include="..\cpp\lib\protocol\attribute.pb.cc" />
+    <ClCompile Include="..\cpp\lib\protocol\content_handle.pb.cc" />
+    <ClCompile Include="..\cpp\lib\protocol\descriptor.pb.cc" />
+    <ClCompile Include="..\cpp\lib\protocol\entity.pb.cc" />
+    <ClCompile Include="..\cpp\lib\protocol\exchange.pb.cc" />
+    <ClCompile Include="..\cpp\lib\protocol\exchange_object_provider.pb.cc" />
+    <ClCompile Include="..\cpp\lib\protocol\invitation.pb.cc" />
+    <ClCompile Include="..\cpp\lib\protocol\resource.pb.cc" />
+    <ClCompile Include="..\cpp\lib\rpc\connection.pb.cc" />
+    <ClCompile Include="..\cpp\lib\rpc\rpc.pb.cc" />
+    <ClCompile Include="..\cpp\OnlineService.pb.cc" />
+    <ClCompile Include="..\cpp\PartyMessage.pb.cc" />
+    <ClCompile Include="..\cpp\Quest.pb.cc" />
+    <ClCompile Include="..\cpp\service\authentication\authentication.pb.cc" />
+    <ClCompile Include="..\cpp\service\channel\channel_types.pb.cc" />
+    <ClCompile Include="..\cpp\service\channel\definition\channel.pb.cc" />
+    <ClCompile Include="..\cpp\service\channel_invitation\channel_invitation_types.pb.cc" />
+    <ClCompile Include="..\cpp\service\channel_invitation\definition\channel_invitation.pb.cc" />
+    <ClCompile Include="..\cpp\service\exchange\exchange.pb.cc" />
+    <ClCompile Include="..\cpp\service\exchange\exchange_types.pb.cc" />
+    <ClCompile Include="..\cpp\service\followers\followers.pb.cc" />
+    <ClCompile Include="..\cpp\service\friends\definition\friends.pb.cc" />
+    <ClCompile Include="..\cpp\service\friends\friends_types.pb.cc" />
+    <ClCompile Include="..\cpp\service\game_master\game_factory.pb.cc" />
+    <ClCompile Include="..\cpp\service\game_master\game_master.pb.cc" />
+    <ClCompile Include="..\cpp\service\game_master\game_master_types.pb.cc" />
+    <ClCompile Include="..\cpp\service\game_utilities\game_utilities.pb.cc" />
+    <ClCompile Include="..\cpp\service\notification\notification.pb.cc" />
+    <ClCompile Include="..\cpp\service\presence\presence.pb.cc" />
+    <ClCompile Include="..\cpp\service\presence\presence_types.pb.cc" />
+    <ClCompile Include="..\cpp\service\search\search.pb.cc" />
+    <ClCompile Include="..\cpp\service\search\search_types.pb.cc" />
+    <ClCompile Include="..\cpp\service\server_pool\server_pool.pb.cc" />
+    <ClCompile Include="..\cpp\service\storage\storage.pb.cc" />
+    <ClCompile Include="..\cpp\service\toon\toon.pb.cc" />
+    <ClCompile Include="..\cpp\service\toon\toon_external.pb.cc" />
+    <ClCompile Include="..\cpp\service\user_manager\user_manager.pb.cc" />
+    <ClCompile Include="..\cpp\Settings.pb.cc" />
+    <ClCompile Include="..\cpp\Stats.pb.cc" />
+    <ClCompile Include="..\rpc\AuthenticationService.cpp" />
+    <ClCompile Include="..\rpc\BaseService.cpp" />
+    <ClCompile Include="..\rpc\headers.cpp" />
+    <ClCompile Include="..\rpc\rpc.cpp" />
+    <ClCompile Include="..\rpc\Service.cpp" />
+    <ClCompile Include="..\rpc\ServiceMgr.cpp" />
+    <ClCompile Include="..\server\PracticalSocket.cpp" />
+    <ClCompile Include="..\server\TCPServer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\rpc\AuthenticationService.h" />
+    <ClInclude Include="..\rpc\BaseService.h" />
+    <ClInclude Include="..\rpc\rpc.h" />
+    <ClInclude Include="..\rpc\Service.h" />
+    <ClInclude Include="..\rpc\ServiceMgr.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

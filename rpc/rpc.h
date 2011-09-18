@@ -25,8 +25,9 @@
 #include <utility>
 
 #include <google/protobuf/message.h>
-
+#include "../server/PracticalSocket.h"
 #include "headers.h"
+#include "FastDelegate.h"
 
 using namespace std;
 
@@ -52,34 +53,10 @@ using namespace std;
 				case A:\
 					areply->msg = new B();\
 					areply->callback = (msg_handler) C;\
-					return true;\
-
-
-struct amethod {
-	int id;
-	void* proc;
-	google::protobuf::Message* msgtype;
-};
-typedef vector<amethod*> g_methods; 
-
-struct aservice {
-	int hash;
-	int id;
-	g_methods methods;
-};
-typedef aservice* pservice;
-typedef vector<aservice*> g_services;
-
-class CServices {
-	public:
-	CServices();
-	~CServices();
-	g_services Items;
-	aservice* add_service(int hash, int id);
-	void add_method(aservice* service, int id, void* proc, google::protobuf::Message* msg);
-	void clear();
-};
+					return true;\ 
 
 
 
+
+ 
 #endif
