@@ -35,10 +35,12 @@ CServiceSearchService::CServiceSearchService()
 	// place here any initialization (?)
 }
 
-CServiceSearchService::CServiceSearchService(CServiceMgr* owner=0,int SID=0, int sHash=0, std::string serviceName="") : CService(owner,SID, sHash, serviceName)
+CServiceSearchService::CServiceSearchService(CServiceMgr* owner=0,int SID=0, std::string serviceName=string(SERVICE_SearchService_NAME)) : 
+	CService(owner, SID, serviceName)
 {
 	//what goes here now?
 }
+
 
 Message* CServiceSearchService::GetMethodMessage(int MethodID, bool request) {
 	switch (MethodID) {

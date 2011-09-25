@@ -29,12 +29,14 @@
 #include "rpc/service.h"
 #include "service/search/search.pb.h"
 
+#define SERVICE_SearchService_NAME "bnet.protocol.search.SearchService"
+
 class CServiceSearchService :
 public CService
 {
 public:
 	CServiceSearchService();
-	CServiceSearchService(CServiceMgr* owner,int SID, int sHash, std::string);
+	CServiceSearchService(CServiceMgr* owner,int SID, std::string sName);
 	bool DispatchMethod(int method, bool request, TCPSocket* socket, apacket* packet);
 	google::protobuf::Message* GetMethodMessage(int method, bool request);
 	bool handle_FindMatches_Request(TCPSocket *sock, apacket* packet);

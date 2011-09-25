@@ -35,12 +35,14 @@
 #include "rpc/service.h"
 #include "service/game_utilities/game_utilities.pb.h"
 
+#define SERVICE_GameUtilities_NAME "bnet.protocol.game_utilities.GameUtilities"
+
 class CServiceGameUtilities :
 public CService
 {
 public:
 	CServiceGameUtilities();
-	CServiceGameUtilities(CServiceMgr* owner,int SID, int sHash, std::string);
+	CServiceGameUtilities(CServiceMgr* owner,int SID, std::string sName);
 	bool DispatchMethod(int method, bool request, TCPSocket* socket, apacket* packet);
 	google::protobuf::Message* GetMethodMessage(int method, bool request);
 	bool handle_ProcessClientRequest_Request(TCPSocket *sock, apacket* packet);

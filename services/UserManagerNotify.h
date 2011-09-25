@@ -28,12 +28,14 @@
 #include "rpc/service.h"
 #include "service/user_manager/user_manager.pb.h"
 
+#define SERVICE_UserManagerNotify_NAME "bnet.protocol.user_manager.UserManagerNotify"
+
 class CServiceUserManagerNotify :
 public CService
 {
 public:
 	CServiceUserManagerNotify();
-	CServiceUserManagerNotify(CServiceMgr* owner,int SID, int sHash, std::string);
+	CServiceUserManagerNotify(CServiceMgr* owner,int SID, std::string sName);
 	bool DispatchMethod(int method, bool request, TCPSocket* socket, apacket* packet);
 	google::protobuf::Message* GetMethodMessage(int method, bool request);
 	bool handle_NotifyPlayerBlocked_Request(TCPSocket *sock, apacket* packet);

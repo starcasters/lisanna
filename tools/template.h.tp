@@ -28,12 +28,14 @@
 #include "rpc/service.h"
 #include "[% pb_h_filename %]"
 
+#define SERVICE_[%  name %]_NAME "[% fullname %]"
+
 class CService[%  name %] :
 public CService
 {
 public:
 	CService[%  name %]();
-	CService[%  name %](CServiceMgr* owner,int SID, int sHash, std::string);
+	CService[%  name %](CServiceMgr* owner,int SID, std::string sName);
 	bool DispatchMethod(int method, bool request, TCPSocket* socket, apacket* packet);
 	google::protobuf::Message* GetMethodMessage(int method, bool request);
 [% FOREACH method = methods -%]

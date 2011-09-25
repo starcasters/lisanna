@@ -31,12 +31,14 @@
 #include "rpc/service.h"
 #include "service/channel/definition/channel.pb.h"
 
+#define SERVICE_ChannelOwner_NAME "bnet.protocol.channel.ChannelOwner"
+
 class CServiceChannelOwner :
 public CService
 {
 public:
 	CServiceChannelOwner();
-	CServiceChannelOwner(CServiceMgr* owner,int SID, int sHash, std::string);
+	CServiceChannelOwner(CServiceMgr* owner,int SID, std::string sName);
 	bool DispatchMethod(int method, bool request, TCPSocket* socket, apacket* packet);
 	google::protobuf::Message* GetMethodMessage(int method, bool request);
 	bool handle_GetChannelId_Request(TCPSocket *sock, apacket* packet);

@@ -39,10 +39,12 @@ CServiceChannelSubscriber::CServiceChannelSubscriber()
 	// place here any initialization (?)
 }
 
-CServiceChannelSubscriber::CServiceChannelSubscriber(CServiceMgr* owner=0,int SID=0, int sHash=0, std::string serviceName="") : CService(owner,SID, sHash, serviceName)
+CServiceChannelSubscriber::CServiceChannelSubscriber(CServiceMgr* owner=0,int SID=0, std::string serviceName=string(SERVICE_ChannelSubscriber_NAME)) : 
+	CService(owner, SID, serviceName)
 {
 	//what goes here now?
 }
+
 
 Message* CServiceChannelSubscriber::GetMethodMessage(int MethodID, bool request) {
 	switch (MethodID) {

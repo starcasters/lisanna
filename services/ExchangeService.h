@@ -54,12 +54,14 @@
 #include "rpc/service.h"
 #include "service/exchange/exchange.pb.h"
 
+#define SERVICE_ExchangeService_NAME "bnet.protocol.exchange.ExchangeService"
+
 class CServiceExchangeService :
 public CService
 {
 public:
 	CServiceExchangeService();
-	CServiceExchangeService(CServiceMgr* owner,int SID, int sHash, std::string);
+	CServiceExchangeService(CServiceMgr* owner,int SID, std::string sName);
 	bool DispatchMethod(int method, bool request, TCPSocket* socket, apacket* packet);
 	google::protobuf::Message* GetMethodMessage(int method, bool request);
 	bool handle_CreateOrderBook_Request(TCPSocket *sock, apacket* packet);

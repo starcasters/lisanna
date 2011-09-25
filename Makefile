@@ -47,12 +47,13 @@ SERVICES= \
 	services/UserManagerNotify.cpp \
 	services/UserManagerService.cpp 
 	
-SOURCES=$(SERVICES) \
+SOURCES= \
 		rpc/rpc.cpp \
 		rpc/headers.cpp \
 		rpc/Service.cpp \
 		rpc/ServiceMgr.cpp \
-		rpc/BaseService.cpp 
+		rpc/BaseService.cpp \
+		$(SERVICES) 
 		
 OBJECTS=$(SOURCES:.cpp=.o)
 CC=g++
@@ -112,11 +113,22 @@ PLIBS= \
 all: $(OBJECTS)
 	${CC} -o TCPServer server/TCPServer.cpp server/PracticalSocket.cpp ${PLIBS} ${OBJECTS} -lws2_32 -I${PWD} -Icpp/ -I/usr/local/include -L/usr/local/lib/ -lprotobuf 
 
-clean:
-		rm services/*.o
-		rm rpc/*.o
-		rm TCPServer.exe
-		rm TCPServer
+clear:
+		rm -f services/*.o
+		rm -f rpc/*.o
+		rm -f TCPServer.exe
+		rm -f TCPServer
+
+clear-source:
+		rm -f rpc/*.o
+		rm -f TCPServer.exe
+		rm -f TCPServer
+		
+gs:
+	$(CC) -o GSServer server/GSServer.cpp server/PracticalSocket.cpp -lws2_32 -I${PWD}
+	
+clear-services:
+		rm -f services/*.o
 		
 .cpp.o:
 	$(CC) $(CFLAGS) -c $< -o $@ -lws2_32 -I${PWD} -Icpp/ -I/usr/local/include -L/usr/local/lib/ -lprotobuf 

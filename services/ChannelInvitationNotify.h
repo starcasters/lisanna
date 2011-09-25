@@ -30,12 +30,14 @@
 #include "rpc/service.h"
 #include "service/channel_invitation/definition/channel_invitation.pb.h"
 
+#define SERVICE_ChannelInvitationNotify_NAME "bnet.protocol.channel_invitation.ChannelInvitationNotify"
+
 class CServiceChannelInvitationNotify :
 public CService
 {
 public:
 	CServiceChannelInvitationNotify();
-	CServiceChannelInvitationNotify(CServiceMgr* owner,int SID, int sHash, std::string);
+	CServiceChannelInvitationNotify(CServiceMgr* owner,int SID, std::string sName);
 	bool DispatchMethod(int method, bool request, TCPSocket* socket, apacket* packet);
 	google::protobuf::Message* GetMethodMessage(int method, bool request);
 	bool handle_NotifyReceivedInvitationAdded_Request(TCPSocket *sock, apacket* packet);

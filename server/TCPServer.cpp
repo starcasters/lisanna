@@ -201,7 +201,6 @@ void sendheader(TCPSocket* sock, unsigned int serviceid, unsigned int method, un
 	hexdump(buf, (int)(pos - &(buf[0])));
 	
 	sock->send(buf, (int)(pos - &(buf[0])));
-	
 }
 
 int HandleTcpData(TCPSocket *sock, char *dataBuffer, int size) {
@@ -223,7 +222,7 @@ int HandleTcpData(TCPSocket *sock, char *dataBuffer, int size) {
 		cout << "service not registered? id " << aheader.service << endl;
 		} else {
 		cout << "service registered, id " << aheader.service << " " << hex << svc->GetServerHash() << endl;
-		pktData.msg = svc->GetMethodMessage(aheader.method, aheader.service == SERVICE_RESPONSE)->New();
+		pktData.msg = svc->GetMethodMessage(aheader.method, aheader.service != SERVICE_RESPONSE)->New();
 		//getclass(true, g_services.at(j)->hash, aheader.method, &areply);
 		if (pktData.msg != NULL) {
 			cout << " " << " " << pktData.msg->GetDescriptor()->full_name() << endl;

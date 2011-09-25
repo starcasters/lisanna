@@ -42,10 +42,12 @@ CServiceFriendsService::CServiceFriendsService()
 	// place here any initialization (?)
 }
 
-CServiceFriendsService::CServiceFriendsService(CServiceMgr* owner=0,int SID=0, int sHash=0, std::string serviceName="") : CService(owner,SID, sHash, serviceName)
+CServiceFriendsService::CServiceFriendsService(CServiceMgr* owner=0,int SID=0, std::string serviceName=string(SERVICE_FriendsService_NAME)) : 
+	CService(owner, SID, serviceName)
 {
 	//what goes here now?
 }
+
 
 Message* CServiceFriendsService::GetMethodMessage(int MethodID, bool request) {
 	switch (MethodID) {

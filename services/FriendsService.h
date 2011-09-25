@@ -36,12 +36,14 @@
 #include "rpc/service.h"
 #include "service/friends/definition/friends.pb.h"
 
+#define SERVICE_FriendsService_NAME "bnet.protocol.friends.FriendsService"
+
 class CServiceFriendsService :
 public CService
 {
 public:
 	CServiceFriendsService();
-	CServiceFriendsService(CServiceMgr* owner,int SID, int sHash, std::string);
+	CServiceFriendsService(CServiceMgr* owner,int SID, std::string sName);
 	bool DispatchMethod(int method, bool request, TCPSocket* socket, apacket* packet);
 	google::protobuf::Message* GetMethodMessage(int method, bool request);
 	bool handle_SubscribeToFriends_Request(TCPSocket *sock, apacket* packet);

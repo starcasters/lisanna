@@ -29,19 +29,22 @@ struct amethod {
 	CallbackDelegate callback;
 };
 
+int GetServiceHash(const char* name);
 
 class CService {
 public:
-	CService();
-	CService(CServiceMgr* owner,int sID, int sHash, std::string sName);
+	inline CService() {};
+	virtual CService* New() const = 0;
+	
+	//CService(CServiceMgr* owner,int sID, std::string sName);
 	virtual bool DispatchMethod(int method, TCPSocket* socket, apacket* packet);
 	virtual google::protobuf::Message* GetMethodMessage(int method, bool request);
-	int GetSID() { return m_serviceID; }
-	int GetServerHash() { return m_serviceHash; }
-	std::string GetServiceName() { return m_serviceName.c_str(); }
+	//int GetSID() { return m_serviceID; }
+	//int GetServerHash() { return m_serviceHash; }
+	//std::string GetServiceName() { return m_serviceName.c_str(); }
 	virtual ~CService();
 protected:
-	//Helper Methods -- Export Somewhere Else?
+/*	//Helper Methods -- Export Somewhere Else?
 	void hexdump(char* data, int size);
 	void printmsgdata(google::protobuf::Message* message);
 	void sendmsgdata(TCPSocket* sock, google::protobuf::Message* message);
@@ -53,6 +56,7 @@ protected:
 
 	CServiceMgr* m_owner;
 	std::string m_serviceName; //Easy logging.
+*/	
 };
 
 #endif

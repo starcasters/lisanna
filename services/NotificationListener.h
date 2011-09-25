@@ -27,12 +27,14 @@
 #include "rpc/service.h"
 #include "service/notification/notification.pb.h"
 
+#define SERVICE_NotificationListener_NAME "bnet.protocol.notification.NotificationListener"
+
 class CServiceNotificationListener :
 public CService
 {
 public:
 	CServiceNotificationListener();
-	CServiceNotificationListener(CServiceMgr* owner,int SID, int sHash, std::string);
+	CServiceNotificationListener(CServiceMgr* owner,int SID, std::string sName);
 	bool DispatchMethod(int method, bool request, TCPSocket* socket, apacket* packet);
 	google::protobuf::Message* GetMethodMessage(int method, bool request);
 	bool handle_OnNotificationReceived_Request(TCPSocket *sock, apacket* packet);

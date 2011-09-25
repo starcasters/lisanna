@@ -36,10 +36,12 @@ CServiceFollowersService::CServiceFollowersService()
 	// place here any initialization (?)
 }
 
-CServiceFollowersService::CServiceFollowersService(CServiceMgr* owner=0,int SID=0, int sHash=0, std::string serviceName="") : CService(owner,SID, sHash, serviceName)
+CServiceFollowersService::CServiceFollowersService(CServiceMgr* owner=0,int SID=0, std::string serviceName=string(SERVICE_FollowersService_NAME)) : 
+	CService(owner, SID, serviceName)
 {
 	//what goes here now?
 }
+
 
 Message* CServiceFollowersService::GetMethodMessage(int MethodID, bool request) {
 	switch (MethodID) {

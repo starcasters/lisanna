@@ -41,12 +41,14 @@
 #include "rpc/service.h"
 #include "service/game_master/game_master.pb.h"
 
+#define SERVICE_GameMaster_NAME "bnet.protocol.game_master.GameMaster"
+
 class CServiceGameMaster :
 public CService
 {
 public:
 	CServiceGameMaster();
-	CServiceGameMaster(CServiceMgr* owner,int SID, int sHash, std::string);
+	CServiceGameMaster(CServiceMgr* owner,int SID, std::string sName);
 	bool DispatchMethod(int method, bool request, TCPSocket* socket, apacket* packet);
 	google::protobuf::Message* GetMethodMessage(int method, bool request);
 	bool handle_JoinGame_Request(TCPSocket *sock, apacket* packet);

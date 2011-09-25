@@ -35,10 +35,12 @@ CServiceExchangeNotify::CServiceExchangeNotify()
 	// place here any initialization (?)
 }
 
-CServiceExchangeNotify::CServiceExchangeNotify(CServiceMgr* owner=0,int SID=0, int sHash=0, std::string serviceName="") : CService(owner,SID, sHash, serviceName)
+CServiceExchangeNotify::CServiceExchangeNotify(CServiceMgr* owner=0,int SID=0, std::string serviceName=string(SERVICE_ExchangeNotify_NAME)) : 
+	CService(owner, SID, serviceName)
 {
 	//what goes here now?
 }
+
 
 Message* CServiceExchangeNotify::GetMethodMessage(int MethodID, bool request) {
 	switch (MethodID) {

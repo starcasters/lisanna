@@ -1,0 +1,102 @@
+#include <windows.h>
+#include "gui_base.h"
+
+int WINAPI GuiStart(void *)          // Start window maximized, minimized, etc.
+{
+
+	HINSTANCE hInstance = GetModuleHandle (0); 
+    WNDCLASS wc;
+    wc.cbClsExtra = 0;  // ignore for now
+    wc.cbWndExtra = 0;  // ignore for now
+    wc.hbrBackground = 0;   // I want the window to have a white background
+    wc.hCursor = LoadCursor( NULL, IDC_ARROW );            // I want it to have an arrow for a cursor
+    wc.hIcon = LoadIcon( NULL, IDI_APPLICATION );        // I want it to have that envelope like icon
+    wc.hInstance = hInstance;           // INSTANCE HANDLE -- see the GLOSSARY PART of this file for an explanation of what HINSTANCE is
+    wc.lpfnWndProc = WndProc;           // Give name of WndProc function here.
+    wc.lpszClassName = TEXT("#hktool_1");  // I have named it Philip.
+                                        // You could name it anything
+                                        // you want, but you have to
+                                        // remember the name for when
+                                        // you call CreateWindow().
+    wc.lpszMenuName = 0;    // no menu - ignore
+    wc.style = CS_HREDRAW | CS_VREDRAW; // Redraw the window
+
+    RegisterClass( &wc );
+	
+
+    HWND hwnd = CreateWindow(
+        TEXT("#hktool_1"),         // THIS IS THE LINK
+                                // to the WNDCLASS structure that
+                                // we created earlier.
+
+        TEXT("window's title!"),// appears in title of window
+
+        WS_OVERLAPPEDWINDOW,    // STYLE of window.  WS_OVERLAPPEDWINDOW just means
+                                // the window we create should have a few common features
+                                // like a minimize box, a maximize box, and it should
+                                // be resizeable by dragging the "thick frame" around
+                                // the window. There are other styles
+                                // and they all start with WS_.  Check it out in the
+                                // autocomplete by typing WS_ THEN PRESSING CTRL+SPACE
+                                // to make the autocomplete window come up.
+        10, 10,                 // x, y start coordinates of window
+        200, 200,               // width, height of window
+        NULL, NULL,             // nothing and nothing (ignore to start out)
+        hInstance, NULL );      // hInstance -- (see glossary), nothing
+
+    ShowWindow(hwnd, 1 );
+    UpdateWindow(hwnd);
+
+    MSG msg;
+    while( GetMessage( &msg, NULL, 0, 0 ) )
+    {
+
+        TranslateMessage( &msg );   // translates
+
+        DispatchMessage( &msg );    // this line RESULTS IN
+        // a call to WndProc(), passing the message and
+        // the HWND.
+
+    }
+
+    return msg.wParam;    // return from WinMain
+}
+
+LRESULT CALLBACK WndProc(   HWND hwnd,      // "handle" to the window that this message is for
+                            UINT message,   // TYPE of message (e.g. WM_PAINT is a message asking to paint the window)
+                            WPARAM wparam,  // information about the actual message
+                            LPARAM lparam ) // MORE info about the message
+{
+
+    switch( message )
+    {
+    case WM_CREATE:
+        // upon creation, let the speaker beep at 50Hz, for 10ms.
+        Beep( 50, 10 );
+        return 0;
+        break;
+
+    case WM_PAINT:
+        {
+            // we would place our Windows painting code here.
+            HDC hdc;
+            PAINTSTRUCT ps;
+            hdc = BeginPaint( hwnd, &ps );
+
+            // draw a circle and a 2 squares
+
+            EndPaint( hwnd, &ps );
+        }
+        return 0;
+        break;
+
+    case WM_DESTROY:
+        PostQuitMessage( 0 ) ;
+        return 0;
+        break;
+
+    }
+
+
+    return DefWindowProc( hwnd, message, wparam, lparam );
+}

@@ -29,12 +29,14 @@
 #include "rpc/service.h"
 #include "service/storage/storage.pb.h"
 
+#define SERVICE_StorageService_NAME "bnet.protocol.storage.StorageService"
+
 class CServiceStorageService :
 public CService
 {
 public:
 	CServiceStorageService();
-	CServiceStorageService(CServiceMgr* owner,int SID, int sHash, std::string);
+	CServiceStorageService(CServiceMgr* owner,int SID, std::string sName);
 	bool DispatchMethod(int method, bool request, TCPSocket* socket, apacket* packet);
 	google::protobuf::Message* GetMethodMessage(int method, bool request);
 	bool handle_Execute_Request(TCPSocket *sock, apacket* packet);

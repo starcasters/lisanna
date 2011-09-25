@@ -34,10 +34,12 @@ CService[%  name %]::CService[%  name %]()
 	// place here any initialization (?)
 }
 
-CService[%  name %]::CService[%  name %](CServiceMgr* owner=0,int SID=0, int sHash=0, std::string serviceName="") : CService(owner,SID, sHash, serviceName)
+CService[%  name %]::CService[%  name %](CServiceMgr* owner=0,int SID=0, std::string serviceName=string(SERVICE_[%  name %]_NAME)) : 
+	CService(owner, SID, serviceName)
 {
 	//what goes here now?
 }
+
 
 Message* CService[%  name %]::GetMethodMessage(int MethodID, bool request) {
 	switch (MethodID) {

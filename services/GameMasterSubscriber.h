@@ -27,12 +27,14 @@
 #include "rpc/service.h"
 #include "service/game_master/game_master.pb.h"
 
+#define SERVICE_GameMasterSubscriber_NAME "bnet.protocol.game_master.GameMasterSubscriber"
+
 class CServiceGameMasterSubscriber :
 public CService
 {
 public:
 	CServiceGameMasterSubscriber();
-	CServiceGameMasterSubscriber(CServiceMgr* owner,int SID, int sHash, std::string);
+	CServiceGameMasterSubscriber(CServiceMgr* owner,int SID, std::string sName);
 	bool DispatchMethod(int method, bool request, TCPSocket* socket, apacket* packet);
 	google::protobuf::Message* GetMethodMessage(int method, bool request);
 	bool handle_NotifyFactoryUpdate_Request(TCPSocket *sock, apacket* packet);

@@ -36,10 +36,12 @@ CServiceChannelInvitationNotify::CServiceChannelInvitationNotify()
 	// place here any initialization (?)
 }
 
-CServiceChannelInvitationNotify::CServiceChannelInvitationNotify(CServiceMgr* owner=0,int SID=0, int sHash=0, std::string serviceName="") : CService(owner,SID, sHash, serviceName)
+CServiceChannelInvitationNotify::CServiceChannelInvitationNotify(CServiceMgr* owner=0,int SID=0, std::string serviceName=string(SERVICE_ChannelInvitationNotify_NAME)) : 
+	CService(owner, SID, serviceName)
 {
 	//what goes here now?
 }
+
 
 Message* CServiceChannelInvitationNotify::GetMethodMessage(int MethodID, bool request) {
 	switch (MethodID) {

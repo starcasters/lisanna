@@ -32,12 +32,14 @@
 #include "rpc/service.h"
 #include "service/user_manager/user_manager.pb.h"
 
+#define SERVICE_UserManagerService_NAME "bnet.protocol.user_manager.UserManagerService"
+
 class CServiceUserManagerService :
 public CService
 {
 public:
 	CServiceUserManagerService();
-	CServiceUserManagerService(CServiceMgr* owner,int SID, int sHash, std::string);
+	CServiceUserManagerService(CServiceMgr* owner,int SID, std::string sName);
 	bool DispatchMethod(int method, bool request, TCPSocket* socket, apacket* packet);
 	google::protobuf::Message* GetMethodMessage(int method, bool request);
 	bool handle_SubscribeToUserManager_Request(TCPSocket *sock, apacket* packet);

@@ -35,10 +35,12 @@ CServiceChatService::CServiceChatService()
 	// place here any initialization (?)
 }
 
-CServiceChatService::CServiceChatService(CServiceMgr* owner=0,int SID=0, int sHash=0, std::string serviceName="") : CService(owner,SID, sHash, serviceName)
+CServiceChatService::CServiceChatService(CServiceMgr* owner=0,int SID=0, std::string serviceName=string(SERVICE_ChatService_NAME)) : 
+	CService(owner, SID, serviceName)
 {
 	//what goes here now?
 }
+
 
 Message* CServiceChatService::GetMethodMessage(int MethodID, bool request) {
 	switch (MethodID) {

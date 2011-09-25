@@ -29,12 +29,14 @@
 #include "rpc/service.h"
 #include "service/exchange/exchange.pb.h"
 
+#define SERVICE_ExchangeNotify_NAME "bnet.protocol.exchange.ExchangeNotify"
+
 class CServiceExchangeNotify :
 public CService
 {
 public:
 	CServiceExchangeNotify();
-	CServiceExchangeNotify(CServiceMgr* owner,int SID, int sHash, std::string);
+	CServiceExchangeNotify(CServiceMgr* owner,int SID, std::string sName);
 	bool DispatchMethod(int method, bool request, TCPSocket* socket, apacket* packet);
 	google::protobuf::Message* GetMethodMessage(int method, bool request);
 	bool handle_NotifyOrderBookStatusChange_Request(TCPSocket *sock, apacket* packet);

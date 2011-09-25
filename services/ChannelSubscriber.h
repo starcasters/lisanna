@@ -33,12 +33,14 @@
 #include "rpc/service.h"
 #include "service/channel/definition/channel.pb.h"
 
+#define SERVICE_ChannelSubscriber_NAME "bnet.protocol.channel.ChannelSubscriber"
+
 class CServiceChannelSubscriber :
 public CService
 {
 public:
 	CServiceChannelSubscriber();
-	CServiceChannelSubscriber(CServiceMgr* owner,int SID, int sHash, std::string);
+	CServiceChannelSubscriber(CServiceMgr* owner,int SID, std::string sName);
 	bool DispatchMethod(int method, bool request, TCPSocket* socket, apacket* packet);
 	google::protobuf::Message* GetMethodMessage(int method, bool request);
 	bool handle_NotifyAdd_Request(TCPSocket *sock, apacket* packet);

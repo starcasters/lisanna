@@ -27,12 +27,14 @@
 #include "rpc/service.h"
 #include "service/server_pool/server_pool.pb.h"
 
+#define SERVICE_ServerPoolService_NAME "bnet.protocol.server_pool.ServerPoolService"
+
 class CServiceServerPoolService :
 public CService
 {
 public:
 	CServiceServerPoolService();
-	CServiceServerPoolService(CServiceMgr* owner,int SID, int sHash, std::string);
+	CServiceServerPoolService(CServiceMgr* owner,int SID, std::string sName);
 	bool DispatchMethod(int method, bool request, TCPSocket* socket, apacket* packet);
 	google::protobuf::Message* GetMethodMessage(int method, bool request);
 	bool handle_GetPoolState_Request(TCPSocket *sock, apacket* packet);

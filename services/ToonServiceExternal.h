@@ -30,12 +30,14 @@
 #include "rpc/service.h"
 #include "service/toon/toon_external.pb.h"
 
+#define SERVICE_ToonServiceExternal_NAME "bnet.protocol.toon.external.ToonServiceExternal"
+
 class CServiceToonServiceExternal :
 public CService
 {
 public:
 	CServiceToonServiceExternal();
-	CServiceToonServiceExternal(CServiceMgr* owner,int SID, int sHash, std::string);
+	CServiceToonServiceExternal(CServiceMgr* owner,int SID, std::string sName);
 	bool DispatchMethod(int method, bool request, TCPSocket* socket, apacket* packet);
 	google::protobuf::Message* GetMethodMessage(int method, bool request);
 	bool handle_ToonList_Request(TCPSocket *sock, apacket* packet);

@@ -30,12 +30,14 @@
 #include "rpc/service.h"
 #include "service/followers/definition/followers.pb.h"
 
+#define SERVICE_FollowersService_NAME "bnet.protocol.followers.FollowersService"
+
 class CServiceFollowersService :
 public CService
 {
 public:
 	CServiceFollowersService();
-	CServiceFollowersService(CServiceMgr* owner,int SID, int sHash, std::string);
+	CServiceFollowersService(CServiceMgr* owner,int SID, std::string sName);
 	bool DispatchMethod(int method, bool request, TCPSocket* socket, apacket* packet);
 	google::protobuf::Message* GetMethodMessage(int method, bool request);
 	bool handle_SubscribeToFollowers_Request(TCPSocket *sock, apacket* packet);

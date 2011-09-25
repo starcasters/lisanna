@@ -30,12 +30,14 @@
 #include "rpc/service.h"
 #include "service/presence/presence.pb.h"
 
+#define SERVICE_PresenceService_NAME "bnet.protocol.presence.PresenceService"
+
 class CServicePresenceService :
 public CService
 {
 public:
 	CServicePresenceService();
-	CServicePresenceService(CServiceMgr* owner,int SID, int sHash, std::string);
+	CServicePresenceService(CServiceMgr* owner,int SID, std::string sName);
 	bool DispatchMethod(int method, bool request, TCPSocket* socket, apacket* packet);
 	google::protobuf::Message* GetMethodMessage(int method, bool request);
 	bool handle_Subscribe_Request(TCPSocket *sock, apacket* packet);

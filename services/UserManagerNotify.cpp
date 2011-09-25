@@ -34,10 +34,12 @@ CServiceUserManagerNotify::CServiceUserManagerNotify()
 	// place here any initialization (?)
 }
 
-CServiceUserManagerNotify::CServiceUserManagerNotify(CServiceMgr* owner=0,int SID=0, int sHash=0, std::string serviceName="") : CService(owner,SID, sHash, serviceName)
+CServiceUserManagerNotify::CServiceUserManagerNotify(CServiceMgr* owner=0,int SID=0, std::string serviceName=string(SERVICE_UserManagerNotify_NAME)) : 
+	CService(owner, SID, serviceName)
 {
 	//what goes here now?
 }
+
 
 Message* CServiceUserManagerNotify::GetMethodMessage(int MethodID, bool request) {
 	switch (MethodID) {

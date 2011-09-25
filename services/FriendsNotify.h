@@ -31,12 +31,14 @@
 #include "rpc/service.h"
 #include "service/friends/definition/friends.pb.h"
 
+#define SERVICE_FriendsNotify_NAME "bnet.protocol.friends.FriendsNotify"
+
 class CServiceFriendsNotify :
 public CService
 {
 public:
 	CServiceFriendsNotify();
-	CServiceFriendsNotify(CServiceMgr* owner,int SID, int sHash, std::string);
+	CServiceFriendsNotify(CServiceMgr* owner,int SID, std::string sName);
 	bool DispatchMethod(int method, bool request, TCPSocket* socket, apacket* packet);
 	google::protobuf::Message* GetMethodMessage(int method, bool request);
 	bool handle_NotifyFriendAdded_Request(TCPSocket *sock, apacket* packet);

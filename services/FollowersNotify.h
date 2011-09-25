@@ -27,12 +27,14 @@
 #include "rpc/service.h"
 #include "service/followers/definition/followers.pb.h"
 
+#define SERVICE_FollowersNotify_NAME "bnet.protocol.followers.FollowersNotify"
+
 class CServiceFollowersNotify :
 public CService
 {
 public:
 	CServiceFollowersNotify();
-	CServiceFollowersNotify(CServiceMgr* owner,int SID, int sHash, std::string);
+	CServiceFollowersNotify(CServiceMgr* owner,int SID, std::string sName);
 	bool DispatchMethod(int method, bool request, TCPSocket* socket, apacket* packet);
 	google::protobuf::Message* GetMethodMessage(int method, bool request);
 	bool handle_NotifyFollowerRemoved_Request(TCPSocket *sock, apacket* packet);

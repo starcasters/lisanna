@@ -29,12 +29,14 @@
 #include "rpc/service.h"
 #include "service/chat/definition/chat.pb.h"
 
+#define SERVICE_ChatService_NAME "bnet.protocol.chat.ChatService"
+
 class CServiceChatService :
 public CService
 {
 public:
 	CServiceChatService();
-	CServiceChatService(CServiceMgr* owner,int SID, int sHash, std::string);
+	CServiceChatService(CServiceMgr* owner,int SID, std::string sName);
 	bool DispatchMethod(int method, bool request, TCPSocket* socket, apacket* packet);
 	google::protobuf::Message* GetMethodMessage(int method, bool request);
 	bool handle_FindChannel_Request(TCPSocket *sock, apacket* packet);

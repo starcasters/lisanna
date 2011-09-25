@@ -28,12 +28,14 @@
 #include "rpc/service.h"
 #include "service/authentication/authentication.pb.h"
 
+#define SERVICE_AuthenticationClient_NAME "bnet.protocol.authentication.AuthenticationClient"
+
 class CServiceAuthenticationClient :
 public CService
 {
 public:
 	CServiceAuthenticationClient();
-	CServiceAuthenticationClient(CServiceMgr* owner,int SID, int sHash, std::string);
+	CServiceAuthenticationClient(CServiceMgr* owner,int SID, std::string sName);
 	bool DispatchMethod(int method, bool request, TCPSocket* socket, apacket* packet);
 	google::protobuf::Message* GetMethodMessage(int method, bool request);
 	bool handle_ModuleLoad_Request(TCPSocket *sock, apacket* packet);

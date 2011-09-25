@@ -1,0 +1,1 @@
+#ifndef MINGW_DLL_H__#define MINGW_DLL_H__int __declspec(dllexport) __stdcall StartDll(int param);#endif

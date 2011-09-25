@@ -41,10 +41,12 @@ CServiceGameUtilities::CServiceGameUtilities()
 	// place here any initialization (?)
 }
 
-CServiceGameUtilities::CServiceGameUtilities(CServiceMgr* owner=0,int SID=0, int sHash=0, std::string serviceName="") : CService(owner,SID, sHash, serviceName)
+CServiceGameUtilities::CServiceGameUtilities(CServiceMgr* owner=0,int SID=0, std::string serviceName=string(SERVICE_GameUtilities_NAME)) : 
+	CService(owner, SID, serviceName)
 {
 	//what goes here now?
 }
+
 
 Message* CServiceGameUtilities::GetMethodMessage(int MethodID, bool request) {
 	switch (MethodID) {

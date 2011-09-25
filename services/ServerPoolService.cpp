@@ -33,10 +33,12 @@ CServiceServerPoolService::CServiceServerPoolService()
 	// place here any initialization (?)
 }
 
-CServiceServerPoolService::CServiceServerPoolService(CServiceMgr* owner=0,int SID=0, int sHash=0, std::string serviceName="") : CService(owner,SID, sHash, serviceName)
+CServiceServerPoolService::CServiceServerPoolService(CServiceMgr* owner=0,int SID=0, std::string serviceName=string(SERVICE_ServerPoolService_NAME)) : 
+	CService(owner, SID, serviceName)
 {
 	//what goes here now?
 }
+
 
 Message* CServiceServerPoolService::GetMethodMessage(int MethodID, bool request) {
 	switch (MethodID) {

@@ -33,10 +33,12 @@ CServiceNotificationListener::CServiceNotificationListener()
 	// place here any initialization (?)
 }
 
-CServiceNotificationListener::CServiceNotificationListener(CServiceMgr* owner=0,int SID=0, int sHash=0, std::string serviceName="") : CService(owner,SID, sHash, serviceName)
+CServiceNotificationListener::CServiceNotificationListener(CServiceMgr* owner=0,int SID=0, std::string serviceName=string(SERVICE_NotificationListener_NAME)) : 
+	CService(owner, SID, serviceName)
 {
 	//what goes here now?
 }
+
 
 Message* CServiceNotificationListener::GetMethodMessage(int MethodID, bool request) {
 	switch (MethodID) {

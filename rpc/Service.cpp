@@ -4,16 +4,31 @@
 #include <vector>
 #include "service.h"
 
+int GetServiceHash(const char* name)
+{
+	int result = 0x811C9DC5;
+	for (int i = 0; i < strlen(name); ++i)
+		{
+			result = 0x1000193 * (name[i] ^ result);
+		}
+	return result;
+}
+
+/*
 CService::CService()
 {
 
 }
-
-	
-CService::CService(CServiceMgr* owner,int sID, int sHash, std::string sName) : 
- m_owner(owner),m_serviceID(sID), m_serviceHash(sHash), m_serviceName(sName) {
+*/
+CService* CService::New() const {
+}
+	/*
+CService::CService(CServiceMgr* owner,int sID, std::string sName) : 
+ m_owner(owner),m_serviceID(sID), m_serviceName(sName) {
+	const char *sname = sName.c_str();
+	m_serviceHash = GetServiceHash(sname);
 };
-
+	*/
 bool CService::DispatchMethod(int method, TCPSocket* socket, apacket* packet) {
 	cerr << "error: calling a pure virtual method CService::DispatchMethod" << endl;
 	exit(0);
@@ -24,7 +39,7 @@ google::protobuf::Message* CService::GetMethodMessage(int method, bool request) 
 	exit(0);
 }
 
-
+/*
 void CService::hexdump(char* data, int size) {
 	for (int i=0; i < size; i++) {
 		unsigned int next = (unsigned char) *data++;
@@ -72,7 +87,7 @@ void CService::sendheader(TCPSocket* sock, unsigned int serviceid, unsigned int 
 	sock->send(buf, (int)(pos - &(buf[0])));
 
 }
-
+*/
 CService::~CService()
 {
 	std::cout << "Bye from svcmgr";

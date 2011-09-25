@@ -33,10 +33,12 @@ CServiceGameMasterSubscriber::CServiceGameMasterSubscriber()
 	// place here any initialization (?)
 }
 
-CServiceGameMasterSubscriber::CServiceGameMasterSubscriber(CServiceMgr* owner=0,int SID=0, int sHash=0, std::string serviceName="") : CService(owner,SID, sHash, serviceName)
+CServiceGameMasterSubscriber::CServiceGameMasterSubscriber(CServiceMgr* owner=0,int SID=0, std::string serviceName=string(SERVICE_GameMasterSubscriber_NAME)) : 
+	CService(owner, SID, serviceName)
 {
 	//what goes here now?
 }
+
 
 Message* CServiceGameMasterSubscriber::GetMethodMessage(int MethodID, bool request) {
 	switch (MethodID) {

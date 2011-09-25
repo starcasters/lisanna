@@ -1,2 +1,3 @@
-find service/ -name "*.proto" -exec ../tools/proc.pl {} ../services/ ../template.cpp.tp .cpp \;
-find service/ -name "*.proto" -exec ../tools/proc.pl {} ../services/ ../template.h.tp .h \;
+find service/ -name "*.proto" -exec ../tools/proc.pl {} ../services/ ../tools/template.cpp.tp .cpp \;
+find service/ -name "*.proto" -exec ../tools/proc.pl {} ../services/ ../tools/template.h.tp .h \;
+

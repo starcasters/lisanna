@@ -29,12 +29,14 @@
 #include "rpc/service.h"
 #include "service/party/definition/party.pb.h"
 
+#define SERVICE_PartyService_NAME "bnet.protocol.party.PartyService"
+
 class CServicePartyService :
 public CService
 {
 public:
 	CServicePartyService();
-	CServicePartyService(CServiceMgr* owner,int SID, int sHash, std::string);
+	CServicePartyService(CServiceMgr* owner,int SID, std::string sName);
 	bool DispatchMethod(int method, bool request, TCPSocket* socket, apacket* packet);
 	google::protobuf::Message* GetMethodMessage(int method, bool request);
 	bool handle_CreateChannel_Request(TCPSocket *sock, apacket* packet);
