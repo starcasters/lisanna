@@ -75,7 +75,7 @@ void sendinit(TCPSocket *sock) {
 	int sended = 0;
 	int sizeofbuf = sizeof(buffer)-5;
     ifstream myFile ("data/file2.bin", ios::in | ios::binary);
-	while (sended < 100) {
+	while (sended < 300) {
 		int scount = 0;
 		int tosend = 4;
 		if (!myFile.read (buffer, 4)) {
