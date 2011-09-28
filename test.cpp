@@ -48,7 +48,7 @@ class BitWriter {
 public:
 	BitWriter();
 	~BitWriter();
-	void WriteArray(char* idata, int bits);
+	void WriteArray(const char* idata, int bits);
 	void Expand();
 	char* data;
 	int index;
@@ -81,7 +81,7 @@ void BitWriter::Expand() {
 }
 
 
-void BitWriter::WriteArray(char* idata, int bits) {
+void BitWriter::WriteArray(const char* idata, int bits) {
 	if ((bufsize - (index >> 3) - 1) < ((bits >> 3) + 1)) {
 		Expand();
 	}
@@ -98,60 +98,95 @@ void BitWriter::WriteArray(char* idata, int bits) {
 	}
 }
 
+class DataType_Base;
+
 struct FieldInfo {
+	DataType_Base *aDataType;
+	int offset;
 	int bitscount;
+	void fieldinfo(int aoffset, int abitscount);
 };
 
+void FieldInfo::fieldinfo(int aoffset, int abitscount) {
+	offset = aoffset;
+	bitscount = abitscount;
+}
+
+struct Message {
+	char* Name;
+	FieldInfo* Fields;
+	int size;
+	inline void setfield(int index, DataType_Base* dtype) {
+		Fields[index].aDataType = dtype;
+	}
+};
+	
 class DataType_Base {
 	public:
 	virtual void* New() = 0;
-	virtual void Print(void * Data, void * pFieldInfo) = 0;
-	virtual void Serialize(void * Data, void * pFieldInfo, void *  BitWriter) = 0;
-	virtual void DeSerialize(void * Data, void * pFieldInfo, void * BitReader) = 0;
-	virtual char* Name() = 0;
+	virtual void Print(void * Data, FieldInfo * pFieldInfo) = 0;
+	virtual void Serialize(void * Data, FieldInfo * pFieldInfo, BitWriter *  aBitWriter) = 0;
+	virtual void DeSerialize(void * Data, FieldInfo * pFieldInfo, BitReader * aBitReader) = 0;
+	virtual const char* Name() = 0;
 };
 
 class DT_INT : public DataType_Base {
 	public:
 	void* New();
-	void Print(void * Data, void * pFieldInfo);
-	void Serialize(void * Data, void * pFieldInfo, void *  BitWriter);
-	void DeSerialize(void * Data, void * pFieldInfo, void * BitReader);
-	char* Name();
-};
+	void Print(void * Data, FieldInfo * pFieldInfo);
+	void Serialize(void * Data, FieldInfo * pFieldInfo, BitWriter *  aBitWriter);
+	void DeSerialize(void * Data, FieldInfo * pFieldInfo, BitReader * aBitReader);
+	const char* Name();
+	void Set(void * Data, FieldInfo * pFieldInfo, int value);
+	int Get(void * Data, FieldInfo * pFieldInfo);
+} *aDT_INT;
 
-void* DataType_Base::New(){
+void* DataType_Base::New() {
 	cerr << "pure virtual method" << endl;
 }
-void DataType_Base::Print(void * Data, void * pFieldInfo){
+void DataType_Base::Print(void * Data, FieldInfo * pFieldInfo) {
 	cerr << "pure virtual method" << endl;
 }
-void DataType_Base::Serialize(void * Data, void * pFieldInfo, void *  BitWriter){
+void DataType_Base::Serialize(void * Data, FieldInfo * pFieldInfo, BitWriter *  aBitWriter) {
 	cerr << "pure virtual method" << endl;
 }
-void DataType_Base::DeSerialize(void * Data, void * pFieldInfo, void * BitReader){
+void DataType_Base::DeSerialize(void * Data, FieldInfo * pFieldInfo, BitReader * aBitReader) {
 	cerr << "pure virtual method" << endl;
 }
-char* DataType_Base::Name(){
+const char* DataType_Base::Name() {
 	cerr << "pure virtual method" << endl;
 }
 
 void* DT_INT::New(){
 }
-void DT_INT::Print(void * Data, void * pFieldInfo){
+void DT_INT::Print(void * Data, FieldInfo * pFieldInfo){
+	cout << "DT_INT " << *(unsigned int*)Data << endl;
 }
-void DT_INT::Serialize(void * Data, void * pFieldInfo, void *  BitWriter){
+void DT_INT::Serialize(void * Data, FieldInfo * pFieldInfo, BitWriter *  aBitWriter){
+	aBitWriter->WriteArray((char*)Data, pFieldInfo->bitscount);
 }
-void DT_INT::DeSerialize(void * Data, void * pFieldInfo, void * BitReader){
+void DT_INT::DeSerialize(void * Data, FieldInfo * pFieldInfo, BitReader * aBitReader){
+	*(unsigned int*) Data = 0;
+	aBitReader->ReadArray((char*)Data, pFieldInfo->bitscount);
 }
-char* DT_INT::Name(){
+const char* DT_INT::Name(){
 	return "DT_INT";
 }
+
+void DT_INT::Set(void * Data, FieldInfo * pFieldInfo, int value) {
+	*(int*)Data = value;
+}
+
+int DT_INT::Get(void * Data, FieldInfo * pFieldInfo) {
+	return *(int*)Data;
+}
+
 
 void LDebugString(char *data) {
 	cout << data << endl;
 }
-void hexdump(char* data, int size) {
+
+void hexdump(const char* data, int size) {
 	char buf[200];
 	char *abuf = &(buf[0]);
 	int remaining = sizeof(buf) - 4;
@@ -174,8 +209,7 @@ void hexdump(char* data, int size) {
 	LDebugString(buf);
 }
 
-int main() {
-	hexdump("aaa\r\na", 6);
+void TestBitStream() {
 	BitWriter* abit = new BitWriter();
 	abit->WriteArray("A", 1);
 	abit->WriteArray("AbAcAd", 8*7);
@@ -202,11 +236,21 @@ int main() {
 	aint = 0;
 	arbit->ReadArray((char*)&aint, 1);
 	cout << "r = " << aint << endl;
+}
+
+int main() {
+	hexdump("aaa\r\na", 6);
 	/*
 	DataType_Base* ab = new DT_INT();
 	cout << ab->Name() << endl;
 	DataType_Base* aa = (DataType_Base*)ab;
 	cout << aa->Name() << endl;
 	*/
+	aDT_INT = new DT_INT();
+	Message lol;
+	lol.Fields = new FieldInfo[3];
+	lol.setfield(1, aDT_INT);
+	lol.setfield(2, aDT_INT);
+	lol.setfield(3, NULL);
 	return 0;
 }

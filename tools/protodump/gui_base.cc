@@ -1,14 +1,14 @@
 #include <windows.h>
 #include "gui_base.h"
 
-int WINAPI GuiStart(void *)          // Start window maximized, minimized, etc.
+int WINAPI GuiStart(HANDLE hInst)          // Start window maximized, minimized, etc.
 {
 
-	HINSTANCE hInstance = GetModuleHandle (0); 
+	HINSTANCE hInstance = (HINSTANCE)hInst; 
     WNDCLASS wc;
     wc.cbClsExtra = 0;  // ignore for now
     wc.cbWndExtra = 0;  // ignore for now
-    wc.hbrBackground = 0;   // I want the window to have a white background
+    wc.hbrBackground = (HBRUSH) GetStockObject(WHITE_BRUSH);   // I want the window to have a white background
     wc.hCursor = LoadCursor( NULL, IDC_ARROW );            // I want it to have an arrow for a cursor
     wc.hIcon = LoadIcon( NULL, IDI_APPLICATION );        // I want it to have that envelope like icon
     wc.hInstance = hInstance;           // INSTANCE HANDLE -- see the GLOSSARY PART of this file for an explanation of what HINSTANCE is
@@ -44,9 +44,23 @@ int WINAPI GuiStart(void *)          // Start window maximized, minimized, etc.
         NULL, NULL,             // nothing and nothing (ignore to start out)
         hInstance, NULL );      // hInstance -- (see glossary), nothing
 
+	 CreateWindowEx(0,                    ///* more or ''extended'' styles */
+                         "BUTTON",                         //* GUI ''class'' to create */
+                         "click",                        //* GUI caption */
+                         WS_CHILD | WS_VISIBLE | BS_DEFPUSHBUTTON,   //* control styles separated by | */
+                         10,                                     //* LEFT POSITION (Position from left) */
+                         10,                                     //* TOP POSITION  (Position from Top) */
+                         100,                                    //* WIDTH OF CONTROL */
+                         30,                                     //* HEIGHT OF CONTROL */
+                         hwnd,                                   //* Parent window handle */
+                         (HMENU__*)1,                        	 //* control''s ID for WM_COMMAND */
+                         hInstance,                              //* application instance */
+                         NULL);
+		
     ShowWindow(hwnd, 1 );
     UpdateWindow(hwnd);
 
+/*
     MSG msg;
     while( GetMessage( &msg, NULL, 0, 0 ) )
     {
@@ -60,6 +74,8 @@ int WINAPI GuiStart(void *)          // Start window maximized, minimized, etc.
     }
 
     return msg.wParam;    // return from WinMain
+*/
+	return 0;
 }
 
 LRESULT CALLBACK WndProc(   HWND hwnd,      // "handle" to the window that this message is for
@@ -76,23 +92,30 @@ LRESULT CALLBACK WndProc(   HWND hwnd,      // "handle" to the window that this 
         return 0;
         break;
 
+
     case WM_PAINT:
         {
             // we would place our Windows painting code here.
             HDC hdc;
             PAINTSTRUCT ps;
             hdc = BeginPaint( hwnd, &ps );
-
+			TextOut(hdc, 0, 0, "Hello, Windows!", 15); 
             // draw a circle and a 2 squares
 
             EndPaint( hwnd, &ps );
         }
         return 0;
         break;
-
+	case WM_COMMAND:
+		if ((wparam & 0xffff) == 1) {
+			onClick1();
+		}
+		return 0;
+		break;
     case WM_DESTROY:
         PostQuitMessage( 0 ) ;
-        return 0;
+		TerminateProcess(GetCurrentProcess(),0);
+		return 0;
         break;
 
     }
