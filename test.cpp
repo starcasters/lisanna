@@ -290,11 +290,17 @@ int main() {
 	BitReader* arbit = new BitReader();
 	arbit->data = peer1_0+4;
 	arbit->bufsize = sizeof(peer1_0);
-	FieldInfo * pFieldInfo = new FieldInfo();
-	pFieldInfo->offset = 0;
-	pFieldInfo->bitscount = 9;
+	FieldInfo * pFieldInfo = new FieldInfo[13];
+	pFieldInfo[0].offset = 0;
+	pFieldInfo[0].bitscount = 9;
+	pFieldInfo[1].offset = 4;
+	pFieldInfo[1].bitscount = 32;
+	pFieldInfo[2].offset = 8;
+	pFieldInfo[2].bitscount = 32;
 	char Data[100];
-	aDT_INT->DeSerialize(Data, pFieldInfo, arbit);
-    cout << hex << *(unsigned int*)Data << endl;
+	for (int i=0; i<3; i++) {
+		aDT_INT->DeSerialize(Data, &(pFieldInfo[i]), arbit);
+		aDT_INT->Print(Data, &(pFieldInfo[i]));
+	}
 	return 0;
 }
