@@ -13,6 +13,7 @@ public:
 	BitReader();
 	~BitReader();
 	int ReadArray(char* idata, int bits);
+	int ReadInt(int bits);
 	char* data;
 	int index;
 	int bufsize;
@@ -24,6 +25,19 @@ BitReader::BitReader(){
 }
 
 BitReader::~BitReader(){
+}
+
+int BitReader::ReadInt(int bits) {
+	int result = 0;
+	while (bits > 0) {
+		int cl = index & 7;
+		int dl = 8 - cl;
+		if (dl > bits) dl = bits;
+		result |= ((data[index >> 3] >> cl) & ((1 << dl) - 1)) << (bits-dl);
+		bits -= dl;
+		index += dl;
+	}
+	return result;
 }
 
 int BitReader::ReadArray(char* idata, int bits) {
@@ -49,6 +63,7 @@ public:
 	BitWriter();
 	~BitWriter();
 	void WriteArray(const char* idata, int bits);
+	void WriteInt(const int value, int bits);
 	void Expand();
 	char* data;
 	int index;
@@ -97,6 +112,22 @@ void BitWriter::WriteArray(const char* idata, int bits) {
 		pos += dl;
 	}
 }
+
+void BitWriter::WriteInt(const int value, int bits) {
+	if ((bufsize - (index >> 3) - 1) < ((bits >> 3) + 1)) {
+		Expand();
+	}
+	while (bits > 0) {
+		int off = index & 7;
+		int dl = 8 - off;
+		if (dl > bits) dl = bits;
+		unsigned int add = (value >> bits) & ((1 << dl) - 1);
+		data[index >> 3] = ((data[index >> 3] & ((1 << off) - 1)) | (add << off));
+		bits -= dl;
+		index += dl;
+	}
+}
+
 
 class DataType_Base;
 
@@ -163,11 +194,10 @@ void DT_INT::Print(void * Data, FieldInfo * pFieldInfo){
 	cout << "DT_INT " << *(unsigned int*)Data << endl;
 }
 void DT_INT::Serialize(void * Data, FieldInfo * pFieldInfo, BitWriter *  aBitWriter){
-	aBitWriter->WriteArray((char*)Data, pFieldInfo->bitscount);
+	aBitWriter->WriteInt(*(unsigned int*)Data, pFieldInfo->bitscount);
 }
 void DT_INT::DeSerialize(void * Data, FieldInfo * pFieldInfo, BitReader * aBitReader){
-	*(unsigned int*) Data = 0;
-	aBitReader->ReadArray((char*)Data, pFieldInfo->bitscount);
+	*(unsigned int*) Data = aBitReader->ReadInt(pFieldInfo->bitscount);
 }
 const char* DT_INT::Name(){
 	return "DT_INT";
@@ -252,5 +282,19 @@ int main() {
 	lol.setfield(1, aDT_INT);
 	lol.setfield(2, aDT_INT);
 	lol.setfield(3, NULL);
+	char peer1_0[] = {
+	0x00, 0x00, 0x00, 0x18, 0x06, 0xe1, 0x3e, 0xc2, 
+	0xde, 0x20, 0xf7, 0x70, 0x46, 0x15, 0x30, 0x2e, 
+	0x33, 0x2e, 0x30, 0x2e, 0x37, 0x33, 0x33, 0x33 };
+	
+	BitReader* arbit = new BitReader();
+	arbit->data = peer1_0+4;
+	arbit->bufsize = sizeof(peer1_0);
+	FieldInfo * pFieldInfo = new FieldInfo();
+	pFieldInfo->offset = 0;
+	pFieldInfo->bitscount = 9;
+	char Data[100];
+	aDT_INT->DeSerialize(Data, pFieldInfo, arbit);
+    cout << hex << *(unsigned int*)Data << endl;
 	return 0;
 }
