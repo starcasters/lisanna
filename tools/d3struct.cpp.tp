@@ -1,0 +1,72 @@
+[%IF header == "yes" -%]
+/*
+    This file is part of Lisana.
+
+    Lisana is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Lisana is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Lisana.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+#include <iostream> // For cerr and cout
+#include <cstdlib> // For atoi()
+#include <cstring>
+#include <vector>
+#include <algorithm>
+#include <utility>
+#include <stdio.h>
+
+#include "../bitstreams.h"
+#include "../datatypes.h"
+
+#include "[%  pkgname %].h"
+
+using namespace std;
+[% END -%]
+
+// [%  name %]
+//
+[% FOREACH method = methods -%]
+// { [%	method.name  %] }
+[%	END %]
+
+void* [%  name %]::New() {
+}
+
+[%  name %]::[%  name %]() {
+		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * [%  fieldscount %]);
+		cout << "initializing Fields " << endl;
+[% FOREACH method = methods -%]
+		Fields[[%	method.id  %]].fieldinfo(&a[%	method.type  %], [%	method.offset  %], [%	method.bitscount  %]);
+[%	END -%]		
+		Fields[[%  fieldscount %] - 1].fieldinfo(NULL, 0, 0);
+	}
+[%  name %]::~[%  name %]() {
+		free(Fields);
+}
+
+const char* [%  name %]::Name() {
+		return "[%  name %]";
+}
+	
+[% FOREACH method = methods -%]
+[% IF method.type == "DT_INT" -%]
+int* [%  name %]::[%	method.name  %](void *Data) {
+	return (int*)((char*)Data) + [%	method.offset  %];
+}
+[% ELSE -%]
+void* [%  name %]::[%	method.name  %](void *Data) {
+	return ((char*)Data) + [%	method.offset  %];
+}
+[% END -%]
+[%	END -%]
+
+[%  name %] a[%  name %];

@@ -2,17 +2,16 @@
 #include <string.h>
 #include <windows.h>
 #include <cstring>
+#include <vector>
 
 #include "gui_base.h"
 #include "protow.h"
 
 //#define EASYINJECTION
 #define TEXTFILE_OUTPUT
-	
-	
+
 int __stdcall check_ignore_msg(unsigned int msg);
 extern "C" void __stdcall lol_OutputDebugString(unsigned int msg);
-
 
 int tlsIndex;
 
@@ -57,30 +56,30 @@ extern "C" char* msvc9__std__string_to_char(unsigned int astr)
 {
 	if (*(int *)(astr + 0x18) > 0x0f) {
 		return *(char **)(astr + 4);
-	} else {
+		} else {
 		return (char *)(astr + 4);
-	
+		
 	}
 }
 
 //	no gui: 0080D7F9 jmp 80D818
-/*
-	blizz log:
-				push    offset aInitializingGr ; "Initializing graphics subsystem...\n"
-                 xor     ebx, ebx
-                 push    ebx
-                 push    3
-                 push    1
-                 call    sub_D3E0C0
-*/
 
-void __stdcall L_DebugString(char * stringptr) 
+//	blizz log:
+//				push    offset aInitializingGr ; "Initializing graphics subsystem...\n"
+//                xor     ebx, ebx
+//                 push    ebx
+//                 push    3
+//                 push    1
+//                 call    sub_D3E0C0
+
+
+void __stdcall L_DebugString(const char * stringptr) 
 {
     #ifdef TEXTFILE_OUTPUT
-	FILE *file;	
-	file = fopen("dbgoutput.txt","a+");       
-    fprintf(file, "%s\n", stringptr);  
-    fclose(file); 
+		FILE *file;	
+		file = fopen("dbgoutput.txt","a+");       
+		fprintf(file, "%s\n", stringptr);  
+		fclose(file); 
 	#endif
 	
 	OutputDebugString(stringptr);
@@ -101,19 +100,19 @@ void __stdcall func1_nat(int parm) {
 	char achar[500];
 	snprintf(achar, 500, "%s", parm);
     #ifdef TEXTFILE_OUTPUT
-	FILE *file;	
-	file = fopen("dbgoutput.txt","a+");       
-    fprintf(file, "%s\n\r",achar);  
-    fclose(file); 
+		FILE *file;	
+		file = fopen("dbgoutput.txt","a+");       
+		fprintf(file, "%s\n\r",achar);  
+		fclose(file); 
 	#endif
 	
 	OutputDebugString(achar);
-		
+	
 }
 
 void func1()
 {
-
+	
 	asm("pop 	%ebp");
 	asm("lea     -0x108(%ebp), %ecx");
 	asm("pusha");
@@ -220,7 +219,7 @@ void __stdcall print_prolog_info(generic_message* _this, int tabcount) {
 		tabs[i] = '\t';
 	}
 	tabs[tabcount] = 0;
-
+	
 	if ((unsigned int) _this->vtable == Message_vtable) {
 		snprintf(buf, sizeof(buf)-2, "%s%s", tabs, "}");
 		L_DebugString(buf);
@@ -234,38 +233,38 @@ void __stdcall fixedarray_info(generic_field* field_info, generic_message* _this
 		tabs[i] = '\t';
 	}
 	tabs[tabcount] = 0;
-
+	
 	if (_this == NULL) return;
-
+	
 	char* achar = getcharptr((unsigned int)astring);
-
+	
 	unsigned int vtable = (unsigned int) _this->vtable;
 	
 	switch (vtable) {
 		case Message_vtable:
-			snprintf(buf, sizeof(buf)-2, "%s%s {", tabs, _this->name);
-			L_DebugString(buf);
-			break;
+		snprintf(buf, sizeof(buf)-2, "%s%s {", tabs, _this->name);
+		L_DebugString(buf);
+		break;
 		case DT_INT_vtable:
-			snprintf(buf, sizeof(buf)-2, "%s0x%x,", tabs, *(unsigned int*) deserialized_packet);
-			L_DebugString(buf);
-			break;
+		snprintf(buf, sizeof(buf)-2, "%s0x%x,", tabs, *(unsigned int*) deserialized_packet);
+		L_DebugString(buf);
+		break;
 		case DT_OPTIONAL_vtable:
-			//will be printed latter
-			break;
+		//will be printed latter
+		break;
 		case DT_FIXEDARRAY_vtable:
-			break;
+		break;
 		default:
-			snprintf(buf, sizeof(buf)-2, "%s0x%x /* %s : %s */,",tabs, *(unsigned int*) deserialized_packet, _this->name, achar);
-			L_DebugString(buf);
-			break;
+		snprintf(buf, sizeof(buf)-2, "%s0x%x /* %s : %s */,",tabs, *(unsigned int*) deserialized_packet, _this->name, achar);
+		L_DebugString(buf);
+		break;
 	}
 	
 	
 	// ************ fields ******************
 	
 	if (field_info == NULL) return;
-
+	
 	if (vtable == DT_FIXEDARRAY_vtable) {
 		array_field* array_info = (array_field*) field_info;
 		int aresult = getmessagesize(array_info->elements_type);
@@ -277,9 +276,9 @@ void __stdcall fixedarray_info(generic_field* field_info, generic_message* _this
 			count = *(unsigned int*)((char*)deserialized_packet+array_info->unknow_backawards);
 			snprintf(buf, sizeof(buf)-2, "%s//din count? %d", tabs, count);
 			L_DebugString(buf);
-		} /*else {
+			} /*else {
 			for (int i =0 ; i < array_info->elements_count; i++) {
-				explore_and_print(deserialized_packet+aresult*(i), field_info, array_info->elements_type, astring, tabcount+1);
+			explore_and_print(deserialized_packet+aresult*(i), field_info, array_info->elements_type, astring, tabcount+1);
 			}
 		}*/
 		snprintf(buf, sizeof(buf)-2, "%s{", tabs);
@@ -292,7 +291,7 @@ void __stdcall fixedarray_info(generic_field* field_info, generic_message* _this
 	}
 	if (vtable == DT_OPTIONAL_vtable) {
 		array_field* array_info = (array_field*) field_info;
-
+		
 		snprintf(buf, 100, "%s0x%x /* %s : %s */,", tabs, *(unsigned int*) deserialized_packet, achar, array_info->elements_type->name);
 		L_DebugString(buf);
 		
@@ -306,19 +305,19 @@ void __stdcall fixedarray_info(generic_field* field_info, generic_message* _this
 	}
 	if ((vtable == DT_CHARARRAY_vtable) | (vtable == DT_FIXEDARRAY_vtable)) {
 		snprintf(buf, 100, "// %x, %x, %x, %x, %x, %x, %x, %x, %x, %x, %x", 
-				(unsigned int)field_info->unkptr1, 
-				(unsigned int)field_info->typeptr, 
-				(unsigned int)field_info->deserialized_pos,
-				(unsigned int)field_info->unkptr4, 
-				(unsigned int)field_info->unkptr5, 
-				(unsigned int)field_info->unkptr6, 
-				(unsigned int)field_info->unkptr7, 
-				(unsigned int)field_info->unkptr8, 
-				(unsigned int)field_info->unkptr9, 
-				(unsigned int)field_info->unkptr10
-			);
-			L_DebugString(buf);
-
+		(unsigned int)field_info->unkptr1, 
+		(unsigned int)field_info->typeptr, 
+		(unsigned int)field_info->deserialized_pos,
+		(unsigned int)field_info->unkptr4, 
+		(unsigned int)field_info->unkptr5, 
+		(unsigned int)field_info->unkptr6, 
+		(unsigned int)field_info->unkptr7, 
+		(unsigned int)field_info->unkptr8, 
+		(unsigned int)field_info->unkptr9, 
+		(unsigned int)field_info->unkptr10
+		);
+		L_DebugString(buf);
+		
 	}
 }
 
@@ -341,11 +340,11 @@ void __stdcall explore_and_print(void* deserialized_packet, void *field_info, vo
 	asm("					push	%0\n" :: "m"(field_info));
 	asm("					mov     %0, %%eax\n" :: "i"(fixedarray_info));
 	asm("					call    *%eax\n");
-
+	
 	//check if it's a message:
 	asm("					cmpl	$0x011174B0, (%edi)\n");
 	asm("	                jnz     2f\n");
-
+	
 	asm("	                push    $0\n");
 	asm("	                mov     %edi, %ecx\n");
 	asm("					mov     %0, %%eax\n" :: "m"(get_next_member));
@@ -372,9 +371,9 @@ void __stdcall explore_and_print(void* deserialized_packet, void *field_info, vo
 	
 	asm("					mov     %0, %%eax\n" : : "i"(explore_and_print));
 	asm("					call    *%eax\n");
-
+	
 	asm("					pop    %ebx\n");
-		
+	
 	asm("	                push    %esi\n");
 	asm("	                mov     %edi, %ecx\n");
 	asm("					mov     %0, %%eax\n" :: "m"(get_next_member));
@@ -391,7 +390,7 @@ void __stdcall explore_and_print(void* deserialized_packet, void *field_info, vo
 	asm("					call    *%eax\n");
 	
     asm("					popa");
-
+	
     asm("					pop %ebp"); //cleanup
     asm("					ret $0x14"); //cleanup
 	
@@ -400,13 +399,13 @@ void __stdcall explore_and_print(void* deserialized_packet, void *field_info, vo
 void __stdcall print_bit_stream(int a, int fieldnum) {
 	char buf[100];	
 	snprintf(buf, 100, "%d (%d : %d)", 
-				fieldnum,
-				*(unsigned int*)(a+12),
-				*(unsigned int*)(a+8)
-			);
-			L_DebugString(buf);
+	fieldnum,
+	*(unsigned int*)(a+12),
+	*(unsigned int*)(a+8)
+	);
+	L_DebugString(buf);
 }
-	
+
 void func4()
 {
     asm("pop    %ebp");
@@ -416,17 +415,17 @@ void func4()
 	asm("push    %esi\n");
 	asm("mov     %edi, %ecx\n");
 	asm("call    *%edx\n");
-
+	
 	asm("pusha\n");
 	
 	asm("mov %edi, %ecx\n"); //move obj ptr to ecx
-
+	
     asm("push    %ebp");
     asm("mov    %esp, %ebp");
 	//create string, store in esi
 	asm("sub  $0x50, %esp\n");
 	asm("lea -0x4c(%ebp), %eax\n");
-
+	
 	asm("push	$0\n"); //tabcount
 	asm("push	%eax\n"); //astring
 	asm("push	%edi\n"); //_this
@@ -440,7 +439,7 @@ void func4()
 	asm("add  $0x50, %esp\n");
     asm("mov    %ebp, %esp");
     asm("pop    %ebp");
-
+	
 	asm("popa\n");
 	
 	asm("push     %0\n" : : "m"(func4_return));
@@ -503,51 +502,51 @@ void __stdcall generic_wrapper_post() {
 
 void hookPushRet( unsigned int address,	unsigned int jumpwhere)
 {
-  DWORD old;
-  VirtualProtect((void*)address, 6, PAGE_EXECUTE_READWRITE, &old);
-  *(unsigned char*)(address)  = 0x68;
-  *(unsigned int*)(address+1)= jumpwhere;
-  *(unsigned char*)(address+5) = 0xc3;
-  VirtualProtect((void*)address, 6, old, &old);
-  FlushInstructionCache(GetCurrentProcess(), (void*)address, 6);
+	DWORD old;
+	VirtualProtect((void*)address, 6, PAGE_EXECUTE_READWRITE, &old);
+	*(unsigned char*)(address)  = 0x68;
+	*(unsigned int*)(address+1)= jumpwhere;
+	*(unsigned char*)(address+5) = 0xc3;
+	VirtualProtect((void*)address, 6, old, &old);
+	FlushInstructionCache(GetCurrentProcess(), (void*)address, 6);
 }
 
 
 void hookNop( unsigned int address,	unsigned int size)
 {
-  DWORD old;
-  VirtualProtect((void*)address, size, PAGE_EXECUTE_READWRITE, &old);
-  for (int i=0; i<size;i++) {
-	*(unsigned char*)(address+i)  = 0x90;
-  }
-  VirtualProtect((void*)address, size, old, &old);
-  FlushInstructionCache(GetCurrentProcess(), (void*)address, size);
+	DWORD old;
+	VirtualProtect((void*)address, size, PAGE_EXECUTE_READWRITE, &old);
+	for (int i=0; i<size;i++) {
+		*(unsigned char*)(address+i)  = 0x90;
+	}
+	VirtualProtect((void*)address, size, old, &old);
+	FlushInstructionCache(GetCurrentProcess(), (void*)address, size);
 }
 
 void* addtovtable(unsigned int origfnc, unsigned int hookfnc, unsigned int wrapper) {
-  char buf[5000];
-  snprintf(buf, 5000, "add vtable (%x,%x, %x)", origfnc, hookfnc, wrapper);
-  L_DebugString(buf);
-
-  void* returnptr = avtable+vtablepos;
-  *(unsigned char*) (avtable+vtablepos) = 0x68; vtablepos++;
-  *(unsigned int*)(avtable+vtablepos) = origfnc; vtablepos+=4; //orig fnc to return after hook
-  *(unsigned char*) (avtable+vtablepos) = 0x68; vtablepos++;
-  *(unsigned int*)(avtable+vtablepos) = hookfnc; vtablepos+=4; //hookfnc fnc
-  *(unsigned char*) (avtable+vtablepos) = 0x68; vtablepos++;
-  *(unsigned int*)(avtable+vtablepos) = wrapper; vtablepos+=4; //small wrapper
-  *(unsigned char*) (avtable+vtablepos) = 0xc3; vtablepos++;
-  return returnptr;
+	char buf[5000];
+	snprintf(buf, 5000, "add vtable (%x,%x, %x)", origfnc, hookfnc, wrapper);
+	L_DebugString(buf);
+	
+	void* returnptr = avtable+vtablepos;
+	*(unsigned char*) (avtable+vtablepos) = 0x68; vtablepos++;
+	*(unsigned int*)(avtable+vtablepos) = origfnc; vtablepos+=4; //orig fnc to return after hook
+	*(unsigned char*) (avtable+vtablepos) = 0x68; vtablepos++;
+	*(unsigned int*)(avtable+vtablepos) = hookfnc; vtablepos+=4; //hookfnc fnc
+	*(unsigned char*) (avtable+vtablepos) = 0x68; vtablepos++;
+	*(unsigned int*)(avtable+vtablepos) = wrapper; vtablepos+=4; //small wrapper
+	*(unsigned char*) (avtable+vtablepos) = 0xc3; vtablepos++;
+	return returnptr;
 }
 
 void hookabsCall( unsigned int address,	void* hookfnc, void* wrapper)
 {
-  DWORD old;
-  unsigned int vtableentry = (unsigned int)addtovtable(*(unsigned int*)(address), (unsigned int)hookfnc, (unsigned int)wrapper);
-  VirtualProtect((void*)address, 4, PAGE_EXECUTE_READWRITE, &old);
-  *(unsigned int*)(address) = vtableentry;
-  VirtualProtect((void*)address, 4, old, &old);
-  FlushInstructionCache(GetCurrentProcess(), (void*)address, 4);
+	DWORD old;
+	unsigned int vtableentry = (unsigned int)addtovtable(*(unsigned int*)(address), (unsigned int)hookfnc, (unsigned int)wrapper);
+	VirtualProtect((void*)address, 4, PAGE_EXECUTE_READWRITE, &old);
+	*(unsigned int*)(address) = vtableentry;
+	VirtualProtect((void*)address, 4, old, &old);
+	FlushInstructionCache(GetCurrentProcess(), (void*)address, 4);
 }
 
 typedef int (*tgetpacket2)(int pckid, int* a, int* b, int* c);
@@ -559,8 +558,7 @@ tGet_Next_Field Get_Next_Field = (tGet_Next_Field)0x00D4E7B0;
 struct ProtocolFieldDescriptor;
 #pragma pack(push)
 #pragma pack(1)
-struct ProtocolTypeDescriptor
-{
+struct D3Struct {
     void** v_table;
     const char* Name;
     unsigned int unk;
@@ -569,28 +567,28 @@ struct ProtocolTypeDescriptor
 
 struct ProtocolEnumDescriptor
 {
-     int Value;
-     const char* Name;
+	int Value;
+	const char* Name;
 };
 
 struct ProtocolFieldDescriptor
 {
     const char* FieldName;
-    ProtocolTypeDescriptor* Type;
+    D3Struct* Type;
     int Offset;
     int UnusedString;
     union
     {
         int Min; 
         float Minf;
-    };
+	};
     union
     {
         int Max; 
         float Maxf;
-    };
+	};
     int Flags;
-    ProtocolTypeDescriptor* ElementType; // optional/fixedarray
+    D3Struct* ElementType; // optional/fixedarray
     int Unused20;
     int ArraySize;
     int ArrayCountOffset;
@@ -607,142 +605,212 @@ struct ProtocolFieldDescriptor
 };
 #pragma pack(pop)
 
-struct D3Struct {
-	
+struct sname {
+	D3Struct* Type;
+	char givenname[200];
+	bool Dumped;
 };
+typedef std::vector<sname*> VNames;
 
-void print_struct_format(D3Struct* a, int b, int c) {
+sname* GetStructEntry(VNames* vnames, D3Struct* astruct) {
+	char buf[200];
+
+	int j = 0;
+	for (int i=0; i < vnames->size(); i++) {
+		if (vnames->at(i)->Type == astruct) {
+			return vnames->at(i);
+		}
+		if (strcmp(vnames->at(i)->Type->Name, astruct->Name) == 0) {
+			j++;
+		}
+	}
+	sname* aname = new sname;
+	if (j > 0) {
+		snprintf(aname->givenname, 200, "%s_%d", astruct->Name, j);
+	} else {
+		snprintf(aname->givenname, 200, "%s", astruct->Name);
+	}
+	aname->Type = astruct;
+	aname->Dumped = false;
+	vnames->push_back(aname);
+	
+	return aname;
+}
+
+const char* GetStructName(VNames* vnames, D3Struct* astruct) {
+	sname* aentry = GetStructEntry(vnames, astruct);
+	return aentry->givenname;
+}
+
+void print_struct_format(VNames* vnames, D3Struct* a, int b, int c) {
 	char buf[200];
 	char autoname[20];
-			//snprintf(buf, sizeof(buf), "%s %x %x %x",*(unsigned *)((int)a+4),(int)a,b,c);
-			snprintf(buf, sizeof(buf), "STRUCT %s",*(unsigned *)((int)a+4),(int)a,b,c);
-			L_DebugString(buf);
-			for (int j = 0; ; j++) {
-				int* field = (int*)Get_Next_Field((int)a, 0, j);
-				unsigned int name = 0;
-				char * fname = NULL;
-				unsigned int vtable = 0;
-				if (*field != 0) {
-					vtable = *(unsigned int*)(field[1]);
-					name = *(unsigned int*)(field[1]+4);
-					fname = (char*)*field;
-				}
-
-				if (*field == 0) 
-					break;
-				
-				/*
-				snprintf(buf, sizeof(buf), "# %d\t%s\t%x\t%s\t%x\t%x\t%x\t%x\t%x\t%x\t%x\t%x\t%x\t%x\t%x\t%x\t", j, *field, vtable, name, 
-				field[2], field[3],field[4],field[5],field[6],field[7], field[8], field[9],field[10],field[11],field[12],field[13]);
-				*/
-				if (strlen((char*)(*field)) == 0) {
-					snprintf(autoname, 20, "unknow_field_%d", j);
-					fname = autoname;
-				}
-				snprintf(buf, sizeof(buf), "\tFIELD %s, %s, %d, %d, %d", name, fname, ((ProtocolFieldDescriptor*)field)->EncodedBits, ((ProtocolFieldDescriptor*)field)->Min, ((ProtocolFieldDescriptor*)field)->Max);
-				
-				
-				L_DebugString(buf);
-			}
-			
-			L_DebugString(TEXT("ENDSTRUCT"));
+	
+	sname* aentry = GetStructEntry(vnames, a);
+	if (aentry->Dumped == true) return;
+	aentry->Dumped = true;
+	
+	snprintf(buf, sizeof(buf), "STRUCT %s", GetStructName(vnames,a));
+	L_DebugString(buf);
+	
+	for (int j = 0; ; j++) {
+		int* field = (int*)Get_Next_Field((int)a, 0, j);
+		ProtocolFieldDescriptor* nfield = (ProtocolFieldDescriptor*) field;
+		const char * fname = NULL;
+		unsigned int vtable = 0;
+		if (*field != 0) {
+			vtable = *(unsigned int*)(field[1]);
+			fname = nfield->FieldName;
+		}
+		
+		if (*field == 0)
+		break;
+		
+		
+		//snprintf(buf, sizeof(buf), "# %d\t%s\t%x\t%s\t%x\t%x\t%x\t%x\t%x\t%x\t%x\t%x\t%x\t%x\t%x\t%x\t", j, *field, vtable, name, 
+		//field[2], field[3],field[4],field[5],field[6],field[7], field[8], field[9],field[10],field[11],field[12],field[13]);
+		
+		if (strlen(fname) == 0) {
+			snprintf(autoname, 20, "unknow_field_%d", j);
+			fname = autoname;
+		}
+		
+		const char* ElementType_name = GetStructName(vnames, nfield->ElementType);
+		
+		snprintf(buf, sizeof(buf), "\tFIELD %s, %s, %d, %d, %d, %d, %d, %d, %d, %s", GetStructName(vnames, nfield->Type), fname, 
+			nfield->Offset,
+			nfield->Min,
+			nfield->Max,
+			nfield->EncodedBits,
+			nfield->EncodedBits2,
+			nfield->Flags,
+			nfield->ArraySize,
+			ElementType_name
+		);
+		L_DebugString(buf);
+	}
+	
+	L_DebugString("ENDSTRUCT");
 }
 
 void onClick1() {
 	char buf[400];
 	int a,b,c;
+	
+	VNames vnames; //a vector to ensure unique names
 
 	for (int i = 0; i < (sizeof(messages) / sizeof(int)); i++) {
 		a = messages[i];
-		if (!(IsBadReadPtr((void*)a,8)) & (*(unsigned *)(a) == 0x011174B0)) {
-			print_struct_format((D3Struct*)a,b,c);
+		if (IsBadReadPtr((void*)a,8)) {
+			snprintf(buf, sizeof(buf), "bad ptr %d", a);
+			L_DebugString(buf);
+
+			if (a == 20000532) break;
+			continue;
+		}
+		if (*(unsigned *)(a) == 0x011174B0) {
+			print_struct_format(&vnames, (D3Struct*)a,b,c);
+		}
+		else {
+			snprintf(buf, sizeof(buf), "not object base %x", a);
+			L_DebugString(buf);
+			if (*(unsigned short*)(a) == 0x5C7) {
+				if (*(unsigned int*)(a+6) == 0x011174B0) {
+					a = *(unsigned int*)(a+2);
+					print_struct_format(&vnames, (D3Struct*)a,b,c);
+				}
+			} else {
+				snprintf(buf, sizeof(buf), "not 0x05c7? %x %x", a, *(unsigned short*)(a));
+				L_DebugString(buf);
+			}
 		}
 		if (a == 20000532) break;
 	}
-	/*
-//	vector<int> structures;
-	for (int i = 1; i < 0x12E; i++) {
-		if (getpacket2(i, &a, &b, &c) != 0) {
-			snprintf(buf, sizeof(buf), "%s %x %x %x",*(unsigned *)(a+4),a,b,c);
-			L_DebugString(buf);
-			print_struct_format((D3Struct*)a);
-		}
-	}
-	*/
 }
 
-   
+	/* this was used to print messages:
+		//	vector<int> structures;
+		for (int i = 1; i < 0x12E; i++) {
+		if (getpacket2(i, &a, &b, &c) != 0) {
+		snprintf(buf, sizeof(buf), "%s %x %x %x",*(unsigned *)(a+4),a,b,c);
+		L_DebugString(buf);
+		print_struct_format((D3Struct*)a);
+		}
+		}
+	*/
+
+
 void hk_exception_handler() {
 	MessageBox(NULL,
-        TEXT("UNHANDLED EXCEPTION!"),//contenido
-        TEXT("Exception"),//titulo
-        MB_ICONASTERISK | MB_OK );
-		
+	TEXT("UNHANDLED EXCEPTION!"),//contenido
+	TEXT("Exception"),//titulo
+	MB_ICONASTERISK | MB_OK );
+	
 	TerminateProcess(GetCurrentProcess(),0);
 }
 
 int __declspec(dllexport) __stdcall StartDll(int param)
 {
-  plol_OutputDebugString = (unsigned int) &lol_OutputDebugString;
-  
-  avtable = (char*)VirtualAlloc(NULL, 0x4000, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
-
-  #ifdef TEXTFILE_OUTPUT
-	FILE *file;	
-	file = fopen("dbgoutput.txt","w+");       
-    fprintf(file, "Starting Log\r\n");  
-    fclose(file); 
-  #endif
- 
-  if ((tlsIndex = TlsAlloc()) == TLS_OUT_OF_INDEXES) {
-	MessageBox(NULL, "Error 0: cannt get tls slot", "",0);
-	return 0;
-  }
-
-  RebaseFunctions();
-
-  GuiStart(hDll_);
-  hookPushRet(0x0080D7F9, 0x0080D8F3);//avoid init graphics =d
-  
-  hookPushRet(0x00D4A4C0, (unsigned int)&hk_exception_handler);
-  hookPushRet(func3_hook, (unsigned int)&func3);
-  hookPushRet(func4_hook, (unsigned int)&func4);
-//  hookPushRet(func5_hook, (unsigned int)&func5); //func 5 prints bitstream position
-  hookNop(0x00AEDCD0,2);
-  
-  //func1 hooks the protocol hashing and prints the strings.
-//  hookPushRet((unsigned int)func1_hook, (unsigned int)&func1); 
-
-  //hookabsCall(0x01117508, (void*)&func2, (void*)&generic_wrapper);
-  //hookabsCall(0x0111750c, (void*)&func2, (void*)&generic_wrapper);
-  
-  //hookabsCall(0x011AE5FC, (void*)&func2, (void*)&generic_wrapper);
-  
-   //called here so the compiler doesnt remove this function
-  
-  #ifndef EASYINJECTION
-  //code that jmps to the Entry Point of the exe
-  TCHAR exepath[1000];
-  if (0 == GetModuleFileName(0, exepath, 1000)) {
-	MessageBox(NULL, "Error 0: cannt getmodulefilename", "",0);
-	return 0;
-  }
-  HINSTANCE__* mhandle = GetModuleHandle(exepath);
-
-  PIMAGE_DOS_HEADER dos_header;
-  PIMAGE_NT_HEADERS nt_header;
-  dos_header = (PIMAGE_DOS_HEADER) mhandle;
-  nt_header = (PIMAGE_NT_HEADERS)((unsigned int)mhandle + dos_header->e_lfanew);
-  unsigned int entry_point = ((unsigned int)mhandle + nt_header->OptionalHeader.AddressOfEntryPoint);
-
-  __asm(
-          "mov %0, %%eax\n\t"
-          "jmp *%%eax\n\t"
-		  :
-		  :"r"(entry_point)
-		  :"%eax", "%ebx"
+	plol_OutputDebugString = (unsigned int) &lol_OutputDebugString;
+	
+	avtable = (char*)VirtualAlloc(NULL, 0x4000, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
+	
+	#ifdef TEXTFILE_OUTPUT
+		FILE *file;	
+		file = fopen("dbgoutput.txt","w+");       
+		fprintf(file, "Starting Log\r\n");  
+		fclose(file); 
+	#endif
+	
+	if ((tlsIndex = TlsAlloc()) == TLS_OUT_OF_INDEXES) {
+		MessageBox(NULL, "Error 0: cannt get tls slot", "",0);
+		return 0;
+	}
+	
+	RebaseFunctions();
+	
+	GuiStart(hDll_);
+	hookPushRet(0x0080D7F9, 0x0080D8F3);//avoid init graphics =d
+	
+	hookPushRet(0x00D4A4C0, (unsigned int)&hk_exception_handler);
+	hookPushRet(func3_hook, (unsigned int)&func3);
+	hookPushRet(func4_hook, (unsigned int)&func4);
+	//  hookPushRet(func5_hook, (unsigned int)&func5); //func 5 prints bitstream position
+	hookNop(0x00AEDCD0,2);
+	
+	//func1 hooks the protocol hashing and prints the strings.
+	//  hookPushRet((unsigned int)func1_hook, (unsigned int)&func1); 
+	
+	//hookabsCall(0x01117508, (void*)&func2, (void*)&generic_wrapper);
+	//hookabsCall(0x0111750c, (void*)&func2, (void*)&generic_wrapper);
+	
+	//hookabsCall(0x011AE5FC, (void*)&func2, (void*)&generic_wrapper);
+	
+	//called here so the compiler doesnt remove this function
+	
+	#ifndef EASYINJECTION
+		//code that jmps to the Entry Point of the exe
+		TCHAR exepath[1000];
+		if (0 == GetModuleFileName(0, exepath, 1000)) {
+			MessageBox(NULL, "Error 0: cannt getmodulefilename", "",0);
+			return 0;
+		}
+		HINSTANCE__* mhandle = GetModuleHandle(exepath);
+		
+		PIMAGE_DOS_HEADER dos_header;
+		PIMAGE_NT_HEADERS nt_header;
+		dos_header = (PIMAGE_DOS_HEADER) mhandle;
+		nt_header = (PIMAGE_NT_HEADERS)((unsigned int)mhandle + dos_header->e_lfanew);
+		unsigned int entry_point = ((unsigned int)mhandle + nt_header->OptionalHeader.AddressOfEntryPoint);
+		
+		__asm(
+		"mov %0, %%eax\n\t"
+		"jmp *%%eax\n\t"
+		:
+		:"r"(entry_point)
+		:"%eax", "%ebx"
 		);
-  #endif
+	#endif
 }
 
 BOOL WINAPI
@@ -751,24 +819,24 @@ DllMain (HANDLE hDll, DWORD dwReason, LPVOID lpReserved)
     switch (dwReason)
     {
         case DLL_PROCESS_ATTACH:
-            // Code to run when the DLL is loaded
-			hDll_ = hDll;
-			#ifdef EASYINJECTION
-				StartDll(0);
-			#endif
-            break;
-
+		// Code to run when the DLL is loaded
+		hDll_ = hDll;
+		#ifdef EASYINJECTION
+			StartDll(0);
+		#endif
+		break;
+		
         case DLL_PROCESS_DETACH:
-            // Code to run when the DLL is freed
-            break;
-
+		// Code to run when the DLL is freed
+		break;
+		
         case DLL_THREAD_ATTACH:
-            // Code to run when a thread is created during the DLL's lifetime
-            break;
-
+		// Code to run when a thread is created during the DLL's lifetime
+		break;
+		
         case DLL_THREAD_DETACH:
-            // Code to run when a thread ends normally.
-            break;
-    }
+		// Code to run when a thread ends normally.
+		break;
+	}
     return TRUE;
 }

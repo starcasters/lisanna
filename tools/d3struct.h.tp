@@ -1,0 +1,50 @@
+[%IF header == "yes" -%]
+/*
+    This file is part of Lisana.
+
+    Lisana is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Lisana is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Lisana.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+#ifndef [%  pkgname %]__h__
+#define [%  pkgname %]__h__
+[% END -%]
+
+// [%  name %]
+//
+[% FOREACH method = methods -%]
+// { [%	method.name  %] }
+[%	END %]
+
+class [%  name %] : public D3Struct {
+	public:
+	void* New();
+
+	[%  name %]();
+	~[%  name %]();
+	const char* Name();
+	
+[% FOREACH method = methods -%]
+[% IF method.type == "DT_INT" -%]
+	int* [%	method.name  %](void *Data);
+[% ELSE -%]
+	void* [%	method.name  %](void *Data);
+[% END -%]
+[%	END -%]		
+};
+
+extern [%  name %] a[%  name %];
+
+[% IF footer == "yes" -%]
+#endif
+[% END %]
