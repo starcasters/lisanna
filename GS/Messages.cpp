@@ -43,10 +43,10 @@ void* ACDChangeActorMessage::New() {
 ACDChangeActorMessage::ACDChangeActorMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_SNO, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_SNO, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ACDChangeActorMessage::~ACDChangeActorMessage() {
 		free(Fields);
@@ -57,13 +57,13 @@ const char* ACDChangeActorMessage::Name() {
 }
 	
 void* ACDChangeActorMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* ACDChangeActorMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* ACDChangeActorMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 
 ACDChangeActorMessage aACDChangeActorMessage;
@@ -80,10 +80,10 @@ void* ACDChangeGBHandleMessage::New() {
 ACDChangeGBHandleMessage::ACDChangeGBHandleMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aGBHandle, 12, 0);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aGBHandle, 12, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ACDChangeGBHandleMessage::~ACDChangeGBHandleMessage() {
 		free(Fields);
@@ -94,13 +94,13 @@ const char* ACDChangeGBHandleMessage::Name() {
 }
 	
 void* ACDChangeGBHandleMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* ACDChangeGBHandleMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* ACDChangeGBHandleMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 
 ACDChangeGBHandleMessage aACDChangeGBHandleMessage;
@@ -117,10 +117,10 @@ void* ACDCollFlagsMessage::New() {
 ACDCollFlagsMessage::ACDCollFlagsMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_DATAID, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 12);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_DATAID, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 12, 0, 0, 4095, 17, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ACDCollFlagsMessage::~ACDCollFlagsMessage() {
 		free(Fields);
@@ -131,13 +131,13 @@ const char* ACDCollFlagsMessage::Name() {
 }
 	
 void* ACDCollFlagsMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* ACDCollFlagsMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 int* ACDCollFlagsMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 ACDCollFlagsMessage aACDCollFlagsMessage;
@@ -166,22 +166,22 @@ void* ACDEnterKnownMessage::New() {
 ACDEnterKnownMessage::ACDEnterKnownMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 16);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_SNO, 12, 32);
-		Fields[3].fieldinfo(&aDT_INT, 16, 5);
-		Fields[4].fieldinfo(&aDT_INT, 20, 2);
-		Fields[5].fieldinfo(&aDT_OPTIONAL, 24, 0);
-		Fields[6].fieldinfo(&aDT_OPTIONAL, 64, 0);
-		Fields[7].fieldinfo(&aGBHandle, 84, 0);
-		Fields[8].fieldinfo(&aDT_INT, 92, 32);
-		Fields[9].fieldinfo(&aDT_INT, 96, 32);
-		Fields[10].fieldinfo(&aDT_INT, 100, 4);
-		Fields[11].fieldinfo(&aDT_BYTE, 104, 8);
-		Fields[12].fieldinfo(&aDT_OPTIONAL, 121, 32);
-		Fields[13].fieldinfo(&aDT_OPTIONAL, 105, 32);
-		Fields[14].fieldinfo(&aDT_OPTIONAL, 113, 32);
-		Fields[16 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_SNO, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 5, 0, 0, 31, 17, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_INT, 20, 2, 0, -1, 1, 17, &aDT_NULL, -1);
+		Fields[5].fieldinfo(&aDT_OPTIONAL, 24, 0, 0, 0, 0, 1, &aWorldLocationMessageData, -1);
+		Fields[6].fieldinfo(&aDT_OPTIONAL, 64, 0, 0, 0, 0, 1, &aInventoryLocationMessageData, -1);
+		Fields[7].fieldinfo(&aGBHandle, 84, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[8].fieldinfo(&aDT_INT, 92, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[9].fieldinfo(&aDT_INT, 96, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[10].fieldinfo(&aDT_INT, 100, 4, 0, -1, 10, 17, &aDT_NULL, -1);
+		Fields[11].fieldinfo(&aDT_BYTE, 104, 8, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[12].fieldinfo(&aDT_OPTIONAL, 121, 32, 0, 0, 0, 1, &aDT_SNO, -1);
+		Fields[13].fieldinfo(&aDT_OPTIONAL, 105, 32, 0, 0, 0, 1, &aDT_INT, -1);
+		Fields[14].fieldinfo(&aDT_OPTIONAL, 113, 32, 0, 0, 0, 1, &aDT_INT, -1);
+		Fields[16 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ACDEnterKnownMessage::~ACDEnterKnownMessage() {
 		free(Fields);
@@ -192,49 +192,49 @@ const char* ACDEnterKnownMessage::Name() {
 }
 	
 void* ACDEnterKnownMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* ACDEnterKnownMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* ACDEnterKnownMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 int* ACDEnterKnownMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 int* ACDEnterKnownMessage::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 20;
+	return (int*)(((char*)Data) + 20);
 }
 void* ACDEnterKnownMessage::unknow_field_5(void *Data) {
-	return ((char*)Data) + 24;
+	return (((char*)Data) + 24);
 }
 void* ACDEnterKnownMessage::unknow_field_6(void *Data) {
-	return ((char*)Data) + 64;
+	return (((char*)Data) + 64);
 }
 void* ACDEnterKnownMessage::unknow_field_7(void *Data) {
-	return ((char*)Data) + 84;
+	return (((char*)Data) + 84);
 }
 int* ACDEnterKnownMessage::unknow_field_8(void *Data) {
-	return (int*)((char*)Data) + 92;
+	return (int*)(((char*)Data) + 92);
 }
 int* ACDEnterKnownMessage::unknow_field_9(void *Data) {
-	return (int*)((char*)Data) + 96;
+	return (int*)(((char*)Data) + 96);
 }
 int* ACDEnterKnownMessage::unknow_field_10(void *Data) {
-	return (int*)((char*)Data) + 100;
+	return (int*)(((char*)Data) + 100);
 }
 void* ACDEnterKnownMessage::unknow_field_11(void *Data) {
-	return ((char*)Data) + 104;
+	return (((char*)Data) + 104);
 }
 void* ACDEnterKnownMessage::unknow_field_12(void *Data) {
-	return ((char*)Data) + 121;
+	return (((char*)Data) + 121);
 }
 void* ACDEnterKnownMessage::unknow_field_13(void *Data) {
-	return ((char*)Data) + 105;
+	return (((char*)Data) + 105);
 }
 void* ACDEnterKnownMessage::unknow_field_14(void *Data) {
-	return ((char*)Data) + 113;
+	return (((char*)Data) + 113);
 }
 
 ACDEnterKnownMessage aACDEnterKnownMessage;
@@ -252,11 +252,11 @@ void* ACDGroupMessage::New() {
 ACDGroupMessage::ACDGroupMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[3].fieldinfo(&aDT_INT, 16, 32);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ACDGroupMessage::~ACDGroupMessage() {
 		free(Fields);
@@ -267,16 +267,16 @@ const char* ACDGroupMessage::Name() {
 }
 	
 void* ACDGroupMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* ACDGroupMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* ACDGroupMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 int* ACDGroupMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 
 ACDGroupMessage aACDGroupMessage;
@@ -294,11 +294,11 @@ void* ACDInventoryPositionMessage::New() {
 ACDInventoryPositionMessage::ACDInventoryPositionMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aInventoryLocationMessageData, 12, 0);
-		Fields[3].fieldinfo(&aDT_INT, 28, 32);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aInventoryLocationMessageData, 12, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 28, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ACDInventoryPositionMessage::~ACDInventoryPositionMessage() {
 		free(Fields);
@@ -309,16 +309,16 @@ const char* ACDInventoryPositionMessage::Name() {
 }
 	
 void* ACDInventoryPositionMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* ACDInventoryPositionMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* ACDInventoryPositionMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 int* ACDInventoryPositionMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 28;
+	return (int*)(((char*)Data) + 28);
 }
 
 ACDInventoryPositionMessage aACDInventoryPositionMessage;
@@ -335,10 +335,10 @@ void* ACDLookAtMessage::New() {
 ACDLookAtMessage::ACDLookAtMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ACDLookAtMessage::~ACDLookAtMessage() {
 		free(Fields);
@@ -349,13 +349,13 @@ const char* ACDLookAtMessage::Name() {
 }
 	
 void* ACDLookAtMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* ACDLookAtMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* ACDLookAtMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 ACDLookAtMessage aACDLookAtMessage;
@@ -372,10 +372,10 @@ void* ACDPickupFailedMessage::New() {
 ACDPickupFailedMessage::ACDPickupFailedMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 3);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 3, 0, 0, 7, 17, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ACDPickupFailedMessage::~ACDPickupFailedMessage() {
 		free(Fields);
@@ -386,13 +386,13 @@ const char* ACDPickupFailedMessage::Name() {
 }
 	
 void* ACDPickupFailedMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* ACDPickupFailedMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* ACDPickupFailedMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 ACDPickupFailedMessage aACDPickupFailedMessage;
@@ -409,10 +409,10 @@ void* ACDShearMessage::New() {
 ACDShearMessage::ACDShearMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_FLOAT, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_FLOAT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ACDShearMessage::~ACDShearMessage() {
 		free(Fields);
@@ -423,13 +423,13 @@ const char* ACDShearMessage::Name() {
 }
 	
 void* ACDShearMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* ACDShearMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* ACDShearMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 
 ACDShearMessage aACDShearMessage;
@@ -453,17 +453,17 @@ void* ACDTranslateArcMessage::New() {
 ACDTranslateArcMessage::ACDTranslateArcMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 11);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_DATAID, 8, 32);
-		Fields[2].fieldinfo(&aVector3D, 12, 0);
-		Fields[3].fieldinfo(&aVector3D, 24, 0);
-		Fields[4].fieldinfo(&aDT_INT, 36, 24);
-		Fields[5].fieldinfo(&aDT_INT, 40, 21);
-		Fields[6].fieldinfo(&aDT_INT, 44, 21);
-		Fields[7].fieldinfo(&aDT_FLOAT, 48, 32);
-		Fields[8].fieldinfo(&aDT_SNO, 52, 32);
-		Fields[9].fieldinfo(&aDT_FLOAT, 56, 32);
-		Fields[11 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_DATAID, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aVector3D, 12, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aVector3D, 24, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_INT, 36, 24, 0, 0, 16777215, 17, &aDT_NULL, -1);
+		Fields[5].fieldinfo(&aDT_INT, 40, 21, 0, -1, 1048575, 17, &aDT_NULL, -1);
+		Fields[6].fieldinfo(&aDT_INT, 44, 21, 0, -1, 1048575, 17, &aDT_NULL, -1);
+		Fields[7].fieldinfo(&aDT_FLOAT, 48, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[8].fieldinfo(&aDT_SNO, 52, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[9].fieldinfo(&aDT_FLOAT, 56, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[11 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ACDTranslateArcMessage::~ACDTranslateArcMessage() {
 		free(Fields);
@@ -474,34 +474,34 @@ const char* ACDTranslateArcMessage::Name() {
 }
 	
 void* ACDTranslateArcMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* ACDTranslateArcMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 void* ACDTranslateArcMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 void* ACDTranslateArcMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 24;
+	return (((char*)Data) + 24);
 }
 int* ACDTranslateArcMessage::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 36;
+	return (int*)(((char*)Data) + 36);
 }
 int* ACDTranslateArcMessage::unknow_field_5(void *Data) {
-	return (int*)((char*)Data) + 40;
+	return (int*)(((char*)Data) + 40);
 }
 int* ACDTranslateArcMessage::unknow_field_6(void *Data) {
-	return (int*)((char*)Data) + 44;
+	return (int*)(((char*)Data) + 44);
 }
 void* ACDTranslateArcMessage::unknow_field_7(void *Data) {
-	return ((char*)Data) + 48;
+	return (((char*)Data) + 48);
 }
 void* ACDTranslateArcMessage::unknow_field_8(void *Data) {
-	return ((char*)Data) + 52;
+	return (((char*)Data) + 52);
 }
 void* ACDTranslateArcMessage::unknow_field_9(void *Data) {
-	return ((char*)Data) + 56;
+	return (((char*)Data) + 56);
 }
 
 ACDTranslateArcMessage aACDTranslateArcMessage;
@@ -532,24 +532,24 @@ void* ACDTranslateDetPathMessage::New() {
 ACDTranslateDetPathMessage::ACDTranslateDetPathMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 18);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_DATAID, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 4);
-		Fields[3].fieldinfo(&aDT_INT, 16, 32);
-		Fields[4].fieldinfo(&aDT_INT, 20, 32);
-		Fields[5].fieldinfo(&aVector3D, 24, 0);
-		Fields[6].fieldinfo(&aDT_ANGLE, 36, 32);
-		Fields[7].fieldinfo(&aVector3D, 40, 0);
-		Fields[8].fieldinfo(&aDT_INT, 52, 32);
-		Fields[9].fieldinfo(&aDT_INT, 56, 32);
-		Fields[10].fieldinfo(&aDT_INT, 60, 32);
-		Fields[11].fieldinfo(&aDT_SNO, 64, 32);
-		Fields[12].fieldinfo(&aDT_INT, 68, 32);
-		Fields[13].fieldinfo(&aDT_FLOAT, 72, 32);
-		Fields[14].fieldinfo(&aDT_FLOAT, 76, 32);
-		Fields[15].fieldinfo(&aDT_FLOAT, 80, 32);
-		Fields[16].fieldinfo(&aDT_FLOAT, 84, 32);
-		Fields[18 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_DATAID, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 4, 0, 0, 8, 17, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_INT, 20, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5].fieldinfo(&aVector3D, 24, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[6].fieldinfo(&aDT_ANGLE, 36, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[7].fieldinfo(&aVector3D, 40, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[8].fieldinfo(&aDT_INT, 52, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[9].fieldinfo(&aDT_INT, 56, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[10].fieldinfo(&aDT_INT, 60, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[11].fieldinfo(&aDT_SNO, 64, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[12].fieldinfo(&aDT_INT, 68, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[13].fieldinfo(&aDT_FLOAT, 72, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[14].fieldinfo(&aDT_FLOAT, 76, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[15].fieldinfo(&aDT_FLOAT, 80, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[16].fieldinfo(&aDT_FLOAT, 84, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[18 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ACDTranslateDetPathMessage::~ACDTranslateDetPathMessage() {
 		free(Fields);
@@ -560,55 +560,55 @@ const char* ACDTranslateDetPathMessage::Name() {
 }
 	
 void* ACDTranslateDetPathMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* ACDTranslateDetPathMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 int* ACDTranslateDetPathMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 int* ACDTranslateDetPathMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 int* ACDTranslateDetPathMessage::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 20;
+	return (int*)(((char*)Data) + 20);
 }
 void* ACDTranslateDetPathMessage::unknow_field_5(void *Data) {
-	return ((char*)Data) + 24;
+	return (((char*)Data) + 24);
 }
 void* ACDTranslateDetPathMessage::unknow_field_6(void *Data) {
-	return ((char*)Data) + 36;
+	return (((char*)Data) + 36);
 }
 void* ACDTranslateDetPathMessage::unknow_field_7(void *Data) {
-	return ((char*)Data) + 40;
+	return (((char*)Data) + 40);
 }
 int* ACDTranslateDetPathMessage::unknow_field_8(void *Data) {
-	return (int*)((char*)Data) + 52;
+	return (int*)(((char*)Data) + 52);
 }
 int* ACDTranslateDetPathMessage::unknow_field_9(void *Data) {
-	return (int*)((char*)Data) + 56;
+	return (int*)(((char*)Data) + 56);
 }
 int* ACDTranslateDetPathMessage::unknow_field_10(void *Data) {
-	return (int*)((char*)Data) + 60;
+	return (int*)(((char*)Data) + 60);
 }
 void* ACDTranslateDetPathMessage::unknow_field_11(void *Data) {
-	return ((char*)Data) + 64;
+	return (((char*)Data) + 64);
 }
 int* ACDTranslateDetPathMessage::unknow_field_12(void *Data) {
-	return (int*)((char*)Data) + 68;
+	return (int*)(((char*)Data) + 68);
 }
 void* ACDTranslateDetPathMessage::unknow_field_13(void *Data) {
-	return ((char*)Data) + 72;
+	return (((char*)Data) + 72);
 }
 void* ACDTranslateDetPathMessage::unknow_field_14(void *Data) {
-	return ((char*)Data) + 76;
+	return (((char*)Data) + 76);
 }
 void* ACDTranslateDetPathMessage::unknow_field_15(void *Data) {
-	return ((char*)Data) + 80;
+	return (((char*)Data) + 80);
 }
 void* ACDTranslateDetPathMessage::unknow_field_16(void *Data) {
-	return ((char*)Data) + 84;
+	return (((char*)Data) + 84);
 }
 
 ACDTranslateDetPathMessage aACDTranslateDetPathMessage;
@@ -638,23 +638,23 @@ void* ACDTranslateDetPathSinMessage::New() {
 ACDTranslateDetPathSinMessage::ACDTranslateDetPathSinMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 17);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_DATAID, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 4);
-		Fields[3].fieldinfo(&aDT_INT, 16, 32);
-		Fields[4].fieldinfo(&aDT_INT, 20, 32);
-		Fields[5].fieldinfo(&aVector3D, 24, 0);
-		Fields[6].fieldinfo(&aDT_ANGLE, 36, 32);
-		Fields[7].fieldinfo(&aVector3D, 40, 0);
-		Fields[8].fieldinfo(&aDT_INT, 52, 32);
-		Fields[9].fieldinfo(&aDT_INT, 56, 32);
-		Fields[10].fieldinfo(&aDT_INT, 60, 32);
-		Fields[11].fieldinfo(&aDT_SNO, 64, 32);
-		Fields[12].fieldinfo(&aDT_INT, 68, 32);
-		Fields[13].fieldinfo(&aDT_FLOAT, 72, 32);
-		Fields[14].fieldinfo(&aDT_FLOAT, 76, 32);
-		Fields[15].fieldinfo(&aDPathSinData, 80, 0);
-		Fields[17 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_DATAID, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 4, 0, 0, 8, 17, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_INT, 20, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5].fieldinfo(&aVector3D, 24, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[6].fieldinfo(&aDT_ANGLE, 36, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[7].fieldinfo(&aVector3D, 40, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[8].fieldinfo(&aDT_INT, 52, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[9].fieldinfo(&aDT_INT, 56, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[10].fieldinfo(&aDT_INT, 60, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[11].fieldinfo(&aDT_SNO, 64, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[12].fieldinfo(&aDT_INT, 68, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[13].fieldinfo(&aDT_FLOAT, 72, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[14].fieldinfo(&aDT_FLOAT, 76, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[15].fieldinfo(&aDPathSinData, 80, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[17 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ACDTranslateDetPathSinMessage::~ACDTranslateDetPathSinMessage() {
 		free(Fields);
@@ -665,52 +665,52 @@ const char* ACDTranslateDetPathSinMessage::Name() {
 }
 	
 void* ACDTranslateDetPathSinMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* ACDTranslateDetPathSinMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 int* ACDTranslateDetPathSinMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 int* ACDTranslateDetPathSinMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 int* ACDTranslateDetPathSinMessage::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 20;
+	return (int*)(((char*)Data) + 20);
 }
 void* ACDTranslateDetPathSinMessage::unknow_field_5(void *Data) {
-	return ((char*)Data) + 24;
+	return (((char*)Data) + 24);
 }
 void* ACDTranslateDetPathSinMessage::unknow_field_6(void *Data) {
-	return ((char*)Data) + 36;
+	return (((char*)Data) + 36);
 }
 void* ACDTranslateDetPathSinMessage::unknow_field_7(void *Data) {
-	return ((char*)Data) + 40;
+	return (((char*)Data) + 40);
 }
 int* ACDTranslateDetPathSinMessage::unknow_field_8(void *Data) {
-	return (int*)((char*)Data) + 52;
+	return (int*)(((char*)Data) + 52);
 }
 int* ACDTranslateDetPathSinMessage::unknow_field_9(void *Data) {
-	return (int*)((char*)Data) + 56;
+	return (int*)(((char*)Data) + 56);
 }
 int* ACDTranslateDetPathSinMessage::unknow_field_10(void *Data) {
-	return (int*)((char*)Data) + 60;
+	return (int*)(((char*)Data) + 60);
 }
 void* ACDTranslateDetPathSinMessage::unknow_field_11(void *Data) {
-	return ((char*)Data) + 64;
+	return (((char*)Data) + 64);
 }
 int* ACDTranslateDetPathSinMessage::unknow_field_12(void *Data) {
-	return (int*)((char*)Data) + 68;
+	return (int*)(((char*)Data) + 68);
 }
 void* ACDTranslateDetPathSinMessage::unknow_field_13(void *Data) {
-	return ((char*)Data) + 72;
+	return (((char*)Data) + 72);
 }
 void* ACDTranslateDetPathSinMessage::unknow_field_14(void *Data) {
-	return ((char*)Data) + 76;
+	return (((char*)Data) + 76);
 }
 void* ACDTranslateDetPathSinMessage::unknow_field_15(void *Data) {
-	return ((char*)Data) + 80;
+	return (((char*)Data) + 80);
 }
 
 ACDTranslateDetPathSinMessage aACDTranslateDetPathSinMessage;
@@ -732,15 +732,15 @@ void* ACDTranslateDetPathSpiralMessage::New() {
 ACDTranslateDetPathSpiralMessage::ACDTranslateDetPathSpiralMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 9);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_DATAID, 8, 32);
-		Fields[2].fieldinfo(&aVector3D, 12, 0);
-		Fields[3].fieldinfo(&aVector3D, 24, 0);
-		Fields[4].fieldinfo(&aDT_INT, 36, 32);
-		Fields[5].fieldinfo(&aDT_INT, 40, 32);
-		Fields[6].fieldinfo(&aDT_INT, 44, 32);
-		Fields[7].fieldinfo(&aDPathSinData, 48, 0);
-		Fields[9 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_DATAID, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aVector3D, 12, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aVector3D, 24, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_INT, 36, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5].fieldinfo(&aDT_INT, 40, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[6].fieldinfo(&aDT_INT, 44, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[7].fieldinfo(&aDPathSinData, 48, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[9 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ACDTranslateDetPathSpiralMessage::~ACDTranslateDetPathSpiralMessage() {
 		free(Fields);
@@ -751,28 +751,28 @@ const char* ACDTranslateDetPathSpiralMessage::Name() {
 }
 	
 void* ACDTranslateDetPathSpiralMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* ACDTranslateDetPathSpiralMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 void* ACDTranslateDetPathSpiralMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 void* ACDTranslateDetPathSpiralMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 24;
+	return (((char*)Data) + 24);
 }
 int* ACDTranslateDetPathSpiralMessage::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 36;
+	return (int*)(((char*)Data) + 36);
 }
 int* ACDTranslateDetPathSpiralMessage::unknow_field_5(void *Data) {
-	return (int*)((char*)Data) + 40;
+	return (int*)(((char*)Data) + 40);
 }
 int* ACDTranslateDetPathSpiralMessage::unknow_field_6(void *Data) {
-	return (int*)((char*)Data) + 44;
+	return (int*)(((char*)Data) + 44);
 }
 void* ACDTranslateDetPathSpiralMessage::unknow_field_7(void *Data) {
-	return ((char*)Data) + 48;
+	return (((char*)Data) + 48);
 }
 
 ACDTranslateDetPathSpiralMessage aACDTranslateDetPathSpiralMessage;
@@ -790,11 +790,11 @@ void* ACDTranslateFacingMessage::New() {
 ACDTranslateFacingMessage::ACDTranslateFacingMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_DATAID, 8, 32);
-		Fields[2].fieldinfo(&aDT_ANGLE, 12, 32);
-		Fields[3].fieldinfo(&aDT_INT, 16, 1);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_DATAID, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_ANGLE, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ACDTranslateFacingMessage::~ACDTranslateFacingMessage() {
 		free(Fields);
@@ -805,16 +805,16 @@ const char* ACDTranslateFacingMessage::Name() {
 }
 	
 void* ACDTranslateFacingMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* ACDTranslateFacingMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 void* ACDTranslateFacingMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 int* ACDTranslateFacingMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 
 ACDTranslateFacingMessage aACDTranslateFacingMessage;
@@ -834,13 +834,13 @@ void* ACDTranslateFixedMessage::New() {
 ACDTranslateFixedMessage::ACDTranslateFixedMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 7);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_DATAID, 8, 32);
-		Fields[2].fieldinfo(&aVector3D, 12, 0);
-		Fields[3].fieldinfo(&aDT_INT, 24, 24);
-		Fields[4].fieldinfo(&aDT_INT, 28, 21);
-		Fields[5].fieldinfo(&aDT_SNO, 32, 32);
-		Fields[7 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_DATAID, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aVector3D, 12, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 24, 24, 0, 0, 16777215, 17, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_INT, 28, 21, 0, -1, 1048575, 17, &aDT_NULL, -1);
+		Fields[5].fieldinfo(&aDT_SNO, 32, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[7 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ACDTranslateFixedMessage::~ACDTranslateFixedMessage() {
 		free(Fields);
@@ -851,22 +851,22 @@ const char* ACDTranslateFixedMessage::Name() {
 }
 	
 void* ACDTranslateFixedMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* ACDTranslateFixedMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 void* ACDTranslateFixedMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 int* ACDTranslateFixedMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 24;
+	return (int*)(((char*)Data) + 24);
 }
 int* ACDTranslateFixedMessage::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 28;
+	return (int*)(((char*)Data) + 28);
 }
 void* ACDTranslateFixedMessage::unknow_field_5(void *Data) {
-	return ((char*)Data) + 32;
+	return (((char*)Data) + 32);
 }
 
 ACDTranslateFixedMessage aACDTranslateFixedMessage;
@@ -884,11 +884,11 @@ void* ACDTranslateFixedUpdateMessage::New() {
 ACDTranslateFixedUpdateMessage::ACDTranslateFixedUpdateMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_DATAID, 8, 32);
-		Fields[2].fieldinfo(&aVector3D, 12, 0);
-		Fields[3].fieldinfo(&aVector3D, 24, 0);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_DATAID, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aVector3D, 12, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aVector3D, 24, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ACDTranslateFixedUpdateMessage::~ACDTranslateFixedUpdateMessage() {
 		free(Fields);
@@ -899,16 +899,16 @@ const char* ACDTranslateFixedUpdateMessage::Name() {
 }
 	
 void* ACDTranslateFixedUpdateMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* ACDTranslateFixedUpdateMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 void* ACDTranslateFixedUpdateMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 void* ACDTranslateFixedUpdateMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 24;
+	return (((char*)Data) + 24);
 }
 
 ACDTranslateFixedUpdateMessage aACDTranslateFixedUpdateMessage;
@@ -931,16 +931,16 @@ void* ACDTranslateNormalMessage::New() {
 ACDTranslateNormalMessage::ACDTranslateNormalMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 10);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_DATAID, 8, 32);
-		Fields[2].fieldinfo(&aDT_OPTIONAL, 12, 0);
-		Fields[3].fieldinfo(&aDT_OPTIONAL, 28, 32);
-		Fields[4].fieldinfo(&aDT_OPTIONAL, 36, 1);
-		Fields[5].fieldinfo(&aDT_OPTIONAL, 44, 32);
-		Fields[6].fieldinfo(&aDT_OPTIONAL, 52, 24);
-		Fields[7].fieldinfo(&aDT_OPTIONAL, 60, 21);
-		Fields[8].fieldinfo(&aDT_OPTIONAL, 68, 32);
-		Fields[10 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_DATAID, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_OPTIONAL, 12, 0, 0, 0, 0, 1, &aVector3D, -1);
+		Fields[3].fieldinfo(&aDT_OPTIONAL, 28, 32, 0, 0, 0, 1, &aDT_ANGLE, -1);
+		Fields[4].fieldinfo(&aDT_OPTIONAL, 36, 1, 0, 0, 1, 17, &aDT_INT, -1);
+		Fields[5].fieldinfo(&aDT_OPTIONAL, 44, 32, 0, 0, 0, 1, &aDT_FLOAT, -1);
+		Fields[6].fieldinfo(&aDT_OPTIONAL, 52, 24, 0, 0, 16777215, 17, &aDT_INT, -1);
+		Fields[7].fieldinfo(&aDT_OPTIONAL, 60, 21, 0, -1, 1048575, 17, &aDT_INT, -1);
+		Fields[8].fieldinfo(&aDT_OPTIONAL, 68, 32, 0, 0, 0, 1, &aDT_INT, -1);
+		Fields[10 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ACDTranslateNormalMessage::~ACDTranslateNormalMessage() {
 		free(Fields);
@@ -951,31 +951,31 @@ const char* ACDTranslateNormalMessage::Name() {
 }
 	
 void* ACDTranslateNormalMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* ACDTranslateNormalMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 void* ACDTranslateNormalMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 void* ACDTranslateNormalMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 28;
+	return (((char*)Data) + 28);
 }
 void* ACDTranslateNormalMessage::unknow_field_4(void *Data) {
-	return ((char*)Data) + 36;
+	return (((char*)Data) + 36);
 }
 void* ACDTranslateNormalMessage::unknow_field_5(void *Data) {
-	return ((char*)Data) + 44;
+	return (((char*)Data) + 44);
 }
 void* ACDTranslateNormalMessage::unknow_field_6(void *Data) {
-	return ((char*)Data) + 52;
+	return (((char*)Data) + 52);
 }
 void* ACDTranslateNormalMessage::unknow_field_7(void *Data) {
-	return ((char*)Data) + 60;
+	return (((char*)Data) + 60);
 }
 void* ACDTranslateNormalMessage::unknow_field_8(void *Data) {
-	return ((char*)Data) + 68;
+	return (((char*)Data) + 68);
 }
 
 ACDTranslateNormalMessage aACDTranslateNormalMessage;
@@ -995,13 +995,13 @@ void* ACDTranslateSnappedMessage::New() {
 ACDTranslateSnappedMessage::ACDTranslateSnappedMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 7);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_DATAID, 8, 32);
-		Fields[2].fieldinfo(&aVector3D, 12, 0);
-		Fields[3].fieldinfo(&aDT_ANGLE, 24, 32);
-		Fields[4].fieldinfo(&aDT_INT, 28, 1);
-		Fields[5].fieldinfo(&aDT_INT, 32, 24);
-		Fields[7 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_DATAID, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aVector3D, 12, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_ANGLE, 24, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_INT, 28, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[5].fieldinfo(&aDT_INT, 32, 24, 0, 0, 16777215, 17, &aDT_NULL, -1);
+		Fields[7 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ACDTranslateSnappedMessage::~ACDTranslateSnappedMessage() {
 		free(Fields);
@@ -1012,22 +1012,22 @@ const char* ACDTranslateSnappedMessage::Name() {
 }
 	
 void* ACDTranslateSnappedMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* ACDTranslateSnappedMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 void* ACDTranslateSnappedMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 void* ACDTranslateSnappedMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 24;
+	return (((char*)Data) + 24);
 }
 int* ACDTranslateSnappedMessage::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 28;
+	return (int*)(((char*)Data) + 28);
 }
 int* ACDTranslateSnappedMessage::unknow_field_5(void *Data) {
-	return (int*)((char*)Data) + 32;
+	return (int*)(((char*)Data) + 32);
 }
 
 ACDTranslateSnappedMessage aACDTranslateSnappedMessage;
@@ -1045,11 +1045,11 @@ void* ACDTranslateSyncMessage::New() {
 ACDTranslateSyncMessage::ACDTranslateSyncMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_DATAID, 8, 32);
-		Fields[2].fieldinfo(&aVector3D, 12, 0);
-		Fields[3].fieldinfo(&aDT_OPTIONAL, 24, 1);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_DATAID, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aVector3D, 12, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_OPTIONAL, 24, 1, 0, 0, 1, 17, &aDT_INT, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ACDTranslateSyncMessage::~ACDTranslateSyncMessage() {
 		free(Fields);
@@ -1060,16 +1060,16 @@ const char* ACDTranslateSyncMessage::Name() {
 }
 	
 void* ACDTranslateSyncMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* ACDTranslateSyncMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 void* ACDTranslateSyncMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 void* ACDTranslateSyncMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 24;
+	return (((char*)Data) + 24);
 }
 
 ACDTranslateSyncMessage aACDTranslateSyncMessage;
@@ -1086,10 +1086,10 @@ void* ACDWorldPositionMessage::New() {
 ACDWorldPositionMessage::ACDWorldPositionMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aWorldLocationMessageData, 12, 0);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aWorldLocationMessageData, 12, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ACDWorldPositionMessage::~ACDWorldPositionMessage() {
 		free(Fields);
@@ -1100,13 +1100,13 @@ const char* ACDWorldPositionMessage::Name() {
 }
 	
 void* ACDWorldPositionMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* ACDWorldPositionMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* ACDWorldPositionMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 
 ACDWorldPositionMessage aACDWorldPositionMessage;
@@ -1122,9 +1122,9 @@ void* ANNDataMessage::New() {
 ANNDataMessage::ANNDataMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ANNDataMessage::~ANNDataMessage() {
 		free(Fields);
@@ -1135,10 +1135,10 @@ const char* ANNDataMessage::Name() {
 }
 	
 void* ANNDataMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* ANNDataMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 
 ANNDataMessage aANNDataMessage;
@@ -1155,10 +1155,10 @@ void* ActTransitionMessage::New() {
 ActTransitionMessage::ActTransitionMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 10);
-		Fields[2].fieldinfo(&aDT_INT, 12, 1);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 10, 0, -1, 1000, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ActTransitionMessage::~ActTransitionMessage() {
 		free(Fields);
@@ -1169,13 +1169,13 @@ const char* ActTransitionMessage::Name() {
 }
 	
 void* ActTransitionMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* ActTransitionMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* ActTransitionMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 ActTransitionMessage aActTransitionMessage;
@@ -1192,10 +1192,10 @@ void* ActTransitionStartedMessage::New() {
 ActTransitionStartedMessage::ActTransitionStartedMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ActTransitionStartedMessage::~ActTransitionStartedMessage() {
 		free(Fields);
@@ -1206,13 +1206,13 @@ const char* ActTransitionStartedMessage::Name() {
 }
 	
 void* ActTransitionStartedMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* ActTransitionStartedMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* ActTransitionStartedMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 ActTransitionStartedMessage aActTransitionStartedMessage;
@@ -1230,11 +1230,11 @@ void* AffixMessage::New() {
 AffixMessage::AffixMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 2);
-		Fields[3].fieldinfo(&aDT_FIXEDARRAY, 16, 32);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 2, 0, 0, 2, 17, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_FIXEDARRAY, 16, 32, 6, 0, 0, 8, &aDT_GBID, 32);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 AffixMessage::~AffixMessage() {
 		free(Fields);
@@ -1245,16 +1245,16 @@ const char* AffixMessage::Name() {
 }
 	
 void* AffixMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* AffixMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* AffixMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 void* AffixMessage::aAffixGBIDs(void *Data) {
-	return ((char*)Data) + 16;
+	return (((char*)Data) + 16);
 }
 
 AffixMessage aAffixMessage;
@@ -1273,12 +1273,12 @@ void* AimTargetMessage::New() {
 AimTargetMessage::AimTargetMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 6);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 2);
-		Fields[3].fieldinfo(&aDT_INT, 16, 32);
-		Fields[4].fieldinfo(&aWorldPlace, 20, 0);
-		Fields[6 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 2, 0, -1, 2, 17, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aWorldPlace, 20, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[6 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 AimTargetMessage::~AimTargetMessage() {
 		free(Fields);
@@ -1289,19 +1289,19 @@ const char* AimTargetMessage::Name() {
 }
 	
 void* AimTargetMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* AimTargetMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* AimTargetMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 int* AimTargetMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 void* AimTargetMessage::unknow_field_4(void *Data) {
-	return ((char*)Data) + 20;
+	return (((char*)Data) + 20);
 }
 
 AimTargetMessage aAimTargetMessage;
@@ -1318,10 +1318,10 @@ void* AssignSkillMessage::New() {
 AssignSkillMessage::AssignSkillMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_SNO, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 5);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_SNO, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 5, 0, 0, 28, 17, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 AssignSkillMessage::~AssignSkillMessage() {
 		free(Fields);
@@ -1332,13 +1332,13 @@ const char* AssignSkillMessage::Name() {
 }
 	
 void* AssignSkillMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* AssignSkillMessage::snoPower(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 int* AssignSkillMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 AssignSkillMessage aAssignSkillMessage;
@@ -1357,12 +1357,12 @@ void* AttributeCreateMessage::New() {
 AttributeCreateMessage::AttributeCreateMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 6);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_SNO, 12, 32);
-		Fields[3].fieldinfo(&aDT_INT, 16, 32);
-		Fields[4].fieldinfo(&aDT_INT, 20, 32);
-		Fields[6 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_SNO, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_INT, 20, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[6 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 AttributeCreateMessage::~AttributeCreateMessage() {
 		free(Fields);
@@ -1373,19 +1373,19 @@ const char* AttributeCreateMessage::Name() {
 }
 	
 void* AttributeCreateMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* AttributeCreateMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* AttributeCreateMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 int* AttributeCreateMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 int* AttributeCreateMessage::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 20;
+	return (int*)(((char*)Data) + 20);
 }
 
 AttributeCreateMessage aAttributeCreateMessage;
@@ -1402,10 +1402,10 @@ void* AttributeDeleteMessage::New() {
 AttributeDeleteMessage::AttributeDeleteMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 AttributeDeleteMessage::~AttributeDeleteMessage() {
 		free(Fields);
@@ -1416,13 +1416,13 @@ const char* AttributeDeleteMessage::Name() {
 }
 	
 void* AttributeDeleteMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* AttributeDeleteMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* AttributeDeleteMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 AttributeDeleteMessage aAttributeDeleteMessage;
@@ -1439,10 +1439,10 @@ void* AttributeSetValueMessage::New() {
 AttributeSetValueMessage::AttributeSetValueMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aNetAttributeKeyValue, 12, 0);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aNetAttributeKeyValue, 12, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 AttributeSetValueMessage::~AttributeSetValueMessage() {
 		free(Fields);
@@ -1453,13 +1453,13 @@ const char* AttributeSetValueMessage::Name() {
 }
 	
 void* AttributeSetValueMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* AttributeSetValueMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* AttributeSetValueMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 
 AttributeSetValueMessage aAttributeSetValueMessage;
@@ -1476,10 +1476,10 @@ void* AttributesSetValuesMessage::New() {
 AttributesSetValuesMessage::AttributesSetValuesMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_FIXEDARRAY, 16, 0);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_FIXEDARRAY, 16, 0, 4, 0, 0, 8, &aNetAttributeKeyValue, 15);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 AttributesSetValuesMessage::~AttributesSetValuesMessage() {
 		free(Fields);
@@ -1490,13 +1490,13 @@ const char* AttributesSetValuesMessage::Name() {
 }
 	
 void* AttributesSetValuesMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* AttributesSetValuesMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* AttributesSetValuesMessage::atKeyVals(void *Data) {
-	return ((char*)Data) + 16;
+	return (((char*)Data) + 16);
 }
 
 AttributesSetValuesMessage aAttributesSetValuesMessage;
@@ -1519,16 +1519,16 @@ void* BNetJoinGameRequestResultMessage::New() {
 BNetJoinGameRequestResultMessage::BNetJoinGameRequestResultMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 10);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 3);
-		Fields[2].fieldinfo(&aGameId, 16, 0);
-		Fields[3].fieldinfo(&aDT_INT64, 40, 64);
-		Fields[4].fieldinfo(&aDT_INT, 48, 3);
-		Fields[5].fieldinfo(&aDT_SNO, 52, 32);
-		Fields[6].fieldinfo(&aDT_INT, 56, 16);
-		Fields[7].fieldinfo(&aDT_INT, 60, 32);
-		Fields[8].fieldinfo(&aDT_WORD, 64, 16);
-		Fields[10 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 3, 0, -1, 5, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aGameId, 16, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT64, 40, 64, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_INT, 48, 3, 0, -1, 5, 17, &aDT_NULL, -1);
+		Fields[5].fieldinfo(&aDT_SNO, 52, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[6].fieldinfo(&aDT_INT, 56, 16, 0, 0, 65535, 17, &aDT_NULL, -1);
+		Fields[7].fieldinfo(&aDT_INT, 60, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[8].fieldinfo(&aDT_WORD, 64, 16, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[10 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 BNetJoinGameRequestResultMessage::~BNetJoinGameRequestResultMessage() {
 		free(Fields);
@@ -1539,31 +1539,31 @@ const char* BNetJoinGameRequestResultMessage::Name() {
 }
 	
 void* BNetJoinGameRequestResultMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* BNetJoinGameRequestResultMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* BNetJoinGameRequestResultMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 16;
+	return (((char*)Data) + 16);
 }
 void* BNetJoinGameRequestResultMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 40;
+	return (((char*)Data) + 40);
 }
 int* BNetJoinGameRequestResultMessage::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 48;
+	return (int*)(((char*)Data) + 48);
 }
 void* BNetJoinGameRequestResultMessage::unknow_field_5(void *Data) {
-	return ((char*)Data) + 52;
+	return (((char*)Data) + 52);
 }
 int* BNetJoinGameRequestResultMessage::unknow_field_6(void *Data) {
-	return (int*)((char*)Data) + 56;
+	return (int*)(((char*)Data) + 56);
 }
 int* BNetJoinGameRequestResultMessage::unknow_field_7(void *Data) {
-	return (int*)((char*)Data) + 60;
+	return (int*)(((char*)Data) + 60);
 }
 void* BNetJoinGameRequestResultMessage::unknow_field_8(void *Data) {
-	return ((char*)Data) + 64;
+	return (((char*)Data) + 64);
 }
 
 BNetJoinGameRequestResultMessage aBNetJoinGameRequestResultMessage;
@@ -1581,11 +1581,11 @@ void* BlizzconCVarsMessage::New() {
 BlizzconCVarsMessage::BlizzconCVarsMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 1);
-		Fields[2].fieldinfo(&aDT_INT, 12, 1);
-		Fields[3].fieldinfo(&aDT_INT, 16, 1);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 BlizzconCVarsMessage::~BlizzconCVarsMessage() {
 		free(Fields);
@@ -1596,16 +1596,16 @@ const char* BlizzconCVarsMessage::Name() {
 }
 	
 void* BlizzconCVarsMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* BlizzconCVarsMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* BlizzconCVarsMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 int* BlizzconCVarsMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 
 BlizzconCVarsMessage aBlizzconCVarsMessage;
@@ -1621,9 +1621,9 @@ void* BoolDataMessage::New() {
 BoolDataMessage::BoolDataMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 1);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 BoolDataMessage::~BoolDataMessage() {
 		free(Fields);
@@ -1634,10 +1634,10 @@ const char* BoolDataMessage::Name() {
 }
 	
 void* BoolDataMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* BoolDataMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 
 BoolDataMessage aBoolDataMessage;
@@ -1654,10 +1654,10 @@ void* BossEncounterMessage::New() {
 BossEncounterMessage::BossEncounterMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_SNO, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_SNO, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 BossEncounterMessage::~BossEncounterMessage() {
 		free(Fields);
@@ -1668,13 +1668,13 @@ const char* BossEncounterMessage::Name() {
 }
 	
 void* BossEncounterMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* BossEncounterMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* BossEncounterMessage::snoEncounter(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 
 BossEncounterMessage aBossEncounterMessage;
@@ -1691,10 +1691,10 @@ void* BossZoomMessage::New() {
 BossZoomMessage::BossZoomMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_FLOAT, 8, 32);
-		Fields[2].fieldinfo(&aDT_FLOAT, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_FLOAT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_FLOAT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 BossZoomMessage::~BossZoomMessage() {
 		free(Fields);
@@ -1705,13 +1705,13 @@ const char* BossZoomMessage::Name() {
 }
 	
 void* BossZoomMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* BossZoomMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 void* BossZoomMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 
 BossZoomMessage aBossZoomMessage;
@@ -1727,9 +1727,9 @@ void* BroadcastTextMessage::New() {
 BroadcastTextMessage::BroadcastTextMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_CHARARRAY, 8, 10);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_CHARARRAY, 8, 10, 0, 0, 0, 1, &aDT_NULL, 512);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 BroadcastTextMessage::~BroadcastTextMessage() {
 		free(Fields);
@@ -1740,10 +1740,10 @@ const char* BroadcastTextMessage::Name() {
 }
 	
 void* BroadcastTextMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* BroadcastTextMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 
 BroadcastTextMessage aBroadcastTextMessage;
@@ -1759,9 +1759,9 @@ void* ByteDataMessage::New() {
 ByteDataMessage::ByteDataMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_BYTE, 8, 8);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_BYTE, 8, 8, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ByteDataMessage::~ByteDataMessage() {
 		free(Fields);
@@ -1772,10 +1772,10 @@ const char* ByteDataMessage::Name() {
 }
 	
 void* ByteDataMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* ByteDataMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 
 ByteDataMessage aByteDataMessage;
@@ -1793,11 +1793,11 @@ void* CameraFocusMessage::New() {
 CameraFocusMessage::CameraFocusMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 1);
-		Fields[3].fieldinfo(&aDT_FLOAT, 16, 32);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_FLOAT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 CameraFocusMessage::~CameraFocusMessage() {
 		free(Fields);
@@ -1808,16 +1808,16 @@ const char* CameraFocusMessage::Name() {
 }
 	
 void* CameraFocusMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* CameraFocusMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* CameraFocusMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 void* CameraFocusMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 16;
+	return (((char*)Data) + 16);
 }
 
 CameraFocusMessage aCameraFocusMessage;
@@ -1835,11 +1835,11 @@ void* CameraYawMessage::New() {
 CameraYawMessage::CameraYawMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_ANGLE, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 1);
-		Fields[3].fieldinfo(&aDT_FLOAT, 16, 32);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_ANGLE, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_FLOAT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 CameraYawMessage::~CameraYawMessage() {
 		free(Fields);
@@ -1850,16 +1850,16 @@ const char* CameraYawMessage::Name() {
 }
 	
 void* CameraYawMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* CameraYawMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 int* CameraYawMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 void* CameraYawMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 16;
+	return (((char*)Data) + 16);
 }
 
 CameraYawMessage aCameraYawMessage;
@@ -1877,11 +1877,11 @@ void* CameraZoomMessage::New() {
 CameraZoomMessage::CameraZoomMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_FLOAT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 1);
-		Fields[3].fieldinfo(&aDT_FLOAT, 16, 32);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_FLOAT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_FLOAT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 CameraZoomMessage::~CameraZoomMessage() {
 		free(Fields);
@@ -1892,16 +1892,16 @@ const char* CameraZoomMessage::Name() {
 }
 	
 void* CameraZoomMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* CameraZoomMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 int* CameraZoomMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 void* CameraZoomMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 16;
+	return (((char*)Data) + 16);
 }
 
 CameraZoomMessage aCameraZoomMessage;
@@ -1919,11 +1919,11 @@ void* ChatMessage::New() {
 ChatMessage::ChatMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 2);
-		Fields[2].fieldinfo(&aDT_INT, 12, 4);
-		Fields[3].fieldinfo(&aDT_CHARARRAY, 16, 10);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 2, 0, 0, 2, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 4, 0, -1, 7, 17, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_CHARARRAY, 16, 10, 0, 0, 0, 1, &aDT_NULL, 512);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ChatMessage::~ChatMessage() {
 		free(Fields);
@@ -1934,16 +1934,16 @@ const char* ChatMessage::Name() {
 }
 	
 void* ChatMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* ChatMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* ChatMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 void* ChatMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 16;
+	return (((char*)Data) + 16);
 }
 
 ChatMessage aChatMessage;
@@ -1965,15 +1965,15 @@ void* ComplexEffectAddMessage::New() {
 ComplexEffectAddMessage::ComplexEffectAddMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 9);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[3].fieldinfo(&aDT_SNO, 16, 32);
-		Fields[4].fieldinfo(&aDT_INT, 20, 32);
-		Fields[5].fieldinfo(&aDT_INT, 24, 32);
-		Fields[6].fieldinfo(&aDT_INT, 28, 32);
-		Fields[7].fieldinfo(&aDT_INT, 32, 32);
-		Fields[9 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_SNO, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_INT, 20, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5].fieldinfo(&aDT_INT, 24, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[6].fieldinfo(&aDT_INT, 28, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[7].fieldinfo(&aDT_INT, 32, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[9 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ComplexEffectAddMessage::~ComplexEffectAddMessage() {
 		free(Fields);
@@ -1984,28 +1984,28 @@ const char* ComplexEffectAddMessage::Name() {
 }
 	
 void* ComplexEffectAddMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* ComplexEffectAddMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* ComplexEffectAddMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 void* ComplexEffectAddMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 16;
+	return (((char*)Data) + 16);
 }
 int* ComplexEffectAddMessage::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 20;
+	return (int*)(((char*)Data) + 20);
 }
 int* ComplexEffectAddMessage::unknow_field_5(void *Data) {
-	return (int*)((char*)Data) + 24;
+	return (int*)(((char*)Data) + 24);
 }
 int* ComplexEffectAddMessage::unknow_field_6(void *Data) {
-	return (int*)((char*)Data) + 28;
+	return (int*)(((char*)Data) + 28);
 }
 int* ComplexEffectAddMessage::unknow_field_7(void *Data) {
-	return (int*)((char*)Data) + 32;
+	return (int*)(((char*)Data) + 32);
 }
 
 ComplexEffectAddMessage aComplexEffectAddMessage;
@@ -2023,11 +2023,11 @@ void* ConnectionEstablishedMessage::New() {
 ConnectionEstablishedMessage::ConnectionEstablishedMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 3);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[3].fieldinfo(&aDT_INT, 16, 32);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 3, 0, 0, 7, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ConnectionEstablishedMessage::~ConnectionEstablishedMessage() {
 		free(Fields);
@@ -2038,16 +2038,16 @@ const char* ConnectionEstablishedMessage::Name() {
 }
 	
 void* ConnectionEstablishedMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* ConnectionEstablishedMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* ConnectionEstablishedMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 int* ConnectionEstablishedMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 
 ConnectionEstablishedMessage aConnectionEstablishedMessage;
@@ -2065,11 +2065,11 @@ void* CrafterLevelUpMessage::New() {
 CrafterLevelUpMessage::CrafterLevelUpMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[3].fieldinfo(&aDT_INT, 16, 32);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 CrafterLevelUpMessage::~CrafterLevelUpMessage() {
 		free(Fields);
@@ -2080,16 +2080,16 @@ const char* CrafterLevelUpMessage::Name() {
 }
 	
 void* CrafterLevelUpMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* CrafterLevelUpMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* CrafterLevelUpMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 int* CrafterLevelUpMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 
 CrafterLevelUpMessage aCrafterLevelUpMessage;
@@ -2107,11 +2107,11 @@ void* CraftingResultsMessage::New() {
 CraftingResultsMessage::CraftingResultsMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_GBID, 12, 32);
-		Fields[3].fieldinfo(&aDT_INT, 16, 32);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_GBID, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 CraftingResultsMessage::~CraftingResultsMessage() {
 		free(Fields);
@@ -2122,16 +2122,16 @@ const char* CraftingResultsMessage::Name() {
 }
 	
 void* CraftingResultsMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* CraftingResultsMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* CraftingResultsMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 int* CraftingResultsMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 
 CraftingResultsMessage aCraftingResultsMessage;
@@ -2158,20 +2158,20 @@ void* CreateBNetGameMessage::New() {
 CreateBNetGameMessage::CreateBNetGameMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 14);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_CHARARRAY, 8, 6);
-		Fields[2].fieldinfo(&aDT_INT, 44, 3);
-		Fields[3].fieldinfo(&aDT_INT, 48, 32);
-		Fields[4].fieldinfo(&aDT_SNO, 52, 32);
-		Fields[5].fieldinfo(&aDT_INT, 56, 32);
-		Fields[6].fieldinfo(&aDT_INT, 60, 1);
-		Fields[7].fieldinfo(&aDT_SNO, 64, 32);
-		Fields[8].fieldinfo(&aDT_INT, 68, 16);
-		Fields[9].fieldinfo(&aDT_INT, 72, 3);
-		Fields[10].fieldinfo(&aDT_INT, 76, 32);
-		Fields[11].fieldinfo(&aDT_INT, 80, 32);
-		Fields[12].fieldinfo(&aDT_WORD, 84, 16);
-		Fields[14 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_CHARARRAY, 8, 6, 0, 0, 0, 1, &aDT_NULL, 33);
+		Fields[2].fieldinfo(&aDT_INT, 44, 3, 0, -1, 5, 17, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 48, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_SNO, 52, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5].fieldinfo(&aDT_INT, 56, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[6].fieldinfo(&aDT_INT, 60, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[7].fieldinfo(&aDT_SNO, 64, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[8].fieldinfo(&aDT_INT, 68, 16, 0, 0, 65535, 17, &aDT_NULL, -1);
+		Fields[9].fieldinfo(&aDT_INT, 72, 3, 0, 1, 8, 17, &aDT_NULL, -1);
+		Fields[10].fieldinfo(&aDT_INT, 76, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[11].fieldinfo(&aDT_INT, 80, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[12].fieldinfo(&aDT_WORD, 84, 16, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[14 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 CreateBNetGameMessage::~CreateBNetGameMessage() {
 		free(Fields);
@@ -2182,43 +2182,43 @@ const char* CreateBNetGameMessage::Name() {
 }
 	
 void* CreateBNetGameMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* CreateBNetGameMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 int* CreateBNetGameMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 44;
+	return (int*)(((char*)Data) + 44);
 }
 int* CreateBNetGameMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 48;
+	return (int*)(((char*)Data) + 48);
 }
 void* CreateBNetGameMessage::unknow_field_4(void *Data) {
-	return ((char*)Data) + 52;
+	return (((char*)Data) + 52);
 }
 int* CreateBNetGameMessage::unknow_field_5(void *Data) {
-	return (int*)((char*)Data) + 56;
+	return (int*)(((char*)Data) + 56);
 }
 int* CreateBNetGameMessage::unknow_field_6(void *Data) {
-	return (int*)((char*)Data) + 60;
+	return (int*)(((char*)Data) + 60);
 }
 void* CreateBNetGameMessage::unknow_field_7(void *Data) {
-	return ((char*)Data) + 64;
+	return (((char*)Data) + 64);
 }
 int* CreateBNetGameMessage::unknow_field_8(void *Data) {
-	return (int*)((char*)Data) + 68;
+	return (int*)(((char*)Data) + 68);
 }
 int* CreateBNetGameMessage::unknow_field_9(void *Data) {
-	return (int*)((char*)Data) + 72;
+	return (int*)(((char*)Data) + 72);
 }
 int* CreateBNetGameMessage::unknow_field_10(void *Data) {
-	return (int*)((char*)Data) + 76;
+	return (int*)(((char*)Data) + 76);
 }
 int* CreateBNetGameMessage::unknow_field_11(void *Data) {
-	return (int*)((char*)Data) + 80;
+	return (int*)(((char*)Data) + 80);
 }
 void* CreateBNetGameMessage::unknow_field_12(void *Data) {
-	return ((char*)Data) + 84;
+	return (((char*)Data) + 84);
 }
 
 CreateBNetGameMessage aCreateBNetGameMessage;
@@ -2235,10 +2235,10 @@ void* CreateBNetGameResultMessage::New() {
 CreateBNetGameResultMessage::CreateBNetGameResultMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 2);
-		Fields[2].fieldinfo(&aGameId, 16, 0);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 2, 0, 0, 2, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aGameId, 16, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 CreateBNetGameResultMessage::~CreateBNetGameResultMessage() {
 		free(Fields);
@@ -2249,13 +2249,13 @@ const char* CreateBNetGameResultMessage::Name() {
 }
 	
 void* CreateBNetGameResultMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* CreateBNetGameResultMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* CreateBNetGameResultMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 16;
+	return (((char*)Data) + 16);
 }
 
 CreateBNetGameResultMessage aCreateBNetGameResultMessage;
@@ -2273,11 +2273,11 @@ void* CreateHeroMessage::New() {
 CreateHeroMessage::CreateHeroMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_CHARARRAY, 8, 6);
-		Fields[2].fieldinfo(&aDT_GBID, 60, 32);
-		Fields[3].fieldinfo(&aDT_INT, 64, 29);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_CHARARRAY, 8, 6, 0, 0, 0, 1, &aDT_NULL, 49);
+		Fields[2].fieldinfo(&aDT_GBID, 60, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 64, 29, 0, 0, 536870911, 17, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 CreateHeroMessage::~CreateHeroMessage() {
 		free(Fields);
@@ -2288,16 +2288,16 @@ const char* CreateHeroMessage::Name() {
 }
 	
 void* CreateHeroMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* CreateHeroMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 void* CreateHeroMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 60;
+	return (((char*)Data) + 60);
 }
 int* CreateHeroMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 64;
+	return (int*)(((char*)Data) + 64);
 }
 
 CreateHeroMessage aCreateHeroMessage;
@@ -2314,10 +2314,10 @@ void* CreateHeroResultMessage::New() {
 CreateHeroResultMessage::CreateHeroResultMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 2);
-		Fields[2].fieldinfo(&aEntityId, 16, 0);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 2, 0, -1, 2, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aEntityId, 16, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 CreateHeroResultMessage::~CreateHeroResultMessage() {
 		free(Fields);
@@ -2328,13 +2328,13 @@ const char* CreateHeroResultMessage::Name() {
 }
 	
 void* CreateHeroResultMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* CreateHeroResultMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* CreateHeroResultMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 16;
+	return (((char*)Data) + 16);
 }
 
 CreateHeroResultMessage aCreateHeroResultMessage;
@@ -2350,9 +2350,9 @@ void* DWordDataMessage::New() {
 DWordDataMessage::DWordDataMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 DWordDataMessage::~DWordDataMessage() {
 		free(Fields);
@@ -2363,10 +2363,10 @@ const char* DWordDataMessage::Name() {
 }
 	
 void* DWordDataMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* DWordDataMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 
 DWordDataMessage aDWordDataMessage;
@@ -2382,9 +2382,9 @@ void* DataIDDataMessage::New() {
 DataIDDataMessage::DataIDDataMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 DataIDDataMessage::~DataIDDataMessage() {
 		free(Fields);
@@ -2395,10 +2395,10 @@ const char* DataIDDataMessage::Name() {
 }
 	
 void* DataIDDataMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* DataIDDataMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 
 DataIDDataMessage aDataIDDataMessage;
@@ -2417,12 +2417,12 @@ void* DeathFadeTimeMessage::New() {
 DeathFadeTimeMessage::DeathFadeTimeMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 6);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 11);
-		Fields[3].fieldinfo(&aDT_INT, 16, 11);
-		Fields[4].fieldinfo(&aDT_INT, 20, 1);
-		Fields[6 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 11, 0, -1, 1800, 17, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 11, 0, 0, 1800, 17, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_INT, 20, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[6 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 DeathFadeTimeMessage::~DeathFadeTimeMessage() {
 		free(Fields);
@@ -2433,19 +2433,19 @@ const char* DeathFadeTimeMessage::Name() {
 }
 	
 void* DeathFadeTimeMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* DeathFadeTimeMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* DeathFadeTimeMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 int* DeathFadeTimeMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 int* DeathFadeTimeMessage::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 20;
+	return (int*)(((char*)Data) + 20);
 }
 
 DeathFadeTimeMessage aDeathFadeTimeMessage;
@@ -2462,10 +2462,10 @@ void* DebugActorTooltipMessage::New() {
 DebugActorTooltipMessage::DebugActorTooltipMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_CHARARRAY, 12, 10);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_CHARARRAY, 12, 10, 0, 0, 0, 1, &aDT_NULL, 512);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 DebugActorTooltipMessage::~DebugActorTooltipMessage() {
 		free(Fields);
@@ -2476,13 +2476,13 @@ const char* DebugActorTooltipMessage::Name() {
 }
 	
 void* DebugActorTooltipMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* DebugActorTooltipMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* DebugActorTooltipMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 
 DebugActorTooltipMessage aDebugActorTooltipMessage;
@@ -2507,18 +2507,18 @@ void* DebugDrawPrimMessage::New() {
 DebugDrawPrimMessage::DebugDrawPrimMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 12);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[3].fieldinfo(&aDT_INT, 16, 32);
-		Fields[4].fieldinfo(&aVector3D, 20, 0);
-		Fields[5].fieldinfo(&aVector3D, 32, 0);
-		Fields[6].fieldinfo(&aDT_FLOAT, 44, 32);
-		Fields[7].fieldinfo(&aDT_FLOAT, 48, 32);
-		Fields[8].fieldinfo(&aDT_INT, 52, 32);
-		Fields[9].fieldinfo(&aRGBAColor, 56, 0);
-		Fields[10].fieldinfo(&aDT_CHARARRAY, 60, 8);
-		Fields[12 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aVector3D, 20, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5].fieldinfo(&aVector3D, 32, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[6].fieldinfo(&aDT_FLOAT, 44, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[7].fieldinfo(&aDT_FLOAT, 48, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[8].fieldinfo(&aDT_INT, 52, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[9].fieldinfo(&aRGBAColor, 56, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[10].fieldinfo(&aDT_CHARARRAY, 60, 8, 0, 0, 0, 1, &aDT_NULL, 128);
+		Fields[12 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 DebugDrawPrimMessage::~DebugDrawPrimMessage() {
 		free(Fields);
@@ -2529,37 +2529,37 @@ const char* DebugDrawPrimMessage::Name() {
 }
 	
 void* DebugDrawPrimMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* DebugDrawPrimMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* DebugDrawPrimMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 int* DebugDrawPrimMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 void* DebugDrawPrimMessage::unknow_field_4(void *Data) {
-	return ((char*)Data) + 20;
+	return (((char*)Data) + 20);
 }
 void* DebugDrawPrimMessage::unknow_field_5(void *Data) {
-	return ((char*)Data) + 32;
+	return (((char*)Data) + 32);
 }
 void* DebugDrawPrimMessage::unknow_field_6(void *Data) {
-	return ((char*)Data) + 44;
+	return (((char*)Data) + 44);
 }
 void* DebugDrawPrimMessage::unknow_field_7(void *Data) {
-	return ((char*)Data) + 48;
+	return (((char*)Data) + 48);
 }
 int* DebugDrawPrimMessage::unknow_field_8(void *Data) {
-	return (int*)((char*)Data) + 52;
+	return (int*)(((char*)Data) + 52);
 }
 void* DebugDrawPrimMessage::unknow_field_9(void *Data) {
-	return ((char*)Data) + 56;
+	return (((char*)Data) + 56);
 }
 void* DebugDrawPrimMessage::unknow_field_10(void *Data) {
-	return ((char*)Data) + 60;
+	return (((char*)Data) + 60);
 }
 
 DebugDrawPrimMessage aDebugDrawPrimMessage;
@@ -2576,10 +2576,10 @@ void* DestroySceneMessage::New() {
 DestroySceneMessage::DestroySceneMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 DestroySceneMessage::~DestroySceneMessage() {
 		free(Fields);
@@ -2590,13 +2590,13 @@ const char* DestroySceneMessage::Name() {
 }
 	
 void* DestroySceneMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* DestroySceneMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* DestroySceneMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 DestroySceneMessage aDestroySceneMessage;
@@ -2614,11 +2614,11 @@ void* DisplayGameTextMessage::New() {
 DisplayGameTextMessage::DisplayGameTextMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_CHARARRAY, 8, 10);
-		Fields[2].fieldinfo(&aDT_OPTIONAL, 520, 32);
-		Fields[3].fieldinfo(&aDT_OPTIONAL, 528, 32);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_CHARARRAY, 8, 10, 0, 0, 0, 1, &aDT_NULL, 512);
+		Fields[2].fieldinfo(&aDT_OPTIONAL, 520, 32, 0, 0, 0, 1, &aDT_INT, -1);
+		Fields[3].fieldinfo(&aDT_OPTIONAL, 528, 32, 0, 0, 0, 1, &aDT_INT, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 DisplayGameTextMessage::~DisplayGameTextMessage() {
 		free(Fields);
@@ -2629,16 +2629,16 @@ const char* DisplayGameTextMessage::Name() {
 }
 	
 void* DisplayGameTextMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* DisplayGameTextMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 void* DisplayGameTextMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 520;
+	return (((char*)Data) + 520);
 }
 void* DisplayGameTextMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 528;
+	return (((char*)Data) + 528);
 }
 
 DisplayGameTextMessage aDisplayGameTextMessage;
@@ -2656,11 +2656,11 @@ void* EffectGroupACDToACDMessage::New() {
 EffectGroupACDToACDMessage::EffectGroupACDToACDMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_SNO, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[3].fieldinfo(&aDT_INT, 16, 32);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_SNO, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 EffectGroupACDToACDMessage::~EffectGroupACDToACDMessage() {
 		free(Fields);
@@ -2671,16 +2671,16 @@ const char* EffectGroupACDToACDMessage::Name() {
 }
 	
 void* EffectGroupACDToACDMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* EffectGroupACDToACDMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 int* EffectGroupACDToACDMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 int* EffectGroupACDToACDMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 
 EffectGroupACDToACDMessage aEffectGroupACDToACDMessage;
@@ -2697,10 +2697,10 @@ void* EnchantItemMessage::New() {
 EnchantItemMessage::EnchantItemMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_GBID, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_GBID, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 EnchantItemMessage::~EnchantItemMessage() {
 		free(Fields);
@@ -2711,13 +2711,13 @@ const char* EnchantItemMessage::Name() {
 }
 	
 void* EnchantItemMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* EnchantItemMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* EnchantItemMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 
 EnchantItemMessage aEnchantItemMessage;
@@ -2735,11 +2735,11 @@ void* EncounterInviteStateMessage::New() {
 EncounterInviteStateMessage::EncounterInviteStateMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 9, 32);
-		Fields[3].fieldinfo(&aDT_INT, 10, 32);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 9, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 10, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 EncounterInviteStateMessage::~EncounterInviteStateMessage() {
 		free(Fields);
@@ -2750,16 +2750,16 @@ const char* EncounterInviteStateMessage::Name() {
 }
 	
 void* EncounterInviteStateMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* EncounterInviteStateMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* EncounterInviteStateMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 9;
+	return (int*)(((char*)Data) + 9);
 }
 int* EncounterInviteStateMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 10;
+	return (int*)(((char*)Data) + 10);
 }
 
 EncounterInviteStateMessage aEncounterInviteStateMessage;
@@ -2777,11 +2777,11 @@ void* EndConversationMessage::New() {
 EndConversationMessage::EndConversationMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[3].fieldinfo(&aDT_INT, 16, 32);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 EndConversationMessage::~EndConversationMessage() {
 		free(Fields);
@@ -2792,16 +2792,16 @@ const char* EndConversationMessage::Name() {
 }
 	
 void* EndConversationMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* EndConversationMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* EndConversationMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 int* EndConversationMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 
 EndConversationMessage aEndConversationMessage;
@@ -2818,10 +2818,10 @@ void* EndOfTickMessage::New() {
 EndOfTickMessage::EndOfTickMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 EndOfTickMessage::~EndOfTickMessage() {
 		free(Fields);
@@ -2832,13 +2832,13 @@ const char* EndOfTickMessage::Name() {
 }
 	
 void* EndOfTickMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* EndOfTickMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* EndOfTickMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 EndOfTickMessage aEndOfTickMessage;
@@ -2856,11 +2856,11 @@ void* EnterWorldMessage::New() {
 EnterWorldMessage::EnterWorldMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aVector3D, 8, 0);
-		Fields[2].fieldinfo(&aDT_INT, 20, 32);
-		Fields[3].fieldinfo(&aDT_SNO, 24, 32);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aVector3D, 8, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 20, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_SNO, 24, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 EnterWorldMessage::~EnterWorldMessage() {
 		free(Fields);
@@ -2871,16 +2871,16 @@ const char* EnterWorldMessage::Name() {
 }
 	
 void* EnterWorldMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* EnterWorldMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 int* EnterWorldMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 20;
+	return (int*)(((char*)Data) + 20);
 }
 void* EnterWorldMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 24;
+	return (((char*)Data) + 24);
 }
 
 EnterWorldMessage aEnterWorldMessage;
@@ -2896,9 +2896,9 @@ void* EntityIdMessage::New() {
 EntityIdMessage::EntityIdMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aEntityId, 8, 0);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aEntityId, 8, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 EntityIdMessage::~EntityIdMessage() {
 		free(Fields);
@@ -2909,10 +2909,10 @@ const char* EntityIdMessage::Name() {
 }
 	
 void* EntityIdMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* EntityIdMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 
 EntityIdMessage aEntityIdMessage;
@@ -2931,12 +2931,12 @@ void* FlippyMessage::New() {
 FlippyMessage::FlippyMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 6);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_SNO, 12, 32);
-		Fields[3].fieldinfo(&aDT_SNO, 16, 32);
-		Fields[4].fieldinfo(&aVector3D, 20, 0);
-		Fields[6 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_SNO, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_SNO, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aVector3D, 20, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[6 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 FlippyMessage::~FlippyMessage() {
 		free(Fields);
@@ -2947,19 +2947,19 @@ const char* FlippyMessage::Name() {
 }
 	
 void* FlippyMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* FlippyMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* FlippyMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 void* FlippyMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 16;
+	return (((char*)Data) + 16);
 }
 void* FlippyMessage::unknow_field_4(void *Data) {
-	return ((char*)Data) + 20;
+	return (((char*)Data) + 20);
 }
 
 FlippyMessage aFlippyMessage;
@@ -2975,9 +2975,9 @@ void* FloatDataMessage::New() {
 FloatDataMessage::FloatDataMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_FLOAT, 8, 32);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_FLOAT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 FloatDataMessage::~FloatDataMessage() {
 		free(Fields);
@@ -2988,10 +2988,10 @@ const char* FloatDataMessage::Name() {
 }
 	
 void* FloatDataMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* FloatDataMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 
 FloatDataMessage aFloatDataMessage;
@@ -3010,12 +3010,12 @@ void* FloatingAmountMessage::New() {
 FloatingAmountMessage::FloatingAmountMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 6);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aWorldPlace, 8, 0);
-		Fields[2].fieldinfo(&aDT_INT, 24, 32);
-		Fields[3].fieldinfo(&aDT_OPTIONAL, 28, 32);
-		Fields[4].fieldinfo(&aDT_INT, 36, 6);
-		Fields[6 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aWorldPlace, 8, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 24, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_OPTIONAL, 28, 32, 0, 0, 0, 1, &aDT_INT, -1);
+		Fields[4].fieldinfo(&aDT_INT, 36, 6, 0, 0, 32, 17, &aDT_NULL, -1);
+		Fields[6 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 FloatingAmountMessage::~FloatingAmountMessage() {
 		free(Fields);
@@ -3026,19 +3026,19 @@ const char* FloatingAmountMessage::Name() {
 }
 	
 void* FloatingAmountMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* FloatingAmountMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 int* FloatingAmountMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 24;
+	return (int*)(((char*)Data) + 24);
 }
 void* FloatingAmountMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 28;
+	return (((char*)Data) + 28);
 }
 int* FloatingAmountMessage::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 36;
+	return (int*)(((char*)Data) + 36);
 }
 
 FloatingAmountMessage aFloatingAmountMessage;
@@ -3056,11 +3056,11 @@ void* FloatingNumberMessage::New() {
 FloatingNumberMessage::FloatingNumberMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_FLOAT, 12, 32);
-		Fields[3].fieldinfo(&aDT_INT, 16, 6);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_FLOAT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 6, 0, 0, 32, 17, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 FloatingNumberMessage::~FloatingNumberMessage() {
 		free(Fields);
@@ -3071,16 +3071,16 @@ const char* FloatingNumberMessage::Name() {
 }
 	
 void* FloatingNumberMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* FloatingNumberMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* FloatingNumberMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 int* FloatingNumberMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 
 FloatingNumberMessage aFloatingNumberMessage;
@@ -3096,9 +3096,9 @@ void* GBIDDataMessage::New() {
 GBIDDataMessage::GBIDDataMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_GBID, 8, 32);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_GBID, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 GBIDDataMessage::~GBIDDataMessage() {
 		free(Fields);
@@ -3109,10 +3109,10 @@ const char* GBIDDataMessage::Name() {
 }
 	
 void* GBIDDataMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* GBIDDataMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 
 GBIDDataMessage aGBIDDataMessage;
@@ -3128,9 +3128,9 @@ void* GameIdMessage::New() {
 GameIdMessage::GameIdMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aGameId, 8, 0);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aGameId, 8, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 GameIdMessage::~GameIdMessage() {
 		free(Fields);
@@ -3141,10 +3141,10 @@ const char* GameIdMessage::Name() {
 }
 	
 void* GameIdMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* GameIdMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 
 GameIdMessage aGameIdMessage;
@@ -3160,9 +3160,9 @@ void* GameSetupMessage::New() {
 GameSetupMessage::GameSetupMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 GameSetupMessage::~GameSetupMessage() {
 		free(Fields);
@@ -3173,10 +3173,10 @@ const char* GameSetupMessage::Name() {
 }
 	
 void* GameSetupMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* GameSetupMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 
 GameSetupMessage aGameSetupMessage;
@@ -3192,9 +3192,9 @@ void* GameSyncedDataMessage::New() {
 GameSyncedDataMessage::GameSyncedDataMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aGameSyncedData, 8, 0);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aGameSyncedData, 8, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 GameSyncedDataMessage::~GameSyncedDataMessage() {
 		free(Fields);
@@ -3205,10 +3205,10 @@ const char* GameSyncedDataMessage::Name() {
 }
 	
 void* GameSyncedDataMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* GameSyncedDataMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 
 GameSyncedDataMessage aGameSyncedDataMessage;
@@ -3225,10 +3225,10 @@ void* GameTestingSamplingStartMessage::New() {
 GameTestingSamplingStartMessage::GameTestingSamplingStartMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_SNO, 8, 32);
-		Fields[2].fieldinfo(&aDT_SNO, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_SNO, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_SNO, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 GameTestingSamplingStartMessage::~GameTestingSamplingStartMessage() {
 		free(Fields);
@@ -3239,13 +3239,13 @@ const char* GameTestingSamplingStartMessage::Name() {
 }
 	
 void* GameTestingSamplingStartMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* GameTestingSamplingStartMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 void* GameTestingSamplingStartMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 
 GameTestingSamplingStartMessage aGameTestingSamplingStartMessage;
@@ -3261,9 +3261,9 @@ void* GenericBlobMessage::New() {
 GenericBlobMessage::GenericBlobMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 GenericBlobMessage::~GenericBlobMessage() {
 		free(Fields);
@@ -3274,10 +3274,10 @@ const char* GenericBlobMessage::Name() {
 }
 	
 void* GenericBlobMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* GenericBlobMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 
 GenericBlobMessage aGenericBlobMessage;
@@ -3293,9 +3293,9 @@ void* GoldModifiedMessage::New() {
 GoldModifiedMessage::GoldModifiedMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 1);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 GoldModifiedMessage::~GoldModifiedMessage() {
 		free(Fields);
@@ -3306,10 +3306,10 @@ const char* GoldModifiedMessage::Name() {
 }
 	
 void* GoldModifiedMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* GoldModifiedMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 
 GoldModifiedMessage aGoldModifiedMessage;
@@ -3326,10 +3326,10 @@ void* HearthPortalInfoMessage::New() {
 HearthPortalInfoMessage::HearthPortalInfoMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_SNO, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_SNO, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 HearthPortalInfoMessage::~HearthPortalInfoMessage() {
 		free(Fields);
@@ -3340,13 +3340,13 @@ const char* HearthPortalInfoMessage::Name() {
 }
 	
 void* HearthPortalInfoMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* HearthPortalInfoMessage::snoLevelArea(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 int* HearthPortalInfoMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 HearthPortalInfoMessage aHearthPortalInfoMessage;
@@ -3362,9 +3362,9 @@ void* HelperDetachMessage::New() {
 HelperDetachMessage::HelperDetachMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 HelperDetachMessage::~HelperDetachMessage() {
 		free(Fields);
@@ -3375,10 +3375,10 @@ const char* HelperDetachMessage::Name() {
 }
 	
 void* HelperDetachMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* HelperDetachMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 
 HelperDetachMessage aHelperDetachMessage;
@@ -3394,9 +3394,9 @@ void* HeroStateMessage::New() {
 HeroStateMessage::HeroStateMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aHeroStateData, 8, 0);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aHeroStateData, 8, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 HeroStateMessage::~HeroStateMessage() {
 		free(Fields);
@@ -3407,10 +3407,10 @@ const char* HeroStateMessage::Name() {
 }
 	
 void* HeroStateMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* HeroStateMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 
 HeroStateMessage aHeroStateMessage;
@@ -3429,12 +3429,12 @@ void* HirelingInfoUpdateMessage::New() {
 HirelingInfoUpdateMessage::HirelingInfoUpdateMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 6);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 2);
-		Fields[2].fieldinfo(&aDT_INT, 12, 1);
-		Fields[3].fieldinfo(&aDT_INT, 16, 32);
-		Fields[4].fieldinfo(&aDT_INT, 20, 7);
-		Fields[6 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 2, 0, 0, 3, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_INT, 20, 7, 0, 0, 127, 17, &aDT_NULL, -1);
+		Fields[6 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 HirelingInfoUpdateMessage::~HirelingInfoUpdateMessage() {
 		free(Fields);
@@ -3445,19 +3445,19 @@ const char* HirelingInfoUpdateMessage::Name() {
 }
 	
 void* HirelingInfoUpdateMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* HirelingInfoUpdateMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* HirelingInfoUpdateMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 int* HirelingInfoUpdateMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 int* HirelingInfoUpdateMessage::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 20;
+	return (int*)(((char*)Data) + 20);
 }
 
 HirelingInfoUpdateMessage aHirelingInfoUpdateMessage;
@@ -3474,10 +3474,10 @@ void* HirelingRequestLearnSkillMessage::New() {
 HirelingRequestLearnSkillMessage::HirelingRequestLearnSkillMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_SNO, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_SNO, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 HirelingRequestLearnSkillMessage::~HirelingRequestLearnSkillMessage() {
 		free(Fields);
@@ -3488,13 +3488,13 @@ const char* HirelingRequestLearnSkillMessage::Name() {
 }
 	
 void* HirelingRequestLearnSkillMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* HirelingRequestLearnSkillMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* HirelingRequestLearnSkillMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 
 HirelingRequestLearnSkillMessage aHirelingRequestLearnSkillMessage;
@@ -3510,9 +3510,9 @@ void* HirelingSwapMessage::New() {
 HirelingSwapMessage::HirelingSwapMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 HirelingSwapMessage::~HirelingSwapMessage() {
 		free(Fields);
@@ -3523,10 +3523,10 @@ const char* HirelingSwapMessage::Name() {
 }
 	
 void* HirelingSwapMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* HirelingSwapMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 
 HirelingSwapMessage aHirelingSwapMessage;
@@ -3542,9 +3542,9 @@ void* Int64DataMessage::New() {
 Int64DataMessage::Int64DataMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT64, 8, 64);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT64, 8, 64, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 Int64DataMessage::~Int64DataMessage() {
 		free(Fields);
@@ -3555,10 +3555,10 @@ const char* Int64DataMessage::Name() {
 }
 	
 void* Int64DataMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* Int64DataMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 
 Int64DataMessage aInt64DataMessage;
@@ -3574,9 +3574,9 @@ void* IntDataMessage::New() {
 IntDataMessage::IntDataMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 IntDataMessage::~IntDataMessage() {
 		free(Fields);
@@ -3587,10 +3587,10 @@ const char* IntDataMessage::Name() {
 }
 	
 void* IntDataMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* IntDataMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 
 IntDataMessage aIntDataMessage;
@@ -3607,10 +3607,10 @@ void* InterstitialMessage::New() {
 InterstitialMessage::InterstitialMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 3);
-		Fields[2].fieldinfo(&aDT_INT, 12, 1);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 3, 0, -1, 5, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 InterstitialMessage::~InterstitialMessage() {
 		free(Fields);
@@ -3621,13 +3621,13 @@ const char* InterstitialMessage::Name() {
 }
 	
 void* InterstitialMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* InterstitialMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* InterstitialMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 InterstitialMessage aInterstitialMessage;
@@ -3644,10 +3644,10 @@ void* InventoryLocationMessageData::New() {
 InventoryLocationMessageData::InventoryLocationMessageData() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aDT_INT, 0, 32);
-		Fields[1].fieldinfo(&aDT_INT, 4, 5);
-		Fields[2].fieldinfo(&aIVector2D, 8, 0);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aDT_INT, 0, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 4, 5, 0, -1, 28, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aIVector2D, 8, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 InventoryLocationMessageData::~InventoryLocationMessageData() {
 		free(Fields);
@@ -3658,13 +3658,13 @@ const char* InventoryLocationMessageData::Name() {
 }
 	
 int* InventoryLocationMessageData::unknow_field_0(void *Data) {
-	return (int*)((char*)Data) + 0;
+	return (int*)(((char*)Data) + 0);
 }
 int* InventoryLocationMessageData::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 4;
+	return (int*)(((char*)Data) + 4);
 }
 void* InventoryLocationMessageData::unknow_field_2(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 
 InventoryLocationMessageData aInventoryLocationMessageData;
@@ -3681,10 +3681,10 @@ void* InventoryRequestMoveMessage::New() {
 InventoryRequestMoveMessage::InventoryRequestMoveMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aInvLoc, 12, 0);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aInvLoc, 12, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 InventoryRequestMoveMessage::~InventoryRequestMoveMessage() {
 		free(Fields);
@@ -3695,13 +3695,13 @@ const char* InventoryRequestMoveMessage::Name() {
 }
 	
 void* InventoryRequestMoveMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* InventoryRequestMoveMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* InventoryRequestMoveMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 
 InventoryRequestMoveMessage aInventoryRequestMoveMessage;
@@ -3718,10 +3718,10 @@ void* InventoryRequestSocketMessage::New() {
 InventoryRequestSocketMessage::InventoryRequestSocketMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 InventoryRequestSocketMessage::~InventoryRequestSocketMessage() {
 		free(Fields);
@@ -3732,13 +3732,13 @@ const char* InventoryRequestSocketMessage::Name() {
 }
 	
 void* InventoryRequestSocketMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* InventoryRequestSocketMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* InventoryRequestSocketMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 InventoryRequestSocketMessage aInventoryRequestSocketMessage;
@@ -3757,12 +3757,12 @@ void* InventoryRequestUseMessage::New() {
 InventoryRequestUseMessage::InventoryRequestUseMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 6);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 2);
-		Fields[3].fieldinfo(&aDT_INT, 16, 32);
-		Fields[4].fieldinfo(&aWorldPlace, 20, 0);
-		Fields[6 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 2, 0, -1, 2, 17, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aWorldPlace, 20, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[6 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 InventoryRequestUseMessage::~InventoryRequestUseMessage() {
 		free(Fields);
@@ -3773,19 +3773,19 @@ const char* InventoryRequestUseMessage::Name() {
 }
 	
 void* InventoryRequestUseMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* InventoryRequestUseMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* InventoryRequestUseMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 int* InventoryRequestUseMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 void* InventoryRequestUseMessage::unknow_field_4(void *Data) {
-	return ((char*)Data) + 20;
+	return (((char*)Data) + 20);
 }
 
 InventoryRequestUseMessage aInventoryRequestUseMessage;
@@ -3803,11 +3803,11 @@ void* InventorySplitStackMessage::New() {
 InventorySplitStackMessage::InventorySplitStackMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT64, 16, 64);
-		Fields[3].fieldinfo(&aInvLoc, 24, 0);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT64, 16, 64, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aInvLoc, 24, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 InventorySplitStackMessage::~InventorySplitStackMessage() {
 		free(Fields);
@@ -3818,16 +3818,16 @@ const char* InventorySplitStackMessage::Name() {
 }
 	
 void* InventorySplitStackMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* InventorySplitStackMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* InventorySplitStackMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 16;
+	return (((char*)Data) + 16);
 }
 void* InventorySplitStackMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 24;
+	return (((char*)Data) + 24);
 }
 
 InventorySplitStackMessage aInventorySplitStackMessage;
@@ -3845,11 +3845,11 @@ void* InventoryStackTransferMessage::New() {
 InventoryStackTransferMessage::InventoryStackTransferMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[3].fieldinfo(&aDT_INT64, 16, 64);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT64, 16, 64, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 InventoryStackTransferMessage::~InventoryStackTransferMessage() {
 		free(Fields);
@@ -3860,16 +3860,16 @@ const char* InventoryStackTransferMessage::Name() {
 }
 	
 void* InventoryStackTransferMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* InventoryStackTransferMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* InventoryStackTransferMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 void* InventoryStackTransferMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 16;
+	return (((char*)Data) + 16);
 }
 
 InventoryStackTransferMessage aInventoryStackTransferMessage;
@@ -3885,9 +3885,9 @@ void* ItemIdMessage::New() {
 ItemIdMessage::ItemIdMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aItemId, 8, 0);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aItemId, 8, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ItemIdMessage::~ItemIdMessage() {
 		free(Fields);
@@ -3898,10 +3898,10 @@ const char* ItemIdMessage::Name() {
 }
 	
 void* ItemIdMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* ItemIdMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 
 ItemIdMessage aItemIdMessage;
@@ -3923,15 +3923,15 @@ void* JoinBNetGameMessage::New() {
 JoinBNetGameMessage::JoinBNetGameMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 9);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aEntityId, 8, 0);
-		Fields[2].fieldinfo(&aGameId, 24, 0);
-		Fields[3].fieldinfo(&aDT_INT, 48, 32);
-		Fields[4].fieldinfo(&aDT_INT64, 56, 64);
-		Fields[5].fieldinfo(&aDT_INT, 64, 4);
-		Fields[6].fieldinfo(&aDT_INT, 68, 32);
-		Fields[7].fieldinfo(&aDT_INT, 72, 32);
-		Fields[9 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aEntityId, 8, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aGameId, 24, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 48, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_INT64, 56, 64, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5].fieldinfo(&aDT_INT, 64, 4, 0, 2, 17, 17, &aDT_NULL, -1);
+		Fields[6].fieldinfo(&aDT_INT, 68, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[7].fieldinfo(&aDT_INT, 72, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[9 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 JoinBNetGameMessage::~JoinBNetGameMessage() {
 		free(Fields);
@@ -3942,28 +3942,28 @@ const char* JoinBNetGameMessage::Name() {
 }
 	
 void* JoinBNetGameMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* JoinBNetGameMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 void* JoinBNetGameMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 24;
+	return (((char*)Data) + 24);
 }
 int* JoinBNetGameMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 48;
+	return (int*)(((char*)Data) + 48);
 }
 void* JoinBNetGameMessage::unknow_field_4(void *Data) {
-	return ((char*)Data) + 56;
+	return (((char*)Data) + 56);
 }
 int* JoinBNetGameMessage::unknow_field_5(void *Data) {
-	return (int*)((char*)Data) + 64;
+	return (int*)(((char*)Data) + 64);
 }
 int* JoinBNetGameMessage::unknow_field_6(void *Data) {
-	return (int*)((char*)Data) + 68;
+	return (int*)(((char*)Data) + 68);
 }
 int* JoinBNetGameMessage::unknow_field_7(void *Data) {
-	return (int*)((char*)Data) + 72;
+	return (int*)(((char*)Data) + 72);
 }
 
 JoinBNetGameMessage aJoinBNetGameMessage;
@@ -3982,12 +3982,12 @@ void* JoinLANGameMessage::New() {
 JoinLANGameMessage::JoinLANGameMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 6);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_CHARARRAY, 12, 8);
-		Fields[3].fieldinfo(&aDT_CHARARRAY, 140, 6);
-		Fields[4].fieldinfo(&aDT_INT, 192, 4);
-		Fields[6 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_CHARARRAY, 12, 8, 0, 0, 0, 1, &aDT_NULL, 128);
+		Fields[3].fieldinfo(&aDT_CHARARRAY, 140, 6, 0, 0, 0, 1, &aDT_NULL, 49);
+		Fields[4].fieldinfo(&aDT_INT, 192, 4, 0, 2, 17, 17, &aDT_NULL, -1);
+		Fields[6 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 JoinLANGameMessage::~JoinLANGameMessage() {
 		free(Fields);
@@ -3998,19 +3998,19 @@ const char* JoinLANGameMessage::Name() {
 }
 	
 void* JoinLANGameMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* JoinLANGameMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* JoinLANGameMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 void* JoinLANGameMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 140;
+	return (((char*)Data) + 140);
 }
 int* JoinLANGameMessage::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 192;
+	return (int*)(((char*)Data) + 192);
 }
 
 JoinLANGameMessage aJoinLANGameMessage;
@@ -4029,12 +4029,12 @@ void* KillCountMessage::New() {
 KillCountMessage::KillCountMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 6);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 3);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[3].fieldinfo(&aDT_INT, 16, 32);
-		Fields[4].fieldinfo(&aDT_INT, 20, 32);
-		Fields[6 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 3, 0, 0, 7, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_INT, 20, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[6 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 KillCountMessage::~KillCountMessage() {
 		free(Fields);
@@ -4045,19 +4045,19 @@ const char* KillCountMessage::Name() {
 }
 	
 void* KillCountMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* KillCountMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* KillCountMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 int* KillCountMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 int* KillCountMessage::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 20;
+	return (int*)(((char*)Data) + 20);
 }
 
 KillCountMessage aKillCountMessage;
@@ -4076,12 +4076,12 @@ void* KillCounterUpdateMessage::New() {
 KillCounterUpdateMessage::KillCounterUpdateMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 6);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 2);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[3].fieldinfo(&aDT_INT, 16, 32);
-		Fields[4].fieldinfo(&aDT_INT, 20, 1);
-		Fields[6 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 2, 0, 0, 3, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_INT, 20, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[6 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 KillCounterUpdateMessage::~KillCounterUpdateMessage() {
 		free(Fields);
@@ -4092,19 +4092,19 @@ const char* KillCounterUpdateMessage::Name() {
 }
 	
 void* KillCounterUpdateMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* KillCounterUpdateMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* KillCounterUpdateMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 int* KillCounterUpdateMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 int* KillCounterUpdateMessage::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 20;
+	return (int*)(((char*)Data) + 20);
 }
 
 KillCounterUpdateMessage aKillCounterUpdateMessage;
@@ -4120,9 +4120,9 @@ void* LearnedSkillMessage::New() {
 LearnedSkillMessage::LearnedSkillMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_FIXEDARRAY, 8, 32);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_FIXEDARRAY, 8, 32, 8, 0, 0, 8, &aDT_SNO, 128);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 LearnedSkillMessage::~LearnedSkillMessage() {
 		free(Fields);
@@ -4133,10 +4133,10 @@ const char* LearnedSkillMessage::Name() {
 }
 	
 void* LearnedSkillMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* LearnedSkillMessage::aSkillSNOs(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 
 LearnedSkillMessage aLearnedSkillMessage;
@@ -4152,9 +4152,9 @@ void* LogoutContextMessage::New() {
 LogoutContextMessage::LogoutContextMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 1);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 LogoutContextMessage::~LogoutContextMessage() {
 		free(Fields);
@@ -4165,10 +4165,10 @@ const char* LogoutContextMessage::Name() {
 }
 	
 void* LogoutContextMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* LogoutContextMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 
 LogoutContextMessage aLogoutContextMessage;
@@ -4186,11 +4186,11 @@ void* LogoutTickTimeMessage::New() {
 LogoutTickTimeMessage::LogoutTickTimeMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 1);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[3].fieldinfo(&aDT_INT, 16, 32);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 LogoutTickTimeMessage::~LogoutTickTimeMessage() {
 		free(Fields);
@@ -4201,16 +4201,16 @@ const char* LogoutTickTimeMessage::Name() {
 }
 	
 void* LogoutTickTimeMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* LogoutTickTimeMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* LogoutTickTimeMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 int* LogoutTickTimeMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 
 LogoutTickTimeMessage aLogoutTickTimeMessage;
@@ -4226,9 +4226,9 @@ void* LoreMessage::New() {
 LoreMessage::LoreMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_SNO, 8, 32);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_SNO, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 LoreMessage::~LoreMessage() {
 		free(Fields);
@@ -4239,10 +4239,10 @@ const char* LoreMessage::Name() {
 }
 	
 void* LoreMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* LoreMessage::snoLore(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 
 LoreMessage aLoreMessage;
@@ -4259,10 +4259,10 @@ void* LowHealthCombatMessage::New() {
 LowHealthCombatMessage::LowHealthCombatMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_FLOAT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_FLOAT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 LowHealthCombatMessage::~LowHealthCombatMessage() {
 		free(Fields);
@@ -4273,13 +4273,13 @@ const char* LowHealthCombatMessage::Name() {
 }
 	
 void* LowHealthCombatMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* LowHealthCombatMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 int* LowHealthCombatMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 LowHealthCombatMessage aLowHealthCombatMessage;
@@ -4307,21 +4307,21 @@ void* MapMarkerInfoMessage::New() {
 MapMarkerInfoMessage::MapMarkerInfoMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 15);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aWorldPlace, 12, 0);
-		Fields[3].fieldinfo(&aDT_INT, 28, 32);
-		Fields[4].fieldinfo(&aDT_SNO, 36, 32);
-		Fields[5].fieldinfo(&aDT_INT, 40, 32);
-		Fields[6].fieldinfo(&aDT_FLOAT, 56, 32);
-		Fields[7].fieldinfo(&aDT_FLOAT, 60, 32);
-		Fields[8].fieldinfo(&aDT_FLOAT, 64, 32);
-		Fields[9].fieldinfo(&aDT_INT, 32, 32);
-		Fields[10].fieldinfo(&aDT_INT, 44, 1);
-		Fields[11].fieldinfo(&aDT_INT, 48, 1);
-		Fields[12].fieldinfo(&aDT_INT, 52, 1);
-		Fields[13].fieldinfo(&aDT_INT, 68, 32);
-		Fields[15 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aWorldPlace, 12, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 28, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_SNO, 36, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5].fieldinfo(&aDT_INT, 40, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[6].fieldinfo(&aDT_FLOAT, 56, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[7].fieldinfo(&aDT_FLOAT, 60, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[8].fieldinfo(&aDT_FLOAT, 64, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[9].fieldinfo(&aDT_INT, 32, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[10].fieldinfo(&aDT_INT, 44, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[11].fieldinfo(&aDT_INT, 48, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[12].fieldinfo(&aDT_INT, 52, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[13].fieldinfo(&aDT_INT, 68, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[15 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 MapMarkerInfoMessage::~MapMarkerInfoMessage() {
 		free(Fields);
@@ -4332,46 +4332,46 @@ const char* MapMarkerInfoMessage::Name() {
 }
 	
 void* MapMarkerInfoMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* MapMarkerInfoMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* MapMarkerInfoMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 int* MapMarkerInfoMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 28;
+	return (int*)(((char*)Data) + 28);
 }
 void* MapMarkerInfoMessage::m_snoStringList(void *Data) {
-	return ((char*)Data) + 36;
+	return (((char*)Data) + 36);
 }
 int* MapMarkerInfoMessage::unknow_field_5(void *Data) {
-	return (int*)((char*)Data) + 40;
+	return (int*)(((char*)Data) + 40);
 }
 void* MapMarkerInfoMessage::unknow_field_6(void *Data) {
-	return ((char*)Data) + 56;
+	return (((char*)Data) + 56);
 }
 void* MapMarkerInfoMessage::unknow_field_7(void *Data) {
-	return ((char*)Data) + 60;
+	return (((char*)Data) + 60);
 }
 void* MapMarkerInfoMessage::unknow_field_8(void *Data) {
-	return ((char*)Data) + 64;
+	return (((char*)Data) + 64);
 }
 int* MapMarkerInfoMessage::unknow_field_9(void *Data) {
-	return (int*)((char*)Data) + 32;
+	return (int*)(((char*)Data) + 32);
 }
 int* MapMarkerInfoMessage::unknow_field_10(void *Data) {
-	return (int*)((char*)Data) + 44;
+	return (int*)(((char*)Data) + 44);
 }
 int* MapMarkerInfoMessage::unknow_field_11(void *Data) {
-	return (int*)((char*)Data) + 48;
+	return (int*)(((char*)Data) + 48);
 }
 int* MapMarkerInfoMessage::unknow_field_12(void *Data) {
-	return (int*)((char*)Data) + 52;
+	return (int*)(((char*)Data) + 52);
 }
 int* MapMarkerInfoMessage::unknow_field_13(void *Data) {
-	return (int*)((char*)Data) + 68;
+	return (int*)(((char*)Data) + 68);
 }
 
 MapMarkerInfoMessage aMapMarkerInfoMessage;
@@ -4391,13 +4391,13 @@ void* MapRevealSceneMessage::New() {
 MapRevealSceneMessage::MapRevealSceneMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 7);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_SNO, 12, 32);
-		Fields[3].fieldinfo(&aPRTransform, 16, 0);
-		Fields[4].fieldinfo(&aDT_INT, 44, 32);
-		Fields[5].fieldinfo(&aDT_INT, 48, 3);
-		Fields[7 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_SNO, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aPRTransform, 16, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_INT, 44, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5].fieldinfo(&aDT_INT, 48, 3, 0, 0, 7, 17, &aDT_NULL, -1);
+		Fields[7 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 MapRevealSceneMessage::~MapRevealSceneMessage() {
 		free(Fields);
@@ -4408,22 +4408,22 @@ const char* MapRevealSceneMessage::Name() {
 }
 	
 void* MapRevealSceneMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* MapRevealSceneMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* MapRevealSceneMessage::snoScene(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 void* MapRevealSceneMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 16;
+	return (((char*)Data) + 16);
 }
 int* MapRevealSceneMessage::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 44;
+	return (int*)(((char*)Data) + 44);
 }
 int* MapRevealSceneMessage::unknow_field_5(void *Data) {
-	return (int*)((char*)Data) + 48;
+	return (int*)(((char*)Data) + 48);
 }
 
 MapRevealSceneMessage aMapRevealSceneMessage;
@@ -4441,11 +4441,11 @@ void* NPCInteractOptionsMessage::New() {
 NPCInteractOptionsMessage::NPCInteractOptionsMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_FIXEDARRAY, 12, 0);
-		Fields[3].fieldinfo(&aDT_INT, 336, 2);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_FIXEDARRAY, 12, 0, 5, 0, 0, 8, &aNPCInteraction, 20);
+		Fields[3].fieldinfo(&aDT_INT, 336, 2, 0, 0, 2, 17, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 NPCInteractOptionsMessage::~NPCInteractOptionsMessage() {
 		free(Fields);
@@ -4456,16 +4456,16 @@ const char* NPCInteractOptionsMessage::Name() {
 }
 	
 void* NPCInteractOptionsMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* NPCInteractOptionsMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* NPCInteractOptionsMessage::tNPCInteraction(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 int* NPCInteractOptionsMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 336;
+	return (int*)(((char*)Data) + 336);
 }
 
 NPCInteractOptionsMessage aNPCInteractOptionsMessage;
@@ -4482,10 +4482,10 @@ void* NetworkAddressMessage::New() {
 NetworkAddressMessage::NetworkAddressMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_WORD, 12, 16);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_WORD, 12, 16, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 NetworkAddressMessage::~NetworkAddressMessage() {
 		free(Fields);
@@ -4496,13 +4496,13 @@ const char* NetworkAddressMessage::Name() {
 }
 	
 void* NetworkAddressMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* NetworkAddressMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* NetworkAddressMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 
 NetworkAddressMessage aNetworkAddressMessage;
@@ -4528,19 +4528,19 @@ void* NewPlayerMessage::New() {
 NewPlayerMessage::NewPlayerMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 13);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 3);
-		Fields[2].fieldinfo(&aDT_CHARARRAY, 12, 8);
-		Fields[3].fieldinfo(&aDT_CHARARRAY, 140, 7);
-		Fields[4].fieldinfo(&aDT_INT, 244, 5);
-		Fields[5].fieldinfo(&aDT_INT, 248, 3);
-		Fields[6].fieldinfo(&aDT_SNO, 252, 32);
-		Fields[7].fieldinfo(&aDT_INT, 256, 7);
-		Fields[8].fieldinfo(&aHeroStateData, 260, 0);
-		Fields[9].fieldinfo(&aDT_INT, 16904, 1);
-		Fields[10].fieldinfo(&aDT_INT, 16908, 32);
-		Fields[11].fieldinfo(&aDT_INT, 16912, 32);
-		Fields[13 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 3, 0, 0, 7, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_CHARARRAY, 12, 8, 0, 0, 0, 1, &aDT_NULL, 128);
+		Fields[3].fieldinfo(&aDT_CHARARRAY, 140, 7, 0, 0, 0, 1, &aDT_NULL, 101);
+		Fields[4].fieldinfo(&aDT_INT, 244, 5, 0, -1, 22, 17, &aDT_NULL, -1);
+		Fields[5].fieldinfo(&aDT_INT, 248, 3, 0, -1, 4, 17, &aDT_NULL, -1);
+		Fields[6].fieldinfo(&aDT_SNO, 252, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[7].fieldinfo(&aDT_INT, 256, 7, 0, 0, 127, 17, &aDT_NULL, -1);
+		Fields[8].fieldinfo(&aHeroStateData, 260, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[9].fieldinfo(&aDT_INT, 16904, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[10].fieldinfo(&aDT_INT, 16908, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[11].fieldinfo(&aDT_INT, 16912, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[13 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 NewPlayerMessage::~NewPlayerMessage() {
 		free(Fields);
@@ -4551,40 +4551,40 @@ const char* NewPlayerMessage::Name() {
 }
 	
 void* NewPlayerMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* NewPlayerMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* NewPlayerMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 void* NewPlayerMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 140;
+	return (((char*)Data) + 140);
 }
 int* NewPlayerMessage::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 244;
+	return (int*)(((char*)Data) + 244);
 }
 int* NewPlayerMessage::unknow_field_5(void *Data) {
-	return (int*)((char*)Data) + 248;
+	return (int*)(((char*)Data) + 248);
 }
 void* NewPlayerMessage::snoActorPortrait(void *Data) {
-	return ((char*)Data) + 252;
+	return (((char*)Data) + 252);
 }
 int* NewPlayerMessage::unknow_field_7(void *Data) {
-	return (int*)((char*)Data) + 256;
+	return (int*)(((char*)Data) + 256);
 }
 void* NewPlayerMessage::unknow_field_8(void *Data) {
-	return ((char*)Data) + 260;
+	return (((char*)Data) + 260);
 }
 int* NewPlayerMessage::unknow_field_9(void *Data) {
-	return (int*)((char*)Data) + 16904;
+	return (int*)(((char*)Data) + 16904);
 }
 int* NewPlayerMessage::unknow_field_10(void *Data) {
-	return (int*)((char*)Data) + 16908;
+	return (int*)(((char*)Data) + 16908);
 }
 int* NewPlayerMessage::unknow_field_11(void *Data) {
-	return (int*)((char*)Data) + 16912;
+	return (int*)(((char*)Data) + 16912);
 }
 
 NewPlayerMessage aNewPlayerMessage;
@@ -4600,9 +4600,9 @@ void* PRTransformMessage::New() {
 PRTransformMessage::PRTransformMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aPRTransform, 8, 0);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aPRTransform, 8, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 PRTransformMessage::~PRTransformMessage() {
 		free(Fields);
@@ -4613,10 +4613,10 @@ const char* PRTransformMessage::Name() {
 }
 	
 void* PRTransformMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* PRTransformMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 
 PRTransformMessage aPRTransformMessage;
@@ -4635,12 +4635,12 @@ void* PetMessage::New() {
 PetMessage::PetMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 6);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 3);
-		Fields[2].fieldinfo(&aDT_INT, 12, 5);
-		Fields[3].fieldinfo(&aDT_INT, 16, 32);
-		Fields[4].fieldinfo(&aDT_INT, 20, 5);
-		Fields[6 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 3, 0, 0, 7, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 5, 0, 0, 31, 17, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_INT, 20, 5, 0, -1, 23, 17, &aDT_NULL, -1);
+		Fields[6 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 PetMessage::~PetMessage() {
 		free(Fields);
@@ -4651,19 +4651,19 @@ const char* PetMessage::Name() {
 }
 	
 void* PetMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* PetMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* PetMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 int* PetMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 int* PetMessage::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 20;
+	return (int*)(((char*)Data) + 20);
 }
 
 PetMessage aPetMessage;
@@ -4680,10 +4680,10 @@ void* PlasmaAttachMessage::New() {
 PlasmaAttachMessage::PlasmaAttachMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 PlasmaAttachMessage::~PlasmaAttachMessage() {
 		free(Fields);
@@ -4694,13 +4694,13 @@ const char* PlasmaAttachMessage::Name() {
 }
 	
 void* PlasmaAttachMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* PlasmaAttachMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* PlasmaAttachMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 PlasmaAttachMessage aPlasmaAttachMessage;
@@ -4719,12 +4719,12 @@ void* PlayAnimationMessage::New() {
 PlayAnimationMessage::PlayAnimationMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 6);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 4);
-		Fields[3].fieldinfo(&aDT_FLOAT, 16, 32);
-		Fields[4].fieldinfo(&aDT_FIXEDARRAY, 24, 0);
-		Fields[6 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 4, 0, 0, 12, 17, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_FLOAT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_FIXEDARRAY, 24, 0, 2, 0, 0, 8, &aPlayAnimationMessageSpec, 3);
+		Fields[6 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 PlayAnimationMessage::~PlayAnimationMessage() {
 		free(Fields);
@@ -4735,19 +4735,19 @@ const char* PlayAnimationMessage::Name() {
 }
 	
 void* PlayAnimationMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* PlayAnimationMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* PlayAnimationMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 void* PlayAnimationMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 16;
+	return (((char*)Data) + 16);
 }
 void* PlayAnimationMessage::tAnim(void *Data) {
-	return ((char*)Data) + 24;
+	return (((char*)Data) + 24);
 }
 
 PlayAnimationMessage aPlayAnimationMessage;
@@ -4765,11 +4765,11 @@ void* PlayAnimationMessageSpec::New() {
 PlayAnimationMessageSpec::PlayAnimationMessageSpec() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aDT_INT, 0, 32);
-		Fields[1].fieldinfo(&aDT_SNO, 4, 32);
-		Fields[2].fieldinfo(&aDT_INT, 8, 32);
-		Fields[3].fieldinfo(&aDT_FLOAT, 12, 32);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aDT_INT, 0, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_SNO, 4, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_FLOAT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 PlayAnimationMessageSpec::~PlayAnimationMessageSpec() {
 		free(Fields);
@@ -4780,16 +4780,16 @@ const char* PlayAnimationMessageSpec::Name() {
 }
 	
 int* PlayAnimationMessageSpec::unknow_field_0(void *Data) {
-	return (int*)((char*)Data) + 0;
+	return (int*)(((char*)Data) + 0);
 }
 void* PlayAnimationMessageSpec::unknow_field_1(void *Data) {
-	return ((char*)Data) + 4;
+	return (((char*)Data) + 4);
 }
 int* PlayAnimationMessageSpec::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* PlayAnimationMessageSpec::unknow_field_3(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 
 PlayAnimationMessageSpec aPlayAnimationMessageSpec;
@@ -4808,12 +4808,12 @@ void* PlayConvLineMessage::New() {
 PlayConvLineMessage::PlayConvLineMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 6);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_FIXEDARRAY, 12, 32);
-		Fields[3].fieldinfo(&aPlayLineParams, 48, 0);
-		Fields[4].fieldinfo(&aDT_INT, 164, 32);
-		Fields[6 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_FIXEDARRAY, 12, 32, 0, 0, 0, 1, &aDT_INT, 9);
+		Fields[3].fieldinfo(&aPlayLineParams, 48, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_INT, 164, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[6 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 PlayConvLineMessage::~PlayConvLineMessage() {
 		free(Fields);
@@ -4824,19 +4824,19 @@ const char* PlayConvLineMessage::Name() {
 }
 	
 void* PlayConvLineMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* PlayConvLineMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* PlayConvLineMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 void* PlayConvLineMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 48;
+	return (((char*)Data) + 48);
 }
 int* PlayConvLineMessage::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 164;
+	return (int*)(((char*)Data) + 164);
 }
 
 PlayConvLineMessage aPlayConvLineMessage;
@@ -4852,9 +4852,9 @@ void* PlayCutsceneMessage::New() {
 PlayCutsceneMessage::PlayCutsceneMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 PlayCutsceneMessage::~PlayCutsceneMessage() {
 		free(Fields);
@@ -4865,10 +4865,10 @@ const char* PlayCutsceneMessage::Name() {
 }
 	
 void* PlayCutsceneMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* PlayCutsceneMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 
 PlayCutsceneMessage aPlayCutsceneMessage;
@@ -4886,11 +4886,11 @@ void* PlayEffectMessage::New() {
 PlayEffectMessage::PlayEffectMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 7);
-		Fields[3].fieldinfo(&aDT_OPTIONAL, 16, 32);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 7, 0, -1, 70, 17, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_OPTIONAL, 16, 32, 0, 0, 0, 1, &aDT_INT, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 PlayEffectMessage::~PlayEffectMessage() {
 		free(Fields);
@@ -4901,16 +4901,16 @@ const char* PlayEffectMessage::Name() {
 }
 	
 void* PlayEffectMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* PlayEffectMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* PlayEffectMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 void* PlayEffectMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 16;
+	return (((char*)Data) + 16);
 }
 
 PlayEffectMessage aPlayEffectMessage;
@@ -4926,9 +4926,9 @@ void* PlayErrorSoundMessage::New() {
 PlayErrorSoundMessage::PlayErrorSoundMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 PlayErrorSoundMessage::~PlayErrorSoundMessage() {
 		free(Fields);
@@ -4939,10 +4939,10 @@ const char* PlayErrorSoundMessage::Name() {
 }
 	
 void* PlayErrorSoundMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* PlayErrorSoundMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 
 PlayErrorSoundMessage aPlayErrorSoundMessage;
@@ -4961,12 +4961,12 @@ void* PlayHitEffectMessage::New() {
 PlayHitEffectMessage::PlayHitEffectMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 6);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[3].fieldinfo(&aDT_INT, 16, 3);
-		Fields[4].fieldinfo(&aDT_INT, 20, 1);
-		Fields[6 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 3, 0, -1, 6, 17, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_INT, 20, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[6 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 PlayHitEffectMessage::~PlayHitEffectMessage() {
 		free(Fields);
@@ -4977,19 +4977,19 @@ const char* PlayHitEffectMessage::Name() {
 }
 	
 void* PlayHitEffectMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* PlayHitEffectMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* PlayHitEffectMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 int* PlayHitEffectMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 int* PlayHitEffectMessage::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 20;
+	return (int*)(((char*)Data) + 20);
 }
 
 PlayHitEffectMessage aPlayHitEffectMessage;
@@ -5007,11 +5007,11 @@ void* PlayHitEffectOverrideMessage::New() {
 PlayHitEffectOverrideMessage::PlayHitEffectOverrideMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[3].fieldinfo(&aDT_SNO, 16, 32);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_SNO, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 PlayHitEffectOverrideMessage::~PlayHitEffectOverrideMessage() {
 		free(Fields);
@@ -5022,16 +5022,16 @@ const char* PlayHitEffectOverrideMessage::Name() {
 }
 	
 void* PlayHitEffectOverrideMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* PlayHitEffectOverrideMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* PlayHitEffectOverrideMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 void* PlayHitEffectOverrideMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 16;
+	return (((char*)Data) + 16);
 }
 
 PlayHitEffectOverrideMessage aPlayHitEffectOverrideMessage;
@@ -5047,9 +5047,9 @@ void* PlayMusicMessage::New() {
 PlayMusicMessage::PlayMusicMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_SNO, 8, 32);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_SNO, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 PlayMusicMessage::~PlayMusicMessage() {
 		free(Fields);
@@ -5060,10 +5060,10 @@ const char* PlayMusicMessage::Name() {
 }
 	
 void* PlayMusicMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* PlayMusicMessage::snoMusic(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 
 PlayMusicMessage aPlayMusicMessage;
@@ -5079,9 +5079,9 @@ void* PlayNonPositionalSoundMessage::New() {
 PlayNonPositionalSoundMessage::PlayNonPositionalSoundMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_SNO, 8, 32);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_SNO, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 PlayNonPositionalSoundMessage::~PlayNonPositionalSoundMessage() {
 		free(Fields);
@@ -5092,10 +5092,10 @@ const char* PlayNonPositionalSoundMessage::Name() {
 }
 	
 void* PlayNonPositionalSoundMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* PlayNonPositionalSoundMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 
 PlayNonPositionalSoundMessage aPlayNonPositionalSoundMessage;
@@ -5112,10 +5112,10 @@ void* PlayerActorSetInitialMessage::New() {
 PlayerActorSetInitialMessage::PlayerActorSetInitialMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 3);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 3, 0, 0, 7, 17, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 PlayerActorSetInitialMessage::~PlayerActorSetInitialMessage() {
 		free(Fields);
@@ -5126,13 +5126,13 @@ const char* PlayerActorSetInitialMessage::Name() {
 }
 	
 void* PlayerActorSetInitialMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* PlayerActorSetInitialMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* PlayerActorSetInitialMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 PlayerActorSetInitialMessage aPlayerActorSetInitialMessage;
@@ -5149,10 +5149,10 @@ void* PlayerChangeHotbarButtonMessage::New() {
 PlayerChangeHotbarButtonMessage::PlayerChangeHotbarButtonMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 4);
-		Fields[2].fieldinfo(&aHotbarButtonData, 12, 0);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 4, 0, -1, 8, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aHotbarButtonData, 12, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 PlayerChangeHotbarButtonMessage::~PlayerChangeHotbarButtonMessage() {
 		free(Fields);
@@ -5163,13 +5163,13 @@ const char* PlayerChangeHotbarButtonMessage::Name() {
 }
 	
 void* PlayerChangeHotbarButtonMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* PlayerChangeHotbarButtonMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* PlayerChangeHotbarButtonMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 
 PlayerChangeHotbarButtonMessage aPlayerChangeHotbarButtonMessage;
@@ -5186,10 +5186,10 @@ void* PlayerDeSyncSnapMessage::New() {
 PlayerDeSyncSnapMessage::PlayerDeSyncSnapMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aWorldPlace, 8, 0);
-		Fields[2].fieldinfo(&aDT_SNO, 24, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aWorldPlace, 8, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_SNO, 24, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 PlayerDeSyncSnapMessage::~PlayerDeSyncSnapMessage() {
 		free(Fields);
@@ -5200,13 +5200,13 @@ const char* PlayerDeSyncSnapMessage::Name() {
 }
 	
 void* PlayerDeSyncSnapMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* PlayerDeSyncSnapMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 void* PlayerDeSyncSnapMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 24;
+	return (((char*)Data) + 24);
 }
 
 PlayerDeSyncSnapMessage aPlayerDeSyncSnapMessage;
@@ -5223,10 +5223,10 @@ void* PlayerEnterKnownMessage::New() {
 PlayerEnterKnownMessage::PlayerEnterKnownMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 3);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 3, 0, 0, 7, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 PlayerEnterKnownMessage::~PlayerEnterKnownMessage() {
 		free(Fields);
@@ -5237,13 +5237,13 @@ const char* PlayerEnterKnownMessage::Name() {
 }
 	
 void* PlayerEnterKnownMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* PlayerEnterKnownMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* PlayerEnterKnownMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 PlayerEnterKnownMessage aPlayerEnterKnownMessage;
@@ -5259,9 +5259,9 @@ void* PlayerIndexMessage::New() {
 PlayerIndexMessage::PlayerIndexMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 4);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 4, 0, -1, 7, 17, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 PlayerIndexMessage::~PlayerIndexMessage() {
 		free(Fields);
@@ -5272,10 +5272,10 @@ const char* PlayerIndexMessage::Name() {
 }
 	
 void* PlayerIndexMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* PlayerIndexMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 
 PlayerIndexMessage aPlayerIndexMessage;
@@ -5292,10 +5292,10 @@ void* PlayerIntValMessage::New() {
 PlayerIntValMessage::PlayerIntValMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 3);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 3, 0, 0, 7, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 PlayerIntValMessage::~PlayerIntValMessage() {
 		free(Fields);
@@ -5306,13 +5306,13 @@ const char* PlayerIntValMessage::Name() {
 }
 	
 void* PlayerIntValMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* PlayerIntValMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* PlayerIntValMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 PlayerIntValMessage aPlayerIntValMessage;
@@ -5329,10 +5329,10 @@ void* PlayerInteractMessage::New() {
 PlayerInteractMessage::PlayerInteractMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 3);
-		Fields[2].fieldinfo(&aDT_INT, 12, 1);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 3, 0, 0, 7, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 1, 0, -1, 0, 17, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 PlayerInteractMessage::~PlayerInteractMessage() {
 		free(Fields);
@@ -5343,13 +5343,13 @@ const char* PlayerInteractMessage::Name() {
 }
 	
 void* PlayerInteractMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* PlayerInteractMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* PlayerInteractMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 PlayerInteractMessage aPlayerInteractMessage;
@@ -5366,10 +5366,10 @@ void* PlayerQuestMessage::New() {
 PlayerQuestMessage::PlayerQuestMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 4);
-		Fields[2].fieldinfo(&aDT_SNO, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 4, 0, -1, 7, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_SNO, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 PlayerQuestMessage::~PlayerQuestMessage() {
 		free(Fields);
@@ -5380,13 +5380,13 @@ const char* PlayerQuestMessage::Name() {
 }
 	
 void* PlayerQuestMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* PlayerQuestMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* PlayerQuestMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 
 PlayerQuestMessage aPlayerQuestMessage;
@@ -5403,10 +5403,10 @@ void* PlayerWarpedMessage::New() {
 PlayerWarpedMessage::PlayerWarpedMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 4);
-		Fields[2].fieldinfo(&aDT_FLOAT, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 4, 0, 0, 10, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_FLOAT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 PlayerWarpedMessage::~PlayerWarpedMessage() {
 		free(Fields);
@@ -5417,13 +5417,13 @@ const char* PlayerWarpedMessage::Name() {
 }
 	
 void* PlayerWarpedMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* PlayerWarpedMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* PlayerWarpedMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 
 PlayerWarpedMessage aPlayerWarpedMessage;
@@ -5440,10 +5440,10 @@ void* PortalSpecifierMessage::New() {
 PortalSpecifierMessage::PortalSpecifierMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aResolvedPortalDestination, 12, 0);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aResolvedPortalDestination, 12, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 PortalSpecifierMessage::~PortalSpecifierMessage() {
 		free(Fields);
@@ -5454,13 +5454,13 @@ const char* PortalSpecifierMessage::Name() {
 }
 	
 void* PortalSpecifierMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* PortalSpecifierMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* PortalSpecifierMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 
 PortalSpecifierMessage aPortalSpecifierMessage;
@@ -5478,11 +5478,11 @@ void* ProjectileStickMessage::New() {
 ProjectileStickMessage::ProjectileStickMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aVector3D, 8, 0);
-		Fields[2].fieldinfo(&aDT_INT, 20, 32);
-		Fields[3].fieldinfo(&aDT_SNO, 24, 32);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aVector3D, 8, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 20, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_SNO, 24, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ProjectileStickMessage::~ProjectileStickMessage() {
 		free(Fields);
@@ -5493,16 +5493,16 @@ const char* ProjectileStickMessage::Name() {
 }
 	
 void* ProjectileStickMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* ProjectileStickMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 int* ProjectileStickMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 20;
+	return (int*)(((char*)Data) + 20);
 }
 void* ProjectileStickMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 24;
+	return (((char*)Data) + 24);
 }
 
 ProjectileStickMessage aProjectileStickMessage;
@@ -5523,14 +5523,14 @@ void* QuestCounterMessage::New() {
 QuestCounterMessage::QuestCounterMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 8);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_SNO, 8, 32);
-		Fields[2].fieldinfo(&aDT_SNO, 12, 32);
-		Fields[3].fieldinfo(&aDT_INT, 16, 32);
-		Fields[4].fieldinfo(&aDT_INT, 20, 32);
-		Fields[5].fieldinfo(&aDT_INT, 24, 32);
-		Fields[6].fieldinfo(&aDT_INT, 28, 32);
-		Fields[8 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_SNO, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_SNO, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_INT, 20, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5].fieldinfo(&aDT_INT, 24, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[6].fieldinfo(&aDT_INT, 28, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[8 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 QuestCounterMessage::~QuestCounterMessage() {
 		free(Fields);
@@ -5541,25 +5541,25 @@ const char* QuestCounterMessage::Name() {
 }
 	
 void* QuestCounterMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* QuestCounterMessage::snoQuest(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 void* QuestCounterMessage::snoLevelArea(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 int* QuestCounterMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 int* QuestCounterMessage::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 20;
+	return (int*)(((char*)Data) + 20);
 }
 int* QuestCounterMessage::unknow_field_5(void *Data) {
-	return (int*)((char*)Data) + 24;
+	return (int*)(((char*)Data) + 24);
 }
 int* QuestCounterMessage::unknow_field_6(void *Data) {
-	return (int*)((char*)Data) + 28;
+	return (int*)(((char*)Data) + 28);
 }
 
 QuestCounterMessage aQuestCounterMessage;
@@ -5577,11 +5577,11 @@ void* QuestMeterMessage::New() {
 QuestMeterMessage::QuestMeterMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_SNO, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[3].fieldinfo(&aDT_FLOAT, 16, 32);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_SNO, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_FLOAT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 QuestMeterMessage::~QuestMeterMessage() {
 		free(Fields);
@@ -5592,16 +5592,16 @@ const char* QuestMeterMessage::Name() {
 }
 	
 void* QuestMeterMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* QuestMeterMessage::snoQuest(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 int* QuestMeterMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 void* QuestMeterMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 16;
+	return (((char*)Data) + 16);
 }
 
 QuestMeterMessage aQuestMeterMessage;
@@ -5621,13 +5621,13 @@ void* QuestUpdateMessage::New() {
 QuestUpdateMessage::QuestUpdateMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 7);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_SNO, 8, 32);
-		Fields[2].fieldinfo(&aDT_SNO, 12, 32);
-		Fields[3].fieldinfo(&aDT_INT, 16, 32);
-		Fields[4].fieldinfo(&aDT_INT, 24, 1);
-		Fields[5].fieldinfo(&aDT_INT, 20, 1);
-		Fields[7 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_SNO, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_SNO, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_INT, 24, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[5].fieldinfo(&aDT_INT, 20, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[7 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 QuestUpdateMessage::~QuestUpdateMessage() {
 		free(Fields);
@@ -5638,22 +5638,22 @@ const char* QuestUpdateMessage::Name() {
 }
 	
 void* QuestUpdateMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* QuestUpdateMessage::snoQuest(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 void* QuestUpdateMessage::snoLevelArea(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 int* QuestUpdateMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 int* QuestUpdateMessage::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 24;
+	return (int*)(((char*)Data) + 24);
 }
 int* QuestUpdateMessage::unknow_field_5(void *Data) {
-	return (int*)((char*)Data) + 20;
+	return (int*)(((char*)Data) + 20);
 }
 
 QuestUpdateMessage aQuestUpdateMessage;
@@ -5669,9 +5669,9 @@ void* QuitGameMessage::New() {
 QuitGameMessage::QuitGameMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 3);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 3, 0, 0, 7, 17, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 QuitGameMessage::~QuitGameMessage() {
 		free(Fields);
@@ -5682,10 +5682,10 @@ const char* QuitGameMessage::Name() {
 }
 	
 void* QuitGameMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* QuitGameMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 
 QuitGameMessage aQuitGameMessage;
@@ -5702,10 +5702,10 @@ void* RareItemNameMessage::New() {
 RareItemNameMessage::RareItemNameMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aRareItemName, 12, 0);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aRareItemName, 12, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 RareItemNameMessage::~RareItemNameMessage() {
 		free(Fields);
@@ -5716,13 +5716,13 @@ const char* RareItemNameMessage::Name() {
 }
 	
 void* RareItemNameMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* RareItemNameMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* RareItemNameMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 
 RareItemNameMessage aRareItemNameMessage;
@@ -5740,11 +5740,11 @@ void* RareMonsterNamesMessage::New() {
 RareMonsterNamesMessage::RareMonsterNamesMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_FIXEDARRAY, 12, 32);
-		Fields[3].fieldinfo(&aDT_FIXEDARRAY, 20, 32);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_FIXEDARRAY, 12, 32, 0, 0, 0, 1, &aDT_GBID, 2);
+		Fields[3].fieldinfo(&aDT_FIXEDARRAY, 20, 32, 0, 0, 0, 1, &aDT_GBID, 8);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 RareMonsterNamesMessage::~RareMonsterNamesMessage() {
 		free(Fields);
@@ -5755,16 +5755,16 @@ const char* RareMonsterNamesMessage::Name() {
 }
 	
 void* RareMonsterNamesMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* RareMonsterNamesMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* RareMonsterNamesMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 void* RareMonsterNamesMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 20;
+	return (((char*)Data) + 20);
 }
 
 RareMonsterNamesMessage aRareMonsterNamesMessage;
@@ -5781,10 +5781,10 @@ void* RemoveRagdollMessage::New() {
 RemoveRagdollMessage::RemoveRagdollMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_SNO, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_SNO, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 RemoveRagdollMessage::~RemoveRagdollMessage() {
 		free(Fields);
@@ -5795,13 +5795,13 @@ const char* RemoveRagdollMessage::Name() {
 }
 	
 void* RemoveRagdollMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* RemoveRagdollMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* RemoveRagdollMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 
 RemoveRagdollMessage aRemoveRagdollMessage;
@@ -5818,10 +5818,10 @@ void* RequestBuffCancelMessage::New() {
 RequestBuffCancelMessage::RequestBuffCancelMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_SNO, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_SNO, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 RequestBuffCancelMessage::~RequestBuffCancelMessage() {
 		free(Fields);
@@ -5832,13 +5832,13 @@ const char* RequestBuffCancelMessage::Name() {
 }
 	
 void* RequestBuffCancelMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* RequestBuffCancelMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 int* RequestBuffCancelMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 RequestBuffCancelMessage aRequestBuffCancelMessage;
@@ -5856,11 +5856,11 @@ void* RequestJoinBNetGameMessage::New() {
 RequestJoinBNetGameMessage::RequestJoinBNetGameMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aGameId, 8, 0);
-		Fields[2].fieldinfo(&aEntityId, 32, 0);
-		Fields[3].fieldinfo(&aDT_INT, 48, 5);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aGameId, 8, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aEntityId, 32, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 48, 5, 0, -1, 22, 17, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 RequestJoinBNetGameMessage::~RequestJoinBNetGameMessage() {
 		free(Fields);
@@ -5871,16 +5871,16 @@ const char* RequestJoinBNetGameMessage::Name() {
 }
 	
 void* RequestJoinBNetGameMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* RequestJoinBNetGameMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 void* RequestJoinBNetGameMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 32;
+	return (((char*)Data) + 32);
 }
 int* RequestJoinBNetGameMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 48;
+	return (int*)(((char*)Data) + 48);
 }
 
 RequestJoinBNetGameMessage aRequestJoinBNetGameMessage;
@@ -5895,8 +5895,8 @@ void* RequiredMessageHeader::New() {
 RequiredMessageHeader::RequiredMessageHeader() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 2);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aDT_INT, 4, 9);
-		Fields[2 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aDT_INT, 4, 9, 0, 0, 301, 17, &aDT_NULL, -1);
+		Fields[2 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 RequiredMessageHeader::~RequiredMessageHeader() {
 		free(Fields);
@@ -5907,7 +5907,7 @@ const char* RequiredMessageHeader::Name() {
 }
 	
 int* RequiredMessageHeader::unknow_field_0(void *Data) {
-	return (int*)((char*)Data) + 4;
+	return (int*)(((char*)Data) + 4);
 }
 
 RequiredMessageHeader aRequiredMessageHeader;
@@ -5923,9 +5923,9 @@ void* ReturnPointInfoMessage::New() {
 ReturnPointInfoMessage::ReturnPointInfoMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_SNO, 8, 32);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_SNO, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 ReturnPointInfoMessage::~ReturnPointInfoMessage() {
 		free(Fields);
@@ -5936,10 +5936,10 @@ const char* ReturnPointInfoMessage::Name() {
 }
 	
 void* ReturnPointInfoMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* ReturnPointInfoMessage::snoLevelArea(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 
 ReturnPointInfoMessage aReturnPointInfoMessage;
@@ -5962,16 +5962,16 @@ void* RevealSceneMessage::New() {
 RevealSceneMessage::RevealSceneMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 10);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aSceneSpecification, 12, 0);
-		Fields[3].fieldinfo(&aDT_INT, 220, 32);
-		Fields[4].fieldinfo(&aDT_SNO, 224, 32);
-		Fields[5].fieldinfo(&aPRTransform, 228, 0);
-		Fields[6].fieldinfo(&aDT_INT, 256, 32);
-		Fields[7].fieldinfo(&aDT_SNO, 260, 32);
-		Fields[8].fieldinfo(&aDT_FIXEDARRAY, 268, 32);
-		Fields[10 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aSceneSpecification, 12, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 220, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_SNO, 224, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5].fieldinfo(&aPRTransform, 228, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[6].fieldinfo(&aDT_INT, 256, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[7].fieldinfo(&aDT_SNO, 260, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[8].fieldinfo(&aDT_FIXEDARRAY, 268, 32, 9, 0, 0, 8, &aDT_GBID, 256);
+		Fields[10 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 RevealSceneMessage::~RevealSceneMessage() {
 		free(Fields);
@@ -5982,31 +5982,31 @@ const char* RevealSceneMessage::Name() {
 }
 	
 void* RevealSceneMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* RevealSceneMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* RevealSceneMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 int* RevealSceneMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 220;
+	return (int*)(((char*)Data) + 220);
 }
 void* RevealSceneMessage::snoScene(void *Data) {
-	return ((char*)Data) + 224;
+	return (((char*)Data) + 224);
 }
 void* RevealSceneMessage::unknow_field_5(void *Data) {
-	return ((char*)Data) + 228;
+	return (((char*)Data) + 228);
 }
 int* RevealSceneMessage::unknow_field_6(void *Data) {
-	return (int*)((char*)Data) + 256;
+	return (int*)(((char*)Data) + 256);
 }
 void* RevealSceneMessage::snoSceneGroup(void *Data) {
-	return ((char*)Data) + 260;
+	return (((char*)Data) + 260);
 }
 void* RevealSceneMessage::arAppliedLabels(void *Data) {
-	return ((char*)Data) + 268;
+	return (((char*)Data) + 268);
 }
 
 RevealSceneMessage aRevealSceneMessage;
@@ -6024,11 +6024,11 @@ void* RevealTeamMessage::New() {
 RevealTeamMessage::RevealTeamMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 5);
-		Fields[2].fieldinfo(&aDT_INT, 12, 2);
-		Fields[3].fieldinfo(&aDT_INT, 16, 2);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 5, 0, -1, 22, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 2, 0, 0, 3, 17, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 2, 0, -1, 1, 17, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 RevealTeamMessage::~RevealTeamMessage() {
 		free(Fields);
@@ -6039,16 +6039,16 @@ const char* RevealTeamMessage::Name() {
 }
 	
 void* RevealTeamMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* RevealTeamMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* RevealTeamMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 int* RevealTeamMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 
 RevealTeamMessage aRevealTeamMessage;
@@ -6065,10 +6065,10 @@ void* RevealWorldMessage::New() {
 RevealWorldMessage::RevealWorldMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_SNO, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_SNO, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 RevealWorldMessage::~RevealWorldMessage() {
 		free(Fields);
@@ -6079,13 +6079,13 @@ const char* RevealWorldMessage::Name() {
 }
 	
 void* RevealWorldMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* RevealWorldMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* RevealWorldMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 
 RevealWorldMessage aRevealWorldMessage;
@@ -6102,10 +6102,10 @@ void* RitualTetherEffectMessage::New() {
 RitualTetherEffectMessage::RitualTetherEffectMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aWorldPlace, 12, 0);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aWorldPlace, 12, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 RitualTetherEffectMessage::~RitualTetherEffectMessage() {
 		free(Fields);
@@ -6116,13 +6116,13 @@ const char* RitualTetherEffectMessage::Name() {
 }
 	
 void* RitualTetherEffectMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* RitualTetherEffectMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* RitualTetherEffectMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 
 RitualTetherEffectMessage aRitualTetherEffectMessage;
@@ -6142,13 +6142,13 @@ void* RopeEffectMessageACDToACD::New() {
 RopeEffectMessageACDToACD::RopeEffectMessageACDToACD() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 7);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_SNO, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[3].fieldinfo(&aDT_INT, 16, 5);
-		Fields[4].fieldinfo(&aDT_INT, 20, 32);
-		Fields[5].fieldinfo(&aDT_INT, 24, 5);
-		Fields[7 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_SNO, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 5, 0, 0, 19, 17, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_INT, 20, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5].fieldinfo(&aDT_INT, 24, 5, 0, 0, 19, 17, &aDT_NULL, -1);
+		Fields[7 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 RopeEffectMessageACDToACD::~RopeEffectMessageACDToACD() {
 		free(Fields);
@@ -6159,22 +6159,22 @@ const char* RopeEffectMessageACDToACD::Name() {
 }
 	
 void* RopeEffectMessageACDToACD::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* RopeEffectMessageACDToACD::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 int* RopeEffectMessageACDToACD::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 int* RopeEffectMessageACDToACD::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 int* RopeEffectMessageACDToACD::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 20;
+	return (int*)(((char*)Data) + 20);
 }
 int* RopeEffectMessageACDToACD::unknow_field_5(void *Data) {
-	return (int*)((char*)Data) + 24;
+	return (int*)(((char*)Data) + 24);
 }
 
 RopeEffectMessageACDToACD aRopeEffectMessageACDToACD;
@@ -6193,12 +6193,12 @@ void* RopeEffectMessageACDToPlace::New() {
 RopeEffectMessageACDToPlace::RopeEffectMessageACDToPlace() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 6);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_SNO, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[3].fieldinfo(&aDT_INT, 16, 5);
-		Fields[4].fieldinfo(&aWorldPlace, 20, 0);
-		Fields[6 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_SNO, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 5, 0, 0, 19, 17, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aWorldPlace, 20, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[6 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 RopeEffectMessageACDToPlace::~RopeEffectMessageACDToPlace() {
 		free(Fields);
@@ -6209,19 +6209,19 @@ const char* RopeEffectMessageACDToPlace::Name() {
 }
 	
 void* RopeEffectMessageACDToPlace::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* RopeEffectMessageACDToPlace::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 int* RopeEffectMessageACDToPlace::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 int* RopeEffectMessageACDToPlace::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 void* RopeEffectMessageACDToPlace::unknow_field_4(void *Data) {
-	return ((char*)Data) + 20;
+	return (((char*)Data) + 20);
 }
 
 RopeEffectMessageACDToPlace aRopeEffectMessageACDToPlace;
@@ -6237,9 +6237,9 @@ void* SNODataMessage::New() {
 SNODataMessage::SNODataMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_SNO, 8, 32);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_SNO, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 SNODataMessage::~SNODataMessage() {
 		free(Fields);
@@ -6250,10 +6250,10 @@ const char* SNODataMessage::Name() {
 }
 	
 void* SNODataMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* SNODataMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 
 SNODataMessage aSNODataMessage;
@@ -6269,9 +6269,9 @@ void* SNONameDataMessage::New() {
 SNONameDataMessage::SNONameDataMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aSNOName, 8, 0);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aSNOName, 8, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 SNONameDataMessage::~SNONameDataMessage() {
 		free(Fields);
@@ -6282,10 +6282,10 @@ const char* SNONameDataMessage::Name() {
 }
 	
 void* SNONameDataMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* SNONameDataMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 
 SNONameDataMessage aSNONameDataMessage;
@@ -6304,12 +6304,12 @@ void* SalvageResultsMessage::New() {
 SalvageResultsMessage::SalvageResultsMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 6);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_GBID, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 4);
-		Fields[3].fieldinfo(&aDT_INT, 16, 32);
-		Fields[4].fieldinfo(&aDT_FIXEDARRAY, 20, 32);
-		Fields[6 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_GBID, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 4, 0, -1, 10, 17, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_FIXEDARRAY, 20, 32, 0, 0, 0, 1, &aDT_GBID, 10);
+		Fields[6 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 SalvageResultsMessage::~SalvageResultsMessage() {
 		free(Fields);
@@ -6320,19 +6320,19 @@ const char* SalvageResultsMessage::Name() {
 }
 	
 void* SalvageResultsMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* SalvageResultsMessage::gbidOriginalItem(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 int* SalvageResultsMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 int* SalvageResultsMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 void* SalvageResultsMessage::gbidNewItems(void *Data) {
-	return ((char*)Data) + 20;
+	return (((char*)Data) + 20);
 }
 
 SalvageResultsMessage aSalvageResultsMessage;
@@ -6348,9 +6348,9 @@ void* SavePointInfoMessage::New() {
 SavePointInfoMessage::SavePointInfoMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_SNO, 8, 32);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_SNO, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 SavePointInfoMessage::~SavePointInfoMessage() {
 		free(Fields);
@@ -6361,10 +6361,10 @@ const char* SavePointInfoMessage::Name() {
 }
 	
 void* SavePointInfoMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* SavePointInfoMessage::snoLevelArea(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 
 SavePointInfoMessage aSavePointInfoMessage;
@@ -6381,10 +6381,10 @@ void* SaviorMessage::New() {
 SaviorMessage::SaviorMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 SaviorMessage::~SaviorMessage() {
 		free(Fields);
@@ -6395,13 +6395,13 @@ const char* SaviorMessage::Name() {
 }
 	
 void* SaviorMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* SaviorMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* SaviorMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 SaviorMessage aSaviorMessage;
@@ -6418,10 +6418,10 @@ void* SecondaryAnimationPowerMessage::New() {
 SecondaryAnimationPowerMessage::SecondaryAnimationPowerMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_SNO, 8, 32);
-		Fields[2].fieldinfo(&aDT_OPTIONAL, 12, 0);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_SNO, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_OPTIONAL, 12, 0, 0, 0, 0, 1, &aAnimPreplayData, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 SecondaryAnimationPowerMessage::~SecondaryAnimationPowerMessage() {
 		free(Fields);
@@ -6432,13 +6432,13 @@ const char* SecondaryAnimationPowerMessage::Name() {
 }
 	
 void* SecondaryAnimationPowerMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* SecondaryAnimationPowerMessage::snoPower(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 void* SecondaryAnimationPowerMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 
 SecondaryAnimationPowerMessage aSecondaryAnimationPowerMessage;
@@ -6455,10 +6455,10 @@ void* SetIdleAnimationMessage::New() {
 SetIdleAnimationMessage::SetIdleAnimationMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 SetIdleAnimationMessage::~SetIdleAnimationMessage() {
 		free(Fields);
@@ -6469,13 +6469,13 @@ const char* SetIdleAnimationMessage::Name() {
 }
 	
 void* SetIdleAnimationMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* SetIdleAnimationMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* SetIdleAnimationMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 SetIdleAnimationMessage aSetIdleAnimationMessage;
@@ -6490,8 +6490,8 @@ void* SimpleMessage::New() {
 SimpleMessage::SimpleMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 2);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[2 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 SimpleMessage::~SimpleMessage() {
 		free(Fields);
@@ -6502,7 +6502,7 @@ const char* SimpleMessage::Name() {
 }
 	
 void* SimpleMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 
 SimpleMessage aSimpleMessage;
@@ -6519,10 +6519,10 @@ void* SocketSpellMessage::New() {
 SocketSpellMessage::SocketSpellMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 SocketSpellMessage::~SocketSpellMessage() {
 		free(Fields);
@@ -6533,13 +6533,13 @@ const char* SocketSpellMessage::Name() {
 }
 	
 void* SocketSpellMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* SocketSpellMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* SocketSpellMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 SocketSpellMessage aSocketSpellMessage;
@@ -6556,10 +6556,10 @@ void* StopConvLineMessage::New() {
 StopConvLineMessage::StopConvLineMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 1);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 StopConvLineMessage::~StopConvLineMessage() {
 		free(Fields);
@@ -6570,13 +6570,13 @@ const char* StopConvLineMessage::Name() {
 }
 	
 void* StopConvLineMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* StopConvLineMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* StopConvLineMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 StopConvLineMessage aStopConvLineMessage;
@@ -6594,11 +6594,11 @@ void* SwapSceneMessage::New() {
 SwapSceneMessage::SwapSceneMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 16, 32);
-		Fields[3].fieldinfo(&aDT_INT, 12, 32);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 SwapSceneMessage::~SwapSceneMessage() {
 		free(Fields);
@@ -6609,16 +6609,16 @@ const char* SwapSceneMessage::Name() {
 }
 	
 void* SwapSceneMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* SwapSceneMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* SwapSceneMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 int* SwapSceneMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 SwapSceneMessage aSwapSceneMessage;
@@ -6640,15 +6640,15 @@ void* TargetMessage::New() {
 TargetMessage::TargetMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 9);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 2);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[3].fieldinfo(&aWorldPlace, 16, 0);
-		Fields[4].fieldinfo(&aDT_SNO, 32, 32);
-		Fields[5].fieldinfo(&aDT_INT, 36, 32);
-		Fields[6].fieldinfo(&aDT_INT, 40, 2);
-		Fields[7].fieldinfo(&aDT_OPTIONAL, 44, 0);
-		Fields[9 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 2, 0, -1, 2, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aWorldPlace, 16, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_SNO, 32, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5].fieldinfo(&aDT_INT, 36, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[6].fieldinfo(&aDT_INT, 40, 2, 0, 0, 2, 17, &aDT_NULL, -1);
+		Fields[7].fieldinfo(&aDT_OPTIONAL, 44, 0, 0, 0, 0, 1, &aAnimPreplayData, -1);
+		Fields[9 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 TargetMessage::~TargetMessage() {
 		free(Fields);
@@ -6659,28 +6659,28 @@ const char* TargetMessage::Name() {
 }
 	
 void* TargetMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* TargetMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* TargetMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 void* TargetMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 16;
+	return (((char*)Data) + 16);
 }
 void* TargetMessage::snoPower(void *Data) {
-	return ((char*)Data) + 32;
+	return (((char*)Data) + 32);
 }
 int* TargetMessage::unknow_field_5(void *Data) {
-	return (int*)((char*)Data) + 36;
+	return (int*)(((char*)Data) + 36);
 }
 int* TargetMessage::unknow_field_6(void *Data) {
-	return (int*)((char*)Data) + 40;
+	return (int*)(((char*)Data) + 40);
 }
 void* TargetMessage::unknow_field_7(void *Data) {
-	return ((char*)Data) + 44;
+	return (((char*)Data) + 44);
 }
 
 TargetMessage aTargetMessage;
@@ -6696,9 +6696,9 @@ void* TimedEventStartedMessage::New() {
 TimedEventStartedMessage::TimedEventStartedMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aActiveEvent, 8, 0);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aActiveEvent, 8, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 TimedEventStartedMessage::~TimedEventStartedMessage() {
 		free(Fields);
@@ -6709,10 +6709,10 @@ const char* TimedEventStartedMessage::Name() {
 }
 	
 void* TimedEventStartedMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* TimedEventStartedMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 
 TimedEventStartedMessage aTimedEventStartedMessage;
@@ -6733,14 +6733,14 @@ void* TradeMessage::New() {
 TradeMessage::TradeMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 8);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 4);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[3].fieldinfo(&aDT_INT, 16, 32);
-		Fields[4].fieldinfo(&aDT_INT64, 24, 64);
-		Fields[5].fieldinfo(&aDT_INT, 32, 32);
-		Fields[6].fieldinfo(&aDT_FIXEDARRAY, 36, 32);
-		Fields[8 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 4, 0, 0, 9, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_INT64, 24, 64, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5].fieldinfo(&aDT_INT, 32, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[6].fieldinfo(&aDT_FIXEDARRAY, 36, 32, 0, 0, 0, 1, &aDT_INT, 5);
+		Fields[8 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 TradeMessage::~TradeMessage() {
 		free(Fields);
@@ -6751,25 +6751,25 @@ const char* TradeMessage::Name() {
 }
 	
 void* TradeMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* TradeMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* TradeMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 int* TradeMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 void* TradeMessage::unknow_field_4(void *Data) {
-	return ((char*)Data) + 24;
+	return (((char*)Data) + 24);
 }
 int* TradeMessage::unknow_field_5(void *Data) {
-	return (int*)((char*)Data) + 32;
+	return (int*)(((char*)Data) + 32);
 }
 void* TradeMessage::unknow_field_6(void *Data) {
-	return ((char*)Data) + 36;
+	return (((char*)Data) + 36);
 }
 
 TradeMessage aTradeMessage;
@@ -6799,23 +6799,23 @@ void* TrickleMessage::New() {
 TrickleMessage::TrickleMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 17);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_SNO, 12, 32);
-		Fields[3].fieldinfo(&aWorldPlace, 16, 0);
-		Fields[4].fieldinfo(&aDT_OPTIONAL, 32, 4);
-		Fields[5].fieldinfo(&aDT_SNO, 40, 32);
-		Fields[6].fieldinfo(&aDT_OPTIONAL, 44, 32);
-		Fields[7].fieldinfo(&aDT_INT, 52, 4);
-		Fields[8].fieldinfo(&aDT_INT, 56, 6);
-		Fields[9].fieldinfo(&aDT_OPTIONAL, 60, 32);
-		Fields[10].fieldinfo(&aDT_OPTIONAL, 68, 32);
-		Fields[11].fieldinfo(&aDT_OPTIONAL, 76, 32);
-		Fields[12].fieldinfo(&aDT_OPTIONAL, 84, 32);
-		Fields[13].fieldinfo(&aDT_OPTIONAL, 92, 32);
-		Fields[14].fieldinfo(&aDT_OPTIONAL, 100, 32);
-		Fields[15].fieldinfo(&aDT_OPTIONAL, 108, 32);
-		Fields[17 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_SNO, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aWorldPlace, 16, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_OPTIONAL, 32, 4, 0, -1, 7, 17, &aDT_INT, -1);
+		Fields[5].fieldinfo(&aDT_SNO, 40, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[6].fieldinfo(&aDT_OPTIONAL, 44, 32, 0, 0, 0, 1, &aDT_FLOAT, -1);
+		Fields[7].fieldinfo(&aDT_INT, 52, 4, 0, 0, 11, 17, &aDT_NULL, -1);
+		Fields[8].fieldinfo(&aDT_INT, 56, 6, 0, 0, 63, 17, &aDT_NULL, -1);
+		Fields[9].fieldinfo(&aDT_OPTIONAL, 60, 32, 0, 0, 0, 1, &aDT_INT, -1);
+		Fields[10].fieldinfo(&aDT_OPTIONAL, 68, 32, 0, 0, 0, 1, &aDT_INT, -1);
+		Fields[11].fieldinfo(&aDT_OPTIONAL, 76, 32, 0, 0, 0, 1, &aDT_INT, -1);
+		Fields[12].fieldinfo(&aDT_OPTIONAL, 84, 32, 0, 0, 0, 1, &aDT_INT, -1);
+		Fields[13].fieldinfo(&aDT_OPTIONAL, 92, 32, 0, 0, 0, 1, &aDT_INT, -1);
+		Fields[14].fieldinfo(&aDT_OPTIONAL, 100, 32, 0, 0, 0, 1, &aDT_FLOAT, -1);
+		Fields[15].fieldinfo(&aDT_OPTIONAL, 108, 32, 0, 0, 0, 1, &aDT_FLOAT, -1);
+		Fields[17 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 TrickleMessage::~TrickleMessage() {
 		free(Fields);
@@ -6826,52 +6826,52 @@ const char* TrickleMessage::Name() {
 }
 	
 void* TrickleMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* TrickleMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* TrickleMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 void* TrickleMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 16;
+	return (((char*)Data) + 16);
 }
 void* TrickleMessage::unknow_field_4(void *Data) {
-	return ((char*)Data) + 32;
+	return (((char*)Data) + 32);
 }
 void* TrickleMessage::unknow_field_5(void *Data) {
-	return ((char*)Data) + 40;
+	return (((char*)Data) + 40);
 }
 void* TrickleMessage::unknow_field_6(void *Data) {
-	return ((char*)Data) + 44;
+	return (((char*)Data) + 44);
 }
 int* TrickleMessage::unknow_field_7(void *Data) {
-	return (int*)((char*)Data) + 52;
+	return (int*)(((char*)Data) + 52);
 }
 int* TrickleMessage::unknow_field_8(void *Data) {
-	return (int*)((char*)Data) + 56;
+	return (int*)(((char*)Data) + 56);
 }
 void* TrickleMessage::unknow_field_9(void *Data) {
-	return ((char*)Data) + 60;
+	return (((char*)Data) + 60);
 }
 void* TrickleMessage::unknow_field_10(void *Data) {
-	return ((char*)Data) + 68;
+	return (((char*)Data) + 68);
 }
 void* TrickleMessage::unknow_field_11(void *Data) {
-	return ((char*)Data) + 76;
+	return (((char*)Data) + 76);
 }
 void* TrickleMessage::unknow_field_12(void *Data) {
-	return ((char*)Data) + 84;
+	return (((char*)Data) + 84);
 }
 void* TrickleMessage::unknow_field_13(void *Data) {
-	return ((char*)Data) + 92;
+	return (((char*)Data) + 92);
 }
 void* TrickleMessage::unknow_field_14(void *Data) {
-	return ((char*)Data) + 100;
+	return (((char*)Data) + 100);
 }
 void* TrickleMessage::unknow_field_15(void *Data) {
-	return ((char*)Data) + 108;
+	return (((char*)Data) + 108);
 }
 
 TrickleMessage aTrickleMessage;
@@ -6889,11 +6889,11 @@ void* TryChatMessage::New() {
 TryChatMessage::TryChatMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 3);
-		Fields[2].fieldinfo(&aDT_INT, 12, 4);
-		Fields[3].fieldinfo(&aDT_CHARARRAY, 16, 10);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 3, 0, 0, 6, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 4, 0, -1, 7, 17, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_CHARARRAY, 16, 10, 0, 0, 0, 1, &aDT_NULL, 512);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 TryChatMessage::~TryChatMessage() {
 		free(Fields);
@@ -6904,16 +6904,16 @@ const char* TryChatMessage::Name() {
 }
 	
 void* TryChatMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* TryChatMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* TryChatMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 void* TryChatMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 16;
+	return (((char*)Data) + 16);
 }
 
 TryChatMessage aTryChatMessage;
@@ -6930,10 +6930,10 @@ void* TryWaypointMessage::New() {
 TryWaypointMessage::TryWaypointMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 5);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 5, 0, -1, 25, 17, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 TryWaypointMessage::~TryWaypointMessage() {
 		free(Fields);
@@ -6944,13 +6944,13 @@ const char* TryWaypointMessage::Name() {
 }
 	
 void* TryWaypointMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* TryWaypointMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* TryWaypointMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 TryWaypointMessage aTryWaypointMessage;
@@ -6967,10 +6967,10 @@ void* UIElementMessage::New() {
 UIElementMessage::UIElementMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 4);
-		Fields[2].fieldinfo(&aDT_INT, 12, 1);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 4, 0, -1, 14, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 UIElementMessage::~UIElementMessage() {
 		free(Fields);
@@ -6981,13 +6981,13 @@ const char* UIElementMessage::Name() {
 }
 	
 void* UIElementMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* UIElementMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* UIElementMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 UIElementMessage aUIElementMessage;
@@ -7003,9 +7003,9 @@ void* UInt64DataMessage::New() {
 UInt64DataMessage::UInt64DataMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT64, 8, 64);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT64, 8, 64, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 UInt64DataMessage::~UInt64DataMessage() {
 		free(Fields);
@@ -7016,10 +7016,10 @@ const char* UInt64DataMessage::Name() {
 }
 	
 void* UInt64DataMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* UInt64DataMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 
 UInt64DataMessage aUInt64DataMessage;
@@ -7037,11 +7037,11 @@ void* VersionsMessage::New() {
 VersionsMessage::VersionsMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[3].fieldinfo(&aDT_CHARARRAY, 16, 6);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_CHARARRAY, 16, 6, 0, 0, 0, 1, &aDT_NULL, 32);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 VersionsMessage::~VersionsMessage() {
 		free(Fields);
@@ -7052,16 +7052,16 @@ const char* VersionsMessage::Name() {
 }
 	
 void* VersionsMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* VersionsMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* VersionsMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 void* VersionsMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 16;
+	return (((char*)Data) + 16);
 }
 
 VersionsMessage aVersionsMessage;
@@ -7085,17 +7085,17 @@ void* VictimMessage::New() {
 VictimMessage::VictimMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 11);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 3);
-		Fields[2].fieldinfo(&aDT_INT, 12, 7);
-		Fields[3].fieldinfo(&aDT_INT, 16, 4);
-		Fields[4].fieldinfo(&aDT_INT, 20, 4);
-		Fields[5].fieldinfo(&aDT_SNO, 24, 32);
-		Fields[6].fieldinfo(&aDT_SNO, 28, 32);
-		Fields[7].fieldinfo(&aDT_INT, 32, 5);
-		Fields[8].fieldinfo(&aDT_FIXEDARRAY, 36, 32);
-		Fields[9].fieldinfo(&aDT_SNO, 44, 32);
-		Fields[11 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 3, 0, 0, 7, 17, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 7, 0, 0, 100, 17, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_INT, 16, 4, 0, -1, 7, 17, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_INT, 20, 4, 0, -1, 11, 17, &aDT_NULL, -1);
+		Fields[5].fieldinfo(&aDT_SNO, 24, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[6].fieldinfo(&aDT_SNO, 28, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[7].fieldinfo(&aDT_INT, 32, 5, 0, -1, 23, 17, &aDT_NULL, -1);
+		Fields[8].fieldinfo(&aDT_FIXEDARRAY, 36, 32, 0, 0, 0, 1, &aDT_GBID, 2);
+		Fields[9].fieldinfo(&aDT_SNO, 44, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[11 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 VictimMessage::~VictimMessage() {
 		free(Fields);
@@ -7106,34 +7106,34 @@ const char* VictimMessage::Name() {
 }
 	
 void* VictimMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* VictimMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* VictimMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 int* VictimMessage::unknow_field_3(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 int* VictimMessage::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 20;
+	return (int*)(((char*)Data) + 20);
 }
 void* VictimMessage::snoKillerMonster(void *Data) {
-	return ((char*)Data) + 24;
+	return (((char*)Data) + 24);
 }
 void* VictimMessage::snoKillerActor(void *Data) {
-	return ((char*)Data) + 28;
+	return (((char*)Data) + 28);
 }
 int* VictimMessage::unknow_field_7(void *Data) {
-	return (int*)((char*)Data) + 32;
+	return (int*)(((char*)Data) + 32);
 }
 void* VictimMessage::unknow_field_8(void *Data) {
-	return ((char*)Data) + 36;
+	return (((char*)Data) + 36);
 }
 void* VictimMessage::snoPowerDmgSource(void *Data) {
-	return ((char*)Data) + 44;
+	return (((char*)Data) + 44);
 }
 
 VictimMessage aVictimMessage;
@@ -7150,10 +7150,10 @@ void* VisualInventoryMessage::New() {
 VisualInventoryMessage::VisualInventoryMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aVisualEquipment, 12, 0);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aVisualEquipment, 12, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 VisualInventoryMessage::~VisualInventoryMessage() {
 		free(Fields);
@@ -7164,13 +7164,13 @@ const char* VisualInventoryMessage::Name() {
 }
 	
 void* VisualInventoryMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* VisualInventoryMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 void* VisualInventoryMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 
 VisualInventoryMessage aVisualInventoryMessage;
@@ -7188,11 +7188,11 @@ void* WaypointActivatedMessage::New() {
 WaypointActivatedMessage::WaypointActivatedMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 5);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 32);
-		Fields[3].fieldinfo(&aDT_SNO, 16, 32);
-		Fields[5 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_SNO, 16, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[5 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 WaypointActivatedMessage::~WaypointActivatedMessage() {
 		free(Fields);
@@ -7203,16 +7203,16 @@ const char* WaypointActivatedMessage::Name() {
 }
 	
 void* WaypointActivatedMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* WaypointActivatedMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* WaypointActivatedMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 void* WaypointActivatedMessage::unknow_field_3(void *Data) {
-	return ((char*)Data) + 16;
+	return (((char*)Data) + 16);
 }
 
 WaypointActivatedMessage aWaypointActivatedMessage;
@@ -7229,10 +7229,10 @@ void* WeatherOverrideMessage::New() {
 WeatherOverrideMessage::WeatherOverrideMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_FLOAT, 8, 32);
-		Fields[2].fieldinfo(&aDT_FLOAT, 12, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_FLOAT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_FLOAT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 WeatherOverrideMessage::~WeatherOverrideMessage() {
 		free(Fields);
@@ -7243,13 +7243,13 @@ const char* WeatherOverrideMessage::Name() {
 }
 	
 void* WeatherOverrideMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* WeatherOverrideMessage::unknow_field_1(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 void* WeatherOverrideMessage::unknow_field_2(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 
 WeatherOverrideMessage aWeatherOverrideMessage;
@@ -7265,9 +7265,9 @@ void* WorldDeletedMessage::New() {
 WorldDeletedMessage::WorldDeletedMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 3);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[3 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 WorldDeletedMessage::~WorldDeletedMessage() {
 		free(Fields);
@@ -7278,10 +7278,10 @@ const char* WorldDeletedMessage::Name() {
 }
 	
 void* WorldDeletedMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* WorldDeletedMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 
 WorldDeletedMessage aWorldDeletedMessage;
@@ -7298,10 +7298,10 @@ void* WorldLocationMessageData::New() {
 WorldLocationMessageData::WorldLocationMessageData() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aDT_FLOAT, 0, 32);
-		Fields[1].fieldinfo(&aPRTransform, 4, 0);
-		Fields[2].fieldinfo(&aDT_INT, 32, 32);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aDT_FLOAT, 0, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aPRTransform, 4, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 32, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 WorldLocationMessageData::~WorldLocationMessageData() {
 		free(Fields);
@@ -7312,13 +7312,13 @@ const char* WorldLocationMessageData::Name() {
 }
 	
 void* WorldLocationMessageData::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* WorldLocationMessageData::unknow_field_1(void *Data) {
-	return ((char*)Data) + 4;
+	return (((char*)Data) + 4);
 }
 int* WorldLocationMessageData::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 32;
+	return (int*)(((char*)Data) + 32);
 }
 
 WorldLocationMessageData aWorldLocationMessageData;
@@ -7335,10 +7335,10 @@ void* WorldStatusMessage::New() {
 WorldStatusMessage::WorldStatusMessage() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 4);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0);
-		Fields[1].fieldinfo(&aDT_INT, 8, 32);
-		Fields[2].fieldinfo(&aDT_INT, 12, 1);
-		Fields[4 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aRequiredMessageHeader, 0, 0, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_INT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_INT, 12, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[4 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 WorldStatusMessage::~WorldStatusMessage() {
 		free(Fields);
@@ -7349,13 +7349,13 @@ const char* WorldStatusMessage::Name() {
 }
 	
 void* WorldStatusMessage::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 int* WorldStatusMessage::unknow_field_1(void *Data) {
-	return (int*)((char*)Data) + 8;
+	return (int*)(((char*)Data) + 8);
 }
 int* WorldStatusMessage::unknow_field_2(void *Data) {
-	return (int*)((char*)Data) + 12;
+	return (int*)(((char*)Data) + 12);
 }
 
 WorldStatusMessage aWorldStatusMessage;

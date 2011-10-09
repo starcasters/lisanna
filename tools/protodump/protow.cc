@@ -614,7 +614,7 @@ typedef std::vector<sname*> VNames;
 
 sname* GetStructEntry(VNames* vnames, D3Struct* astruct) {
 	char buf[200];
-
+	
 	int j = 0;
 	for (int i=0; i < vnames->size(); i++) {
 		if (vnames->at(i)->Type == astruct) {
@@ -627,7 +627,7 @@ sname* GetStructEntry(VNames* vnames, D3Struct* astruct) {
 	sname* aname = new sname;
 	if (j > 0) {
 		snprintf(aname->givenname, 200, "%s_%d", astruct->Name, j);
-	} else {
+		} else {
 		snprintf(aname->givenname, 200, "%s", astruct->Name);
 	}
 	aname->Type = astruct;
@@ -678,14 +678,14 @@ void print_struct_format(VNames* vnames, D3Struct* a, int b, int c) {
 		const char* ElementType_name = GetStructName(vnames, nfield->ElementType);
 		
 		snprintf(buf, sizeof(buf), "\tFIELD %s, %s, %d, %d, %d, %d, %d, %d, %d, %s", GetStructName(vnames, nfield->Type), fname, 
-			nfield->Offset,
-			nfield->Min,
-			nfield->Max,
-			nfield->EncodedBits,
-			nfield->EncodedBits2,
-			nfield->Flags,
-			nfield->ArraySize,
-			ElementType_name
+		nfield->Offset,
+		nfield->Min,
+		nfield->Max,
+		nfield->EncodedBits,
+		nfield->EncodedBits2,
+		nfield->Flags,
+		nfield->ArraySize,
+		ElementType_name
 		);
 		L_DebugString(buf);
 	}
@@ -698,13 +698,13 @@ void onClick1() {
 	int a,b,c;
 	
 	VNames vnames; //a vector to ensure unique names
-
+	
 	for (int i = 0; i < (sizeof(messages) / sizeof(int)); i++) {
 		a = messages[i];
 		if (IsBadReadPtr((void*)a,8)) {
 			snprintf(buf, sizeof(buf), "bad ptr %d", a);
 			L_DebugString(buf);
-
+			
 			if (a == 20000532) break;
 			continue;
 		}
@@ -719,25 +719,27 @@ void onClick1() {
 					a = *(unsigned int*)(a+2);
 					print_struct_format(&vnames, (D3Struct*)a,b,c);
 				}
-			} else {
+				} else {
 				snprintf(buf, sizeof(buf), "not 0x05c7? %x %x", a, *(unsigned short*)(a));
 				L_DebugString(buf);
 			}
 		}
 		if (a == 20000532) break;
 	}
+	//this was used to print messages from the list:
+	for (int i = 1; i < 0x12E; i++) {
+		if (getpacket2(i, &a, &b, &c) != 0) {
+			snprintf(buf, sizeof(buf), "{&a%s, 0x%x, 0x%x},",*(unsigned *)(a+4),b,c);
+			L_DebugString(buf);
+		}
+		else {
+			snprintf(buf, sizeof(buf), "{NULL, 0, 0},");
+			L_DebugString(buf);
+		}
+	}
 }
 
-	/* this was used to print messages:
-		//	vector<int> structures;
-		for (int i = 1; i < 0x12E; i++) {
-		if (getpacket2(i, &a, &b, &c) != 0) {
-		snprintf(buf, sizeof(buf), "%s %x %x %x",*(unsigned *)(a+4),a,b,c);
-		L_DebugString(buf);
-		print_struct_format((D3Struct*)a);
-		}
-		}
-	*/
+
 
 
 void hk_exception_handler() {

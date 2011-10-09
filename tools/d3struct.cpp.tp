@@ -45,9 +45,9 @@ void* [%  name %]::New() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * [%  fieldscount %]);
 		cout << "initializing Fields " << endl;
 [% FOREACH method = methods -%]
-		Fields[[%	method.id  %]].fieldinfo(&a[%	method.type  %], [%	method.offset  %], [%	method.bitscount  %]);
+		Fields[[%	method.id  %]].fieldinfo(&a[%	method.type  %], [%	method.offset  %], [%	method.bitscount  %], [%	method.bitscount2  %], [%	method.min  %], [%	method.max  %], [%	method.flags  %], &a[%	method.opt_type  %], [%	method.count  %]);
 [%	END -%]		
-		Fields[[%  fieldscount %] - 1].fieldinfo(NULL, 0, 0);
+		Fields[[%  fieldscount %] - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 [%  name %]::~[%  name %]() {
 		free(Fields);
@@ -60,11 +60,11 @@ const char* [%  name %]::Name() {
 [% FOREACH method = methods -%]
 [% IF method.type == "DT_INT" -%]
 int* [%  name %]::[%	method.name  %](void *Data) {
-	return (int*)((char*)Data) + [%	method.offset  %];
+	return (int*)(((char*)Data) + [%	method.offset  %]);
 }
 [% ELSE -%]
 void* [%  name %]::[%	method.name  %](void *Data) {
-	return ((char*)Data) + [%	method.offset  %];
+	return (((char*)Data) + [%	method.offset  %]);
 }
 [% END -%]
 [%	END -%]

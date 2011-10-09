@@ -132,3 +132,12 @@ clear-services:
 		
 .cpp.o:
 	$(CC) $(CFLAGS) -c $< -o $@ -lws2_32 -I${PWD} -Icpp/ -I/usr/local/include -L/usr/local/lib/ -lprotobuf 
+gs/common.o: bitstreams.cpp datatypes.cpp gs/common.cpp
+	${MAKE} -C gs/
+
+test: test.cpp bitstreams.cpp datatypes.cpp gs/common.o
+	g++ -o test.exe test.cpp gs/common.o bitstreams.cpp datatypes.cpp
+
+protodump:
+	${MAKE} -C tools/protodump
+	

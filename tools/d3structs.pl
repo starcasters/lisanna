@@ -105,7 +105,13 @@
 					type=>$methodname,
 					name=>$aparam[0],
 					bitscount=>$aparam[4],
+					bitscount2=>$aparam[5],
 					offset=>$aparam[1],
+					min=>$aparam[2],
+					max=>$aparam[3],
+					flags=>$aparam[6],
+					opt_type=>$aparam[8],
+					count=>$aparam[7]
 					
 				});
 				$id += 1;

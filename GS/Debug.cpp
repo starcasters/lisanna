@@ -45,12 +45,12 @@ void* Monster::New() {
 Monster::Monster() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 6);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aDT_FLOAT, 0, 32);
-		Fields[1].fieldinfo(&aDT_FLOAT, 4, 32);
-		Fields[2].fieldinfo(&aDT_FLOAT, 8, 32);
-		Fields[3].fieldinfo(&aDT_FLOAT, 12, 32);
-		Fields[4].fieldinfo(&aDT_INT, 16, 1);
-		Fields[6 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aDT_FLOAT, 0, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_FLOAT, 4, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_FLOAT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_FLOAT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_INT, 16, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[6 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 Monster::~Monster() {
 		free(Fields);
@@ -61,19 +61,19 @@ const char* Monster::Name() {
 }
 	
 void* Monster::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* Monster::unknow_field_1(void *Data) {
-	return ((char*)Data) + 4;
+	return (((char*)Data) + 4);
 }
 void* Monster::unknow_field_2(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 void* Monster::unknow_field_3(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 int* Monster::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 
 Monster aMonster;
@@ -92,12 +92,12 @@ void* Monster::New() {
 Monster::Monster() {
 		Fields = (FieldInfo*) malloc(sizeof(FieldInfo) * 6);
 		cout << "initializing Fields " << endl;
-		Fields[0].fieldinfo(&aDT_FLOAT, 0, 32);
-		Fields[1].fieldinfo(&aDT_FLOAT, 4, 32);
-		Fields[2].fieldinfo(&aDT_FLOAT, 8, 32);
-		Fields[3].fieldinfo(&aDT_FLOAT, 12, 32);
-		Fields[4].fieldinfo(&aDT_INT, 16, 1);
-		Fields[6 - 1].fieldinfo(NULL, 0, 0);
+		Fields[0].fieldinfo(&aDT_FLOAT, 0, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[1].fieldinfo(&aDT_FLOAT, 4, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[2].fieldinfo(&aDT_FLOAT, 8, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[3].fieldinfo(&aDT_FLOAT, 12, 32, 0, 0, 0, 1, &aDT_NULL, -1);
+		Fields[4].fieldinfo(&aDT_INT, 16, 1, 0, 0, 1, 17, &aDT_NULL, -1);
+		Fields[6 - 1].fieldinfo(NULL, 0, 0, 0, 0, 0, 0, NULL,0);
 	}
 Monster::~Monster() {
 		free(Fields);
@@ -108,19 +108,19 @@ const char* Monster::Name() {
 }
 	
 void* Monster::unknow_field_0(void *Data) {
-	return ((char*)Data) + 0;
+	return (((char*)Data) + 0);
 }
 void* Monster::unknow_field_1(void *Data) {
-	return ((char*)Data) + 4;
+	return (((char*)Data) + 4);
 }
 void* Monster::unknow_field_2(void *Data) {
-	return ((char*)Data) + 8;
+	return (((char*)Data) + 8);
 }
 void* Monster::unknow_field_3(void *Data) {
-	return ((char*)Data) + 12;
+	return (((char*)Data) + 12);
 }
 int* Monster::unknow_field_4(void *Data) {
-	return (int*)((char*)Data) + 16;
+	return (int*)(((char*)Data) + 16);
 }
 
 Monster aMonster;
